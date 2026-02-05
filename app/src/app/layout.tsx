@@ -155,7 +155,6 @@ export default function RootLayout({
                 <div>
                   <p className="text-gray-300 font-medium">Desarrollado por:</p>
                   <p className="text-white">Coordinación de Estudios Prospectivos y Valoración de Riesgos</p>
-                  <p className="text-gray-400 text-xs mt-1">Órgano Interno de Control en PROFEPA</p>
                 </div>
                 <div className="md:text-right">
                   <p className="text-gray-300 font-medium">Contacto técnico:</p>
