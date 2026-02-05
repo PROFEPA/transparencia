@@ -1,0 +1,62 @@
+{
+  "fecha_generacion": "2026-02-05T11:47:00.424023",
+  "resumen": {
+    "total_filas_leidas": 0,
+    "total_filas_validas": 66,
+    "total_filas_descartadas": 0,
+    "porcentaje_validas": 6600.0,
+    "total_indicadores": 66,
+    "total_observaciones": 333
+  },
+  "completitud_indicadores": {
+    "con_definicion": 63.64,
+    "con_metodo_calculo": 63.64,
+    "con_unidad_medida": 100.0,
+    "con_nivel": 100.0,
+    "con_observaciones": 83.33
+  },
+  "por_archivo": [
+    {
+      "archivo_fuente": "C:\\Users\\PROFEPA\\Desktop\\Dashboard OIC\\mnt\\Datos\\POA_2025.xlsx",
+      "fecha_extraccion": "2026-02-05T11:46:59.545689",
+      "filas_leidas": 0,
+      "filas_validas": 24,
+      "filas_descartadas": 0,
+      "campos_faltantes": {},
+      "errores": [],
+      "advertencias": []
+    },
+    {
+      "archivo_fuente": "C:\\Users\\PROFEPA\\Desktop\\Dashboard OIC\\mnt\\Datos\\MIR_G005_2025.xlsx",
+      "fecha_extraccion": "2026-02-05T11:47:00.235620",
+      "filas_leidas": 0,
+      "filas_validas": 21,
+      "filas_descartadas": 0,
+      "campos_faltantes": {},
+      "errores": [],
+      "advertencias": []
+    },
+    {
+      "archivo_fuente": "C:\\Users\\PROFEPA\\Desktop\\Dashboard OIC\\mnt\\Datos\\FiME 2026 PFPA.xlsx",
+      "fecha_extraccion": "2026-02-05T11:47:00.300661",
+      "filas_leidas": 0,
+      "filas_validas": 10,
+      "filas_descartadas": 0,
+      "campos_faltantes": {},
+      "errores": [],
+      "advertencias": []
+    },
+    {
+      "archivo_fuente": "C:\\Users\\PROFEPA\\Desktop\\Dashboard OIC\\mnt\\Datos\\G014 para Auditoría.docx",
+      "fecha_extraccion": "2026-02-05T11:47:00.327677",
+      "filas_leidas": 0,
+      "filas_validas": 11,
+      "filas_descartadas": 0,
+      "campos_faltantes": {},
+      "errores": [],
+      "advertencias": []
+    }
+  ],
+  "todos_errores": [],
+  "todas_advertencias": []
+}

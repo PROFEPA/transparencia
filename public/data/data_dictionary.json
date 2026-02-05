@@ -1,0 +1,143 @@
+{
+  "version": "1.0.0",
+  "fecha_generacion": "2026-02-05T11:47:00.425024",
+  "descripcion": "Diccionario de datos del Dashboard de Transparencia PROFEPA",
+  "columnas": [
+    {
+      "columna": "id",
+      "tipo_dato": "string",
+      "descripcion": "Identificador único del indicador (slug normalizado)",
+      "ejemplo": "indicador-cobertura-inspeccion-2025",
+      "valores_permitidos": null,
+      "fuente_original": null
+    },
+    {
+      "columna": "nombre",
+      "tipo_dato": "string",
+      "descripcion": "Nombre completo del indicador tal como aparece en la fuente original",
+      "ejemplo": "Porcentaje de cobertura de inspección ambiental",
+      "valores_permitidos": null,
+      "fuente_original": null
+    },
+    {
+      "columna": "programa",
+      "tipo_dato": "string",
+      "descripcion": "Programa presupuestario al que pertenece el indicador",
+      "ejemplo": "G005",
+      "valores_permitidos": [
+        "G005",
+        "G014",
+        "No especificado"
+      ],
+      "fuente_original": null
+    },
+    {
+      "columna": "anio",
+      "tipo_dato": "integer",
+      "descripcion": "Año fiscal al que corresponde el indicador",
+      "ejemplo": "2025",
+      "valores_permitidos": [
+        "2025",
+        "2026"
+      ],
+      "fuente_original": null
+    },
+    {
+      "columna": "fuente",
+      "tipo_dato": "string",
+      "descripcion": "Archivo y ubicación de origen del dato (hoja, celda o sección)",
+      "ejemplo": "POA_2025.xlsx - Hoja: Indicadores - Fila 15",
+      "valores_permitidos": null,
+      "fuente_original": null
+    },
+    {
+      "columna": "definicion",
+      "tipo_dato": "string",
+      "descripcion": "Definición conceptual del indicador según documentación institucional",
+      "ejemplo": "Mide el porcentaje de empresas inspeccionadas respecto al universo total...",
+      "valores_permitidos": null,
+      "fuente_original": null
+    },
+    {
+      "columna": "metodo_calculo",
+      "tipo_dato": "string",
+      "descripcion": "Fórmula o método utilizado para calcular el indicador",
+      "ejemplo": "(Empresas inspeccionadas / Total empresas reguladas) x 100",
+      "valores_permitidos": null,
+      "fuente_original": null
+    },
+    {
+      "columna": "unidad_medida",
+      "tipo_dato": "string",
+      "descripcion": "Unidad en la que se expresa el valor del indicador",
+      "ejemplo": "Porcentaje",
+      "valores_permitidos": [
+        "Porcentaje",
+        "Número",
+        "Índice",
+        "Otro"
+      ],
+      "fuente_original": null
+    },
+    {
+      "columna": "nivel",
+      "tipo_dato": "string",
+      "descripcion": "Nivel del indicador en la Matriz de Indicadores para Resultados (MIR)",
+      "ejemplo": "Componente",
+      "valores_permitidos": [
+        "Fin",
+        "Propósito",
+        "Componente",
+        "Actividad"
+      ],
+      "fuente_original": null
+    },
+    {
+      "columna": "periodo",
+      "tipo_dato": "string",
+      "descripcion": "Periodo de la observación en formato estandarizado",
+      "ejemplo": "2025-01",
+      "valores_permitidos": [
+        "YYYY",
+        "YYYY-MM",
+        "YYYY-Q1",
+        "YYYY-Q2",
+        "YYYY-Q3",
+        "YYYY-Q4"
+      ],
+      "fuente_original": null
+    },
+    {
+      "columna": "valor",
+      "tipo_dato": "number",
+      "descripcion": "Valor observado/alcanzado del indicador en el periodo",
+      "ejemplo": "85.5",
+      "valores_permitidos": null,
+      "fuente_original": null
+    },
+    {
+      "columna": "meta",
+      "tipo_dato": "number",
+      "descripcion": "Meta programada para el indicador en el periodo",
+      "ejemplo": "90.0",
+      "valores_permitidos": null,
+      "fuente_original": null
+    },
+    {
+      "columna": "avance_porcentual",
+      "tipo_dato": "number",
+      "descripcion": "Porcentaje de avance respecto a la meta (valor/meta * 100)",
+      "ejemplo": "95.0",
+      "valores_permitidos": null,
+      "fuente_original": null
+    },
+    {
+      "columna": "ultima_actualizacion",
+      "tipo_dato": "date",
+      "descripcion": "Fecha en que se extrajo/actualizó el dato desde la fuente",
+      "ejemplo": "2025-01-15",
+      "valores_permitidos": null,
+      "fuente_original": null
+    }
+  ]
+}

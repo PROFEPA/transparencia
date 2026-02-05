@@ -1,0 +1,234 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos base */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply text-gray-900 bg-gray-50;
+  }
+  
+  /* Mejoras de accesibilidad */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-gob-green-500;
+  }
+  
+  /* Estilos de selección */
+  ::selection {
+    @apply bg-gob-green-500 text-white;
+  }
+}
+
+/* Componentes reutilizables */
+@layer components {
+  /* Tarjetas */
+  .card {
+    @apply bg-white rounded-lg shadow-md p-6 border border-gray-100;
+  }
+  
+  .card-hover {
+    @apply card transition-all duration-200 hover:shadow-lg hover:border-gob-green-200;
+  }
+  
+  /* Botones */
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  
+  .btn-primary {
+    @apply btn bg-gob-green-500 text-white hover:bg-gob-green-600 focus:ring-gob-green-500;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-white text-gob-green-500 border-2 border-gob-green-500 hover:bg-gob-green-50 focus:ring-gob-green-500;
+  }
+  
+  .btn-outline {
+    @apply btn bg-transparent text-gray-700 border border-gray-300 hover:bg-gray-50 focus:ring-gray-400;
+  }
+  
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .badge-green {
+    @apply badge bg-green-100 text-green-800;
+  }
+  
+  .badge-blue {
+    @apply badge bg-blue-100 text-blue-800;
+  }
+  
+  .badge-gray {
+    @apply badge bg-gray-100 text-gray-800;
+  }
+  
+  .badge-gob {
+    @apply badge bg-gob-green-100 text-gob-green-700;
+  }
+  
+  /* Inputs */
+  .input {
+    @apply block w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-gob-green-500 focus:ring-2 focus:ring-gob-green-500/20 focus:outline-none transition-colors;
+  }
+  
+  .select {
+    @apply input appearance-none bg-white pr-10;
+  }
+  
+  /* Tablas */
+  .table-container {
+    @apply overflow-x-auto rounded-lg border border-gray-200;
+  }
+  
+  .table {
+    @apply min-w-full divide-y divide-gray-200;
+  }
+  
+  .table-header {
+    @apply bg-gray-50;
+  }
+  
+  .table-header th {
+    @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+  }
+  
+  .table-body {
+    @apply bg-white divide-y divide-gray-200;
+  }
+  
+  .table-body td {
+    @apply px-6 py-4 whitespace-nowrap text-sm text-gray-900;
+  }
+  
+  .table-row-hover:hover {
+    @apply bg-gray-50;
+  }
+  
+  /* KPI Cards */
+  .kpi-card {
+    @apply card text-center;
+  }
+  
+  .kpi-value {
+    @apply text-3xl font-bold text-gob-green-500;
+  }
+  
+  .kpi-label {
+    @apply text-sm text-gray-600 mt-1;
+  }
+  
+  /* Navegación breadcrumb */
+  .breadcrumb {
+    @apply flex items-center space-x-2 text-sm text-gray-600;
+  }
+  
+  .breadcrumb-separator {
+    @apply text-gray-400;
+  }
+  
+  .breadcrumb a {
+    @apply hover:text-gob-green-500 focus:outline-none focus:underline;
+  }
+  
+  /* Secciones */
+  .section {
+    @apply py-8 md:py-12;
+  }
+  
+  .section-title {
+    @apply text-2xl md:text-3xl font-bold text-gray-900 mb-6;
+  }
+  
+  .section-subtitle {
+    @apply text-lg text-gray-600 mb-8;
+  }
+  
+  /* Grids responsivos */
+  .grid-cards {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+  
+  .grid-kpis {
+    @apply grid grid-cols-2 md:grid-cols-4 gap-4;
+  }
+}
+
+/* Utilidades personalizadas */
+@layer utilities {
+  /* Truncar texto */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  /* Animaciones */
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Skip link para accesibilidad */
+  .sr-only {
+    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+    clip: rect(0, 0, 0, 0);
+  }
+  
+  .sr-only:focus,
+  .focus\:not-sr-only:focus {
+    @apply static w-auto h-auto p-0 m-0 overflow-visible whitespace-normal;
+    clip: auto;
+  }
+}
+
+/* Estilos para gráficas Recharts */
+.recharts-wrapper {
+  @apply font-sans;
+}
+
+.recharts-tooltip-wrapper {
+  @apply z-50;
+}
+
+.recharts-default-tooltip {
+  @apply bg-white shadow-lg rounded-lg border border-gray-200 p-3 !important;
+}
+
+/* Print styles */
+@media print {
+  header, footer, nav {
+    display: none !important;
+  }
+  
+  .card {
+    @apply shadow-none border border-gray-300;
+  }
+  
+  main {
+    @apply p-0;
+  }
+}

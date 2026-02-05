@@ -1,0 +1,334 @@
+indicator_id,periodo,valor,meta,avance_porcentual,entidad,categoria,fuente_detalle
+saa-01-porcentaje-de-certificados-y-reconocimie-g005-2025,2025-03,37.0,37.0,100.0,Nacional,,POA Avance - Marzo
+saa-01-porcentaje-de-certificados-y-reconocimie-g005-2025,2025-04,28.0,16.0,175.0,Nacional,,POA Avance - Abril
+saa-01-porcentaje-de-certificados-y-reconocimie-g005-2025,2025-05,80.0,23.0,347.83,Nacional,,POA Avance - Mayo
+saa-01-porcentaje-de-certificados-y-reconocimie-g005-2025,2025-06,36.0,31.0,116.13,Nacional,,POA Avance - Junio
+saa-01-porcentaje-de-certificados-y-reconocimie-g005-2025,2025-07,15.0,39.0,38.46,Nacional,,POA Avance - Julio
+saa-01-porcentaje-de-certificados-y-reconocimie-g005-2025,2025-08,65.0,48.0,135.42,Nacional,,POA Avance - Agosto
+saa-01-porcentaje-de-certificados-y-reconocimie-g005-2025,2025-09,40.0,55.0,72.73,Nacional,,POA Avance - Septiembre
+saa-01-porcentaje-de-certificados-y-reconocimie-g005-2025,2025-10,0.0,64.0,0.0,Nacional,,POA Avance - Octubre
+saa-01-porcentaje-de-certificados-y-reconocimie-g005-2025,2025-11,47.0,63.0,74.6,Nacional,,POA Avance - Noviembre
+saa-01-porcentaje-de-certificados-y-reconocimie-g005-2025,2025-12,46.0,24.0,191.67,Nacional,,POA Avance - Diciembre
+saa-01-porcentaje-de-certificados-y-reconocimie-g005-2025,2025,394.0,400.0,98.5,Nacional,,POA Avance - Acumulado anual
+saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025,2025-01,103.0,39.0,264.1,Nacional,,POA Avance - Enero
+saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025,2025-02,90.0,61.0,147.54,Nacional,,POA Avance - Febrero
+saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025,2025-03,62.0,72.0,86.11,Nacional,,POA Avance - Marzo
+saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025,2025-04,61.0,83.0,73.49,Nacional,,POA Avance - Abril
+saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025,2025-05,87.0,98.0,88.78,Nacional,,POA Avance - Mayo
+saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025,2025-06,48.0,104.0,46.15,Nacional,,POA Avance - Junio
+saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025,2025-07,136.0,103.0,132.04,Nacional,,POA Avance - Julio
+saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025,2025-08,98.0,100.0,98.0,Nacional,,POA Avance - Agosto
+saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025,2025-09,73.0,89.0,82.02,Nacional,,POA Avance - Septiembre
+saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025,2025-10,166.0,76.0,218.42,Nacional,,POA Avance - Octubre
+saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025,2025-11,43.0,60.0,71.67,Nacional,,POA Avance - Noviembre
+saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025,2025-12,29.0,40.0,72.5,Nacional,,POA Avance - Diciembre
+saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025,2025,996.0,925.0,107.68,Nacional,,POA Avance - Acumulado anual
+saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025,2025-01,95.0,95.0,100.0,Nacional,,POA Avance - Enero
+saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025,2025-02,102.0,102.0,100.0,Nacional,,POA Avance - Febrero
+saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025,2025-03,211.0,211.0,100.0,Nacional,,POA Avance - Marzo
+saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025,2025-04,63.0,74.0,85.14,Nacional,,POA Avance - Abril
+saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025,2025-05,143.0,92.0,155.43,Nacional,,POA Avance - Mayo
+saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025,2025-06,116.0,103.0,112.62,Nacional,,POA Avance - Junio
+saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025,2025-07,0.0,102.0,0.0,Nacional,,POA Avance - Julio
+saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025,2025-08,213.0,100.0,213.0,Nacional,,POA Avance - Agosto
+saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025,2025-09,83.0,98.0,84.69,Nacional,,POA Avance - Septiembre
+saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025,2025-10,47.0,89.0,52.81,Nacional,,POA Avance - Octubre
+saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025,2025-11,77.0,83.0,92.77,Nacional,,POA Avance - Noviembre
+saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025,2025-12,168.0,51.0,329.41,Nacional,,POA Avance - Diciembre
+saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025,2025,1318.0,1200.0,109.83,Nacional,,POA Avance - Acumulado anual
+saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025,2025-01,46.0,39.0,117.95,Nacional,,POA Avance - Enero
+saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025,2025-02,66.0,68.0,97.06,Nacional,,POA Avance - Febrero
+saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025,2025-03,98.0,90.0,108.89,Nacional,,POA Avance - Marzo
+saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025,2025-04,109.0,99.0,110.1,Nacional,,POA Avance - Abril
+saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025,2025-05,97.0,113.0,85.84,Nacional,,POA Avance - Mayo
+saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025,2025-06,127.0,127.0,100.0,Nacional,,POA Avance - Junio
+saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025,2025-07,106.0,128.0,82.81,Nacional,,POA Avance - Julio
+saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025,2025-08,222.0,133.0,166.92,Nacional,,POA Avance - Agosto
+saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025,2025-09,102.0,122.0,83.61,Nacional,,POA Avance - Septiembre
+saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025,2025-10,71.0,102.0,69.61,Nacional,,POA Avance - Octubre
+saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025,2025-11,70.0,84.0,83.33,Nacional,,POA Avance - Noviembre
+saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025,2025-12,114.0,65.0,175.38,Nacional,,POA Avance - Diciembre
+saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025,2025,1228.0,1170.0,104.96,Nacional,,POA Avance - Acumulado anual
+saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025,2025-01,4.0,3.0,133.33,Nacional,,POA Avance - Enero
+saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025,2025-02,4.0,3.0,133.33,Nacional,,POA Avance - Febrero
+saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025,2025-03,4.0,4.0,100.0,Nacional,,POA Avance - Marzo
+saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025,2025-04,4.0,7.0,57.14,Nacional,,POA Avance - Abril
+saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025,2025-05,8.0,7.0,114.29,Nacional,,POA Avance - Mayo
+saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025,2025-06,8.0,6.0,133.33,Nacional,,POA Avance - Junio
+saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025,2025-07,9.0,7.0,128.57,Nacional,,POA Avance - Julio
+saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025,2025-08,5.0,5.0,100.0,Nacional,,POA Avance - Agosto
+saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025,2025-09,6.0,4.0,150.0,Nacional,,POA Avance - Septiembre
+saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025,2025-10,2.0,5.0,40.0,Nacional,,POA Avance - Octubre
+saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025,2025-11,6.0,6.0,100.0,Nacional,,POA Avance - Noviembre
+saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025,2025-12,3.0,6.0,50.0,Nacional,,POA Avance - Diciembre
+saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025,2025,63.0,63.0,100.0,Nacional,,POA Avance - Acumulado anual
+sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025,2025-01,58.53,40.0,146.32,Nacional,,POA Avance - Enero
+sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025,2025-02,39.66,40.0,99.15,Nacional,,POA Avance - Febrero
+sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025,2025-03,57.61,40.0,144.02,Nacional,,POA Avance - Marzo
+sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025,2025-04,38.0,43.0,88.37,Nacional,,POA Avance - Abril
+sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025,2025-05,43.0,43.0,100.0,Nacional,,POA Avance - Mayo
+sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025,2025-06,60.0,45.0,133.33,Nacional,,POA Avance - Junio
+sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025,2025-07,48.0,50.0,96.0,Nacional,,POA Avance - Julio
+sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025,2025-08,26.0,50.0,52.0,Nacional,,POA Avance - Agosto
+sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025,2025-09,42.0,50.0,84.0,Nacional,,POA Avance - Septiembre
+sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025,2025-10,38.0,55.0,69.09,Nacional,,POA Avance - Octubre
+sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025,2025-11,74.0,55.0,134.55,Nacional,,POA Avance - Noviembre
+sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025,2025-12,50.0,55.0,90.91,Nacional,,POA Avance - Diciembre
+sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025,2025,574.8,566.0,101.55,Nacional,,POA Avance - Acumulado anual
+sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025,2025-01,12340.0,12305.0,100.28,Nacional,,POA Avance - Enero
+sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025,2025-02,12450.0,12575.0,99.01,Nacional,,POA Avance - Febrero
+sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025,2025-03,12562.0,13120.0,95.75,Nacional,,POA Avance - Marzo
+sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025,2025-04,12710.0,13280.0,95.71,Nacional,,POA Avance - Abril
+sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025,2025-05,12975.0,13445.0,96.5,Nacional,,POA Avance - Mayo
+sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025,2025-06,13144.0,13605.0,96.61,Nacional,,POA Avance - Junio
+sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025,2025-07,13390.0,13765.0,97.28,Nacional,,POA Avance - Julio
+sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025,2025-08,13853.0,13925.0,99.48,Nacional,,POA Avance - Agosto
+sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025,2025-09,14197.0,14100.0,100.69,Nacional,,POA Avance - Septiembre
+sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025,2025-10,14553.0,14260.0,102.05,Nacional,,POA Avance - Octubre
+sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025,2025-11,14812.0,14420.0,102.72,Nacional,,POA Avance - Noviembre
+sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025,2025-12,14983.0,14585.0,102.73,Nacional,,POA Avance - Diciembre
+sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025,2025,161969.0,163385.0,99.13,Nacional,,POA Avance - Acumulado anual
+sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025,2025-01,83.0,0.0,,Nacional,,POA Avance - Enero
+sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025,2025-02,263.0,288.0,91.32,Nacional,,POA Avance - Febrero
+sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025,2025-03,141.0,315.0,44.76,Nacional,,POA Avance - Marzo
+sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025,2025-04,221.0,356.0,62.08,Nacional,,POA Avance - Abril
+sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025,2025-05,277.0,378.0,73.28,Nacional,,POA Avance - Mayo
+sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025,2025-06,386.0,377.0,102.39,Nacional,,POA Avance - Junio
+sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025,2025-07,254.0,374.0,67.91,Nacional,,POA Avance - Julio
+sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025,2025-08,498.0,361.0,137.95,Nacional,,POA Avance - Agosto
+sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025,2025-09,359.0,355.0,101.13,Nacional,,POA Avance - Septiembre
+sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025,2025-10,370.0,325.0,113.85,Nacional,,POA Avance - Octubre
+sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025,2025-11,276.0,274.0,100.73,Nacional,,POA Avance - Noviembre
+sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025,2025-12,179.0,97.0,184.54,Nacional,,POA Avance - Diciembre
+sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025,2025,3307.0,3500.0,94.49,Nacional,,POA Avance - Acumulado anual
+sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025,2025-01,12207.0,12207.0,100.0,Nacional,,POA Avance - Enero
+sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025,2025-02,12003.0,12003.0,100.0,Nacional,,POA Avance - Febrero
+sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025,2025-03,13192.0,13192.0,100.0,Nacional,,POA Avance - Marzo
+sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025,2025-04,13378.0,13378.0,100.0,Nacional,,POA Avance - Abril
+sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025,2025-05,13079.0,13079.0,100.0,Nacional,,POA Avance - Mayo
+sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025,2025-06,14812.0,14812.0,100.0,Nacional,,POA Avance - Junio
+sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025,2025-07,14563.0,14563.0,100.0,Nacional,,POA Avance - Julio
+sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025,2025-08,13691.0,13691.0,100.0,Nacional,,POA Avance - Agosto
+sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025,2025-09,12995.0,12995.0,100.0,Nacional,,POA Avance - Septiembre
+sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025,2025-10,14783.0,14783.0,100.0,Nacional,,POA Avance - Octubre
+sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025,2025-11,13940.0,13940.0,100.0,Nacional,,POA Avance - Noviembre
+sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025,2025-12,14349.0,14349.0,100.0,Nacional,,POA Avance - Diciembre
+sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025,2025,162992.0,162992.0,100.0,Nacional,,POA Avance - Acumulado anual
+sii-05-emplazamientos-realizados-a-procedimient-g005-2025,2025-01,163.0,0.0,,Nacional,,POA Avance - Enero
+sii-05-emplazamientos-realizados-a-procedimient-g005-2025,2025-02,35.0,91.0,38.46,Nacional,,POA Avance - Febrero
+sii-05-emplazamientos-realizados-a-procedimient-g005-2025,2025-03,78.0,108.0,72.22,Nacional,,POA Avance - Marzo
+sii-05-emplazamientos-realizados-a-procedimient-g005-2025,2025-04,412.0,120.0,343.33,Nacional,,POA Avance - Abril
+sii-05-emplazamientos-realizados-a-procedimient-g005-2025,2025-05,49.0,125.0,39.2,Nacional,,POA Avance - Mayo
+sii-05-emplazamientos-realizados-a-procedimient-g005-2025,2025-06,68.0,137.0,49.64,Nacional,,POA Avance - Junio
+sii-05-emplazamientos-realizados-a-procedimient-g005-2025,2025-07,36.0,134.0,26.87,Nacional,,POA Avance - Julio
+sii-05-emplazamientos-realizados-a-procedimient-g005-2025,2025-08,41.0,141.0,29.08,Nacional,,POA Avance - Agosto
+sii-05-emplazamientos-realizados-a-procedimient-g005-2025,2025-09,42.0,128.0,32.81,Nacional,,POA Avance - Septiembre
+sii-05-emplazamientos-realizados-a-procedimient-g005-2025,2025-10,38.0,126.0,30.16,Nacional,,POA Avance - Octubre
+sii-05-emplazamientos-realizados-a-procedimient-g005-2025,2025-11,44.0,103.0,42.72,Nacional,,POA Avance - Noviembre
+sii-05-emplazamientos-realizados-a-procedimient-g005-2025,2025-12,55.0,1.0,5500.0,Nacional,,POA Avance - Diciembre
+sii-05-emplazamientos-realizados-a-procedimient-g005-2025,2025,1061.0,1214.0,87.4,Nacional,,POA Avance - Acumulado anual
+sii-06-simulacros-para-evaluar-los-planes-de-re-g005-2025,2025-07,838.0,896.0,93.53,Nacional,,POA Avance - Julio
+sii-06-simulacros-para-evaluar-los-planes-de-re-g005-2025,2025-09,0.0,32.0,0.0,Nacional,,POA Avance - Septiembre
+sii-06-simulacros-para-evaluar-los-planes-de-re-g005-2025,2025-11,9.0,32.0,28.12,Nacional,,POA Avance - Noviembre
+sii-06-simulacros-para-evaluar-los-planes-de-re-g005-2025,2025-12,3.0,0.0,,Nacional,,POA Avance - Diciembre
+sii-06-simulacros-para-evaluar-los-planes-de-re-g005-2025,2025,850.0,960.0,88.54,Nacional,,POA Avance - Acumulado anual
+sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025,2025-01,215.0,519.0,41.43,Nacional,,POA Avance - Enero
+sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025,2025-02,400.0,816.0,49.02,Nacional,,POA Avance - Febrero
+sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025,2025-03,385.0,762.0,50.52,Nacional,,POA Avance - Marzo
+sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025,2025-04,396.0,792.0,50.0,Nacional,,POA Avance - Abril
+sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025,2025-05,406.0,788.0,51.52,Nacional,,POA Avance - Mayo
+sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025,2025-06,433.0,763.0,56.75,Nacional,,POA Avance - Junio
+sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025,2025-07,438.0,785.0,55.8,Nacional,,POA Avance - Julio
+sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025,2025-08,387.0,593.0,65.26,Nacional,,POA Avance - Agosto
+sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025,2025-09,415.0,702.0,59.12,Nacional,,POA Avance - Septiembre
+sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025,2025-10,411.0,689.0,59.65,Nacional,,POA Avance - Octubre
+sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025,2025-11,404.0,609.0,66.34,Nacional,,POA Avance - Noviembre
+sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025,2025-12,396.0,533.0,74.3,Nacional,,POA Avance - Diciembre
+sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025,2025,4686.0,8351.0,56.11,Nacional,,POA Avance - Acumulado anual
+sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025,2025-01,356.0,1053.0,33.81,Nacional,,POA Avance - Enero
+sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025,2025-02,390.0,1057.0,36.9,Nacional,,POA Avance - Febrero
+sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025,2025-03,417.0,1060.0,39.34,Nacional,,POA Avance - Marzo
+sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025,2025-04,340.0,437.0,77.8,Nacional,,POA Avance - Abril
+sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025,2025-05,392.0,439.0,89.29,Nacional,,POA Avance - Mayo
+sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025,2025-06,467.0,439.0,106.38,Nacional,,POA Avance - Junio
+sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025,2025-07,475.0,442.0,107.47,Nacional,,POA Avance - Julio
+sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025,2025-08,452.0,444.0,101.8,Nacional,,POA Avance - Agosto
+sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025,2025-09,470.0,440.0,106.82,Nacional,,POA Avance - Septiembre
+sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025,2025-10,461.0,434.0,106.22,Nacional,,POA Avance - Octubre
+sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025,2025-11,497.0,429.0,115.85,Nacional,,POA Avance - Noviembre
+sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025,2025-12,449.0,427.0,105.15,Nacional,,POA Avance - Diciembre
+sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025,2025,5166.0,7101.0,72.75,Nacional,,POA Avance - Acumulado anual
+sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025,2025-01,17.0,17.0,100.0,Nacional,,POA Avance - Enero
+sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025,2025-02,25.0,25.0,100.0,Nacional,,POA Avance - Febrero
+sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025,2025-03,30.0,30.0,100.0,Nacional,,POA Avance - Marzo
+sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025,2025-04,44.0,44.0,100.0,Nacional,,POA Avance - Abril
+sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025,2025-05,47.0,47.0,100.0,Nacional,,POA Avance - Mayo
+sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025,2025-06,55.0,55.0,100.0,Nacional,,POA Avance - Junio
+sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025,2025-07,55.0,55.0,100.0,Nacional,,POA Avance - Julio
+sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025,2025-08,53.0,53.0,100.0,Nacional,,POA Avance - Agosto
+sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025,2025-09,52.0,52.0,100.0,Nacional,,POA Avance - Septiembre
+sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025,2025-10,52.0,52.0,100.0,Nacional,,POA Avance - Octubre
+sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025,2025-11,45.0,45.0,100.0,Nacional,,POA Avance - Noviembre
+sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025,2025-12,25.0,25.0,100.0,Nacional,,POA Avance - Diciembre
+sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025,2025,500.0,500.0,100.0,Nacional,,POA Avance - Acumulado anual
+sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025,2025-01,1753.0,1318.0,133.0,Nacional,,POA Avance - Enero
+sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025,2025-02,1708.0,1324.0,129.0,Nacional,,POA Avance - Febrero
+sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025,2025-03,1756.0,1331.0,131.93,Nacional,,POA Avance - Marzo
+sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025,2025-04,1509.0,1337.0,112.86,Nacional,,POA Avance - Abril
+sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025,2025-05,867.0,1346.0,64.41,Nacional,,POA Avance - Mayo
+sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025,2025-06,622.0,1346.0,46.21,Nacional,,POA Avance - Junio
+sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025,2025-07,1121.0,1343.0,83.47,Nacional,,POA Avance - Julio
+sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025,2025-08,631.0,1339.0,47.12,Nacional,,POA Avance - Agosto
+sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025,2025-09,1354.0,1337.0,101.27,Nacional,,POA Avance - Septiembre
+sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025,2025-10,1923.0,1334.0,144.15,Nacional,,POA Avance - Octubre
+sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025,2025-11,2224.0,1327.0,167.6,Nacional,,POA Avance - Noviembre
+sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025,2025-12,976.0,1318.0,74.05,Nacional,,POA Avance - Diciembre
+sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025,2025,16444.0,16000.0,102.77,Nacional,,POA Avance - Acumulado anual
+sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025,2025-01,0.0,15.0,0.0,Nacional,,POA Avance - Enero
+sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025,2025-02,27.0,15.0,180.0,Nacional,,POA Avance - Febrero
+sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025,2025-03,19.0,15.0,126.67,Nacional,,POA Avance - Marzo
+sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025,2025-04,15.0,22.0,68.18,Nacional,,POA Avance - Abril
+sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025,2025-05,15.0,26.0,57.69,Nacional,,POA Avance - Mayo
+sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025,2025-06,33.0,26.0,126.92,Nacional,,POA Avance - Junio
+sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025,2025-07,19.0,26.0,73.08,Nacional,,POA Avance - Julio
+sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025,2025-08,13.0,26.0,50.0,Nacional,,POA Avance - Agosto
+sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025,2025-09,14.0,26.0,53.85,Nacional,,POA Avance - Septiembre
+sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025,2025-10,10.0,26.0,38.46,Nacional,,POA Avance - Octubre
+sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025,2025-11,20.0,26.0,76.92,Nacional,,POA Avance - Noviembre
+sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025,2025-12,20.0,26.0,76.92,Nacional,,POA Avance - Diciembre
+sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025,2025,205.0,275.0,74.55,Nacional,,POA Avance - Acumulado anual
+sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025,2025-01,46.0,51.0,90.2,Nacional,,POA Avance - Enero
+sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025,2025-02,50.0,48.0,104.17,Nacional,,POA Avance - Febrero
+sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025,2025-03,74.0,59.0,125.42,Nacional,,POA Avance - Marzo
+sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025,2025-04,52.0,59.0,88.14,Nacional,,POA Avance - Abril
+sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025,2025-05,61.0,49.0,124.49,Nacional,,POA Avance - Mayo
+sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025,2025-06,60.0,60.0,100.0,Nacional,,POA Avance - Junio
+sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025,2025-07,55.0,59.0,93.22,Nacional,,POA Avance - Julio
+sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025,2025-08,64.0,54.0,118.52,Nacional,,POA Avance - Agosto
+sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025,2025-09,46.0,55.0,83.64,Nacional,,POA Avance - Septiembre
+sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025,2025-10,50.0,55.0,90.91,Nacional,,POA Avance - Octubre
+sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025,2025-11,59.0,54.0,109.26,Nacional,,POA Avance - Noviembre
+sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025,2025-12,28.0,54.0,51.85,Nacional,,POA Avance - Diciembre
+sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025,2025,645.0,657.0,98.17,Nacional,,POA Avance - Acumulado anual
+sj-07-porcentaje-de-sentencias-favorables-not-g005-2025,2025-01,18.0,30.0,60.0,Nacional,,POA Avance - Enero
+sj-07-porcentaje-de-sentencias-favorables-not-g005-2025,2025-02,30.0,25.0,120.0,Nacional,,POA Avance - Febrero
+sj-07-porcentaje-de-sentencias-favorables-not-g005-2025,2025-03,34.0,25.0,136.0,Nacional,,POA Avance - Marzo
+sj-07-porcentaje-de-sentencias-favorables-not-g005-2025,2025-04,21.0,27.0,77.78,Nacional,,POA Avance - Abril
+sj-07-porcentaje-de-sentencias-favorables-not-g005-2025,2025-05,27.0,32.0,84.38,Nacional,,POA Avance - Mayo
+sj-07-porcentaje-de-sentencias-favorables-not-g005-2025,2025-06,16.0,42.0,38.1,Nacional,,POA Avance - Junio
+sj-07-porcentaje-de-sentencias-favorables-not-g005-2025,2025-07,16.0,22.0,72.73,Nacional,,POA Avance - Julio
+sj-07-porcentaje-de-sentencias-favorables-not-g005-2025,2025-08,6.0,23.0,26.09,Nacional,,POA Avance - Agosto
+sj-07-porcentaje-de-sentencias-favorables-not-g005-2025,2025-09,19.0,33.0,57.58,Nacional,,POA Avance - Septiembre
+sj-07-porcentaje-de-sentencias-favorables-not-g005-2025,2025-10,10.0,35.0,28.57,Nacional,,POA Avance - Octubre
+sj-07-porcentaje-de-sentencias-favorables-not-g005-2025,2025-11,19.0,41.0,46.34,Nacional,,POA Avance - Noviembre
+sj-07-porcentaje-de-sentencias-favorables-not-g005-2025,2025-12,14.0,18.0,77.78,Nacional,,POA Avance - Diciembre
+sj-07-porcentaje-de-sentencias-favorables-not-g005-2025,2025,230.0,353.0,65.16,Nacional,,POA Avance - Acumulado anual
+srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025,2025-01,160.0,0.0,,Nacional,,POA Avance - Enero
+srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025,2025-02,149.0,0.0,,Nacional,,POA Avance - Febrero
+srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025,2025-03,94.0,0.0,,Nacional,,POA Avance - Marzo
+srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025,2025-04,123.0,0.0,,Nacional,,POA Avance - Abril
+srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025,2025-05,105.0,0.0,,Nacional,,POA Avance - Mayo
+srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025,2025-06,70.0,0.0,,Nacional,,POA Avance - Junio
+srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025,2025-07,63.0,0.0,,Nacional,,POA Avance - Julio
+srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025,2025-08,47.0,0.0,,Nacional,,POA Avance - Agosto
+srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025,2025-09,56.0,0.0,,Nacional,,POA Avance - Septiembre
+srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025,2025-10,40.0,0.0,,Nacional,,POA Avance - Octubre
+srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025,2025-11,47.0,0.0,,Nacional,,POA Avance - Noviembre
+srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025,2025-12,50.0,0.0,,Nacional,,POA Avance - Diciembre
+srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025,2025,1004.0,0.0,,Nacional,,POA Avance - Acumulado anual
+srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025,2025-01,26.0,0.0,,Nacional,,POA Avance - Enero
+srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025,2025-02,22.0,0.0,,Nacional,,POA Avance - Febrero
+srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025,2025-03,12.0,0.0,,Nacional,,POA Avance - Marzo
+srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025,2025-04,29.0,0.0,,Nacional,,POA Avance - Abril
+srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025,2025-05,13.0,0.0,,Nacional,,POA Avance - Mayo
+srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025,2025-06,5.0,0.0,,Nacional,,POA Avance - Junio
+srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025,2025-07,7.0,0.0,,Nacional,,POA Avance - Julio
+srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025,2025-08,4.0,0.0,,Nacional,,POA Avance - Agosto
+srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025,2025-09,9.0,0.0,,Nacional,,POA Avance - Septiembre
+srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025,2025-10,7.0,0.0,,Nacional,,POA Avance - Octubre
+srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025,2025-11,6.0,0.0,,Nacional,,POA Avance - Noviembre
+srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025,2025-12,13.0,0.0,,Nacional,,POA Avance - Diciembre
+srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025,2025,153.0,0.0,,Nacional,,POA Avance - Acumulado anual
+srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025,2025-01,140.0,37.0,378.38,Nacional,,POA Avance - Enero
+srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025,2025-02,319.0,234.0,136.32,Nacional,,POA Avance - Febrero
+srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025,2025-03,298.0,431.0,69.14,Nacional,,POA Avance - Marzo
+srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025,2025-04,410.0,471.0,87.05,Nacional,,POA Avance - Abril
+srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025,2025-05,446.0,529.0,84.31,Nacional,,POA Avance - Mayo
+srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025,2025-06,475.0,500.0,95.0,Nacional,,POA Avance - Junio
+srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025,2025-07,426.0,500.0,85.2,Nacional,,POA Avance - Julio
+srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025,2025-08,407.0,469.0,86.78,Nacional,,POA Avance - Agosto
+srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025,2025-09,405.0,418.0,96.89,Nacional,,POA Avance - Septiembre
+srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025,2025-10,455.0,330.0,137.88,Nacional,,POA Avance - Octubre
+srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025,2025-11,390.0,184.0,211.96,Nacional,,POA Avance - Noviembre
+srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025,2025-12,239.0,35.0,682.86,Nacional,,POA Avance - Diciembre
+srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025,2025,4410.0,4138.0,106.57,Nacional,,POA Avance - Acumulado anual
+srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025,2025-01,163.0,121.0,134.71,Nacional,,POA Avance - Enero
+srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025,2025-02,192.0,204.0,94.12,Nacional,,POA Avance - Febrero
+srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025,2025-03,208.0,219.0,94.98,Nacional,,POA Avance - Marzo
+srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025,2025-04,358.0,236.0,151.69,Nacional,,POA Avance - Abril
+srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025,2025-05,288.0,241.0,119.5,Nacional,,POA Avance - Mayo
+srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025,2025-06,181.0,234.0,77.35,Nacional,,POA Avance - Junio
+srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025,2025-07,245.0,237.0,103.38,Nacional,,POA Avance - Julio
+srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025,2025-08,203.0,229.0,88.65,Nacional,,POA Avance - Agosto
+srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025,2025-09,195.0,225.0,86.67,Nacional,,POA Avance - Septiembre
+srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025,2025-10,196.0,205.0,95.61,Nacional,,POA Avance - Octubre
+srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025,2025-11,219.0,177.0,123.73,Nacional,,POA Avance - Noviembre
+srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025,2025-12,120.0,97.0,123.71,Nacional,,POA Avance - Diciembre
+srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025,2025,2568.0,2425.0,105.9,Nacional,,POA Avance - Acumulado anual
+srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025,2025-01,28.0,19.0,147.37,Nacional,,POA Avance - Enero
+srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025,2025-02,41.0,48.0,85.42,Nacional,,POA Avance - Febrero
+srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025,2025-03,59.0,64.0,92.19,Nacional,,POA Avance - Marzo
+srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025,2025-04,91.0,85.0,107.06,Nacional,,POA Avance - Abril
+srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025,2025-05,64.0,58.0,110.34,Nacional,,POA Avance - Mayo
+srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025,2025-06,41.0,56.0,73.21,Nacional,,POA Avance - Junio
+srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025,2025-07,77.0,72.0,106.94,Nacional,,POA Avance - Julio
+srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025,2025-08,73.0,67.0,108.96,Nacional,,POA Avance - Agosto
+srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025,2025-09,61.0,52.0,117.31,Nacional,,POA Avance - Septiembre
+srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025,2025-10,60.0,49.0,122.45,Nacional,,POA Avance - Octubre
+srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025,2025-11,29.0,38.0,76.32,Nacional,,POA Avance - Noviembre
+srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025,2025-12,60.0,18.0,333.33,Nacional,,POA Avance - Diciembre
+srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025,2025,684.0,626.0,109.27,Nacional,,POA Avance - Acumulado anual
+srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025,2025-01,11.0,6.0,183.33,Nacional,,POA Avance - Enero
+srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025,2025-02,22.0,23.0,95.65,Nacional,,POA Avance - Febrero
+srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025,2025-03,37.0,26.0,142.31,Nacional,,POA Avance - Marzo
+srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025,2025-04,34.0,15.0,226.67,Nacional,,POA Avance - Abril
+srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025,2025-05,33.0,13.0,253.85,Nacional,,POA Avance - Mayo
+srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025,2025-06,40.0,50.0,80.0,Nacional,,POA Avance - Junio
+srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025,2025-07,36.0,50.0,72.0,Nacional,,POA Avance - Julio
+srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025,2025-08,38.0,57.0,66.67,Nacional,,POA Avance - Agosto
+srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025,2025-09,41.0,34.0,120.59,Nacional,,POA Avance - Septiembre
+srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025,2025-10,60.0,7.0,857.14,Nacional,,POA Avance - Octubre
+srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025,2025-11,21.0,3.0,700.0,Nacional,,POA Avance - Noviembre
+srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025,2025-12,21.0,0.0,,Nacional,,POA Avance - Diciembre
+srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025,2025,394.0,284.0,138.73,Nacional,,POA Avance - Acumulado anual
+aportar-al-humanismo-mexicano-mediante-la-procuracion-de-la-g005-2025,2025,130.15,97.0,134.18,Nacional,,MIR_G005_2025.xlsx
+porcentaje-de-denuncias-populares-en-materia-ambiental-concl-g005-2025,2025,56.11,60.0,93.52,Nacional,,MIR_G005_2025.xlsx
+porcentaje-de-resolucion-de-procedimientos-administrativos-d-g005-2025,2025,39.34,60.0,65.57,Nacional,,MIR_G005_2025.xlsx
+porcentaje-de-visitas-de-verificacion-con-cumplimiento-de-la-g005-2025,2025,58.03,55.0,105.51,Nacional,,MIR_G005_2025.xlsx
+porcentaje-de-municipios-y-alcaldias-con-acciones-de-inspecc-g005-2025,2025,40.52,16.14,251.05,Nacional,,MIR_G005_2025.xlsx
+porcentaje-de-certificados-y-reconocimientos-ambientales-emi-g005-2025,2025,98.5,100.0,98.5,Nacional,,MIR_G005_2025.xlsx
+porcentaje-de-areas-naturales-protegidas-con-acciones-de-ins-g005-2025,2025,65.95,51.72,127.51,Nacional,,MIR_G005_2025.xlsx
+porcentaje-de-acciones-de-inspeccion-realizadas-al-universo-g005-2025,2025,7.71,7.5,102.8,Nacional,,MIR_G005_2025.xlsx
+porcentaje-de-solicitudes-de-certificado-y-reconocimiento-am-g005-2025,2025,107.68,100.0,107.68,Nacional,,MIR_G005_2025.xlsx
+porcentaje-de-resoluciones-emitidas-a-los-recursos-de-revisi-g005-2025,2025,38.94,50.0,77.88,Nacional,,MIR_G005_2025.xlsx
+porcentaje-de-auditores-ambientales-supervisados-g005-2025,2025,100.0,100.0,100.0,Nacional,,MIR_G005_2025.xlsx
+porcentaje-de-acciones-de-supervision-a-procesos-de-certific-g005-2025,2025,104.96,100.0,104.96,Nacional,,MIR_G005_2025.xlsx
+porcentaje-de-acciones-de-promocion-para-la-certificacion-am-g005-2025,2025,109.83,100.0,109.83,Nacional,,MIR_G005_2025.xlsx
+porcentaje-de-acciones-de-inspeccion-y-verificacion-realizad-g005-2025,2025,97.11,100.0,97.11,Nacional,,MIR_G005_2025.xlsx
+porcentaje-de-recorridos-de-vigilancia-realizados-en-materia-g005-2025,2025,93.31,100.0,93.31,Nacional,,MIR_G005_2025.xlsx
+porcentaje-de-inspecciones-realizadas-en-materia-de-recurso-g005-2025,2025,99.17,100.0,99.17,Nacional,,MIR_G005_2025.xlsx
+porcentaje-de-comites-de-vigilancia-ambiental-participativa-g005-2025,2025,143.8,100.0,143.8,Nacional,,MIR_G005_2025.xlsx
+porcentaje-de-operativos-realizados-en-materia-de-recursos-n-g005-2025,2025,107.04,100.0,107.04,Nacional,,MIR_G005_2025.xlsx
+porcentaje-de-revision-de-mercancias-cuya-importacion-expor-g005-2025,2025,99.75,99.0,100.76,Nacional,,MIR_G005_2025.xlsx
+porcentaje-personas-contactadas-en-las-jornadas-ambientales-g005-2025,2025,102.78,100.0,102.78,Nacional,,MIR_G005_2025.xlsx
+porcentaje-de-resolucion-a-las-solicitudes-de-conmutacion-de-g005-2025,2025,46.17,70.0,65.96,Nacional,,MIR_G005_2025.xlsx
+procuracion-de-justicia-ambiental-impartida-g014-2026,2026,,97.0,,Nacional,,FiME 2026 PFPA.xlsx
+porcentaje-de-certificados-y-reconocimientos-ambientales-emi-g014-2026,2026,98.5,100.0,0.985,Nacional,,FiME 2026 PFPA.xlsx
+porcentaje-de-resolucion-de-procedimientos-administrativos-d-g014-2026,2026,39.34,60.0,0.6556666666666667,Nacional,,FiME 2026 PFPA.xlsx
+porcentaje-de-visitas-de-verificacion-con-cumplimiento-de-la-g014-2026,2026,,55.0,,Nacional,,FiME 2026 PFPA.xlsx
+porcentaje-de-municipios-y-alcaldias-con-acciones-de-inspecc-g014-2026,2026,40.52,16.14,2.510532837670384,Nacional,,FiME 2026 PFPA.xlsx
+porcentaje-de-acciones-de-inspeccion-realizadas-al-universo-g014-2026,2026,7.71,7.5,1.028,Nacional,,FiME 2026 PFPA.xlsx
+porcentaje-de-areas-naturales-protegidas-con-acciones-de-ins-g014-2026,2026,,52.0,,Nacional,,FiME 2026 PFPA.xlsx
+porcentaje-de-empresas-e-instituciones-que-participaron-en-e-g014-2026,2026,,100.0,,Nacional,,FiME 2026 PFPA.xlsx
+porcentaje-de-acciones-de-difusion-para-la-promocion-y-parti-g014-2026,2026,,100.0,,Nacional,,FiME 2026 PFPA.xlsx
+porcentaje-de-revision-de-mercancias-cuya-importacion-expor-g014-2026,2026,,99.0,,Nacional,,FiME 2026 PFPA.xlsx

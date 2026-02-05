@@ -1,0 +1,3442 @@
+{
+  "saa-01-porcentaje-de-certificados-y-reconocimie-g005-2025": [
+    {
+      "indicator_id": "saa-01-porcentaje-de-certificados-y-reconocimie-g005-2025",
+      "periodo": "2025-03",
+      "valor": 37.0,
+      "meta": 37.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Marzo"
+    },
+    {
+      "indicator_id": "saa-01-porcentaje-de-certificados-y-reconocimie-g005-2025",
+      "periodo": "2025-04",
+      "valor": 28.0,
+      "meta": 16.0,
+      "avance_porcentual": 175.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Abril"
+    },
+    {
+      "indicator_id": "saa-01-porcentaje-de-certificados-y-reconocimie-g005-2025",
+      "periodo": "2025-05",
+      "valor": 80.0,
+      "meta": 23.0,
+      "avance_porcentual": 347.83,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Mayo"
+    },
+    {
+      "indicator_id": "saa-01-porcentaje-de-certificados-y-reconocimie-g005-2025",
+      "periodo": "2025-06",
+      "valor": 36.0,
+      "meta": 31.0,
+      "avance_porcentual": 116.13,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Junio"
+    },
+    {
+      "indicator_id": "saa-01-porcentaje-de-certificados-y-reconocimie-g005-2025",
+      "periodo": "2025-07",
+      "valor": 15.0,
+      "meta": 39.0,
+      "avance_porcentual": 38.46,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Julio"
+    },
+    {
+      "indicator_id": "saa-01-porcentaje-de-certificados-y-reconocimie-g005-2025",
+      "periodo": "2025-08",
+      "valor": 65.0,
+      "meta": 48.0,
+      "avance_porcentual": 135.42,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Agosto"
+    },
+    {
+      "indicator_id": "saa-01-porcentaje-de-certificados-y-reconocimie-g005-2025",
+      "periodo": "2025-09",
+      "valor": 40.0,
+      "meta": 55.0,
+      "avance_porcentual": 72.73,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Septiembre"
+    },
+    {
+      "indicator_id": "saa-01-porcentaje-de-certificados-y-reconocimie-g005-2025",
+      "periodo": "2025-10",
+      "valor": 0.0,
+      "meta": 64.0,
+      "avance_porcentual": 0.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Octubre"
+    },
+    {
+      "indicator_id": "saa-01-porcentaje-de-certificados-y-reconocimie-g005-2025",
+      "periodo": "2025-11",
+      "valor": 47.0,
+      "meta": 63.0,
+      "avance_porcentual": 74.6,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Noviembre"
+    },
+    {
+      "indicator_id": "saa-01-porcentaje-de-certificados-y-reconocimie-g005-2025",
+      "periodo": "2025-12",
+      "valor": 46.0,
+      "meta": 24.0,
+      "avance_porcentual": 191.67,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Diciembre"
+    },
+    {
+      "indicator_id": "saa-01-porcentaje-de-certificados-y-reconocimie-g005-2025",
+      "periodo": "2025",
+      "valor": 394.0,
+      "meta": 400.0,
+      "avance_porcentual": 98.5,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Acumulado anual"
+    }
+  ],
+  "saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025": [
+    {
+      "indicator_id": "saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025",
+      "periodo": "2025-01",
+      "valor": 103.0,
+      "meta": 39.0,
+      "avance_porcentual": 264.1,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Enero"
+    },
+    {
+      "indicator_id": "saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025",
+      "periodo": "2025-02",
+      "valor": 90.0,
+      "meta": 61.0,
+      "avance_porcentual": 147.54,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Febrero"
+    },
+    {
+      "indicator_id": "saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025",
+      "periodo": "2025-03",
+      "valor": 62.0,
+      "meta": 72.0,
+      "avance_porcentual": 86.11,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Marzo"
+    },
+    {
+      "indicator_id": "saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025",
+      "periodo": "2025-04",
+      "valor": 61.0,
+      "meta": 83.0,
+      "avance_porcentual": 73.49,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Abril"
+    },
+    {
+      "indicator_id": "saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025",
+      "periodo": "2025-05",
+      "valor": 87.0,
+      "meta": 98.0,
+      "avance_porcentual": 88.78,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Mayo"
+    },
+    {
+      "indicator_id": "saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025",
+      "periodo": "2025-06",
+      "valor": 48.0,
+      "meta": 104.0,
+      "avance_porcentual": 46.15,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Junio"
+    },
+    {
+      "indicator_id": "saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025",
+      "periodo": "2025-07",
+      "valor": 136.0,
+      "meta": 103.0,
+      "avance_porcentual": 132.04,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Julio"
+    },
+    {
+      "indicator_id": "saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025",
+      "periodo": "2025-08",
+      "valor": 98.0,
+      "meta": 100.0,
+      "avance_porcentual": 98.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Agosto"
+    },
+    {
+      "indicator_id": "saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025",
+      "periodo": "2025-09",
+      "valor": 73.0,
+      "meta": 89.0,
+      "avance_porcentual": 82.02,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Septiembre"
+    },
+    {
+      "indicator_id": "saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025",
+      "periodo": "2025-10",
+      "valor": 166.0,
+      "meta": 76.0,
+      "avance_porcentual": 218.42,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Octubre"
+    },
+    {
+      "indicator_id": "saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025",
+      "periodo": "2025-11",
+      "valor": 43.0,
+      "meta": 60.0,
+      "avance_porcentual": 71.67,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Noviembre"
+    },
+    {
+      "indicator_id": "saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025",
+      "periodo": "2025-12",
+      "valor": 29.0,
+      "meta": 40.0,
+      "avance_porcentual": 72.5,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Diciembre"
+    },
+    {
+      "indicator_id": "saa-02-porcentaje-de-solicitudes-de-certificado-g005-2025",
+      "periodo": "2025",
+      "valor": 996.0,
+      "meta": 925.0,
+      "avance_porcentual": 107.68,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Acumulado anual"
+    }
+  ],
+  "saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025": [
+    {
+      "indicator_id": "saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025",
+      "periodo": "2025-01",
+      "valor": 95.0,
+      "meta": 95.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Enero"
+    },
+    {
+      "indicator_id": "saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025",
+      "periodo": "2025-02",
+      "valor": 102.0,
+      "meta": 102.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Febrero"
+    },
+    {
+      "indicator_id": "saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025",
+      "periodo": "2025-03",
+      "valor": 211.0,
+      "meta": 211.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Marzo"
+    },
+    {
+      "indicator_id": "saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025",
+      "periodo": "2025-04",
+      "valor": 63.0,
+      "meta": 74.0,
+      "avance_porcentual": 85.14,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Abril"
+    },
+    {
+      "indicator_id": "saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025",
+      "periodo": "2025-05",
+      "valor": 143.0,
+      "meta": 92.0,
+      "avance_porcentual": 155.43,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Mayo"
+    },
+    {
+      "indicator_id": "saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025",
+      "periodo": "2025-06",
+      "valor": 116.0,
+      "meta": 103.0,
+      "avance_porcentual": 112.62,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Junio"
+    },
+    {
+      "indicator_id": "saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025",
+      "periodo": "2025-07",
+      "valor": 0.0,
+      "meta": 102.0,
+      "avance_porcentual": 0.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Julio"
+    },
+    {
+      "indicator_id": "saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025",
+      "periodo": "2025-08",
+      "valor": 213.0,
+      "meta": 100.0,
+      "avance_porcentual": 213.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Agosto"
+    },
+    {
+      "indicator_id": "saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025",
+      "periodo": "2025-09",
+      "valor": 83.0,
+      "meta": 98.0,
+      "avance_porcentual": 84.69,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Septiembre"
+    },
+    {
+      "indicator_id": "saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025",
+      "periodo": "2025-10",
+      "valor": 47.0,
+      "meta": 89.0,
+      "avance_porcentual": 52.81,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Octubre"
+    },
+    {
+      "indicator_id": "saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025",
+      "periodo": "2025-11",
+      "valor": 77.0,
+      "meta": 83.0,
+      "avance_porcentual": 92.77,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Noviembre"
+    },
+    {
+      "indicator_id": "saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025",
+      "periodo": "2025-12",
+      "valor": 168.0,
+      "meta": 51.0,
+      "avance_porcentual": 329.41,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Diciembre"
+    },
+    {
+      "indicator_id": "saa-03-porcentaje-de-acciones-de-promocion-para-g005-2025",
+      "periodo": "2025",
+      "valor": 1318.0,
+      "meta": 1200.0,
+      "avance_porcentual": 109.83,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Acumulado anual"
+    }
+  ],
+  "saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025": [
+    {
+      "indicator_id": "saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025",
+      "periodo": "2025-01",
+      "valor": 46.0,
+      "meta": 39.0,
+      "avance_porcentual": 117.95,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Enero"
+    },
+    {
+      "indicator_id": "saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025",
+      "periodo": "2025-02",
+      "valor": 66.0,
+      "meta": 68.0,
+      "avance_porcentual": 97.06,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Febrero"
+    },
+    {
+      "indicator_id": "saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025",
+      "periodo": "2025-03",
+      "valor": 98.0,
+      "meta": 90.0,
+      "avance_porcentual": 108.89,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Marzo"
+    },
+    {
+      "indicator_id": "saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025",
+      "periodo": "2025-04",
+      "valor": 109.0,
+      "meta": 99.0,
+      "avance_porcentual": 110.1,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Abril"
+    },
+    {
+      "indicator_id": "saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025",
+      "periodo": "2025-05",
+      "valor": 97.0,
+      "meta": 113.0,
+      "avance_porcentual": 85.84,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Mayo"
+    },
+    {
+      "indicator_id": "saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025",
+      "periodo": "2025-06",
+      "valor": 127.0,
+      "meta": 127.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Junio"
+    },
+    {
+      "indicator_id": "saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025",
+      "periodo": "2025-07",
+      "valor": 106.0,
+      "meta": 128.0,
+      "avance_porcentual": 82.81,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Julio"
+    },
+    {
+      "indicator_id": "saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025",
+      "periodo": "2025-08",
+      "valor": 222.0,
+      "meta": 133.0,
+      "avance_porcentual": 166.92,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Agosto"
+    },
+    {
+      "indicator_id": "saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025",
+      "periodo": "2025-09",
+      "valor": 102.0,
+      "meta": 122.0,
+      "avance_porcentual": 83.61,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Septiembre"
+    },
+    {
+      "indicator_id": "saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025",
+      "periodo": "2025-10",
+      "valor": 71.0,
+      "meta": 102.0,
+      "avance_porcentual": 69.61,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Octubre"
+    },
+    {
+      "indicator_id": "saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025",
+      "periodo": "2025-11",
+      "valor": 70.0,
+      "meta": 84.0,
+      "avance_porcentual": 83.33,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Noviembre"
+    },
+    {
+      "indicator_id": "saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025",
+      "periodo": "2025-12",
+      "valor": 114.0,
+      "meta": 65.0,
+      "avance_porcentual": 175.38,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Diciembre"
+    },
+    {
+      "indicator_id": "saa-04-porcentaje-de-acciones-de-supervision-a-g005-2025",
+      "periodo": "2025",
+      "valor": 1228.0,
+      "meta": 1170.0,
+      "avance_porcentual": 104.96,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Acumulado anual"
+    }
+  ],
+  "saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025": [
+    {
+      "indicator_id": "saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025",
+      "periodo": "2025-01",
+      "valor": 4.0,
+      "meta": 3.0,
+      "avance_porcentual": 133.33,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Enero"
+    },
+    {
+      "indicator_id": "saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025",
+      "periodo": "2025-02",
+      "valor": 4.0,
+      "meta": 3.0,
+      "avance_porcentual": 133.33,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Febrero"
+    },
+    {
+      "indicator_id": "saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025",
+      "periodo": "2025-03",
+      "valor": 4.0,
+      "meta": 4.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Marzo"
+    },
+    {
+      "indicator_id": "saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025",
+      "periodo": "2025-04",
+      "valor": 4.0,
+      "meta": 7.0,
+      "avance_porcentual": 57.14,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Abril"
+    },
+    {
+      "indicator_id": "saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025",
+      "periodo": "2025-05",
+      "valor": 8.0,
+      "meta": 7.0,
+      "avance_porcentual": 114.29,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Mayo"
+    },
+    {
+      "indicator_id": "saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025",
+      "periodo": "2025-06",
+      "valor": 8.0,
+      "meta": 6.0,
+      "avance_porcentual": 133.33,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Junio"
+    },
+    {
+      "indicator_id": "saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025",
+      "periodo": "2025-07",
+      "valor": 9.0,
+      "meta": 7.0,
+      "avance_porcentual": 128.57,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Julio"
+    },
+    {
+      "indicator_id": "saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025",
+      "periodo": "2025-08",
+      "valor": 5.0,
+      "meta": 5.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Agosto"
+    },
+    {
+      "indicator_id": "saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025",
+      "periodo": "2025-09",
+      "valor": 6.0,
+      "meta": 4.0,
+      "avance_porcentual": 150.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Septiembre"
+    },
+    {
+      "indicator_id": "saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025",
+      "periodo": "2025-10",
+      "valor": 2.0,
+      "meta": 5.0,
+      "avance_porcentual": 40.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Octubre"
+    },
+    {
+      "indicator_id": "saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025",
+      "periodo": "2025-11",
+      "valor": 6.0,
+      "meta": 6.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Noviembre"
+    },
+    {
+      "indicator_id": "saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025",
+      "periodo": "2025-12",
+      "valor": 3.0,
+      "meta": 6.0,
+      "avance_porcentual": 50.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Diciembre"
+    },
+    {
+      "indicator_id": "saa-05-porcentaje-de-auditores-ambientales-supe-g005-2025",
+      "periodo": "2025",
+      "valor": 63.0,
+      "meta": 63.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Acumulado anual"
+    }
+  ],
+  "sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025": [
+    {
+      "indicator_id": "sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025",
+      "periodo": "2025-01",
+      "valor": 58.53,
+      "meta": 40.0,
+      "avance_porcentual": 146.32,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Enero"
+    },
+    {
+      "indicator_id": "sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025",
+      "periodo": "2025-02",
+      "valor": 39.66,
+      "meta": 40.0,
+      "avance_porcentual": 99.15,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Febrero"
+    },
+    {
+      "indicator_id": "sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025",
+      "periodo": "2025-03",
+      "valor": 57.61,
+      "meta": 40.0,
+      "avance_porcentual": 144.02,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Marzo"
+    },
+    {
+      "indicator_id": "sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025",
+      "periodo": "2025-04",
+      "valor": 38.0,
+      "meta": 43.0,
+      "avance_porcentual": 88.37,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Abril"
+    },
+    {
+      "indicator_id": "sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025",
+      "periodo": "2025-05",
+      "valor": 43.0,
+      "meta": 43.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Mayo"
+    },
+    {
+      "indicator_id": "sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025",
+      "periodo": "2025-06",
+      "valor": 60.0,
+      "meta": 45.0,
+      "avance_porcentual": 133.33,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Junio"
+    },
+    {
+      "indicator_id": "sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025",
+      "periodo": "2025-07",
+      "valor": 48.0,
+      "meta": 50.0,
+      "avance_porcentual": 96.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Julio"
+    },
+    {
+      "indicator_id": "sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025",
+      "periodo": "2025-08",
+      "valor": 26.0,
+      "meta": 50.0,
+      "avance_porcentual": 52.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Agosto"
+    },
+    {
+      "indicator_id": "sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025",
+      "periodo": "2025-09",
+      "valor": 42.0,
+      "meta": 50.0,
+      "avance_porcentual": 84.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Septiembre"
+    },
+    {
+      "indicator_id": "sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025",
+      "periodo": "2025-10",
+      "valor": 38.0,
+      "meta": 55.0,
+      "avance_porcentual": 69.09,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Octubre"
+    },
+    {
+      "indicator_id": "sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025",
+      "periodo": "2025-11",
+      "valor": 74.0,
+      "meta": 55.0,
+      "avance_porcentual": 134.55,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Noviembre"
+    },
+    {
+      "indicator_id": "sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025",
+      "periodo": "2025-12",
+      "valor": 50.0,
+      "meta": 55.0,
+      "avance_porcentual": 90.91,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Diciembre"
+    },
+    {
+      "indicator_id": "sii-01-porcentaje-de-visitas-de-verificacion-co-g005-2025",
+      "periodo": "2025",
+      "valor": 574.8,
+      "meta": 566.0,
+      "avance_porcentual": 101.55,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Acumulado anual"
+    }
+  ],
+  "sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025": [
+    {
+      "indicator_id": "sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025",
+      "periodo": "2025-01",
+      "valor": 12340.0,
+      "meta": 12305.0,
+      "avance_porcentual": 100.28,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Enero"
+    },
+    {
+      "indicator_id": "sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025",
+      "periodo": "2025-02",
+      "valor": 12450.0,
+      "meta": 12575.0,
+      "avance_porcentual": 99.01,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Febrero"
+    },
+    {
+      "indicator_id": "sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025",
+      "periodo": "2025-03",
+      "valor": 12562.0,
+      "meta": 13120.0,
+      "avance_porcentual": 95.75,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Marzo"
+    },
+    {
+      "indicator_id": "sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025",
+      "periodo": "2025-04",
+      "valor": 12710.0,
+      "meta": 13280.0,
+      "avance_porcentual": 95.71,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Abril"
+    },
+    {
+      "indicator_id": "sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025",
+      "periodo": "2025-05",
+      "valor": 12975.0,
+      "meta": 13445.0,
+      "avance_porcentual": 96.5,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Mayo"
+    },
+    {
+      "indicator_id": "sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025",
+      "periodo": "2025-06",
+      "valor": 13144.0,
+      "meta": 13605.0,
+      "avance_porcentual": 96.61,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Junio"
+    },
+    {
+      "indicator_id": "sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025",
+      "periodo": "2025-07",
+      "valor": 13390.0,
+      "meta": 13765.0,
+      "avance_porcentual": 97.28,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Julio"
+    },
+    {
+      "indicator_id": "sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025",
+      "periodo": "2025-08",
+      "valor": 13853.0,
+      "meta": 13925.0,
+      "avance_porcentual": 99.48,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Agosto"
+    },
+    {
+      "indicator_id": "sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025",
+      "periodo": "2025-09",
+      "valor": 14197.0,
+      "meta": 14100.0,
+      "avance_porcentual": 100.69,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Septiembre"
+    },
+    {
+      "indicator_id": "sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025",
+      "periodo": "2025-10",
+      "valor": 14553.0,
+      "meta": 14260.0,
+      "avance_porcentual": 102.05,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Octubre"
+    },
+    {
+      "indicator_id": "sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025",
+      "periodo": "2025-11",
+      "valor": 14812.0,
+      "meta": 14420.0,
+      "avance_porcentual": 102.72,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Noviembre"
+    },
+    {
+      "indicator_id": "sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025",
+      "periodo": "2025-12",
+      "valor": 14983.0,
+      "meta": 14585.0,
+      "avance_porcentual": 102.73,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Diciembre"
+    },
+    {
+      "indicator_id": "sii-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2025",
+      "periodo": "2025",
+      "valor": 161969.0,
+      "meta": 163385.0,
+      "avance_porcentual": 99.13,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Acumulado anual"
+    }
+  ],
+  "sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025": [
+    {
+      "indicator_id": "sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025",
+      "periodo": "2025-01",
+      "valor": 83.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Enero"
+    },
+    {
+      "indicator_id": "sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025",
+      "periodo": "2025-02",
+      "valor": 263.0,
+      "meta": 288.0,
+      "avance_porcentual": 91.32,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Febrero"
+    },
+    {
+      "indicator_id": "sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025",
+      "periodo": "2025-03",
+      "valor": 141.0,
+      "meta": 315.0,
+      "avance_porcentual": 44.76,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Marzo"
+    },
+    {
+      "indicator_id": "sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025",
+      "periodo": "2025-04",
+      "valor": 221.0,
+      "meta": 356.0,
+      "avance_porcentual": 62.08,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Abril"
+    },
+    {
+      "indicator_id": "sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025",
+      "periodo": "2025-05",
+      "valor": 277.0,
+      "meta": 378.0,
+      "avance_porcentual": 73.28,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Mayo"
+    },
+    {
+      "indicator_id": "sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025",
+      "periodo": "2025-06",
+      "valor": 386.0,
+      "meta": 377.0,
+      "avance_porcentual": 102.39,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Junio"
+    },
+    {
+      "indicator_id": "sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025",
+      "periodo": "2025-07",
+      "valor": 254.0,
+      "meta": 374.0,
+      "avance_porcentual": 67.91,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Julio"
+    },
+    {
+      "indicator_id": "sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025",
+      "periodo": "2025-08",
+      "valor": 498.0,
+      "meta": 361.0,
+      "avance_porcentual": 137.95,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Agosto"
+    },
+    {
+      "indicator_id": "sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025",
+      "periodo": "2025-09",
+      "valor": 359.0,
+      "meta": 355.0,
+      "avance_porcentual": 101.13,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Septiembre"
+    },
+    {
+      "indicator_id": "sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025",
+      "periodo": "2025-10",
+      "valor": 370.0,
+      "meta": 325.0,
+      "avance_porcentual": 113.85,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Octubre"
+    },
+    {
+      "indicator_id": "sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025",
+      "periodo": "2025-11",
+      "valor": 276.0,
+      "meta": 274.0,
+      "avance_porcentual": 100.73,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Noviembre"
+    },
+    {
+      "indicator_id": "sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025",
+      "periodo": "2025-12",
+      "valor": 179.0,
+      "meta": 97.0,
+      "avance_porcentual": 184.54,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Diciembre"
+    },
+    {
+      "indicator_id": "sii-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2025",
+      "periodo": "2025",
+      "valor": 3307.0,
+      "meta": 3500.0,
+      "avance_porcentual": 94.49,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Acumulado anual"
+    }
+  ],
+  "sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025": [
+    {
+      "indicator_id": "sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025",
+      "periodo": "2025-01",
+      "valor": 12207.0,
+      "meta": 12207.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Enero"
+    },
+    {
+      "indicator_id": "sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025",
+      "periodo": "2025-02",
+      "valor": 12003.0,
+      "meta": 12003.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Febrero"
+    },
+    {
+      "indicator_id": "sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025",
+      "periodo": "2025-03",
+      "valor": 13192.0,
+      "meta": 13192.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Marzo"
+    },
+    {
+      "indicator_id": "sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025",
+      "periodo": "2025-04",
+      "valor": 13378.0,
+      "meta": 13378.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Abril"
+    },
+    {
+      "indicator_id": "sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025",
+      "periodo": "2025-05",
+      "valor": 13079.0,
+      "meta": 13079.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Mayo"
+    },
+    {
+      "indicator_id": "sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025",
+      "periodo": "2025-06",
+      "valor": 14812.0,
+      "meta": 14812.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Junio"
+    },
+    {
+      "indicator_id": "sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025",
+      "periodo": "2025-07",
+      "valor": 14563.0,
+      "meta": 14563.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Julio"
+    },
+    {
+      "indicator_id": "sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025",
+      "periodo": "2025-08",
+      "valor": 13691.0,
+      "meta": 13691.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Agosto"
+    },
+    {
+      "indicator_id": "sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025",
+      "periodo": "2025-09",
+      "valor": 12995.0,
+      "meta": 12995.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Septiembre"
+    },
+    {
+      "indicator_id": "sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025",
+      "periodo": "2025-10",
+      "valor": 14783.0,
+      "meta": 14783.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Octubre"
+    },
+    {
+      "indicator_id": "sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025",
+      "periodo": "2025-11",
+      "valor": 13940.0,
+      "meta": 13940.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Noviembre"
+    },
+    {
+      "indicator_id": "sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025",
+      "periodo": "2025-12",
+      "valor": 14349.0,
+      "meta": 14349.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Diciembre"
+    },
+    {
+      "indicator_id": "sii-04-porcentaje-de-revision-de-mercancias-cuy-g005-2025",
+      "periodo": "2025",
+      "valor": 162992.0,
+      "meta": 162992.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Acumulado anual"
+    }
+  ],
+  "sii-05-emplazamientos-realizados-a-procedimient-g005-2025": [
+    {
+      "indicator_id": "sii-05-emplazamientos-realizados-a-procedimient-g005-2025",
+      "periodo": "2025-01",
+      "valor": 163.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Enero"
+    },
+    {
+      "indicator_id": "sii-05-emplazamientos-realizados-a-procedimient-g005-2025",
+      "periodo": "2025-02",
+      "valor": 35.0,
+      "meta": 91.0,
+      "avance_porcentual": 38.46,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Febrero"
+    },
+    {
+      "indicator_id": "sii-05-emplazamientos-realizados-a-procedimient-g005-2025",
+      "periodo": "2025-03",
+      "valor": 78.0,
+      "meta": 108.0,
+      "avance_porcentual": 72.22,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Marzo"
+    },
+    {
+      "indicator_id": "sii-05-emplazamientos-realizados-a-procedimient-g005-2025",
+      "periodo": "2025-04",
+      "valor": 412.0,
+      "meta": 120.0,
+      "avance_porcentual": 343.33,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Abril"
+    },
+    {
+      "indicator_id": "sii-05-emplazamientos-realizados-a-procedimient-g005-2025",
+      "periodo": "2025-05",
+      "valor": 49.0,
+      "meta": 125.0,
+      "avance_porcentual": 39.2,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Mayo"
+    },
+    {
+      "indicator_id": "sii-05-emplazamientos-realizados-a-procedimient-g005-2025",
+      "periodo": "2025-06",
+      "valor": 68.0,
+      "meta": 137.0,
+      "avance_porcentual": 49.64,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Junio"
+    },
+    {
+      "indicator_id": "sii-05-emplazamientos-realizados-a-procedimient-g005-2025",
+      "periodo": "2025-07",
+      "valor": 36.0,
+      "meta": 134.0,
+      "avance_porcentual": 26.87,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Julio"
+    },
+    {
+      "indicator_id": "sii-05-emplazamientos-realizados-a-procedimient-g005-2025",
+      "periodo": "2025-08",
+      "valor": 41.0,
+      "meta": 141.0,
+      "avance_porcentual": 29.08,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Agosto"
+    },
+    {
+      "indicator_id": "sii-05-emplazamientos-realizados-a-procedimient-g005-2025",
+      "periodo": "2025-09",
+      "valor": 42.0,
+      "meta": 128.0,
+      "avance_porcentual": 32.81,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Septiembre"
+    },
+    {
+      "indicator_id": "sii-05-emplazamientos-realizados-a-procedimient-g005-2025",
+      "periodo": "2025-10",
+      "valor": 38.0,
+      "meta": 126.0,
+      "avance_porcentual": 30.16,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Octubre"
+    },
+    {
+      "indicator_id": "sii-05-emplazamientos-realizados-a-procedimient-g005-2025",
+      "periodo": "2025-11",
+      "valor": 44.0,
+      "meta": 103.0,
+      "avance_porcentual": 42.72,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Noviembre"
+    },
+    {
+      "indicator_id": "sii-05-emplazamientos-realizados-a-procedimient-g005-2025",
+      "periodo": "2025-12",
+      "valor": 55.0,
+      "meta": 1.0,
+      "avance_porcentual": 5500.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Diciembre"
+    },
+    {
+      "indicator_id": "sii-05-emplazamientos-realizados-a-procedimient-g005-2025",
+      "periodo": "2025",
+      "valor": 1061.0,
+      "meta": 1214.0,
+      "avance_porcentual": 87.4,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Acumulado anual"
+    }
+  ],
+  "sii-06-simulacros-para-evaluar-los-planes-de-re-g005-2025": [
+    {
+      "indicator_id": "sii-06-simulacros-para-evaluar-los-planes-de-re-g005-2025",
+      "periodo": "2025-07",
+      "valor": 838.0,
+      "meta": 896.0,
+      "avance_porcentual": 93.53,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Julio"
+    },
+    {
+      "indicator_id": "sii-06-simulacros-para-evaluar-los-planes-de-re-g005-2025",
+      "periodo": "2025-09",
+      "valor": 0.0,
+      "meta": 32.0,
+      "avance_porcentual": 0.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Septiembre"
+    },
+    {
+      "indicator_id": "sii-06-simulacros-para-evaluar-los-planes-de-re-g005-2025",
+      "periodo": "2025-11",
+      "valor": 9.0,
+      "meta": 32.0,
+      "avance_porcentual": 28.12,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Noviembre"
+    },
+    {
+      "indicator_id": "sii-06-simulacros-para-evaluar-los-planes-de-re-g005-2025",
+      "periodo": "2025-12",
+      "valor": 3.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Diciembre"
+    },
+    {
+      "indicator_id": "sii-06-simulacros-para-evaluar-los-planes-de-re-g005-2025",
+      "periodo": "2025",
+      "valor": 850.0,
+      "meta": 960.0,
+      "avance_porcentual": 88.54,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Acumulado anual"
+    }
+  ],
+  "sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025": [
+    {
+      "indicator_id": "sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025",
+      "periodo": "2025-01",
+      "valor": 215.0,
+      "meta": 519.0,
+      "avance_porcentual": 41.43,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Enero"
+    },
+    {
+      "indicator_id": "sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025",
+      "periodo": "2025-02",
+      "valor": 400.0,
+      "meta": 816.0,
+      "avance_porcentual": 49.02,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Febrero"
+    },
+    {
+      "indicator_id": "sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025",
+      "periodo": "2025-03",
+      "valor": 385.0,
+      "meta": 762.0,
+      "avance_porcentual": 50.52,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Marzo"
+    },
+    {
+      "indicator_id": "sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025",
+      "periodo": "2025-04",
+      "valor": 396.0,
+      "meta": 792.0,
+      "avance_porcentual": 50.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Abril"
+    },
+    {
+      "indicator_id": "sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025",
+      "periodo": "2025-05",
+      "valor": 406.0,
+      "meta": 788.0,
+      "avance_porcentual": 51.52,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Mayo"
+    },
+    {
+      "indicator_id": "sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025",
+      "periodo": "2025-06",
+      "valor": 433.0,
+      "meta": 763.0,
+      "avance_porcentual": 56.75,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Junio"
+    },
+    {
+      "indicator_id": "sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025",
+      "periodo": "2025-07",
+      "valor": 438.0,
+      "meta": 785.0,
+      "avance_porcentual": 55.8,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Julio"
+    },
+    {
+      "indicator_id": "sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025",
+      "periodo": "2025-08",
+      "valor": 387.0,
+      "meta": 593.0,
+      "avance_porcentual": 65.26,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Agosto"
+    },
+    {
+      "indicator_id": "sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025",
+      "periodo": "2025-09",
+      "valor": 415.0,
+      "meta": 702.0,
+      "avance_porcentual": 59.12,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Septiembre"
+    },
+    {
+      "indicator_id": "sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025",
+      "periodo": "2025-10",
+      "valor": 411.0,
+      "meta": 689.0,
+      "avance_porcentual": 59.65,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Octubre"
+    },
+    {
+      "indicator_id": "sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025",
+      "periodo": "2025-11",
+      "valor": 404.0,
+      "meta": 609.0,
+      "avance_porcentual": 66.34,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Noviembre"
+    },
+    {
+      "indicator_id": "sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025",
+      "periodo": "2025-12",
+      "valor": 396.0,
+      "meta": 533.0,
+      "avance_porcentual": 74.3,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Diciembre"
+    },
+    {
+      "indicator_id": "sj-01-porcentaje-de-denuncias-populares-en-mat-g005-2025",
+      "periodo": "2025",
+      "valor": 4686.0,
+      "meta": 8351.0,
+      "avance_porcentual": 56.11,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Acumulado anual"
+    }
+  ],
+  "sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025": [
+    {
+      "indicator_id": "sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025",
+      "periodo": "2025-01",
+      "valor": 356.0,
+      "meta": 1053.0,
+      "avance_porcentual": 33.81,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Enero"
+    },
+    {
+      "indicator_id": "sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025",
+      "periodo": "2025-02",
+      "valor": 390.0,
+      "meta": 1057.0,
+      "avance_porcentual": 36.9,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Febrero"
+    },
+    {
+      "indicator_id": "sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025",
+      "periodo": "2025-03",
+      "valor": 417.0,
+      "meta": 1060.0,
+      "avance_porcentual": 39.34,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Marzo"
+    },
+    {
+      "indicator_id": "sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025",
+      "periodo": "2025-04",
+      "valor": 340.0,
+      "meta": 437.0,
+      "avance_porcentual": 77.8,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Abril"
+    },
+    {
+      "indicator_id": "sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025",
+      "periodo": "2025-05",
+      "valor": 392.0,
+      "meta": 439.0,
+      "avance_porcentual": 89.29,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Mayo"
+    },
+    {
+      "indicator_id": "sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025",
+      "periodo": "2025-06",
+      "valor": 467.0,
+      "meta": 439.0,
+      "avance_porcentual": 106.38,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Junio"
+    },
+    {
+      "indicator_id": "sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025",
+      "periodo": "2025-07",
+      "valor": 475.0,
+      "meta": 442.0,
+      "avance_porcentual": 107.47,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Julio"
+    },
+    {
+      "indicator_id": "sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025",
+      "periodo": "2025-08",
+      "valor": 452.0,
+      "meta": 444.0,
+      "avance_porcentual": 101.8,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Agosto"
+    },
+    {
+      "indicator_id": "sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025",
+      "periodo": "2025-09",
+      "valor": 470.0,
+      "meta": 440.0,
+      "avance_porcentual": 106.82,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Septiembre"
+    },
+    {
+      "indicator_id": "sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025",
+      "periodo": "2025-10",
+      "valor": 461.0,
+      "meta": 434.0,
+      "avance_porcentual": 106.22,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Octubre"
+    },
+    {
+      "indicator_id": "sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025",
+      "periodo": "2025-11",
+      "valor": 497.0,
+      "meta": 429.0,
+      "avance_porcentual": 115.85,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Noviembre"
+    },
+    {
+      "indicator_id": "sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025",
+      "periodo": "2025-12",
+      "valor": 449.0,
+      "meta": 427.0,
+      "avance_porcentual": 105.15,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Diciembre"
+    },
+    {
+      "indicator_id": "sj-02-porcentaje-de-resolucion-de-procedimient-g005-2025",
+      "periodo": "2025",
+      "valor": 5166.0,
+      "meta": 7101.0,
+      "avance_porcentual": 72.75,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Acumulado anual"
+    }
+  ],
+  "sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025": [
+    {
+      "indicator_id": "sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025",
+      "periodo": "2025-01",
+      "valor": 17.0,
+      "meta": 17.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Enero"
+    },
+    {
+      "indicator_id": "sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025",
+      "periodo": "2025-02",
+      "valor": 25.0,
+      "meta": 25.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Febrero"
+    },
+    {
+      "indicator_id": "sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025",
+      "periodo": "2025-03",
+      "valor": 30.0,
+      "meta": 30.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Marzo"
+    },
+    {
+      "indicator_id": "sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025",
+      "periodo": "2025-04",
+      "valor": 44.0,
+      "meta": 44.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Abril"
+    },
+    {
+      "indicator_id": "sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025",
+      "periodo": "2025-05",
+      "valor": 47.0,
+      "meta": 47.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Mayo"
+    },
+    {
+      "indicator_id": "sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025",
+      "periodo": "2025-06",
+      "valor": 55.0,
+      "meta": 55.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Junio"
+    },
+    {
+      "indicator_id": "sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025",
+      "periodo": "2025-07",
+      "valor": 55.0,
+      "meta": 55.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Julio"
+    },
+    {
+      "indicator_id": "sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025",
+      "periodo": "2025-08",
+      "valor": 53.0,
+      "meta": 53.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Agosto"
+    },
+    {
+      "indicator_id": "sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025",
+      "periodo": "2025-09",
+      "valor": 52.0,
+      "meta": 52.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Septiembre"
+    },
+    {
+      "indicator_id": "sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025",
+      "periodo": "2025-10",
+      "valor": 52.0,
+      "meta": 52.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Octubre"
+    },
+    {
+      "indicator_id": "sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025",
+      "periodo": "2025-11",
+      "valor": 45.0,
+      "meta": 45.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Noviembre"
+    },
+    {
+      "indicator_id": "sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025",
+      "periodo": "2025-12",
+      "valor": 25.0,
+      "meta": 25.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Diciembre"
+    },
+    {
+      "indicator_id": "sj-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2025",
+      "periodo": "2025",
+      "valor": 500.0,
+      "meta": 500.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Acumulado anual"
+    }
+  ],
+  "sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025": [
+    {
+      "indicator_id": "sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025",
+      "periodo": "2025-01",
+      "valor": 1753.0,
+      "meta": 1318.0,
+      "avance_porcentual": 133.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Enero"
+    },
+    {
+      "indicator_id": "sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025",
+      "periodo": "2025-02",
+      "valor": 1708.0,
+      "meta": 1324.0,
+      "avance_porcentual": 129.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Febrero"
+    },
+    {
+      "indicator_id": "sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025",
+      "periodo": "2025-03",
+      "valor": 1756.0,
+      "meta": 1331.0,
+      "avance_porcentual": 131.93,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Marzo"
+    },
+    {
+      "indicator_id": "sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025",
+      "periodo": "2025-04",
+      "valor": 1509.0,
+      "meta": 1337.0,
+      "avance_porcentual": 112.86,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Abril"
+    },
+    {
+      "indicator_id": "sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025",
+      "periodo": "2025-05",
+      "valor": 867.0,
+      "meta": 1346.0,
+      "avance_porcentual": 64.41,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Mayo"
+    },
+    {
+      "indicator_id": "sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025",
+      "periodo": "2025-06",
+      "valor": 622.0,
+      "meta": 1346.0,
+      "avance_porcentual": 46.21,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Junio"
+    },
+    {
+      "indicator_id": "sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025",
+      "periodo": "2025-07",
+      "valor": 1121.0,
+      "meta": 1343.0,
+      "avance_porcentual": 83.47,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Julio"
+    },
+    {
+      "indicator_id": "sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025",
+      "periodo": "2025-08",
+      "valor": 631.0,
+      "meta": 1339.0,
+      "avance_porcentual": 47.12,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Agosto"
+    },
+    {
+      "indicator_id": "sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025",
+      "periodo": "2025-09",
+      "valor": 1354.0,
+      "meta": 1337.0,
+      "avance_porcentual": 101.27,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Septiembre"
+    },
+    {
+      "indicator_id": "sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025",
+      "periodo": "2025-10",
+      "valor": 1923.0,
+      "meta": 1334.0,
+      "avance_porcentual": 144.15,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Octubre"
+    },
+    {
+      "indicator_id": "sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025",
+      "periodo": "2025-11",
+      "valor": 2224.0,
+      "meta": 1327.0,
+      "avance_porcentual": 167.6,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Noviembre"
+    },
+    {
+      "indicator_id": "sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025",
+      "periodo": "2025-12",
+      "valor": 976.0,
+      "meta": 1318.0,
+      "avance_porcentual": 74.05,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Diciembre"
+    },
+    {
+      "indicator_id": "sj-04-porcentaje-personas-contactadas-en-las-j-g005-2025",
+      "periodo": "2025",
+      "valor": 16444.0,
+      "meta": 16000.0,
+      "avance_porcentual": 102.77,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Acumulado anual"
+    }
+  ],
+  "sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025": [
+    {
+      "indicator_id": "sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025",
+      "periodo": "2025-01",
+      "valor": 0.0,
+      "meta": 15.0,
+      "avance_porcentual": 0.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Enero"
+    },
+    {
+      "indicator_id": "sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025",
+      "periodo": "2025-02",
+      "valor": 27.0,
+      "meta": 15.0,
+      "avance_porcentual": 180.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Febrero"
+    },
+    {
+      "indicator_id": "sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025",
+      "periodo": "2025-03",
+      "valor": 19.0,
+      "meta": 15.0,
+      "avance_porcentual": 126.67,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Marzo"
+    },
+    {
+      "indicator_id": "sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025",
+      "periodo": "2025-04",
+      "valor": 15.0,
+      "meta": 22.0,
+      "avance_porcentual": 68.18,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Abril"
+    },
+    {
+      "indicator_id": "sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025",
+      "periodo": "2025-05",
+      "valor": 15.0,
+      "meta": 26.0,
+      "avance_porcentual": 57.69,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Mayo"
+    },
+    {
+      "indicator_id": "sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025",
+      "periodo": "2025-06",
+      "valor": 33.0,
+      "meta": 26.0,
+      "avance_porcentual": 126.92,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Junio"
+    },
+    {
+      "indicator_id": "sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025",
+      "periodo": "2025-07",
+      "valor": 19.0,
+      "meta": 26.0,
+      "avance_porcentual": 73.08,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Julio"
+    },
+    {
+      "indicator_id": "sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025",
+      "periodo": "2025-08",
+      "valor": 13.0,
+      "meta": 26.0,
+      "avance_porcentual": 50.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Agosto"
+    },
+    {
+      "indicator_id": "sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025",
+      "periodo": "2025-09",
+      "valor": 14.0,
+      "meta": 26.0,
+      "avance_porcentual": 53.85,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Septiembre"
+    },
+    {
+      "indicator_id": "sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025",
+      "periodo": "2025-10",
+      "valor": 10.0,
+      "meta": 26.0,
+      "avance_porcentual": 38.46,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Octubre"
+    },
+    {
+      "indicator_id": "sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025",
+      "periodo": "2025-11",
+      "valor": 20.0,
+      "meta": 26.0,
+      "avance_porcentual": 76.92,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Noviembre"
+    },
+    {
+      "indicator_id": "sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025",
+      "periodo": "2025-12",
+      "valor": 20.0,
+      "meta": 26.0,
+      "avance_porcentual": 76.92,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Diciembre"
+    },
+    {
+      "indicator_id": "sj-05-porcentaje-de-resolucion-a-las-solicitud-g005-2025",
+      "periodo": "2025",
+      "valor": 205.0,
+      "meta": 275.0,
+      "avance_porcentual": 74.55,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Acumulado anual"
+    }
+  ],
+  "sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025": [
+    {
+      "indicator_id": "sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025",
+      "periodo": "2025-01",
+      "valor": 46.0,
+      "meta": 51.0,
+      "avance_porcentual": 90.2,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Enero"
+    },
+    {
+      "indicator_id": "sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025",
+      "periodo": "2025-02",
+      "valor": 50.0,
+      "meta": 48.0,
+      "avance_porcentual": 104.17,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Febrero"
+    },
+    {
+      "indicator_id": "sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025",
+      "periodo": "2025-03",
+      "valor": 74.0,
+      "meta": 59.0,
+      "avance_porcentual": 125.42,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Marzo"
+    },
+    {
+      "indicator_id": "sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025",
+      "periodo": "2025-04",
+      "valor": 52.0,
+      "meta": 59.0,
+      "avance_porcentual": 88.14,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Abril"
+    },
+    {
+      "indicator_id": "sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025",
+      "periodo": "2025-05",
+      "valor": 61.0,
+      "meta": 49.0,
+      "avance_porcentual": 124.49,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Mayo"
+    },
+    {
+      "indicator_id": "sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025",
+      "periodo": "2025-06",
+      "valor": 60.0,
+      "meta": 60.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Junio"
+    },
+    {
+      "indicator_id": "sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025",
+      "periodo": "2025-07",
+      "valor": 55.0,
+      "meta": 59.0,
+      "avance_porcentual": 93.22,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Julio"
+    },
+    {
+      "indicator_id": "sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025",
+      "periodo": "2025-08",
+      "valor": 64.0,
+      "meta": 54.0,
+      "avance_porcentual": 118.52,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Agosto"
+    },
+    {
+      "indicator_id": "sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025",
+      "periodo": "2025-09",
+      "valor": 46.0,
+      "meta": 55.0,
+      "avance_porcentual": 83.64,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Septiembre"
+    },
+    {
+      "indicator_id": "sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025",
+      "periodo": "2025-10",
+      "valor": 50.0,
+      "meta": 55.0,
+      "avance_porcentual": 90.91,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Octubre"
+    },
+    {
+      "indicator_id": "sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025",
+      "periodo": "2025-11",
+      "valor": 59.0,
+      "meta": 54.0,
+      "avance_porcentual": 109.26,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Noviembre"
+    },
+    {
+      "indicator_id": "sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025",
+      "periodo": "2025-12",
+      "valor": 28.0,
+      "meta": 54.0,
+      "avance_porcentual": 51.85,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Diciembre"
+    },
+    {
+      "indicator_id": "sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025",
+      "periodo": "2025",
+      "valor": 645.0,
+      "meta": 657.0,
+      "avance_porcentual": 98.17,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Acumulado anual"
+    }
+  ],
+  "sj-07-porcentaje-de-sentencias-favorables-not-g005-2025": [
+    {
+      "indicator_id": "sj-07-porcentaje-de-sentencias-favorables-not-g005-2025",
+      "periodo": "2025-01",
+      "valor": 18.0,
+      "meta": 30.0,
+      "avance_porcentual": 60.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Enero"
+    },
+    {
+      "indicator_id": "sj-07-porcentaje-de-sentencias-favorables-not-g005-2025",
+      "periodo": "2025-02",
+      "valor": 30.0,
+      "meta": 25.0,
+      "avance_porcentual": 120.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Febrero"
+    },
+    {
+      "indicator_id": "sj-07-porcentaje-de-sentencias-favorables-not-g005-2025",
+      "periodo": "2025-03",
+      "valor": 34.0,
+      "meta": 25.0,
+      "avance_porcentual": 136.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Marzo"
+    },
+    {
+      "indicator_id": "sj-07-porcentaje-de-sentencias-favorables-not-g005-2025",
+      "periodo": "2025-04",
+      "valor": 21.0,
+      "meta": 27.0,
+      "avance_porcentual": 77.78,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Abril"
+    },
+    {
+      "indicator_id": "sj-07-porcentaje-de-sentencias-favorables-not-g005-2025",
+      "periodo": "2025-05",
+      "valor": 27.0,
+      "meta": 32.0,
+      "avance_porcentual": 84.38,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Mayo"
+    },
+    {
+      "indicator_id": "sj-07-porcentaje-de-sentencias-favorables-not-g005-2025",
+      "periodo": "2025-06",
+      "valor": 16.0,
+      "meta": 42.0,
+      "avance_porcentual": 38.1,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Junio"
+    },
+    {
+      "indicator_id": "sj-07-porcentaje-de-sentencias-favorables-not-g005-2025",
+      "periodo": "2025-07",
+      "valor": 16.0,
+      "meta": 22.0,
+      "avance_porcentual": 72.73,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Julio"
+    },
+    {
+      "indicator_id": "sj-07-porcentaje-de-sentencias-favorables-not-g005-2025",
+      "periodo": "2025-08",
+      "valor": 6.0,
+      "meta": 23.0,
+      "avance_porcentual": 26.09,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Agosto"
+    },
+    {
+      "indicator_id": "sj-07-porcentaje-de-sentencias-favorables-not-g005-2025",
+      "periodo": "2025-09",
+      "valor": 19.0,
+      "meta": 33.0,
+      "avance_porcentual": 57.58,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Septiembre"
+    },
+    {
+      "indicator_id": "sj-07-porcentaje-de-sentencias-favorables-not-g005-2025",
+      "periodo": "2025-10",
+      "valor": 10.0,
+      "meta": 35.0,
+      "avance_porcentual": 28.57,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Octubre"
+    },
+    {
+      "indicator_id": "sj-07-porcentaje-de-sentencias-favorables-not-g005-2025",
+      "periodo": "2025-11",
+      "valor": 19.0,
+      "meta": 41.0,
+      "avance_porcentual": 46.34,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Noviembre"
+    },
+    {
+      "indicator_id": "sj-07-porcentaje-de-sentencias-favorables-not-g005-2025",
+      "periodo": "2025-12",
+      "valor": 14.0,
+      "meta": 18.0,
+      "avance_porcentual": 77.78,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Diciembre"
+    },
+    {
+      "indicator_id": "sj-07-porcentaje-de-sentencias-favorables-not-g005-2025",
+      "periodo": "2025",
+      "valor": 230.0,
+      "meta": 353.0,
+      "avance_porcentual": 65.16,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Acumulado anual"
+    }
+  ],
+  "srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025": [
+    {
+      "indicator_id": "srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025",
+      "periodo": "2025-01",
+      "valor": 160.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Enero"
+    },
+    {
+      "indicator_id": "srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025",
+      "periodo": "2025-02",
+      "valor": 149.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Febrero"
+    },
+    {
+      "indicator_id": "srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025",
+      "periodo": "2025-03",
+      "valor": 94.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Marzo"
+    },
+    {
+      "indicator_id": "srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025",
+      "periodo": "2025-04",
+      "valor": 123.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Abril"
+    },
+    {
+      "indicator_id": "srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025",
+      "periodo": "2025-05",
+      "valor": 105.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Mayo"
+    },
+    {
+      "indicator_id": "srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025",
+      "periodo": "2025-06",
+      "valor": 70.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Junio"
+    },
+    {
+      "indicator_id": "srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025",
+      "periodo": "2025-07",
+      "valor": 63.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Julio"
+    },
+    {
+      "indicator_id": "srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025",
+      "periodo": "2025-08",
+      "valor": 47.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Agosto"
+    },
+    {
+      "indicator_id": "srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025",
+      "periodo": "2025-09",
+      "valor": 56.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Septiembre"
+    },
+    {
+      "indicator_id": "srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025",
+      "periodo": "2025-10",
+      "valor": 40.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Octubre"
+    },
+    {
+      "indicator_id": "srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025",
+      "periodo": "2025-11",
+      "valor": 47.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Noviembre"
+    },
+    {
+      "indicator_id": "srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025",
+      "periodo": "2025-12",
+      "valor": 50.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Diciembre"
+    },
+    {
+      "indicator_id": "srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2025",
+      "periodo": "2025",
+      "valor": 1004.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Acumulado anual"
+    }
+  ],
+  "srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025": [
+    {
+      "indicator_id": "srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025",
+      "periodo": "2025-01",
+      "valor": 26.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Enero"
+    },
+    {
+      "indicator_id": "srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025",
+      "periodo": "2025-02",
+      "valor": 22.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Febrero"
+    },
+    {
+      "indicator_id": "srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025",
+      "periodo": "2025-03",
+      "valor": 12.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Marzo"
+    },
+    {
+      "indicator_id": "srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025",
+      "periodo": "2025-04",
+      "valor": 29.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Abril"
+    },
+    {
+      "indicator_id": "srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025",
+      "periodo": "2025-05",
+      "valor": 13.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Mayo"
+    },
+    {
+      "indicator_id": "srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025",
+      "periodo": "2025-06",
+      "valor": 5.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Junio"
+    },
+    {
+      "indicator_id": "srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025",
+      "periodo": "2025-07",
+      "valor": 7.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Julio"
+    },
+    {
+      "indicator_id": "srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025",
+      "periodo": "2025-08",
+      "valor": 4.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Agosto"
+    },
+    {
+      "indicator_id": "srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025",
+      "periodo": "2025-09",
+      "valor": 9.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Septiembre"
+    },
+    {
+      "indicator_id": "srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025",
+      "periodo": "2025-10",
+      "valor": 7.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Octubre"
+    },
+    {
+      "indicator_id": "srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025",
+      "periodo": "2025-11",
+      "valor": 6.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Noviembre"
+    },
+    {
+      "indicator_id": "srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025",
+      "periodo": "2025-12",
+      "valor": 13.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Diciembre"
+    },
+    {
+      "indicator_id": "srn-02-porcentaje-de-areas-naturales-protegidas-g005-2025",
+      "periodo": "2025",
+      "valor": 153.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Acumulado anual"
+    }
+  ],
+  "srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025": [
+    {
+      "indicator_id": "srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025",
+      "periodo": "2025-01",
+      "valor": 140.0,
+      "meta": 37.0,
+      "avance_porcentual": 378.38,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Enero"
+    },
+    {
+      "indicator_id": "srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025",
+      "periodo": "2025-02",
+      "valor": 319.0,
+      "meta": 234.0,
+      "avance_porcentual": 136.32,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Febrero"
+    },
+    {
+      "indicator_id": "srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025",
+      "periodo": "2025-03",
+      "valor": 298.0,
+      "meta": 431.0,
+      "avance_porcentual": 69.14,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Marzo"
+    },
+    {
+      "indicator_id": "srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025",
+      "periodo": "2025-04",
+      "valor": 410.0,
+      "meta": 471.0,
+      "avance_porcentual": 87.05,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Abril"
+    },
+    {
+      "indicator_id": "srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025",
+      "periodo": "2025-05",
+      "valor": 446.0,
+      "meta": 529.0,
+      "avance_porcentual": 84.31,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Mayo"
+    },
+    {
+      "indicator_id": "srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025",
+      "periodo": "2025-06",
+      "valor": 475.0,
+      "meta": 500.0,
+      "avance_porcentual": 95.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Junio"
+    },
+    {
+      "indicator_id": "srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025",
+      "periodo": "2025-07",
+      "valor": 426.0,
+      "meta": 500.0,
+      "avance_porcentual": 85.2,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Julio"
+    },
+    {
+      "indicator_id": "srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025",
+      "periodo": "2025-08",
+      "valor": 407.0,
+      "meta": 469.0,
+      "avance_porcentual": 86.78,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Agosto"
+    },
+    {
+      "indicator_id": "srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025",
+      "periodo": "2025-09",
+      "valor": 405.0,
+      "meta": 418.0,
+      "avance_porcentual": 96.89,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Septiembre"
+    },
+    {
+      "indicator_id": "srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025",
+      "periodo": "2025-10",
+      "valor": 455.0,
+      "meta": 330.0,
+      "avance_porcentual": 137.88,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Octubre"
+    },
+    {
+      "indicator_id": "srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025",
+      "periodo": "2025-11",
+      "valor": 390.0,
+      "meta": 184.0,
+      "avance_porcentual": 211.96,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Noviembre"
+    },
+    {
+      "indicator_id": "srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025",
+      "periodo": "2025-12",
+      "valor": 239.0,
+      "meta": 35.0,
+      "avance_porcentual": 682.86,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Diciembre"
+    },
+    {
+      "indicator_id": "srn-03-porcentaje-de-inspecciones-realizadas-e-g005-2025",
+      "periodo": "2025",
+      "valor": 4410.0,
+      "meta": 4138.0,
+      "avance_porcentual": 106.57,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Acumulado anual"
+    }
+  ],
+  "srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025": [
+    {
+      "indicator_id": "srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025",
+      "periodo": "2025-01",
+      "valor": 163.0,
+      "meta": 121.0,
+      "avance_porcentual": 134.71,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Enero"
+    },
+    {
+      "indicator_id": "srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025",
+      "periodo": "2025-02",
+      "valor": 192.0,
+      "meta": 204.0,
+      "avance_porcentual": 94.12,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Febrero"
+    },
+    {
+      "indicator_id": "srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025",
+      "periodo": "2025-03",
+      "valor": 208.0,
+      "meta": 219.0,
+      "avance_porcentual": 94.98,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Marzo"
+    },
+    {
+      "indicator_id": "srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025",
+      "periodo": "2025-04",
+      "valor": 358.0,
+      "meta": 236.0,
+      "avance_porcentual": 151.69,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Abril"
+    },
+    {
+      "indicator_id": "srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025",
+      "periodo": "2025-05",
+      "valor": 288.0,
+      "meta": 241.0,
+      "avance_porcentual": 119.5,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Mayo"
+    },
+    {
+      "indicator_id": "srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025",
+      "periodo": "2025-06",
+      "valor": 181.0,
+      "meta": 234.0,
+      "avance_porcentual": 77.35,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Junio"
+    },
+    {
+      "indicator_id": "srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025",
+      "periodo": "2025-07",
+      "valor": 245.0,
+      "meta": 237.0,
+      "avance_porcentual": 103.38,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Julio"
+    },
+    {
+      "indicator_id": "srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025",
+      "periodo": "2025-08",
+      "valor": 203.0,
+      "meta": 229.0,
+      "avance_porcentual": 88.65,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Agosto"
+    },
+    {
+      "indicator_id": "srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025",
+      "periodo": "2025-09",
+      "valor": 195.0,
+      "meta": 225.0,
+      "avance_porcentual": 86.67,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Septiembre"
+    },
+    {
+      "indicator_id": "srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025",
+      "periodo": "2025-10",
+      "valor": 196.0,
+      "meta": 205.0,
+      "avance_porcentual": 95.61,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Octubre"
+    },
+    {
+      "indicator_id": "srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025",
+      "periodo": "2025-11",
+      "valor": 219.0,
+      "meta": 177.0,
+      "avance_porcentual": 123.73,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Noviembre"
+    },
+    {
+      "indicator_id": "srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025",
+      "periodo": "2025-12",
+      "valor": 120.0,
+      "meta": 97.0,
+      "avance_porcentual": 123.71,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Diciembre"
+    },
+    {
+      "indicator_id": "srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2025",
+      "periodo": "2025",
+      "valor": 2568.0,
+      "meta": 2425.0,
+      "avance_porcentual": 105.9,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Acumulado anual"
+    }
+  ],
+  "srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025": [
+    {
+      "indicator_id": "srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025",
+      "periodo": "2025-01",
+      "valor": 28.0,
+      "meta": 19.0,
+      "avance_porcentual": 147.37,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Enero"
+    },
+    {
+      "indicator_id": "srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025",
+      "periodo": "2025-02",
+      "valor": 41.0,
+      "meta": 48.0,
+      "avance_porcentual": 85.42,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Febrero"
+    },
+    {
+      "indicator_id": "srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025",
+      "periodo": "2025-03",
+      "valor": 59.0,
+      "meta": 64.0,
+      "avance_porcentual": 92.19,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Marzo"
+    },
+    {
+      "indicator_id": "srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025",
+      "periodo": "2025-04",
+      "valor": 91.0,
+      "meta": 85.0,
+      "avance_porcentual": 107.06,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Abril"
+    },
+    {
+      "indicator_id": "srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025",
+      "periodo": "2025-05",
+      "valor": 64.0,
+      "meta": 58.0,
+      "avance_porcentual": 110.34,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Mayo"
+    },
+    {
+      "indicator_id": "srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025",
+      "periodo": "2025-06",
+      "valor": 41.0,
+      "meta": 56.0,
+      "avance_porcentual": 73.21,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Junio"
+    },
+    {
+      "indicator_id": "srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025",
+      "periodo": "2025-07",
+      "valor": 77.0,
+      "meta": 72.0,
+      "avance_porcentual": 106.94,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Julio"
+    },
+    {
+      "indicator_id": "srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025",
+      "periodo": "2025-08",
+      "valor": 73.0,
+      "meta": 67.0,
+      "avance_porcentual": 108.96,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Agosto"
+    },
+    {
+      "indicator_id": "srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025",
+      "periodo": "2025-09",
+      "valor": 61.0,
+      "meta": 52.0,
+      "avance_porcentual": 117.31,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Septiembre"
+    },
+    {
+      "indicator_id": "srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025",
+      "periodo": "2025-10",
+      "valor": 60.0,
+      "meta": 49.0,
+      "avance_porcentual": 122.45,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Octubre"
+    },
+    {
+      "indicator_id": "srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025",
+      "periodo": "2025-11",
+      "valor": 29.0,
+      "meta": 38.0,
+      "avance_porcentual": 76.32,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Noviembre"
+    },
+    {
+      "indicator_id": "srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025",
+      "periodo": "2025-12",
+      "valor": 60.0,
+      "meta": 18.0,
+      "avance_porcentual": 333.33,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Diciembre"
+    },
+    {
+      "indicator_id": "srn-05-porcentaje-de-operativos-realizados-en-m-g005-2025",
+      "periodo": "2025",
+      "valor": 684.0,
+      "meta": 626.0,
+      "avance_porcentual": 109.27,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Acumulado anual"
+    }
+  ],
+  "srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025": [
+    {
+      "indicator_id": "srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025",
+      "periodo": "2025-01",
+      "valor": 11.0,
+      "meta": 6.0,
+      "avance_porcentual": 183.33,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Enero"
+    },
+    {
+      "indicator_id": "srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025",
+      "periodo": "2025-02",
+      "valor": 22.0,
+      "meta": 23.0,
+      "avance_porcentual": 95.65,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Febrero"
+    },
+    {
+      "indicator_id": "srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025",
+      "periodo": "2025-03",
+      "valor": 37.0,
+      "meta": 26.0,
+      "avance_porcentual": 142.31,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Marzo"
+    },
+    {
+      "indicator_id": "srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025",
+      "periodo": "2025-04",
+      "valor": 34.0,
+      "meta": 15.0,
+      "avance_porcentual": 226.67,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Abril"
+    },
+    {
+      "indicator_id": "srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025",
+      "periodo": "2025-05",
+      "valor": 33.0,
+      "meta": 13.0,
+      "avance_porcentual": 253.85,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Mayo"
+    },
+    {
+      "indicator_id": "srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025",
+      "periodo": "2025-06",
+      "valor": 40.0,
+      "meta": 50.0,
+      "avance_porcentual": 80.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Junio"
+    },
+    {
+      "indicator_id": "srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025",
+      "periodo": "2025-07",
+      "valor": 36.0,
+      "meta": 50.0,
+      "avance_porcentual": 72.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Julio"
+    },
+    {
+      "indicator_id": "srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025",
+      "periodo": "2025-08",
+      "valor": 38.0,
+      "meta": 57.0,
+      "avance_porcentual": 66.67,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Agosto"
+    },
+    {
+      "indicator_id": "srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025",
+      "periodo": "2025-09",
+      "valor": 41.0,
+      "meta": 34.0,
+      "avance_porcentual": 120.59,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Septiembre"
+    },
+    {
+      "indicator_id": "srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025",
+      "periodo": "2025-10",
+      "valor": 60.0,
+      "meta": 7.0,
+      "avance_porcentual": 857.14,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Octubre"
+    },
+    {
+      "indicator_id": "srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025",
+      "periodo": "2025-11",
+      "valor": 21.0,
+      "meta": 3.0,
+      "avance_porcentual": 700.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Noviembre"
+    },
+    {
+      "indicator_id": "srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025",
+      "periodo": "2025-12",
+      "valor": 21.0,
+      "meta": 0.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Diciembre"
+    },
+    {
+      "indicator_id": "srn-06-porcentaje-de-comites-de-vigilancia-ambi-g005-2025",
+      "periodo": "2025",
+      "valor": 394.0,
+      "meta": 284.0,
+      "avance_porcentual": 138.73,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "POA Avance - Acumulado anual"
+    }
+  ],
+  "aportar-al-humanismo-mexicano-mediante-la-procuracion-de-la-g005-2025": [
+    {
+      "indicator_id": "aportar-al-humanismo-mexicano-mediante-la-procuracion-de-la-g005-2025",
+      "periodo": "2025",
+      "valor": 130.15,
+      "meta": 97.0,
+      "avance_porcentual": 134.18,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "MIR_G005_2025.xlsx"
+    }
+  ],
+  "porcentaje-de-denuncias-populares-en-materia-ambiental-concl-g005-2025": [
+    {
+      "indicator_id": "porcentaje-de-denuncias-populares-en-materia-ambiental-concl-g005-2025",
+      "periodo": "2025",
+      "valor": 56.11,
+      "meta": 60.0,
+      "avance_porcentual": 93.52,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "MIR_G005_2025.xlsx"
+    }
+  ],
+  "porcentaje-de-resolucion-de-procedimientos-administrativos-d-g005-2025": [
+    {
+      "indicator_id": "porcentaje-de-resolucion-de-procedimientos-administrativos-d-g005-2025",
+      "periodo": "2025",
+      "valor": 39.34,
+      "meta": 60.0,
+      "avance_porcentual": 65.57,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "MIR_G005_2025.xlsx"
+    }
+  ],
+  "porcentaje-de-visitas-de-verificacion-con-cumplimiento-de-la-g005-2025": [
+    {
+      "indicator_id": "porcentaje-de-visitas-de-verificacion-con-cumplimiento-de-la-g005-2025",
+      "periodo": "2025",
+      "valor": 58.03,
+      "meta": 55.0,
+      "avance_porcentual": 105.51,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "MIR_G005_2025.xlsx"
+    }
+  ],
+  "porcentaje-de-municipios-y-alcaldias-con-acciones-de-inspecc-g005-2025": [
+    {
+      "indicator_id": "porcentaje-de-municipios-y-alcaldias-con-acciones-de-inspecc-g005-2025",
+      "periodo": "2025",
+      "valor": 40.52,
+      "meta": 16.14,
+      "avance_porcentual": 251.05,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "MIR_G005_2025.xlsx"
+    }
+  ],
+  "porcentaje-de-certificados-y-reconocimientos-ambientales-emi-g005-2025": [
+    {
+      "indicator_id": "porcentaje-de-certificados-y-reconocimientos-ambientales-emi-g005-2025",
+      "periodo": "2025",
+      "valor": 98.5,
+      "meta": 100.0,
+      "avance_porcentual": 98.5,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "MIR_G005_2025.xlsx"
+    }
+  ],
+  "porcentaje-de-areas-naturales-protegidas-con-acciones-de-ins-g005-2025": [
+    {
+      "indicator_id": "porcentaje-de-areas-naturales-protegidas-con-acciones-de-ins-g005-2025",
+      "periodo": "2025",
+      "valor": 65.95,
+      "meta": 51.72,
+      "avance_porcentual": 127.51,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "MIR_G005_2025.xlsx"
+    }
+  ],
+  "porcentaje-de-acciones-de-inspeccion-realizadas-al-universo-g005-2025": [
+    {
+      "indicator_id": "porcentaje-de-acciones-de-inspeccion-realizadas-al-universo-g005-2025",
+      "periodo": "2025",
+      "valor": 7.71,
+      "meta": 7.5,
+      "avance_porcentual": 102.8,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "MIR_G005_2025.xlsx"
+    }
+  ],
+  "porcentaje-de-solicitudes-de-certificado-y-reconocimiento-am-g005-2025": [
+    {
+      "indicator_id": "porcentaje-de-solicitudes-de-certificado-y-reconocimiento-am-g005-2025",
+      "periodo": "2025",
+      "valor": 107.68,
+      "meta": 100.0,
+      "avance_porcentual": 107.68,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "MIR_G005_2025.xlsx"
+    }
+  ],
+  "porcentaje-de-resoluciones-emitidas-a-los-recursos-de-revisi-g005-2025": [
+    {
+      "indicator_id": "porcentaje-de-resoluciones-emitidas-a-los-recursos-de-revisi-g005-2025",
+      "periodo": "2025",
+      "valor": 38.94,
+      "meta": 50.0,
+      "avance_porcentual": 77.88,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "MIR_G005_2025.xlsx"
+    }
+  ],
+  "porcentaje-de-auditores-ambientales-supervisados-g005-2025": [
+    {
+      "indicator_id": "porcentaje-de-auditores-ambientales-supervisados-g005-2025",
+      "periodo": "2025",
+      "valor": 100.0,
+      "meta": 100.0,
+      "avance_porcentual": 100.0,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "MIR_G005_2025.xlsx"
+    }
+  ],
+  "porcentaje-de-acciones-de-supervision-a-procesos-de-certific-g005-2025": [
+    {
+      "indicator_id": "porcentaje-de-acciones-de-supervision-a-procesos-de-certific-g005-2025",
+      "periodo": "2025",
+      "valor": 104.96,
+      "meta": 100.0,
+      "avance_porcentual": 104.96,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "MIR_G005_2025.xlsx"
+    }
+  ],
+  "porcentaje-de-acciones-de-promocion-para-la-certificacion-am-g005-2025": [
+    {
+      "indicator_id": "porcentaje-de-acciones-de-promocion-para-la-certificacion-am-g005-2025",
+      "periodo": "2025",
+      "valor": 109.83,
+      "meta": 100.0,
+      "avance_porcentual": 109.83,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "MIR_G005_2025.xlsx"
+    }
+  ],
+  "porcentaje-de-acciones-de-inspeccion-y-verificacion-realizad-g005-2025": [
+    {
+      "indicator_id": "porcentaje-de-acciones-de-inspeccion-y-verificacion-realizad-g005-2025",
+      "periodo": "2025",
+      "valor": 97.11,
+      "meta": 100.0,
+      "avance_porcentual": 97.11,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "MIR_G005_2025.xlsx"
+    }
+  ],
+  "porcentaje-de-recorridos-de-vigilancia-realizados-en-materia-g005-2025": [
+    {
+      "indicator_id": "porcentaje-de-recorridos-de-vigilancia-realizados-en-materia-g005-2025",
+      "periodo": "2025",
+      "valor": 93.31,
+      "meta": 100.0,
+      "avance_porcentual": 93.31,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "MIR_G005_2025.xlsx"
+    }
+  ],
+  "porcentaje-de-inspecciones-realizadas-en-materia-de-recurso-g005-2025": [
+    {
+      "indicator_id": "porcentaje-de-inspecciones-realizadas-en-materia-de-recurso-g005-2025",
+      "periodo": "2025",
+      "valor": 99.17,
+      "meta": 100.0,
+      "avance_porcentual": 99.17,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "MIR_G005_2025.xlsx"
+    }
+  ],
+  "porcentaje-de-comites-de-vigilancia-ambiental-participativa-g005-2025": [
+    {
+      "indicator_id": "porcentaje-de-comites-de-vigilancia-ambiental-participativa-g005-2025",
+      "periodo": "2025",
+      "valor": 143.8,
+      "meta": 100.0,
+      "avance_porcentual": 143.8,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "MIR_G005_2025.xlsx"
+    }
+  ],
+  "porcentaje-de-operativos-realizados-en-materia-de-recursos-n-g005-2025": [
+    {
+      "indicator_id": "porcentaje-de-operativos-realizados-en-materia-de-recursos-n-g005-2025",
+      "periodo": "2025",
+      "valor": 107.04,
+      "meta": 100.0,
+      "avance_porcentual": 107.04,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "MIR_G005_2025.xlsx"
+    }
+  ],
+  "porcentaje-de-revision-de-mercancias-cuya-importacion-expor-g005-2025": [
+    {
+      "indicator_id": "porcentaje-de-revision-de-mercancias-cuya-importacion-expor-g005-2025",
+      "periodo": "2025",
+      "valor": 99.75,
+      "meta": 99.0,
+      "avance_porcentual": 100.76,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "MIR_G005_2025.xlsx"
+    }
+  ],
+  "porcentaje-personas-contactadas-en-las-jornadas-ambientales-g005-2025": [
+    {
+      "indicator_id": "porcentaje-personas-contactadas-en-las-jornadas-ambientales-g005-2025",
+      "periodo": "2025",
+      "valor": 102.78,
+      "meta": 100.0,
+      "avance_porcentual": 102.78,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "MIR_G005_2025.xlsx"
+    }
+  ],
+  "porcentaje-de-resolucion-a-las-solicitudes-de-conmutacion-de-g005-2025": [
+    {
+      "indicator_id": "porcentaje-de-resolucion-a-las-solicitudes-de-conmutacion-de-g005-2025",
+      "periodo": "2025",
+      "valor": 46.17,
+      "meta": 70.0,
+      "avance_porcentual": 65.96,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "MIR_G005_2025.xlsx"
+    }
+  ],
+  "procuracion-de-justicia-ambiental-impartida-g014-2026": [
+    {
+      "indicator_id": "procuracion-de-justicia-ambiental-impartida-g014-2026",
+      "periodo": "2026",
+      "valor": null,
+      "meta": 97.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "FiME 2026 PFPA.xlsx"
+    }
+  ],
+  "porcentaje-de-certificados-y-reconocimientos-ambientales-emi-g014-2026": [
+    {
+      "indicator_id": "porcentaje-de-certificados-y-reconocimientos-ambientales-emi-g014-2026",
+      "periodo": "2026",
+      "valor": 98.5,
+      "meta": 100.0,
+      "avance_porcentual": 0.985,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "FiME 2026 PFPA.xlsx"
+    }
+  ],
+  "porcentaje-de-resolucion-de-procedimientos-administrativos-d-g014-2026": [
+    {
+      "indicator_id": "porcentaje-de-resolucion-de-procedimientos-administrativos-d-g014-2026",
+      "periodo": "2026",
+      "valor": 39.34,
+      "meta": 60.0,
+      "avance_porcentual": 0.6556666666666667,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "FiME 2026 PFPA.xlsx"
+    }
+  ],
+  "porcentaje-de-visitas-de-verificacion-con-cumplimiento-de-la-g014-2026": [
+    {
+      "indicator_id": "porcentaje-de-visitas-de-verificacion-con-cumplimiento-de-la-g014-2026",
+      "periodo": "2026",
+      "valor": null,
+      "meta": 55.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "FiME 2026 PFPA.xlsx"
+    }
+  ],
+  "porcentaje-de-municipios-y-alcaldias-con-acciones-de-inspecc-g014-2026": [
+    {
+      "indicator_id": "porcentaje-de-municipios-y-alcaldias-con-acciones-de-inspecc-g014-2026",
+      "periodo": "2026",
+      "valor": 40.52,
+      "meta": 16.14,
+      "avance_porcentual": 2.510532837670384,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "FiME 2026 PFPA.xlsx"
+    }
+  ],
+  "porcentaje-de-acciones-de-inspeccion-realizadas-al-universo-g014-2026": [
+    {
+      "indicator_id": "porcentaje-de-acciones-de-inspeccion-realizadas-al-universo-g014-2026",
+      "periodo": "2026",
+      "valor": 7.71,
+      "meta": 7.5,
+      "avance_porcentual": 1.028,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "FiME 2026 PFPA.xlsx"
+    }
+  ],
+  "porcentaje-de-areas-naturales-protegidas-con-acciones-de-ins-g014-2026": [
+    {
+      "indicator_id": "porcentaje-de-areas-naturales-protegidas-con-acciones-de-ins-g014-2026",
+      "periodo": "2026",
+      "valor": null,
+      "meta": 52.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "FiME 2026 PFPA.xlsx"
+    }
+  ],
+  "porcentaje-de-empresas-e-instituciones-que-participaron-en-e-g014-2026": [
+    {
+      "indicator_id": "porcentaje-de-empresas-e-instituciones-que-participaron-en-e-g014-2026",
+      "periodo": "2026",
+      "valor": null,
+      "meta": 100.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "FiME 2026 PFPA.xlsx"
+    }
+  ],
+  "porcentaje-de-acciones-de-difusion-para-la-promocion-y-parti-g014-2026": [
+    {
+      "indicator_id": "porcentaje-de-acciones-de-difusion-para-la-promocion-y-parti-g014-2026",
+      "periodo": "2026",
+      "valor": null,
+      "meta": 100.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "FiME 2026 PFPA.xlsx"
+    }
+  ],
+  "porcentaje-de-revision-de-mercancias-cuya-importacion-expor-g014-2026": [
+    {
+      "indicator_id": "porcentaje-de-revision-de-mercancias-cuya-importacion-expor-g014-2026",
+      "periodo": "2026",
+      "valor": null,
+      "meta": 99.0,
+      "avance_porcentual": null,
+      "entidad": "Nacional",
+      "categoria": null,
+      "fuente_detalle": "FiME 2026 PFPA.xlsx"
+    }
+  ]
+}
