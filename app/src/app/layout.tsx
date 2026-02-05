@@ -149,7 +149,28 @@ export default function RootLayout({
               </div>
             </div>
             
-            <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-xs">
+            {/* Créditos */}
+            <div className="border-t border-gray-700 mt-8 pt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <p className="text-gray-300 font-medium">Desarrollado por:</p>
+                  <p className="text-white">Coordinación de Estudios Prospectivos y Valoración de Riesgos</p>
+                  <p className="text-gray-400 text-xs mt-1">Órgano Interno de Control en PROFEPA</p>
+                </div>
+                <div className="md:text-right">
+                  <p className="text-gray-300 font-medium">Contacto técnico:</p>
+                  <p className="text-white">Alan Jesús Guerrero Sandoval</p>
+                  <a 
+                    href="mailto:alan.guerrero@profepa.gob.mx" 
+                    className="text-gob-gold-400 hover:text-gob-gold-300 text-sm focus:outline-none focus:underline"
+                  >
+                    alan.guerrero@profepa.gob.mx
+                  </a>
+                </div>
+              </div>
+            </div>
+            
+            <div className="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400 text-xs">
               <p>© {new Date().getFullYear()} PROFEPA - Gobierno de México</p>
             </div>
           </div>
