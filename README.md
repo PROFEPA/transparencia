@@ -1,4 +1,4 @@
-# Dashboard de Transparencia PROFEPA
+# Tablero de Indicadores PROFEPA
 
 Plataforma pública de consulta de indicadores institucionales de la Procuraduría Federal de Protección al Ambiente (PROFEPA) para los ejercicios fiscales 2025-2026.
 

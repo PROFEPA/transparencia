@@ -85,6 +85,40 @@ export default function DescargasPage() {
     }
   ];
 
+  const originalDocuments = [
+    {
+      title: 'POA 2025',
+      description: 'Programa Operativo Anual 2025 - Documento original.',
+      formats: [
+        { name: 'Excel', url: '/documents/POA_2025.xlsx', icon: '📑' },
+      ],
+      badge: '2025'
+    },
+    {
+      title: 'MIR G005 2025',
+      description: 'Matriz de Indicadores para Resultados del programa G005 - 2025.',
+      formats: [
+        { name: 'Excel', url: '/documents/MIR_G005_2025.xlsx', icon: '📑' },
+      ],
+      badge: '2025'
+    },
+    {
+      title: 'FiME 2026',
+      description: 'Ficha de Monitoreo y Evaluación 2026 PROFEPA.',
+      formats: [
+        { name: 'Excel', url: '/documents/FiME 2026 PFPA.xlsx', icon: '📑' },
+      ],
+      badge: '2026'
+    },
+    {
+      title: 'G014 para Auditoría',
+      description: 'Documento del programa G014 para Auditoría.',
+      formats: [
+        { name: 'Word', url: '/documents/G014 para Auditoría.docx', icon: '📄' },
+      ],
+    }
+  ];
+
   return (
     <div className="animate-fade-in">
       {/* Breadcrumb */}
@@ -182,6 +216,45 @@ export default function DescargasPage() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Documentos originales */}
+        <div className="mt-12 mb-8">
+          <h2 className="text-2xl font-bold mb-2">Documentos originales</h2>
+          <p className="text-gray-600 mb-6">
+            Descarga los documentos institucionales originales en sus formatos nativos.
+          </p>
+          <div className="space-y-4">
+            {originalDocuments.map((doc, index) => (
+              <div key={index} className="card hover:shadow-lg transition-shadow border-l-4 border-gob-green-500">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
+                      <h3 className="font-bold text-lg">{doc.title}</h3>
+                      {doc.badge && (
+                        <span className="badge-gob">{doc.badge}</span>
+                      )}
+                    </div>
+                    <p className="text-gray-600 text-sm">{doc.description}</p>
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-2">
+                    {doc.formats.map((format, fIdx) => (
+                      <a
+                        key={fIdx}
+                        href={format.url}
+                        download
+                        className="btn-secondary text-sm py-2"
+                      >
+                        <span className="mr-1">{format.icon}</span>
+                        Descargar {format.name}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Información de fuentes */}

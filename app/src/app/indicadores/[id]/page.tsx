@@ -85,6 +85,9 @@ export default function IndicadorDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [chartType, setChartType] = useState<'line' | 'bar' | 'area'>('line');
+  const [selectedEntity, setSelectedEntity] = useState<string>('Nacional');
+  const [stateTab, setStateTab] = useState<'ranking' | 'comparison'>('ranking');
+  const [stateChartCount, setStateChartCount] = useState<number>(35);
 
   useEffect(() => {
     async function loadData() {
@@ -129,8 +132,24 @@ export default function IndicadorDetailPage() {
     }
   }, [indicatorId]);
 
+  // Get all unique entities for this indicator
+  const allEntities = Array.from(
+    new Set(data?.observaciones.map(o => o.entidad || 'Nacional').filter(Boolean))
+  ).sort((a, b) => {
+    if (a === 'Nacional') return -1;
+    if (b === 'Nacional') return 1;
+    return a.localeCompare(b, 'es');
+  });
+
+  const hasStateData = allEntities.length > 1;
+
+  // Filter observations by selected entity
+  const entityObservations = data?.observaciones.filter(
+    obs => (obs.entidad || 'Nacional') === selectedEntity
+  ) || [];
+
   // Preparar datos para gráficas - EXCLUIR periodos anuales (solo YYYY) para no distorsionar escala
-  const chartData = data?.observaciones
+  const chartData = entityObservations
     .filter(obs => obs.periodo.includes('-')) // Solo periodos mensuales (YYYY-MM)
     .map(obs => ({
       periodo: obs.periodo,
@@ -141,9 +160,13 @@ export default function IndicadorDetailPage() {
     })).sort((a, b) => a.periodo.localeCompare(b.periodo)) || [];
 
   // Datos anuales acumulados (para mostrar resumen)
-  const datosAnuales = data?.observaciones
+  const datosAnuales = entityObservations
     .filter(obs => !obs.periodo.includes('-')) // Solo periodos anuales (YYYY)
-    .sort((a, b) => a.periodo.localeCompare(b.periodo)) || [];
+    .sort((a, b) => a.periodo.localeCompare(b.periodo));
+
+  // Only months with meta > 0 count for cumplimiento analysis
+  const mesesConMeta = chartData.filter(d => d.meta && d.meta > 0);
+  const mesesSinMeta = chartData.filter(d => !d.meta || d.meta === 0);
 
   // Calcular estadísticas
   const stats = {
@@ -158,22 +181,52 @@ export default function IndicadorDetailPage() {
       : 0,
     ultimoValor: chartData.length > 0 ? chartData[chartData.length - 1]?.valor : null,
     ultimaMeta: chartData.length > 0 ? chartData[chartData.length - 1]?.meta : null,
-    cumplimiento: chartData.length > 0 
-      ? chartData.filter(d => d.avance && d.avance >= 100).length / chartData.length * 100 
-      : 0
+    cumplimiento: mesesConMeta.length > 0 
+      ? mesesConMeta.filter(d => d.avance && d.avance >= 100).length / mesesConMeta.length * 100 
+      : 0,
+    avanceAnual: datosAnuales.length > 0 ? datosAnuales[0].avance_porcentual : null,
   };
 
-  // Datos para gráfica de cumplimiento (pie chart)
+  // Datos para gráfica de cumplimiento (pie chart) - solo meses que tienen meta programada
   const cumplimientoData = [
-    { name: 'Cumplidas', value: chartData.filter(d => d.avance && d.avance >= 100).length, color: COLORS.success },
-    { name: 'En progreso', value: chartData.filter(d => d.avance && d.avance >= 80 && d.avance < 100).length, color: COLORS.warning },
-    { name: 'Rezagadas', value: chartData.filter(d => d.avance && d.avance < 80).length, color: COLORS.danger }
+    { name: 'Cumplidas', value: mesesConMeta.filter(d => d.avance && d.avance >= 100).length, color: COLORS.success },
+    { name: 'En progreso', value: mesesConMeta.filter(d => d.avance && d.avance >= 80 && d.avance < 100).length, color: COLORS.warning },
+    { name: 'Rezagadas', value: mesesConMeta.filter(d => d.avance != null && d.avance < 80).length, color: COLORS.danger },
+    { name: 'Sin meta prog.', value: mesesSinMeta.filter(d => d.valor && d.valor > 0).length, color: '#94a3b8' }
   ].filter(d => d.value > 0);
+
+  // --- State comparison data (annual totals per state) ---
+  const stateComparisonData = hasStateData
+    ? allEntities
+        .filter(e => e !== 'Nacional')
+        .map(entity => {
+          const annual = data?.observaciones.find(
+            o => (o.entidad || 'Nacional') === entity && !o.periodo.includes('-')
+          );
+          return {
+            entidad: entity.length > 14 ? entity.slice(0, 12) + '…' : entity,
+            entidadFull: entity,
+            valor: annual?.valor ?? 0,
+            meta: annual?.meta ?? 0,
+            avance: annual?.avance_porcentual ?? 0,
+          };
+        })
+        .filter(d => d.valor > 0 || d.meta > 0)
+        .sort((a, b) => b.avance - a.avance)
+    : [];
+
+  // Top/bottom states for ranking
+  const STATE_CHART_COLORS = [
+    '#235B4E', '#691C32', '#BC955C', '#10B981', '#3B82F6',
+    '#F59E0B', '#8B5CF6', '#EF4444', '#06B6D4', '#EC4899',
+  ];
 
   const downloadCSV = () => {
     if (!data) return;
     
-    const { indicador, observaciones } = data;
+    const { indicador } = data;
+    // Export all observations (not just filtered entity)
+    const allObs = data.observaciones;
     
     let csv = '# INFORMACIÓN DEL INDICADOR\n';
     csv += `ID,${indicador.id}\n`;
@@ -186,10 +239,10 @@ export default function IndicadorDetailPage() {
     csv += `Unidad de medida,${indicador.unidad_medida || 'N/A'}\n`;
     csv += `Nivel,${indicador.nivel || 'N/A'}\n\n`;
     
-    if (observaciones.length > 0) {
+    if (allObs.length > 0) {
       csv += '# SERIE DE DATOS\n';
       csv += 'Periodo,Valor,Meta,Avance Porcentual,Entidad,Fuente\n';
-      observaciones.forEach(obs => {
+      allObs.forEach(obs => {
         csv += `${obs.periodo},${obs.valor || ''},${obs.meta || ''},${obs.avance_porcentual || ''},${obs.entidad || ''},"${obs.fuente_detalle || ''}"\n`;
       });
     }
@@ -231,7 +284,8 @@ export default function IndicadorDetailPage() {
     );
   }
 
-  const { indicador, observaciones, tiene_serie } = data;
+  const { indicador, tiene_serie } = data;
+  const observaciones = entityObservations;
 
   return (
     <div className="animate-fade-in">
@@ -306,11 +360,54 @@ export default function IndicadorDetailPage() {
               </div>
               <div className="text-xs text-gray-500">Mínimo mensual</div>
             </div>
+            {datosAnuales.length > 0 && datosAnuales[0].avance_porcentual != null && (
+              <div className="card text-center p-4 border-2 border-blue-200 bg-blue-50">
+                <div className={`text-2xl font-bold ${datosAnuales[0].avance_porcentual >= 100 ? 'text-green-600' : datosAnuales[0].avance_porcentual >= 80 ? 'text-yellow-600' : 'text-red-600'}`}>
+                  {datosAnuales[0].avance_porcentual.toFixed(1)}%
+                </div>
+                <div className="text-xs text-blue-600 font-medium">Avance anual</div>
+              </div>
+            )}
             <div className="card text-center p-4">
               <div className={`text-2xl font-bold ${stats.cumplimiento >= 80 ? 'text-green-600' : stats.cumplimiento >= 50 ? 'text-yellow-600' : 'text-red-600'}`}>
                 {stats.cumplimiento.toFixed(0)}%
               </div>
-              <div className="text-xs text-gray-500">Meses cumplidos</div>
+              <div className="text-xs text-gray-500">
+                Meses cumplidos
+                {mesesSinMeta.length > 0 && <span className="block text-gray-400">({mesesConMeta.length} con meta)</span>}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Entity selector */}
+        {hasStateData && (
+          <div className="card mb-6">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+              <div className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-gob-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <label htmlFor="entity-select" className="font-semibold text-gray-700">
+                  Desglose por entidad
+                </label>
+              </div>
+              <select
+                id="entity-select"
+                value={selectedEntity}
+                onChange={e => setSelectedEntity(e.target.value)}
+                className="border border-gray-300 rounded-lg px-3 py-2 text-sm bg-white focus:ring-2 focus:ring-gob-green-500 focus:border-gob-green-500 min-w-[200px]"
+              >
+                {allEntities.map(e => (
+                  <option key={e} value={e}>
+                    {e === 'Nacional' ? 'Nacional (Todos los estados)' : e}
+                  </option>
+                ))}
+              </select>
+              <span className="text-xs text-gray-500">
+                {allEntities.length - 1} entidades disponibles
+              </span>
             </div>
           </div>
         )}
@@ -415,7 +512,7 @@ export default function IndicadorDetailPage() {
                   Sin datos de cumplimiento
                 </div>
               )}
-              <div className="flex justify-center gap-4 mt-4 text-xs">
+              <div className="flex flex-wrap justify-center gap-3 mt-4 text-xs">
                 <span className="flex items-center gap-1">
                   <span className="w-3 h-3 rounded-full bg-green-500"></span> Cumplidas
                 </span>
@@ -425,6 +522,11 @@ export default function IndicadorDetailPage() {
                 <span className="flex items-center gap-1">
                   <span className="w-3 h-3 rounded-full bg-red-500"></span> Rezagadas
                 </span>
+                {mesesSinMeta.some(d => d.valor && d.valor > 0) && (
+                  <span className="flex items-center gap-1">
+                    <span className="w-3 h-3 rounded-full bg-gray-400"></span> Sin meta prog.
+                  </span>
+                )}
               </div>
             </div>
           </div>
@@ -467,7 +569,14 @@ export default function IndicadorDetailPage() {
         {/* Gráfica de avance porcentual */}
         {tiene_serie && chartData.some(d => d.avance) && (
           <div className="card mb-6">
-            <h2 className="text-xl font-bold mb-4">Avance porcentual por periodo</h2>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-bold">Avance porcentual por periodo</h2>
+              {mesesSinMeta.some(d => d.valor && d.valor > 0) && (
+                <span className="text-xs text-gray-400 bg-gray-50 px-2 py-1 rounded">
+                  Meses sin meta programada se muestran en gris
+                </span>
+              )}
+            </div>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
@@ -476,7 +585,10 @@ export default function IndicadorDetailPage() {
                   <YAxis domain={[0, 'auto']} tick={{ fill: '#6b7280', fontSize: 11 }} />
                   <Tooltip 
                     contentStyle={{ backgroundColor: 'white', border: '1px solid #e5e7eb', borderRadius: '8px' }}
-                    formatter={(value: number) => [`${value?.toFixed(1)}%`, 'Avance']}
+                    formatter={(value: number) => {
+                      if (value == null) return ['Sin meta programada', 'Avance'];
+                      return [`${value.toFixed(1)}%`, 'Avance'];
+                    }}
                   />
                   <ReferenceLine y={100} stroke="#10B981" strokeWidth={2} label={{ value: '100% Meta', fill: '#10B981', fontSize: 11 }} />
                   <Bar 
@@ -487,7 +599,12 @@ export default function IndicadorDetailPage() {
                     {chartData.map((entry, index) => (
                       <Cell 
                         key={`cell-${index}`} 
-                        fill={entry.avance && entry.avance >= 100 ? COLORS.success : entry.avance && entry.avance >= 80 ? COLORS.warning : COLORS.danger} 
+                        fill={
+                          entry.avance == null ? '#d1d5db'
+                          : entry.avance >= 100 ? COLORS.success 
+                          : entry.avance >= 80 ? COLORS.warning 
+                          : COLORS.danger
+                        } 
                       />
                     ))}
                   </Bar>
@@ -498,6 +615,114 @@ export default function IndicadorDetailPage() {
         )}
 
         {/* Información del indicador */}
+        {hasStateData && stateComparisonData.length > 0 && (
+          <div className="card mb-6">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-bold flex items-center gap-2">
+                <svg className="w-5 h-5 text-gob-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Comparativo por entidad
+              </h2>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setStateTab('ranking')}
+                  className={`px-3 py-1.5 rounded text-sm font-medium transition-colors ${stateTab === 'ranking' ? 'bg-gob-green-500 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+                >
+                  Ranking
+                </button>
+                <button
+                  onClick={() => setStateTab('comparison')}
+                  className={`px-3 py-1.5 rounded text-sm font-medium transition-colors ${stateTab === 'comparison' ? 'bg-gob-green-500 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+                >
+                  Valores
+                </button>
+              </div>
+            </div>
+
+            {stateTab === 'ranking' ? (
+              /* Ranking by avance */
+              <div className="space-y-2 max-h-[500px] overflow-y-auto">
+                {stateComparisonData.map((d, idx) => (
+                  <div
+                    key={d.entidadFull}
+                    className={`flex items-center gap-3 p-2 rounded-lg cursor-pointer transition-colors ${selectedEntity === d.entidadFull ? 'bg-gob-green-50 border border-gob-green-200' : 'hover:bg-gray-50'}`}
+                    onClick={() => setSelectedEntity(d.entidadFull)}
+                  >
+                    <span className={`w-7 h-7 flex-shrink-0 flex items-center justify-center rounded-full text-xs font-bold ${idx < 3 ? 'bg-gob-green-500 text-white' : idx >= stateComparisonData.length - 3 ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-600'}`}>
+                      {idx + 1}
+                    </span>
+                    <span className="w-32 sm:w-40 text-sm font-medium truncate">{d.entidadFull}</span>
+                    <span className="text-xs text-gray-500 min-w-[80px] text-right">
+                      {d.valor.toLocaleString('es-MX', {maximumFractionDigits: 0})}/{d.meta.toLocaleString('es-MX', {maximumFractionDigits: 0})}
+                    </span>
+                    <div className="flex-1 h-5 bg-gray-100 rounded-full overflow-hidden">
+                      <div
+                        className={`h-full rounded-full transition-all ${d.avance >= 100 ? 'bg-green-500' : d.avance >= 80 ? 'bg-yellow-500' : 'bg-red-500'}`}
+                        style={{ width: `${Math.min(d.avance, 150) / 1.5}%` }}
+                      />
+                    </div>
+                    <span className={`text-sm font-bold min-w-[60px] text-right ${d.avance >= 100 ? 'text-green-600' : d.avance >= 80 ? 'text-yellow-600' : 'text-red-600'}`}>
+                      {d.avance.toFixed(1)}%
+                    </span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              /* Bar chart comparison */
+              <div>
+                <div className="flex items-center gap-3 mb-3">
+                  <label htmlFor="state-count" className="text-sm text-gray-500 whitespace-nowrap">
+                    Mostrar {Math.min(stateChartCount, stateComparisonData.length)} de {stateComparisonData.length}
+                  </label>
+                  <input
+                    id="state-count"
+                    type="range"
+                    min={5}
+                    max={stateComparisonData.length}
+                    value={Math.min(stateChartCount, stateComparisonData.length)}
+                    onChange={e => setStateChartCount(Number(e.target.value))}
+                    className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-gob-green-500"
+                  />
+                </div>
+                <div style={{ height: Math.max(300, Math.min(stateChartCount, stateComparisonData.length) * 32 + 40) }}>
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart
+                      data={stateComparisonData.slice(0, stateChartCount)}
+                      layout="vertical"
+                      margin={{ top: 5, right: 30, left: 100, bottom: 5 }}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                      <XAxis type="number" tick={{ fill: '#6b7280', fontSize: 11 }} />
+                      <YAxis
+                        dataKey="entidad"
+                        type="category"
+                        tick={{ fill: '#6b7280', fontSize: 11 }}
+                        width={95}
+                      />
+                      <Tooltip
+                        contentStyle={{ backgroundColor: 'white', border: '1px solid #e5e7eb', borderRadius: '8px' }}
+                        formatter={(value: number, name: string) => [
+                          value?.toLocaleString('es-MX', { maximumFractionDigits: 2 }),
+                          name === 'valor' ? 'Alcanzado' : 'Meta'
+                        ]}
+                        labelFormatter={(label) => {
+                          const item = stateComparisonData.find(d => d.entidad === label);
+                          return item?.entidadFull || label;
+                        }}
+                      />
+                      <Legend />
+                      <Bar dataKey="valor" fill={COLORS.primary} name="Alcanzado" radius={[0, 4, 4, 0]} />
+                      <Bar dataKey="meta" fill={COLORS.gold} name="Meta" radius={[0, 4, 4, 0]} />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Información del indicador - ficha técnica */}
         <div className="grid lg:grid-cols-2 gap-6 mb-6">
           <div className="card">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
@@ -596,6 +821,7 @@ export default function IndicadorDetailPage() {
                   <thead className="bg-gray-50 sticky top-0">
                     <tr>
                       <th className="text-left py-2 px-3 font-medium">Periodo</th>
+                      {hasStateData && <th className="text-left py-2 px-3 font-medium">Entidad</th>}
                       <th className="text-right py-2 px-3 font-medium">Valor</th>
                       <th className="text-right py-2 px-3 font-medium">Meta</th>
                       <th className="text-right py-2 px-3 font-medium">Avance</th>
@@ -605,14 +831,17 @@ export default function IndicadorDetailPage() {
                     {observaciones.sort((a, b) => b.periodo.localeCompare(a.periodo)).map((obs, idx) => (
                       <tr key={idx} className="hover:bg-gray-50">
                         <td className="py-2 px-3 font-medium">{obs.periodo}</td>
+                        {hasStateData && <td className="py-2 px-3 text-gray-600 text-xs">{obs.entidad || 'Nacional'}</td>}
                         <td className="py-2 px-3 text-right">{obs.valor?.toLocaleString('es-MX', {maximumFractionDigits: 2}) || '-'}</td>
                         <td className="py-2 px-3 text-right text-gray-500">{obs.meta?.toLocaleString('es-MX', {maximumFractionDigits: 2}) || '-'}</td>
                         <td className="py-2 px-3 text-right">
-                          {obs.avance_porcentual ? (
+                          {obs.avance_porcentual != null ? (
                             <span className={`font-medium ${obs.avance_porcentual >= 100 ? 'text-green-600' : obs.avance_porcentual >= 80 ? 'text-yellow-600' : 'text-red-600'}`}>
                               {obs.avance_porcentual.toFixed(1)}%
                             </span>
-                          ) : '-'}
+                          ) : (
+                            <span className="text-gray-400 text-xs">{obs.valor && (!obs.meta || obs.meta === 0) ? 'S/Meta' : '-'}</span>
+                          )}
                         </td>
                       </tr>
                     ))}

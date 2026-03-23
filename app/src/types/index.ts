@@ -1,5 +1,5 @@
 /**
- * Tipos de datos para el Dashboard de Transparencia PROFEPA
+ * Tipos de datos para el Tablero de Indicadores PROFEPA
  */
 
 export interface Indicator {

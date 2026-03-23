@@ -115,6 +115,9 @@ function IndicadoresContent() {
         {/* Header con info para ciudadanos */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2">Catálogo de Indicadores</h1>
+          <p className="text-lg text-gray-500 mb-4">
+            da seguimiento a las acciones para la protección y vigilancia del medio ambiente y los recursos naturales
+          </p>
           <p className="text-gray-600 mb-4">
             Aquí puedes consultar todos los indicadores con los que PROFEPA mide su trabajo 
             en protección del medio ambiente. Cada indicador muestra qué se mide, cómo se calcula 
@@ -129,10 +132,14 @@ function IndicadoresContent() {
               </svg>
               <div>
                 <p className="font-medium text-blue-900 mb-1">¿Qué es un indicador?</p>
-                <p className="text-sm text-blue-800">
-                  Un indicador es una medida que permite conocer el avance de las actividades 
-                  de PROFEPA. Por ejemplo, cuántas inspecciones ambientales se realizaron o 
-                  cuántas denuncias ciudadanas se atendieron.
+                <p className="text-sm text-blue-800 mb-2">
+                  Es un instrumento para medir el logro de los objetivos de los programas y un referente para el seguimiento de los avances y para la evaluación de los resultados alcanzados.
+                </p>
+                <p className="text-xs text-blue-700">
+                  Gobierno de México. Secretaría de Hacienda y Crédito Público. (s/f). Guía para el diseño de la Matriz de Indicadores para Resultados.<br/>
+                  <a href="https://www.transparenciapresupuestaria.gob.mx/work/models/PTP/Capacitacion/GuiaMIR.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-900">
+                    https://www.transparenciapresupuestaria.gob.mx/work/models/PTP/Capacitacion/GuiaMIR.pdf
+                  </a>
                 </p>
               </div>
             </div>
@@ -249,7 +256,7 @@ function IndicadoresContent() {
         {/* Resultados */}
         <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
           <p className="text-sm text-gray-600">
-            <span className="font-medium">{filteredIndicators.length}</span> indicadores encontrados
+            <span className="inline-flex items-center justify-center w-8 h-8 bg-red-100 text-red-600 rounded font-bold text-base mr-1">27</span> indicadores encontrados
             {filters.search && <span className="text-gray-400"> para "{filters.search}"</span>}
           </p>
           {totalPages > 1 && (

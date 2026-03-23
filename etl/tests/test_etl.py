@@ -1,5 +1,5 @@
 """
-Pruebas unitarias para el ETL del Dashboard de Transparencia PROFEPA.
+Pruebas unitarias para el ETL del Tablero de Indicadores PROFEPA.
 """
 import sys
 from pathlib import Path

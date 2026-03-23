@@ -1,7 +1,7 @@
 {
-  "name": "dashboard-transparencia-profepa",
+  "name": "tablero-indicadores-profepa",
   "version": "1.0.0",
-  "description": "Dashboard de Transparencia PROFEPA - Indicadores Institucionales",
+  "description": "Tablero de Indicadores PROFEPA - Indicadores Institucionales",
   "private": true,
   "scripts": {
     "dev": "next dev",

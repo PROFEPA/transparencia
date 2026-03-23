@@ -2,12 +2,12 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Dashboard de Transparencia | PROFEPA',
+  title: 'Tablero de Indicadores | PROFEPA',
   description: 'Consulta los indicadores institucionales de la Procuraduría Federal de Protección al Ambiente. Información pública sobre inspección, vigilancia y regulación ambiental.',
   keywords: ['PROFEPA', 'transparencia', 'indicadores', 'medio ambiente', 'inspección ambiental', 'gobierno de México'],
   authors: [{ name: 'PROFEPA' }],
   openGraph: {
-    title: 'Dashboard de Transparencia | PROFEPA',
+    title: 'Tablero de Indicadores | PROFEPA',
     description: 'Consulta los indicadores institucionales de inspección y vigilancia ambiental',
     type: 'website',
     locale: 'es_MX',
@@ -64,7 +64,7 @@ export default function RootLayout({
               <div className="flex items-center space-x-4">
                 <a href="/" className="flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-white rounded">
                   <span className="text-xl font-bold">PROFEPA</span>
-                  <span className="hidden sm:inline text-sm opacity-90">| Dashboard de Transparencia</span>
+                  <span className="hidden sm:inline text-sm opacity-90">| Tablero de Indicadores</span>
                 </a>
               </div>
               
@@ -132,6 +132,16 @@ export default function RootLayout({
                       className="hover:text-white focus:outline-none focus:underline"
                     >
                       Sitio oficial PROFEPA
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/indicadores?anio=2025" className="hover:text-white focus:outline-none focus:underline">
+                      Indicadores 2025
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/indicadores?anio=2026" className="hover:text-white focus:outline-none focus:underline">
+                      Indicadores 2026
                     </a>
                   </li>
                 </ul>

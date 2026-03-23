@@ -1,12 +1,12 @@
 {
-  "fecha_generacion": "2026-02-05T11:47:00.424023",
+  "fecha_generacion": "2026-02-11T13:54:26.057663",
   "resumen": {
     "total_filas_leidas": 0,
     "total_filas_validas": 66,
     "total_filas_descartadas": 0,
     "porcentaje_validas": 6600.0,
     "total_indicadores": 66,
-    "total_observaciones": 333
+    "total_observaciones": 6753
   },
   "completitud_indicadores": {
     "con_definicion": 63.64,
@@ -17,8 +17,8 @@
   },
   "por_archivo": [
     {
-      "archivo_fuente": "C:\\Users\\PROFEPA\\Desktop\\Dashboard OIC\\mnt\\Datos\\POA_2025.xlsx",
-      "fecha_extraccion": "2026-02-05T11:46:59.545689",
+      "archivo_fuente": "/home/profepa/transparencia/Documents/POA_2025.xlsx",
+      "fecha_extraccion": "2026-02-11T13:54:20.979805",
       "filas_leidas": 0,
       "filas_validas": 24,
       "filas_descartadas": 0,
@@ -27,8 +27,8 @@
       "advertencias": []
     },
     {
-      "archivo_fuente": "C:\\Users\\PROFEPA\\Desktop\\Dashboard OIC\\mnt\\Datos\\MIR_G005_2025.xlsx",
-      "fecha_extraccion": "2026-02-05T11:47:00.235620",
+      "archivo_fuente": "/home/profepa/transparencia/Documents/MIR_G005_2025.xlsx",
+      "fecha_extraccion": "2026-02-11T13:54:25.199211",
       "filas_leidas": 0,
       "filas_validas": 21,
       "filas_descartadas": 0,
@@ -37,8 +37,8 @@
       "advertencias": []
     },
     {
-      "archivo_fuente": "C:\\Users\\PROFEPA\\Desktop\\Dashboard OIC\\mnt\\Datos\\FiME 2026 PFPA.xlsx",
-      "fecha_extraccion": "2026-02-05T11:47:00.300661",
+      "archivo_fuente": "/home/profepa/transparencia/Documents/FiME 2026 PFPA.xlsx",
+      "fecha_extraccion": "2026-02-11T13:54:25.270846",
       "filas_leidas": 0,
       "filas_validas": 10,
       "filas_descartadas": 0,
@@ -47,8 +47,8 @@
       "advertencias": []
     },
     {
-      "archivo_fuente": "C:\\Users\\PROFEPA\\Desktop\\Dashboard OIC\\mnt\\Datos\\G014 para Auditoría.docx",
-      "fecha_extraccion": "2026-02-05T11:47:00.327677",
+      "archivo_fuente": "/home/profepa/transparencia/Documents/G014 para Auditoría.docx",
+      "fecha_extraccion": "2026-02-11T13:54:25.322288",
       "filas_leidas": 0,
       "filas_validas": 11,
       "filas_descartadas": 0,

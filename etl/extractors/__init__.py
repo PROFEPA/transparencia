@@ -1,5 +1,5 @@
 """
-Extractores de datos para Dashboard de Transparencia PROFEPA.
+Extractores de datos para Tablero de Indicadores PROFEPA.
 """
 from .excel_extractor import ExcelExtractor, extract_from_excel
 from .docx_extractor import DocxExtractor, extract_from_docx

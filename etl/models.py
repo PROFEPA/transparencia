@@ -1,5 +1,5 @@
 """
-Modelos de datos para el Dashboard de Transparencia PROFEPA.
+Modelos de datos para el Tablero de Indicadores PROFEPA.
 Define los esquemas para Indicator y Observation.
 """
 from dataclasses import dataclass, field, asdict

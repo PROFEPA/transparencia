@@ -49,27 +49,31 @@ export default function HomePage() {
   const ind2025 = indicators.filter(i => i.anio === 2025);
   const ind2026 = indicators.filter(i => i.anio === 2026);
 
-  // Datos para gráfica por programa
-  const byPrograma = indicators.reduce((acc, ind) => {
-    acc[ind.programa] = (acc[ind.programa] || 0) + 1;
-    return acc;
-  }, {} as Record<string, number>);
-  
-  const programaData = Object.entries(byPrograma).map(([name, value]) => ({ name, value }));
+  // Datos para gráfica por programa (hardcoded)
+  const programaData = [
+    { name: 'G005', value: 21 },
+    { name: 'G014', value: 6 }
+  ];
 
-  // Datos para gráfica por nivel
-  const byNivel = indicators.reduce((acc, ind) => {
-    const nivel = ind.nivel || 'Sin clasificar';
-    acc[nivel] = (acc[nivel] || 0) + 1;
-    return acc;
-  }, {} as Record<string, number>);
-  
-  const nivelData = Object.entries(byNivel).map(([name, value]) => ({ name, value }));
+  // Datos para gráfica por nivel MIR 2025 (hardcoded)
+  const nivelData = [
+    { name: 'Actividad', value: 11 },
+    { name: 'Fin', value: 1 },
+    { name: 'Propósito', value: 5 },
+    { name: 'Componente', value: 4 }
+  ];
 
-  // Datos para gráfica por año
+  // Datos para gráfica por nivel FiME 2026 (hardcoded - sin Fin)
+  const nivelFimeData = [
+    { name: 'Actividad', value: 1 },
+    { name: 'Propósito', value: 1 },
+    { name: 'Componente', value: 4 }
+  ];
+
+  // Datos para gráfica por año (hardcoded)
   const anioData = [
-    { name: '2025', indicadores: ind2025.length, color: '#235B4E' },
-    { name: '2026', indicadores: ind2026.length, color: '#BC955C' }
+    { name: '2025', indicadores: 21, color: '#235B4E', label: 'MIR' },
+    { name: '2026', indicadores: 6, color: '#BC955C', label: 'FiME' }
   ];
 
   return (
@@ -79,9 +83,13 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-3xl md:text-5xl font-bold mb-6">
-                Dashboard de Transparencia
+              <h1 className="text-3xl md:text-5xl font-bold mb-2">
+                Tablero de Indicadores
               </h1>
+              <p className="text-sm md:text-base opacity-80 font-semibold mb-6">
+                Programa presupuestario G005 Inspección y vigilancia<br />
+                del medio ambiente y los recursos naturales
+              </p>
               <p className="text-xl md:text-2xl opacity-90 mb-8">
                 Consulta los indicadores institucionales de la Procuraduría Federal 
                 de Protección al Ambiente (PROFEPA) de manera clara y accesible.
@@ -100,15 +108,15 @@ export default function HomePage() {
             {!loading && (
               <div className="grid grid-cols-2 gap-4">
                 <div className="bg-white/10 backdrop-blur rounded-xl p-6 text-center">
-                  <div className="text-4xl md:text-5xl font-bold">{indicators.length}</div>
+                  <div className="text-4xl md:text-5xl font-bold">21</div>
                   <div className="text-white/80 mt-1">Indicadores</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur rounded-xl p-6 text-center">
-                  <div className="text-4xl md:text-5xl font-bold">{observations.length}</div>
+                  <div className="text-4xl md:text-5xl font-bold">592</div>
                   <div className="text-white/80 mt-1">Registros</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur rounded-xl p-6 text-center">
-                  <div className="text-4xl md:text-5xl font-bold">{metadata?.programas?.length || 2}</div>
+                  <div className="text-4xl md:text-5xl font-bold">2</div>
                   <div className="text-white/80 mt-1">Programas</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur rounded-xl p-6 text-center">
@@ -125,7 +133,7 @@ export default function HomePage() {
       {!loading && indicators.length > 0 && (
         <section className="section bg-white -mt-8 relative z-10">
           <div className="max-w-7xl mx-auto px-4">
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {/* Gráfica por Año */}
               <div className="card">
                 <h3 className="font-bold text-lg mb-4 text-center">Indicadores por Año</h3>
@@ -136,7 +144,15 @@ export default function HomePage() {
                       <XAxis dataKey="name" tick={{ fontSize: 12 }} />
                       <YAxis tick={{ fontSize: 12 }} />
                       <Tooltip />
-                      <Bar dataKey="indicadores" radius={[8, 8, 0, 0]}>
+                      <Bar dataKey="indicadores" radius={[8, 8, 0, 0]} label={({ x, y, width, index }: { x: number; y: number; width: number; index: number }) => {
+                        const entry = anioData[index];
+                        return (
+                          <g>
+                            <text x={x + width / 2} y={y - 8} textAnchor="middle" fontSize={10} fill={entry.color} fontWeight="bold">{entry.label}</text>
+                            <text x={x + width / 2} y={y + 20} textAnchor="middle" fontSize={16} fill="#fff" fontWeight="bold">{entry.indicadores}</text>
+                          </g>
+                        );
+                      }}>
                         {anioData.map((entry, index) => (
                           <Cell key={`cell-${index}`} fill={entry.color} />
                         ))}
@@ -148,7 +164,8 @@ export default function HomePage() {
 
               {/* Gráfica por Programa */}
               <div className="card">
-                <h3 className="font-bold text-lg mb-4 text-center">Distribución por Programa</h3>
+                <h3 className="font-bold text-lg mb-0 text-center">Distribución por Programa</h3>
+                <p className="text-center text-sm font-semibold" style={{ color: '#BC955C' }}>Presupuestario</p>
                 <div className="h-48">
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
@@ -160,13 +177,24 @@ export default function HomePage() {
                         outerRadius={70}
                         paddingAngle={5}
                         dataKey="value"
-                        label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                        labelLine={false}
+                        label={({ name, percent, cx, cy, midAngle, outerRadius: oR }) => {
+                          const RADIAN = Math.PI / 180;
+                          const radius = oR + 18;
+                          const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                          const y = cy + radius * Math.sin(-midAngle * RADIAN);
+                          return (
+                            <text x={x} y={y} textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central" fontSize={12} fontWeight="bold">
+                              {name} {(percent * 100).toFixed(0)}%
+                            </text>
+                          );
+                        }}
                       >
                         {programaData.map((entry, index) => (
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                       </Pie>
+                      <text x="50%" y="42%" textAnchor="middle" dominantBaseline="central" fontSize={18} fontWeight="bold" fill="#235B4E">{programaData[0]?.value}</text>
+                      <text x="50%" y="58%" textAnchor="middle" dominantBaseline="central" fontSize={18} fontWeight="bold" fill="#BC955C">{programaData[1]?.value}</text>
                       <Tooltip />
                     </PieChart>
                   </ResponsiveContainer>
@@ -175,15 +203,40 @@ export default function HomePage() {
 
               {/* Gráfica por Nivel */}
               <div className="card">
-                <h3 className="font-bold text-lg mb-4 text-center">Indicadores por Nivel MIR</h3>
+                <h3 className="font-bold text-lg mb-0 text-center">Indicadores por Nivel</h3>
+                <p className="text-center text-sm font-semibold" style={{ color: '#BC955C' }}>MIR 2025</p>
                 <div className="h-48">
                   <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={nivelData} layout="vertical" margin={{ top: 5, right: 30, left: 5, bottom: 5 }}>
+                    <BarChart data={nivelData} layout="vertical" margin={{ top: 5, right: 40, left: 5, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                       <XAxis type="number" tick={{ fontSize: 11 }} />
                       <YAxis dataKey="name" type="category" tick={{ fontSize: 10 }} width={80} />
                       <Tooltip />
-                      <Bar dataKey="value" fill="#235B4E" radius={[0, 4, 4, 0]} />
+                      <Bar dataKey="value" fill="#235B4E" radius={[0, 4, 4, 0]}
+                        label={({ x, y, width, height, value }: { x: number; y: number; width: number; height: number; value: number }) => (
+                          <text x={x + width + 5} y={y + height / 2} dominantBaseline="central" fontSize={12} fontWeight="bold" fill="#235B4E">{value}</text>
+                        )}
+                      />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+
+              {/* Gráfica por Nivel FiME 2026 (sin Fin) */}
+              <div className="card">
+                <h3 className="font-bold text-lg mb-0 text-center">Indicadores por Nivel</h3>
+                <p className="text-center text-sm font-semibold" style={{ color: '#BC955C' }}>FiME 2026</p>
+                <div className="h-48">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={nivelFimeData} layout="vertical" margin={{ top: 5, right: 40, left: 5, bottom: 5 }}>
+                      <XAxis type="number" hide />
+                      <YAxis dataKey="name" type="category" tick={{ fontSize: 10 }} width={80} />
+                      <Tooltip />
+                      <Bar dataKey="value" fill="#235B4E" radius={[0, 4, 4, 0]}
+                        label={({ x, y, width, height, value }: { x: number; y: number; width: number; height: number; value: number }) => (
+                          <text x={x + width + 5} y={y + height / 2} dominantBaseline="central" fontSize={12} fontWeight="bold" fill="#235B4E">{value}</text>
+                        )}
+                      />
                     </BarChart>
                   </ResponsiveContainer>
                 </div>
@@ -193,15 +246,33 @@ export default function HomePage() {
         </section>
       )}
 
+      {/* Información institucional */}
+      <section className="section bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <p className="text-gray-700 text-justify leading-relaxed">
+              La Procuraduría Federal de Protección al Ambiente (PROFEPA) tiene como objeto la procuración de la justicia ambiental, la defensa del derecho humano a un medio ambiente sano para el desarrollo y bienestar de la persona, y la protección del ambiente y de la biodiversidad, a través de la prevención del daño y la determinación de la responsabilidad ambiental, la inspección, investigación, análisis de información y vigilancia de las actividades que regula la Normativa Ambiental, el impulso de las acciones judiciales conducentes para el cumplimiento de la Normativa Ambiental, la promoción e impulso de la autorregulación, la aplicación de las políticas públicas ambientales que permitan asegurar el acceso a la información y la participación pública, y el reconocimiento de los derechos de las personas defensoras ambientales en el ámbito administrativo de procuración de justicia.
+            </p>
+            <p className="text-gray-700 text-justify leading-relaxed mt-4">
+              Para cumplir con las tareas que le han sido encomendadas, la PROFEPA realiza, entre otras, las siguientes acciones: programar, ordenar y realizar actos de inspección, vigilancia y evaluación del cumplimiento de disposiciones jurídicas en materia de protección, restauración y aprovechamiento sustentable de los recursos naturales, vida silvestre, ecosistemas y áreas naturales protegidas; vigilar el cumplimiento de la regulación en materia de bioseguridad, especies exóticas y zonas costeras, prevención y control de la contaminación atmosférica, de suelos y aguas nacionales, manejo de residuos peligrosos e impacto ambiental, además de fomentar la auditoría ambiental y la emisión de lineamientos administrativos para garantizar la protección ambiental.
+            </p>
+            <p className="text-gray-700 text-justify leading-relaxed mt-4">
+              Durante 2025 la PROFEPA contaba con el Programa Presupuestario G005 &ldquo;Inspección y Vigilancia del Medio Ambiente y Recursos Naturales&rdquo;, cuyo fin era contribuir al bienestar social e igualdad mediante la ejecución de acciones de inspección y vigilancia en materia de recursos naturales e industria, la promoción y atención de la denuncia ambiental ciudadana, así como el impulso de los mecanismos voluntarios de mejora del desempeño ambiental en los sectores productivos, garantizando el acceso a la justicia ambiental mediante la aplicación de la normatividad correspondiente.
+            </p>
+            <p className="text-gray-700 text-justify leading-relaxed mt-4">
+              En el año 2026, la PROFEPA operará el Programa Presupuestario G014 &ldquo;Inspección, Vigilancia y Regulación del Medio Ambiente y Recursos Naturales&rdquo;, resultado de la Estrategia de Simplificación de la Estructura Programática 2026 para el ramo 16 &ldquo;Medio Ambiente y Recursos Naturales&rdquo;, llevada a cabo por la Unidad de Política y Estrategia para Resultados (UPER) de la Secretaría de Hacienda y Crédito Público. En dicha estrategia se contempló la fusión de algunos programas presupuestarios para la reorganización administrativa y la optimización de procesos internos. El propósito del Programa Presupuestario G014 &ldquo;Inspección, Vigilancia y Regulación del Medio Ambiente y Recursos Naturales&rdquo; es fortalecer las acciones de prevención, inspección y vigilancia que permitan supervisar y hacer cumplir la regulación en materia de biodiversidad, protección, conservación, restauración y aprovechamiento sustentable de los recursos naturales en beneficio de la población y los ecosistemas de México.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Qué es este tablero */}
       <section className="section bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="section-title">¿Qué es este tablero?</h2>
             <p className="text-lg text-gray-600 mb-6">
-              Este tablero de transparencia pone a disposición de la ciudadanía 
-              información sobre los indicadores de desempeño de PROFEPA en materia 
-              de inspección, vigilancia y regulación ambiental.
+              Este tablero de indicadores pone a disposición de la ciudadanía información sobre los indicadores de desempeño de PROFEPA en materia de Prevención ambiental, inspección y vigilancia del medio ambiente y los recursos naturales.
             </p>
             <div className="grid md:grid-cols-3 gap-6 mt-8 text-left">
               <div className="p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
@@ -313,7 +384,15 @@ export default function HomePage() {
             <p className="section-subtitle text-center">Algunos indicadores clave de la gestión ambiental</p>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {indicators.slice(0, 6).map((ind, i) => (
+              {indicators.filter(ind => [
+                'Porcentaje de denuncias populares en materia ambiental concluidas.',
+                'Porcentaje de certificados y reconocimientos ambientales emitidos',
+                'Porcentaje de inspecciones realizadas en materia de recursos naturales',
+                'Porcentaje de operativos realizados en materia de recursos naturales',
+                'Porcentaje de comités de vigilancia ambiental participativa en operación',
+                'Porcentaje de recorridos de vigilancia realizados en materia de recursos naturales',
+                'Porcentaje de acciones de Inspección y verificación realizadas sobre la cuales la PROFEPA tiene competencia como autoridad, conforme a las prioridades de la estrategia establecida en materia de inspección industrial.'
+              ].includes(ind.nombre)).map((ind, i) => (
                 <Link key={ind.id} href={`/indicadores/${ind.id}`} className="card hover:shadow-lg transition-all group">
                   <div className="flex items-center gap-2 mb-3">
                     <span className="badge-gob">{ind.programa}</span>
@@ -354,9 +433,7 @@ export default function HomePage() {
             </svg>
             <h2 className="text-xl font-bold mb-4">Aviso de Transparencia</h2>
             <p className="text-gray-600">
-              La información presentada en este tablero proviene de documentos institucionales 
-              oficiales (POA, MIR, FiME) y se publica con fines informativos y de transparencia. 
-              La interpretación oficial de los datos corresponde a PROFEPA.
+              La información presentada en este tablero proviene de documentos institucionales oficiales (POA, MIR, FiME) y se publica con fines informativos e integrar información uniforme y específica para elaborar y registrar los avances de avances de las metas de los Programas Operativos Anuales de las 32 ORPAyGTs de la PROFEPA, permitiendo alimentar las fórmulas establecidas para los indicadores de la MIR Programa presupuestario G005 y de transparencia. La interpretación oficial de los datos corresponde a PROFEPA.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Link href="/metodologia" className="text-blue-600 hover:underline font-medium">

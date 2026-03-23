@@ -1,5 +1,5 @@
 """
-ETL Module para Dashboard de Transparencia PROFEPA.
+ETL Module para Tablero de Indicadores PROFEPA.
 """
 from .main import ETLPipeline, main
 from .config import SOURCE_FILES, DATA_OUTPUT_DIR

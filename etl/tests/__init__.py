@@ -1,3 +1,3 @@
 """
-Pruebas del ETL para Dashboard de Transparencia PROFEPA.
+Pruebas del ETL para Tablero de Indicadores PROFEPA.
 """

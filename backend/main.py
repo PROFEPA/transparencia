@@ -1,5 +1,5 @@
 """
-Backend FastAPI para Dashboard de Transparencia PROFEPA.
+Backend FastAPI para Tablero de Indicadores PROFEPA.
 API REST para servir indicadores y datos procesados.
 """
 from fastapi import FastAPI, HTTPException, Query
@@ -19,7 +19,7 @@ DATA_DIR = BASE_DIR / "public" / "data"
 
 # Crear la aplicación FastAPI
 app = FastAPI(
-    title="API Dashboard de Transparencia PROFEPA",
+    title="API Tablero de Indicadores PROFEPA",
     description="""
     API pública para consultar indicadores institucionales de PROFEPA.
     
@@ -161,7 +161,7 @@ def paginate(data: List[Any], page: int, page_size: int) -> PaginatedResponse:
 async def root():
     """Información general de la API."""
     return {
-        "nombre": "API Dashboard de Transparencia PROFEPA",
+        "nombre": "API Tablero de Indicadores PROFEPA",
         "version": "1.0.0",
         "descripcion": "API pública para consultar indicadores institucionales",
         "documentacion": "/docs",

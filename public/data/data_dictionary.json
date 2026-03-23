@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "fecha_generacion": "2026-02-05T11:47:00.425024",
-  "descripcion": "Diccionario de datos del Dashboard de Transparencia PROFEPA",
+  "fecha_generacion": "2026-02-11T13:54:26.059265",
+  "descripcion": "Diccionario de datos del Tablero de Indicadores PROFEPA",
   "columnas": [
     {
       "columna": "id",

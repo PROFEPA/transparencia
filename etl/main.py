@@ -1,5 +1,5 @@
 """
-Script principal de ETL para Dashboard de Transparencia PROFEPA.
+Script principal de ETL para Tablero de Indicadores PROFEPA.
 Orquesta la extracción, transformación y carga de datos.
 """
 import sys
@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 import json
 import csv
+import shutil
 from datetime import datetime
 from typing import List, Dict, Any
 import logging
@@ -18,6 +19,7 @@ from config import SOURCE_FILES, DATA_OUTPUT_DIR, EXTRACTION_CONFIG
 from models import Indicator, Observation, DataQualityReport, STANDARD_DATA_DICTIONARY
 from extractors.excel_extractor import MIRFiMEExtractor, POAExtractor
 from extractors.docx_extractor import extract_from_docx
+
 
 logging.basicConfig(
     level=logging.INFO,
@@ -35,11 +37,13 @@ class ETLPipeline:
         self.all_reports: List[DataQualityReport] = []
         self.narrative_content: Dict[str, str] = {}
         self.output_dir = DATA_OUTPUT_DIR
+        # Also copy to app/public/data for the frontend
+        self.app_data_dir = Path(__file__).parent.parent / "app" / "public" / "data"
     
     def run(self):
         """Ejecuta el pipeline completo."""
         logger.info("=" * 60)
-        logger.info("Iniciando ETL para Dashboard de Transparencia PROFEPA")
+        logger.info("Iniciando ETL para Tablero de Indicadores PROFEPA")
         logger.info("=" * 60)
         
         # 1. Crear directorio de salida
@@ -60,6 +64,9 @@ class ETLPipeline:
         
         # 6. Generar diccionario de datos
         self._generate_data_dictionary()
+        
+        # 7. Sincronizar con app/public/data
+        self._sync_to_app()
         
         logger.info("=" * 60)
         logger.info("ETL completado exitosamente")
@@ -88,12 +95,19 @@ class ETLPipeline:
         
         try:
             if file_type == "excel":
-                # Determinar qué extractor usar basado en el nombre del archivo
-                filename = file_path.name.upper()
-                if "POA" in filename:
+                # Use explicit extractor type if configured, otherwise auto-detect
+                extractor_type = config.get("extractor", "auto")
+                if extractor_type == "poa":
                     extractor = POAExtractor(file_path, config)
-                else:
+                elif extractor_type == "mir":
                     extractor = MIRFiMEExtractor(file_path, config)
+                else:
+                    # Auto-detect by filename
+                    filename = file_path.name.upper()
+                    if "POA" in filename:
+                        extractor = POAExtractor(file_path, config)
+                    else:
+                        extractor = MIRFiMEExtractor(file_path, config)
                 
                 indicators, observations, report = extractor.extract()
                 self.all_indicators.extend(indicators)
@@ -303,11 +317,26 @@ class ETLPipeline:
         dictionary = {
             "version": EXTRACTION_CONFIG["version"],
             "fecha_generacion": datetime.now().isoformat(),
-            "descripcion": "Diccionario de datos del Dashboard de Transparencia PROFEPA",
+            "descripcion": "Diccionario de datos del Tablero de Indicadores PROFEPA",
             "columnas": [entry.to_dict() for entry in STANDARD_DATA_DICTIONARY]
         }
         
         self._write_json("data_dictionary.json", dictionary)
+
+    def _sync_to_app(self):
+        """Copia todos los archivos JSON/CSV generados a app/public/data."""
+        if not self.app_data_dir.exists():
+            logger.info(f"  app/public/data no existe, omitiendo sincronización")
+            return
+        
+        count = 0
+        for src_file in self.output_dir.glob("*"):
+            if src_file.suffix in (".json", ".csv"):
+                dst = self.app_data_dir / src_file.name
+                shutil.copy2(src_file, dst)
+                count += 1
+        
+        logger.info(f"  Sincronizados {count} archivos a {self.app_data_dir}")
 
 
 def main():

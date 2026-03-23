@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "fecha_extraccion": "2026-02-05T11:47:00.406511",
+  "fecha_extraccion": "2026-02-11T13:54:25.853782",
   "total_indicadores": 66,
-  "total_observaciones": 333,
+  "total_observaciones": 6753,
   "programas": [
-    "G014",
-    "G005"
+    "G005",
+    "G014"
   ],
   "anios": [
     2025,
@@ -18,7 +18,7 @@
       "tipo": "excel",
       "programa": "G005",
       "anio": 2025,
-      "descripcion": "Programa Operativo Anual 2025"
+      "descripcion": "Programa Operativo Anual 2025 (datos mensuales por estado)"
     },
     {
       "nombre": "MIR_G005_2025",
@@ -34,7 +34,7 @@
       "tipo": "excel",
       "programa": "G014",
       "anio": 2026,
-      "descripcion": "Ficha de Indicadores de Monitoreo y Evaluación 2026"
+      "descripcion": "Ficha de Monitoreo Estratégico 2026"
     },
     {
       "nombre": "G014_Auditoria",
@@ -42,7 +42,7 @@
       "tipo": "docx",
       "programa": "G014",
       "anio": 2026,
-      "descripcion": "Documentación narrativa del programa G014 para Auditoría"
+      "descripcion": "Documentación narrativa de los programas Presupuestarios G005 y C014"
     }
   ]
 }
