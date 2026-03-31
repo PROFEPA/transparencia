@@ -134,7 +134,7 @@ class ETLPipeline:
         logger.info("\nDeduplicando indicadores...")
         original_count = len(self.all_indicators)
 
-        # Paso 1: agrupar por (nombre_normalizado, año)
+        # Paso 1: agrupar por nombre_normalizado (cross-year)
         import re as _re
         from slugify import slugify
 
@@ -159,11 +159,15 @@ class ETLPipeline:
             "porcentaje-anp-con-acciones-inspeccion-operativos": "porcentaje-areas-naturales-protegidas-con-acciones",
             "acciones-difusion-para-promocion-y-participacion-c": "porcentaje-acciones-difusion-para-promocion-y-part",
             "porcentaje-municipios-y-alcaldias-cubiertos-con-ac": "porcentaje-municipios-y-alcaldias-con-acciones-ins",
+            "simulacros-para-evaluar-planes-respuesta-a-emergen": "porcentaje-simulacros-para-evaluar-planes-respuest",
+            "numero-denuncias-y-querellas-presentadas-por-procu": "porcentaje-denuncias-y-querellas-presentadas-por-p",
+            "porcentaje-resolucion-a-solicitudes-conmutacion-mu": "porcentaje-resolucion-a-solicitudes-conmutacion-r",
+            "porcentaje-acciones-promocion-para-certificacion-a": "acciones-promocion-jornadas-por-certificacion-sa",
         }
         for ind in self.all_indicators:
             norm = _norm_name(ind.nombre)
             norm = _KNOWN_EQUIV.get(norm, norm)
-            key = f"{norm}|{ind.anio}"
+            key = norm
             groups.setdefault(key, []).append(ind)
 
         # Paso 2: elegir el maestro de cada grupo y redirigir observaciones
@@ -192,6 +196,8 @@ class ETLPipeline:
                     master.unidad_medida = other.unidad_medida
                 if not master.nivel and other.nivel:
                     master.nivel = other.nivel
+                # Fusionar años
+                master.anios = sorted(set(master.anios + other.anios))
                 # Registrar redirección
                 if other.id != master.id:
                     id_redirect[other.id] = master.id
@@ -294,7 +300,7 @@ class ETLPipeline:
             "total_indicadores": len(self.all_indicators),
             "total_observaciones": len(self.all_observations),
             "programas": list(set(ind.programa for ind in self.all_indicators)),
-            "anios": list(set(ind.anio for ind in self.all_indicators)),
+            "anios": sorted(set(a for ind in self.all_indicators for a in ind.anios)),
             "fuentes_procesadas": [
                 {
                     "nombre": name,
@@ -313,13 +319,13 @@ class ETLPipeline:
     def _generate_by_year(self):
         """Genera archivos separados por año."""
         # Indicadores 2025
-        ind_2025 = [ind.to_dict() for ind in self.all_indicators if ind.anio == 2025]
+        ind_2025 = [ind.to_dict() for ind in self.all_indicators if 2025 in ind.anios]
         if ind_2025:
             self._write_json("indicators_2025.json", ind_2025)
             self._write_csv("indicators_2025.csv", ind_2025)
         
         # Indicadores 2026
-        ind_2026 = [ind.to_dict() for ind in self.all_indicators if ind.anio == 2026]
+        ind_2026 = [ind.to_dict() for ind in self.all_indicators if 2026 in ind.anios]
         if ind_2026:
             self._write_json("indicators_2026.json", ind_2026)
             self._write_csv("indicators_2026.csv", ind_2026)

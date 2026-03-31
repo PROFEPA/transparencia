@@ -33,8 +33,8 @@ class Indicator:
     id: str  # Slug único
     nombre: str
     programa: str  # G005 o G014
-    anio: int
     fuente: str  # Archivo + hoja/celda o sección doc
+    anios: List[int] = field(default_factory=list)  # Años fiscales
     definicion: Optional[str] = None
     metodo_calculo: Optional[str] = None
     unidad_medida: Optional[str] = None

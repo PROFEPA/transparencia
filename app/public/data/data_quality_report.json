@@ -1,24 +1,24 @@
 {
-  "fecha_generacion": "2026-03-31T10:39:00.872019",
+  "fecha_generacion": "2026-03-31T11:03:33.571084",
   "resumen": {
     "total_filas_leidas": 0,
     "total_filas_validas": 69,
     "total_filas_descartadas": 0,
     "porcentaje_validas": 6900.0,
-    "total_indicadores": 49,
+    "total_indicadores": 30,
     "total_observaciones": 12175
   },
   "completitud_indicadores": {
     "con_definicion": 0.0,
-    "con_metodo_calculo": 42.86,
-    "con_unidad_medida": 42.86,
+    "con_metodo_calculo": 70.0,
+    "con_unidad_medida": 70.0,
     "con_nivel": 100.0,
     "con_observaciones": 100.0
   },
   "por_archivo": [
     {
       "archivo_fuente": "/home/profepa/transparencia/Documents/Nuevos/MIR_2025_FinalPúblico.xlsx",
-      "fecha_extraccion": "2026-03-31T10:38:52.383424",
+      "fecha_extraccion": "2026-03-31T11:03:25.050384",
       "filas_leidas": 0,
       "filas_validas": 21,
       "filas_descartadas": 0,
@@ -28,7 +28,7 @@
     },
     {
       "archivo_fuente": "/home/profepa/transparencia/Documents/Nuevos/POA_2025_FinalPúblico.xlsx",
-      "fecha_extraccion": "2026-03-31T10:38:52.583293",
+      "fecha_extraccion": "2026-03-31T11:03:25.254500",
       "filas_leidas": 0,
       "filas_validas": 24,
       "filas_descartadas": 0,
@@ -38,7 +38,7 @@
     },
     {
       "archivo_fuente": "/home/profepa/transparencia/Documents/Nuevos/POA_2026_feb.xlsx",
-      "fecha_extraccion": "2026-03-31T10:38:56.290132",
+      "fecha_extraccion": "2026-03-31T11:03:28.944997",
       "filas_leidas": 0,
       "filas_validas": 24,
       "filas_descartadas": 0,

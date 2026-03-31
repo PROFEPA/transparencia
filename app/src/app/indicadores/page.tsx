@@ -68,7 +68,7 @@ function IndicadoresContent() {
   // Filtrar indicadores
   const filteredIndicators = useMemo(() => {
     return indicators.filter(ind => {
-      if (filters.anio && ind.anio !== filters.anio) return false;
+      if (filters.anio && !ind.anios?.includes(filters.anio)) return false;
       if (filters.programa && ind.programa !== filters.programa) return false;
       if (filters.nivel && ind.nivel !== filters.nivel) return false;
       if (filters.search) {
@@ -94,7 +94,7 @@ function IndicadoresContent() {
   }, [filters]);
 
   // Valores únicos para filtros
-  const uniqueAnios = Array.from(new Set(indicators.map(i => i.anio))).sort();
+  const uniqueAnios = Array.from(new Set(indicators.flatMap(i => i.anios || []))).sort();
   const uniqueProgramas = Array.from(new Set(indicators.map(i => i.programa))).filter(Boolean);
   const uniqueNiveles = Array.from(new Set(indicators.map(i => i.nivel).filter(Boolean)));
 
@@ -291,7 +291,7 @@ function IndicadoresContent() {
                 {/* Header con badges */}
                 <div className="flex flex-wrap items-center gap-2 mb-3">
                   <span className="badge-gob">{indicator.programa}</span>
-                  <span className="badge-gray">{indicator.anio}</span>
+                  <span className="badge-gray">{indicator.anios?.join(', ')}</span>
                   {indicator.nivel && (
                     <span className={`text-xs px-2 py-0.5 rounded-full ${colorNivel(indicator.nivel)}`}>
                       {indicator.nivel}

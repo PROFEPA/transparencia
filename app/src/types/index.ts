@@ -6,7 +6,7 @@ export interface Indicator {
   id: string;
   nombre: string;
   programa: string;
-  anio: number;
+  anios: number[];
   fuente: string;
   definicion?: string;
   metodo_calculo?: string;

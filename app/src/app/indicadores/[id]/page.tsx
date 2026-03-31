@@ -232,7 +232,7 @@ export default function IndicadorDetailPage() {
     csv += `ID,${indicador.id}\n`;
     csv += `Nombre,"${indicador.nombre}"\n`;
     csv += `Programa,${indicador.programa}\n`;
-    csv += `Año,${indicador.anio}\n`;
+    csv += `Año,${indicador.anios?.join(', ')}\n`;
     csv += `Fuente,"${indicador.fuente}"\n`;
     csv += `Definición,"${indicador.definicion || 'N/A'}"\n`;
     csv += `Método de cálculo,"${indicador.metodo_calculo || 'N/A'}"\n`;
@@ -307,7 +307,9 @@ export default function IndicadorDetailPage() {
         <div className="card mb-6 bg-gradient-to-r from-gob-green-500 to-gob-green-600 text-white">
           <div className="flex flex-wrap items-center gap-2 mb-4">
             <span className="px-3 py-1 bg-white/20 rounded-full text-sm font-medium">{indicador.programa}</span>
-            <span className="px-3 py-1 bg-white/20 rounded-full text-sm">{indicador.anio}</span>
+            {indicador.anios?.map(a => (
+              <span key={a} className="px-3 py-1 bg-white/20 rounded-full text-sm">{a}</span>
+            ))}
             {indicador.nivel && (
               <span className="px-3 py-1 bg-white/20 rounded-full text-sm">{indicador.nivel}</span>
             )}

@@ -46,8 +46,8 @@ export default function HomePage() {
     loadData();
   }, []);
 
-  const ind2025 = indicators.filter(i => i.anio === 2025);
-  const ind2026 = indicators.filter(i => i.anio === 2026);
+  const ind2025 = indicators.filter(i => i.anios?.includes(2025));
+  const ind2026 = indicators.filter(i => i.anios?.includes(2026));
 
   // Datos dinámicos para gráficas
   const programaData = (() => {
@@ -396,7 +396,9 @@ export default function HomePage() {
                 <Link key={ind.id} href={`/indicadores/${ind.id}`} className="card hover:shadow-lg transition-all group">
                   <div className="flex items-center gap-2 mb-3">
                     <span className="badge-gob">{ind.programa}</span>
-                    <span className="badge-gray">{ind.anio}</span>
+                    {ind.anios?.map(a => (
+                      <span key={a} className="badge-gray">{a}</span>
+                    ))}
                     {ind.nivel && <span className="text-xs text-gray-400">{ind.nivel}</span>}
                   </div>
                   <h3 className="font-semibold line-clamp-2 group-hover:text-gob-green-600 mb-2">

@@ -3,8 +3,10 @@
     "id": "aportar-al-humanismo-mexicano-mediante-la-procuracion-de-la-g005-2025",
     "nombre": "Aportar al Humanismo Mexicano mediante la Procuración de la Justicia Ambiental",
     "programa": "G005",
-    "anio": 2025,
     "fuente": "MIR_2025_FinalPúblico.xlsx - MIR25",
+    "anios": [
+      2025
+    ],
     "definicion": null,
     "metodo_calculo": "(Numerador / Denominador) × 100. Meta: 97.0 / 100.0",
     "unidad_medida": "Porcentaje",
@@ -16,8 +18,11 @@
     "id": "porcentaje-de-denuncias-populares-en-materia-ambiental-concl-g005-2025",
     "nombre": "Porcentaje de denuncias populares en materia ambiental concluidas.",
     "programa": "G005",
-    "anio": 2025,
     "fuente": "MIR_2025_FinalPúblico.xlsx - MIR25",
+    "anios": [
+      2025,
+      2026
+    ],
     "definicion": null,
     "metodo_calculo": "(Numerador / Denominador) × 100. Meta: 60.0 / 100.0",
     "unidad_medida": "Porcentaje",
@@ -29,8 +34,11 @@
     "id": "porcentaje-de-resolucion-de-procedimientos-administrativos-d-g005-2025",
     "nombre": "Porcentaje de resolución de procedimientos administrativos de ejercicios anteriores al corriente",
     "programa": "G005",
-    "anio": 2025,
     "fuente": "MIR_2025_FinalPúblico.xlsx - MIR25",
+    "anios": [
+      2025,
+      2026
+    ],
     "definicion": null,
     "metodo_calculo": "(Numerador / Denominador) × 100. Meta: 60.0 / 100.0",
     "unidad_medida": "Porcentaje",
@@ -42,8 +50,11 @@
     "id": "porcentaje-de-municipios-y-alcaldias-con-acciones-de-inspec-g005-2025",
     "nombre": "Porcentaje de municipios y alcaldías  con acciones de inspección, recorridos de vigilancia, operativos y CVAP en materia de recursos naturales.",
     "programa": "G005",
-    "anio": 2025,
     "fuente": "MIR_2025_FinalPúblico.xlsx - MIR25",
+    "anios": [
+      2025,
+      2026
+    ],
     "definicion": null,
     "metodo_calculo": "(Numerador / Denominador) × 100. Meta: 400.0 / 2478.0",
     "unidad_medida": "Porcentaje",
@@ -55,8 +66,11 @@
     "id": "porcentaje-de-certificados-y-reconocimientos-ambientales-emi-g005-2025",
     "nombre": "Porcentaje de certificados y reconocimientos ambientales emitidos",
     "programa": "G005",
-    "anio": 2025,
     "fuente": "MIR_2025_FinalPúblico.xlsx - MIR25",
+    "anios": [
+      2025,
+      2026
+    ],
     "definicion": null,
     "metodo_calculo": "(Numerador / Denominador) × 100. Meta: 400.0 / 400.0",
     "unidad_medida": "Porcentaje",
@@ -68,8 +82,11 @@
     "id": "porcentaje-de-visitas-de-verificacion-con-cumplimiento-de-la-g005-2025",
     "nombre": "Porcentaje de visitas de verificación con Cumplimiento de las medidas dictadas en acuerdos y resoluciones derivados de los procedimientos administrativos iniciados en materia industrial",
     "programa": "G005",
-    "anio": 2025,
     "fuente": "MIR_2025_FinalPúblico.xlsx - MIR25",
+    "anios": [
+      2025,
+      2026
+    ],
     "definicion": null,
     "metodo_calculo": "(Numerador / Denominador) × 100. Meta: 55.0 / 100.0",
     "unidad_medida": "Porcentaje",
@@ -81,8 +98,11 @@
     "id": "porcentaje-de-resoluciones-emitidas-a-los-recursos-de-revisi-g005-2025",
     "nombre": "Porcentaje de resoluciones emitidas a los recursos de revisión",
     "programa": "G005",
-    "anio": 2025,
     "fuente": "MIR_2025_FinalPúblico.xlsx - MIR25",
+    "anios": [
+      2025,
+      2026
+    ],
     "definicion": null,
     "metodo_calculo": "(Numerador / Denominador) × 100. Meta: 50.0 / 100.0",
     "unidad_medida": "Porcentaje",
@@ -94,8 +114,11 @@
     "id": "porcentaje-de-areas-naturales-protegidas-con-acciones-de-ins-g005-2025",
     "nombre": "Porcentaje de Áreas Naturales Protegidas con acciones de inspección, recorridos de vigilancia, operativos y/o CVAPs en materia de recursos naturales",
     "programa": "G005",
-    "anio": 2025,
     "fuente": "MIR_2025_FinalPúblico.xlsx - MIR25",
+    "anios": [
+      2025,
+      2026
+    ],
     "definicion": null,
     "metodo_calculo": "(Numerador / Denominador) × 100. Meta: 120.0 / 232.0",
     "unidad_medida": "Porcentaje",
@@ -107,8 +130,11 @@
     "id": "porcentaje-de-acciones-de-inspeccion-realizadas-al-universo-g005-2025",
     "nombre": "Porcentaje de acciones de inspección realizadas al universo del padrón de instalaciones de jurisdicción federal registradas por la PROFEPA",
     "programa": "G005",
-    "anio": 2025,
     "fuente": "MIR_2025_FinalPúblico.xlsx - MIR25",
+    "anios": [
+      2025,
+      2026
+    ],
     "definicion": null,
     "metodo_calculo": "(Numerador / Denominador) × 100. Meta: 14585.0 / 194386.0",
     "unidad_medida": "Porcentaje",
@@ -120,8 +146,10 @@
     "id": "porcentaje-de-solicitudes-de-certificado-y-reconocimiento-am-g005-2025",
     "nombre": "Porcentaje de solicitudes de Certificado y Reconocimiento Ambiental atendidas",
     "programa": "G005",
-    "anio": 2025,
     "fuente": "MIR_2025_FinalPúblico.xlsx - MIR25",
+    "anios": [
+      2025
+    ],
     "definicion": null,
     "metodo_calculo": "(Numerador / Denominador) × 100. Meta: 925.0 / 925.0",
     "unidad_medida": "Porcentaje",
@@ -133,8 +161,10 @@
     "id": "porcentaje-de-personas-contactadas-en-las-jornadas-de-biene-g005-2025",
     "nombre": "Porcentaje de personas contactadas en las Jornadas  de Bienestar Ambientales",
     "programa": "G005",
-    "anio": 2025,
     "fuente": "MIR_2025_FinalPúblico.xlsx - MIR25",
+    "anios": [
+      2025
+    ],
     "definicion": null,
     "metodo_calculo": "(Numerador / Denominador) × 100. Meta: 16000.0 / 16000.0",
     "unidad_medida": "Porcentaje",
@@ -146,8 +176,11 @@
     "id": "porcentaje-de-resolucion-a-las-solicitudes-de-conmutacion-de-g005-2025",
     "nombre": "Porcentaje de resolución a las solicitudes de conmutación de multas",
     "programa": "G005",
-    "anio": 2025,
     "fuente": "MIR_2025_FinalPúblico.xlsx - MIR25",
+    "anios": [
+      2025,
+      2026
+    ],
     "definicion": null,
     "metodo_calculo": "(Numerador / Denominador) × 100. Meta: 70.0 / 100.0",
     "unidad_medida": "Porcentaje",
@@ -159,8 +192,11 @@
     "id": "porcentaje-de-acciones-de-promocion-para-la-certificacion-am-g005-2025",
     "nombre": "Porcentaje de acciones de promoción para la certificación ambiental",
     "programa": "G005",
-    "anio": 2025,
     "fuente": "MIR_2025_FinalPúblico.xlsx - MIR25",
+    "anios": [
+      2025,
+      2026
+    ],
     "definicion": null,
     "metodo_calculo": "(Numerador / Denominador) × 100. Meta: 1200.0 / 1200.0",
     "unidad_medida": "Porcentaje",
@@ -172,8 +208,10 @@
     "id": "porcentaje-de-acciones-de-supervision-a-procesos-de-certific-g005-2025",
     "nombre": "Porcentaje de acciones de supervisión a procesos de certificación y reconocimiento realizadas",
     "programa": "G005",
-    "anio": 2025,
     "fuente": "MIR_2025_FinalPúblico.xlsx - MIR25",
+    "anios": [
+      2025
+    ],
     "definicion": null,
     "metodo_calculo": "(Numerador / Denominador) × 100. Meta: 1170.0 / 1170.0",
     "unidad_medida": "Porcentaje",
@@ -185,8 +223,10 @@
     "id": "porcentaje-de-auditores-ambientales-supervisados-g005-2025",
     "nombre": "Porcentaje de auditores ambientales supervisados",
     "programa": "G005",
-    "anio": 2025,
     "fuente": "MIR_2025_FinalPúblico.xlsx - MIR25",
+    "anios": [
+      2025
+    ],
     "definicion": null,
     "metodo_calculo": "(Numerador / Denominador) × 100. Meta: 63.0 / 63.0",
     "unidad_medida": "Porcentaje",
@@ -198,8 +238,11 @@
     "id": "porcentaje-de-inspecciones-realizadas-en-materia-de-recursos-g005-2025",
     "nombre": "Porcentaje de inspecciones realizadas en materia de recursos naturales",
     "programa": "G005",
-    "anio": 2025,
     "fuente": "MIR_2025_FinalPúblico.xlsx - MIR25",
+    "anios": [
+      2025,
+      2026
+    ],
     "definicion": null,
     "metodo_calculo": "(Numerador / Denominador) × 100. Meta: 4447.0 / 4447.0",
     "unidad_medida": "Porcentaje",
@@ -211,8 +254,11 @@
     "id": "porcentaje-de-operativos-realizados-en-materia-de-recursos-n-g005-2025",
     "nombre": "Porcentaje de operativos realizados en materia de recursos naturales",
     "programa": "G005",
-    "anio": 2025,
     "fuente": "MIR_2025_FinalPúblico.xlsx - MIR25",
+    "anios": [
+      2025,
+      2026
+    ],
     "definicion": null,
     "metodo_calculo": "(Numerador / Denominador) × 100. Meta: 639.0 / 639.0",
     "unidad_medida": "Porcentaje",
@@ -224,8 +270,11 @@
     "id": "porcentaje-de-comites-de-vigilancia-ambiental-participativa-g005-2025",
     "nombre": "Porcentaje de comités de vigilancia ambiental participativa en operación",
     "programa": "G005",
-    "anio": 2025,
     "fuente": "MIR_2025_FinalPúblico.xlsx - MIR25",
+    "anios": [
+      2025,
+      2026
+    ],
     "definicion": null,
     "metodo_calculo": "(Numerador / Denominador) × 100. Meta: 274.0 / 274.0",
     "unidad_medida": "Porcentaje",
@@ -237,8 +286,11 @@
     "id": "porcentaje-de-recorridos-de-vigilancia-realizados-en-materia-g005-2025",
     "nombre": "Porcentaje de recorridos de vigilancia realizados en materia de recursos naturales",
     "programa": "G005",
-    "anio": 2025,
     "fuente": "MIR_2025_FinalPúblico.xlsx - MIR25",
+    "anios": [
+      2025,
+      2026
+    ],
     "definicion": null,
     "metodo_calculo": "(Numerador / Denominador) × 100. Meta: 2752.0 / 2752.0",
     "unidad_medida": "Porcentaje",
@@ -250,8 +302,11 @@
     "id": "porcentaje-de-acciones-de-inspeccion-y-verificacion-realizad-g005-2025",
     "nombre": "Porcentaje de acciones de Inspección y verificación realizadas sobre la cuales la PROFEPA tiene competencia como autoridad, conforme a las prioridades de la estrategia establecida en materia de inspec",
     "programa": "G005",
-    "anio": 2025,
     "fuente": "MIR_2025_FinalPúblico.xlsx - MIR25",
+    "anios": [
+      2025,
+      2026
+    ],
     "definicion": null,
     "metodo_calculo": "(Numerador / Denominador) × 100. Meta: 3500.0 / 3500.0",
     "unidad_medida": "Porcentaje",
@@ -263,8 +318,11 @@
     "id": "porcentaje-de-revision-de-mercancias-cuya-importacion-expor-g005-2025",
     "nombre": "Porcentaje de revisión de mercancías cuya importación, exportación y reexportación está sujeta a regulación por parte de la Secretaría de Medio Ambiente y Recursos Naturales",
     "programa": "G005",
-    "anio": 2025,
     "fuente": "MIR_2025_FinalPúblico.xlsx - MIR25",
+    "anios": [
+      2025,
+      2026
+    ],
     "definicion": null,
     "metodo_calculo": "(Numerador / Denominador) × 100. Meta: 99.0 / 100.0",
     "unidad_medida": "Porcentaje",
@@ -276,8 +334,10 @@
     "id": "sii-05-emplazamientos-realizados-a-procedimient-g005-2025",
     "nombre": "Emplazamientos realizados a procedimientos iniciados en 2024 y años anteriores",
     "programa": "G005",
-    "anio": 2025,
     "fuente": "POA_2025_FinalPúblico.xlsx - Avance",
+    "anios": [
+      2025
+    ],
     "definicion": null,
     "metodo_calculo": null,
     "unidad_medida": null,
@@ -289,8 +349,11 @@
     "id": "sii-06-simulacros-para-evaluar-los-planes-de-re-g005-2025",
     "nombre": "Simulacros para evaluar los Planes de Respuesta a emergencias químicas",
     "programa": "G005",
-    "anio": 2025,
     "fuente": "POA_2025_FinalPúblico.xlsx - Avance",
+    "anios": [
+      2025,
+      2026
+    ],
     "definicion": null,
     "metodo_calculo": null,
     "unidad_medida": null,
@@ -302,8 +365,11 @@
     "id": "sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025",
     "nombre": "Número de denuncias y querellas presentadas por la Procuraduría",
     "programa": "G005",
-    "anio": 2025,
     "fuente": "POA_2025_FinalPúblico.xlsx - Avance",
+    "anios": [
+      2025,
+      2026
+    ],
     "definicion": null,
     "metodo_calculo": null,
     "unidad_medida": null,
@@ -315,8 +381,11 @@
     "id": "sj-07-porcentaje-de-sentencias-favorables-not-g005-2025",
     "nombre": "Porcentaje de sentencias  favorables notificadas por el Tribunal Federal de Justicia Administrativa",
     "programa": "G005",
-    "anio": 2025,
     "fuente": "POA_2025_FinalPúblico.xlsx - Avance",
+    "anios": [
+      2025,
+      2026
+    ],
     "definicion": null,
     "metodo_calculo": null,
     "unidad_medida": null,
@@ -325,24 +394,13 @@
     "ultima_actualizacion": "2026-03-31"
   },
   {
-    "id": "spa-01-porcentaje-de-certificados-y-reconocimie-g005-2026",
-    "nombre": "Porcentaje de certificados y reconocimientos ambientales emitidos",
-    "programa": "G005",
-    "anio": 2026,
-    "fuente": "POA_2026_feb.xlsx - POA_2026",
-    "definicion": null,
-    "metodo_calculo": null,
-    "unidad_medida": null,
-    "nivel": "Actividad",
-    "notas": "ID interno: SPA.01",
-    "ultima_actualizacion": "2026-03-31"
-  },
-  {
     "id": "spa-06-porcentaje-de-empresas-e-instituciones-q-g005-2026",
     "nombre": "Porcentaje de empresas e instituciones que participaron en eventos de capacitación en materia de prevención ambiental",
     "programa": "G005",
-    "anio": 2026,
     "fuente": "POA_2026_feb.xlsx - POA_2026",
+    "anios": [
+      2026
+    ],
     "definicion": null,
     "metodo_calculo": null,
     "unidad_medida": null,
@@ -351,89 +409,13 @@
     "ultima_actualizacion": "2026-03-31"
   },
   {
-    "id": "spa-07-acciones-de-promocion-jornadas-por-la-c-g005-2026",
-    "nombre": "Acciones de promoción (Jornadas por la certificación, salas informativas, visitas personalizadas de promoción)",
-    "programa": "G005",
-    "anio": 2026,
-    "fuente": "POA_2026_feb.xlsx - POA_2026",
-    "definicion": null,
-    "metodo_calculo": null,
-    "unidad_medida": null,
-    "nivel": "Actividad",
-    "notas": "ID interno: SPA.07",
-    "ultima_actualizacion": "2026-03-31"
-  },
-  {
-    "id": "sivi-01-porcentaje-de-visitas-de-verificacion-co-g005-2026",
-    "nombre": "Porcentaje de visitas de verificación con cumplimiento de las medidas dictadas en acuerdos y resoluciones derivados de los procedimientos administrativos iniciados en materia industrial",
-    "programa": "G005",
-    "anio": 2026,
-    "fuente": "POA_2026_feb.xlsx - POA_2026",
-    "definicion": null,
-    "metodo_calculo": null,
-    "unidad_medida": null,
-    "nivel": "Actividad",
-    "notas": "ID interno: SIVI.01",
-    "ultima_actualizacion": "2026-03-31"
-  },
-  {
-    "id": "sivi-02-porcentaje-de-acciones-de-inspeccion-rea-g005-2026",
-    "nombre": "Porcentaje de acciones de inspección realizadas al universo del padrón de instalaciones de jurisdicción federal registradas por la PROFEPA",
-    "programa": "G005",
-    "anio": 2026,
-    "fuente": "POA_2026_feb.xlsx - POA_2026",
-    "definicion": null,
-    "metodo_calculo": null,
-    "unidad_medida": null,
-    "nivel": "Actividad",
-    "notas": "ID interno: SIVI.02",
-    "ultima_actualizacion": "2026-03-31"
-  },
-  {
-    "id": "sivi-03-porcentaje-de-acciones-de-inspeccion-y-v-g005-2026",
-    "nombre": "Porcentaje de acciones de inspección y verificación realizadas sobre la cuales la PROFEPA tiene competencia como autoridad, conforme a las prioridades de la estrategia establecida en materia de inspección industrial",
-    "programa": "G005",
-    "anio": 2026,
-    "fuente": "POA_2026_feb.xlsx - POA_2026",
-    "definicion": null,
-    "metodo_calculo": null,
-    "unidad_medida": null,
-    "nivel": "Actividad",
-    "notas": "ID interno: SIVI.03",
-    "ultima_actualizacion": "2026-03-31"
-  },
-  {
-    "id": "sivi-04-porcentaje-de-revision-de-mercancias-cuy-g005-2026",
-    "nombre": "Porcentaje de revisión de mercancías cuya importación, exportación y reexportación está sujeta a regulación por parte de la Secretaría de Medio Ambiente y Recursos Naturales",
-    "programa": "G005",
-    "anio": 2026,
-    "fuente": "POA_2026_feb.xlsx - POA_2026",
-    "definicion": null,
-    "metodo_calculo": null,
-    "unidad_medida": null,
-    "nivel": "Actividad",
-    "notas": "ID interno: SIVI.04",
-    "ultima_actualizacion": "2026-03-31"
-  },
-  {
-    "id": "sivi-06-porcentaje-de-simulacros-para-evaluar-lo-g005-2026",
-    "nombre": "Porcentaje de simulacros para evaluar los Planes de Respuesta a emergencias químicas",
-    "programa": "G005",
-    "anio": 2026,
-    "fuente": "POA_2026_feb.xlsx - POA_2026",
-    "definicion": null,
-    "metodo_calculo": null,
-    "unidad_medida": null,
-    "nivel": "Actividad",
-    "notas": "ID interno: SIVI.06",
-    "ultima_actualizacion": "2026-03-31"
-  },
-  {
     "id": "sivi-07-porcentaje-de-solicitudes-de-aprobacione-g005-2026",
     "nombre": "Porcentaje de solicitudes de aprobaciones para los laboratorios de pruebas y/o ensayo, unidades de verificación y organismos de certificación",
     "programa": "G005",
-    "anio": 2026,
     "fuente": "POA_2026_feb.xlsx - POA_2026",
+    "anios": [
+      2026
+    ],
     "definicion": null,
     "metodo_calculo": null,
     "unidad_medida": null,
@@ -445,8 +427,10 @@
     "id": "sivi-08-porcentaje-de-revisiones-evaluaciones-y-g005-2026",
     "nombre": "Porcentaje de revisiones, evaluaciones y, en su caso, certificación de vehículos nuevos en planta",
     "programa": "G005",
-    "anio": 2026,
     "fuente": "POA_2026_feb.xlsx - POA_2026",
+    "anios": [
+      2026
+    ],
     "definicion": null,
     "metodo_calculo": null,
     "unidad_medida": null,
@@ -455,50 +439,13 @@
     "ultima_actualizacion": "2026-03-31"
   },
   {
-    "id": "sleja-01-porcentaje-de-denuncias-populares-en-mat-g005-2026",
-    "nombre": "Porcentaje de denuncias populares en materia ambiental concluidas",
-    "programa": "G005",
-    "anio": 2026,
-    "fuente": "POA_2026_feb.xlsx - POA_2026",
-    "definicion": null,
-    "metodo_calculo": null,
-    "unidad_medida": null,
-    "nivel": "Actividad",
-    "notas": "ID interno: SLEJA.01",
-    "ultima_actualizacion": "2026-03-31"
-  },
-  {
-    "id": "corpa-01-porcentaje-de-resolucion-de-procedimient-g005-2026",
-    "nombre": "Porcentaje de resolución de procedimientos administrativos de ejercicios anteriores al corriente",
-    "programa": "G005",
-    "anio": 2026,
-    "fuente": "POA_2026_feb.xlsx - POA_2026",
-    "definicion": null,
-    "metodo_calculo": null,
-    "unidad_medida": null,
-    "nivel": "Actividad",
-    "notas": "ID interno: CORPA.01",
-    "ultima_actualizacion": "2026-03-31"
-  },
-  {
-    "id": "sleja-03-porcentaje-de-resoluciones-emitidas-a-lo-g005-2026",
-    "nombre": "Porcentaje de resoluciones emitidas a los recursos de revisión",
-    "programa": "G005",
-    "anio": 2026,
-    "fuente": "POA_2026_feb.xlsx - POA_2026",
-    "definicion": null,
-    "metodo_calculo": null,
-    "unidad_medida": null,
-    "nivel": "Actividad",
-    "notas": "ID interno: SLEJA.03",
-    "ultima_actualizacion": "2026-03-31"
-  },
-  {
     "id": "sleja-04-acciones-de-difusion-para-la-promocion-y-g005-2026",
     "nombre": "Acciones de difusión para la promoción y participación ciudadana en el cuidado del medio ambiente a través de Jornadas Estudiantiles",
     "programa": "G005",
-    "anio": 2026,
     "fuente": "POA_2026_feb.xlsx - POA_2026",
+    "anios": [
+      2026
+    ],
     "definicion": null,
     "metodo_calculo": null,
     "unidad_medida": null,
@@ -507,128 +454,13 @@
     "ultima_actualizacion": "2026-03-31"
   },
   {
-    "id": "sleja-05-porcentaje-de-resolucion-a-las-solicitud-g005-2026",
-    "nombre": "Porcentaje de resolución a las solicitudes de conmutación, revocación  o modificación de multas",
-    "programa": "G005",
-    "anio": 2026,
-    "fuente": "POA_2026_feb.xlsx - POA_2026",
-    "definicion": null,
-    "metodo_calculo": null,
-    "unidad_medida": null,
-    "nivel": "Actividad",
-    "notas": "ID interno: SLEJA.05",
-    "ultima_actualizacion": "2026-03-31"
-  },
-  {
-    "id": "sleja-06-porcentaje-de-denuncias-y-querellas-pres-g005-2026",
-    "nombre": "Porcentaje de denuncias y querellas presentadas por la Procuraduría",
-    "programa": "G005",
-    "anio": 2026,
-    "fuente": "POA_2026_feb.xlsx - POA_2026",
-    "definicion": null,
-    "metodo_calculo": null,
-    "unidad_medida": null,
-    "nivel": "Actividad",
-    "notas": "ID interno: SLEJA.06",
-    "ultima_actualizacion": "2026-03-31"
-  },
-  {
-    "id": "sleja-07-porcentaje-de-sentencias-favorables-not-g005-2026",
-    "nombre": "Porcentaje de sentencias  favorables notificadas por el Tribunal Federal de Justicia Administrativa",
-    "programa": "G005",
-    "anio": 2026,
-    "fuente": "POA_2026_feb.xlsx - POA_2026",
-    "definicion": null,
-    "metodo_calculo": null,
-    "unidad_medida": null,
-    "nivel": "Actividad",
-    "notas": "ID interno: SLEJA.07",
-    "ultima_actualizacion": "2026-03-31"
-  },
-  {
-    "id": "srn-01-porcentaje-de-municipios-y-alcaldias-con-g005-2026",
-    "nombre": "Porcentaje de municipios y alcaldías con acciones de inspección, operativos y CVAP en materia de recursos naturales",
-    "programa": "G005",
-    "anio": 2026,
-    "fuente": "POA_2026_feb.xlsx - POA_2026",
-    "definicion": null,
-    "metodo_calculo": null,
-    "unidad_medida": null,
-    "nivel": "Actividad",
-    "notas": "ID interno: SRN.01",
-    "ultima_actualizacion": "2026-03-31"
-  },
-  {
-    "id": "srn-02-porcentaje-de-anp-con-acciones-de-inspec-g005-2026",
-    "nombre": "Porcentaje de ANP con acciones de inspección, operativos y/o CVAPs en materia de recursos naturales.Recorridos de vigilancia en materia de recursos naturales",
-    "programa": "G005",
-    "anio": 2026,
-    "fuente": "POA_2026_feb.xlsx - POA_2026",
-    "definicion": null,
-    "metodo_calculo": null,
-    "unidad_medida": null,
-    "nivel": "Actividad",
-    "notas": "ID interno: SRN.02",
-    "ultima_actualizacion": "2026-03-31"
-  },
-  {
-    "id": "srn-03-porcentaje-de-inspecciones-realizadas-en-g005-2026",
-    "nombre": "Porcentaje de inspecciones realizadas en materia de recursos naturales",
-    "programa": "G005",
-    "anio": 2026,
-    "fuente": "POA_2026_feb.xlsx - POA_2026",
-    "definicion": null,
-    "metodo_calculo": null,
-    "unidad_medida": null,
-    "nivel": "Actividad",
-    "notas": "ID interno: SRN.03",
-    "ultima_actualizacion": "2026-03-31"
-  },
-  {
-    "id": "srn-04-porcentaje-de-recorridos-de-vigilancia-r-g005-2026",
-    "nombre": "Porcentaje de recorridos de vigilancia realizados en materia de recursos naturales",
-    "programa": "G005",
-    "anio": 2026,
-    "fuente": "POA_2026_feb.xlsx - POA_2026",
-    "definicion": null,
-    "metodo_calculo": null,
-    "unidad_medida": null,
-    "nivel": "Actividad",
-    "notas": "ID interno: SRN.04",
-    "ultima_actualizacion": "2026-03-31"
-  },
-  {
-    "id": "srn-05-porcentaje-de-operativos-realizados-en-m-g005-2026",
-    "nombre": "Porcentaje de operativos realizados en materia de recursos naturales",
-    "programa": "G005",
-    "anio": 2026,
-    "fuente": "POA_2026_feb.xlsx - POA_2026",
-    "definicion": null,
-    "metodo_calculo": null,
-    "unidad_medida": null,
-    "nivel": "Actividad",
-    "notas": "ID interno: SRN.05",
-    "ultima_actualizacion": "2026-03-31"
-  },
-  {
-    "id": "corpa-02-porcentaje-de-comites-de-vigilancia-ambi-g005-2026",
-    "nombre": "Porcentaje de Comités de Vigilancia Ambiental Participativa en operación",
-    "programa": "G005",
-    "anio": 2026,
-    "fuente": "POA_2026_feb.xlsx - POA_2026",
-    "definicion": null,
-    "metodo_calculo": null,
-    "unidad_medida": null,
-    "nivel": "Actividad",
-    "notas": "ID interno: CORPA.02",
-    "ultima_actualizacion": "2026-03-31"
-  },
-  {
     "id": "corpa-03-porcentaje-de-resoluciones-con-reparacio-g005-2026",
     "nombre": "Porcentaje de resoluciones con reparación del daño como medida de aplicación",
     "programa": "G005",
-    "anio": 2026,
     "fuente": "POA_2026_feb.xlsx - POA_2026",
+    "anios": [
+      2026
+    ],
     "definicion": null,
     "metodo_calculo": null,
     "unidad_medida": null,
