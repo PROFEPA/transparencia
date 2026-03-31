@@ -8,26 +8,37 @@ from datetime import datetime
 # Rutas base
 BASE_DIR = Path(__file__).parent.parent
 DATA_INPUT_DIR = BASE_DIR / "Documents"
+DATA_NUEVOS_DIR = DATA_INPUT_DIR / "Nuevos"
 DATA_OUTPUT_DIR = BASE_DIR / "public" / "data"
 
-# Archivos fuente
+# Archivos fuente — se priorizan los de Documents/Nuevos (datos corregidos)
 SOURCE_FILES = {
-    "POA_2025": {
-        "path": DATA_INPUT_DIR / "POA_2025.xlsx",
+    # ── Nuevos (corregidos) ──
+    "MIR_2025_Final": {
+        "path": DATA_NUEVOS_DIR / "MIR_2025_FinalPúblico.xlsx",
+        "type": "excel",
+        "extractor": "mir25",
+        "programa": "G005",
+        "anio": 2025,
+        "descripcion": "MIR 2025 — versión final pública (hoja MIR25)"
+    },
+    "POA_2025_Final": {
+        "path": DATA_NUEVOS_DIR / "POA_2025_FinalPúblico.xlsx",
         "type": "excel",
         "extractor": "poa",
         "programa": "G005",
         "anio": 2025,
-        "descripcion": "Programa Operativo Anual 2025 (datos mensuales por estado)"
+        "descripcion": "POA 2025 — versión final pública (ene-dic completo)"
     },
-    "MIR_G005_2025": {
-        "path": DATA_INPUT_DIR / "MIR_G005_2025.xlsx",
+    "POA_2026_feb": {
+        "path": DATA_NUEVOS_DIR / "POA_2026_feb.xlsx",
         "type": "excel",
-        "extractor": "mir",
+        "extractor": "poa",
         "programa": "G005",
-        "anio": 2025,
-        "descripcion": "Matriz de Indicadores para Resultados G005 2025"
+        "anio": 2026,
+        "descripcion": "POA 2026 — corte febrero (ene-feb con avance)"
     },
+    # ── Originales que siguen vigentes ──
     "FiME_2026": {
         "path": DATA_INPUT_DIR / "FiME 2026 PFPA.xlsx",
         "type": "excel",

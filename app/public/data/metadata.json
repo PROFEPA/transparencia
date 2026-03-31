@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "fecha_extraccion": "2026-02-11T13:54:25.853782",
-  "total_indicadores": 66,
-  "total_observaciones": 6753,
+  "fecha_extraccion": "2026-03-31T10:24:57.873638",
+  "total_indicadores": 51,
+  "total_observaciones": 12185,
   "programas": [
-    "G005",
-    "G014"
+    "G014",
+    "G005"
   ],
   "anios": [
     2025,
@@ -13,20 +13,28 @@
   ],
   "fuentes_procesadas": [
     {
-      "nombre": "POA_2025",
-      "archivo": "POA_2025.xlsx",
+      "nombre": "MIR_2025_Final",
+      "archivo": "MIR_2025_FinalPúblico.xlsx",
       "tipo": "excel",
       "programa": "G005",
       "anio": 2025,
-      "descripcion": "Programa Operativo Anual 2025 (datos mensuales por estado)"
+      "descripcion": "MIR 2025 — versión final pública (hoja MIR25)"
     },
     {
-      "nombre": "MIR_G005_2025",
-      "archivo": "MIR_G005_2025.xlsx",
+      "nombre": "POA_2025_Final",
+      "archivo": "POA_2025_FinalPúblico.xlsx",
       "tipo": "excel",
       "programa": "G005",
       "anio": 2025,
-      "descripcion": "Matriz de Indicadores para Resultados G005 2025"
+      "descripcion": "POA 2025 — versión final pública (ene-dic completo)"
+    },
+    {
+      "nombre": "POA_2026_feb",
+      "archivo": "POA_2026_feb.xlsx",
+      "tipo": "excel",
+      "programa": "G005",
+      "anio": 2026,
+      "descripcion": "POA 2026 — corte febrero (ene-feb con avance)"
     },
     {
       "nombre": "FiME_2026",
@@ -34,7 +42,7 @@
       "tipo": "excel",
       "programa": "G014",
       "anio": 2026,
-      "descripcion": "Ficha de Monitoreo Estratégico 2026"
+      "descripcion": "Ficha de Indicadores de Monitoreo y Evaluación 2026"
     },
     {
       "nombre": "G014_Auditoria",
@@ -42,7 +50,7 @@
       "tipo": "docx",
       "programa": "G014",
       "anio": 2026,
-      "descripcion": "Documentación narrativa de los programas Presupuestarios G005 y C014"
+      "descripcion": "Documentación narrativa del programa G014 para Auditoría"
     }
   ]
 }

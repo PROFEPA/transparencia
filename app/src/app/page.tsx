@@ -49,31 +49,28 @@ export default function HomePage() {
   const ind2025 = indicators.filter(i => i.anio === 2025);
   const ind2026 = indicators.filter(i => i.anio === 2026);
 
-  // Datos para gráfica por programa (hardcoded)
-  const programaData = [
-    { name: 'G005', value: 21 },
-    { name: 'G014', value: 6 }
-  ];
+  // Datos dinámicos para gráficas
+  const programaData = (() => {
+    const counts: Record<string, number> = {};
+    indicators.forEach(i => { counts[i.programa] = (counts[i.programa] || 0) + 1; });
+    return Object.entries(counts).map(([name, value]) => ({ name, value }));
+  })();
 
-  // Datos para gráfica por nivel MIR 2025 (hardcoded)
-  const nivelData = [
-    { name: 'Actividad', value: 11 },
-    { name: 'Fin', value: 1 },
-    { name: 'Propósito', value: 5 },
-    { name: 'Componente', value: 4 }
-  ];
+  const nivelData = (() => {
+    const counts: Record<string, number> = {};
+    ind2025.forEach(i => { if (i.nivel) counts[i.nivel] = (counts[i.nivel] || 0) + 1; });
+    return Object.entries(counts).map(([name, value]) => ({ name, value }));
+  })();
 
-  // Datos para gráfica por nivel FiME 2026 (hardcoded - sin Fin)
-  const nivelFimeData = [
-    { name: 'Actividad', value: 1 },
-    { name: 'Propósito', value: 1 },
-    { name: 'Componente', value: 4 }
-  ];
+  const nivelFimeData = (() => {
+    const counts: Record<string, number> = {};
+    ind2026.forEach(i => { if (i.nivel) counts[i.nivel] = (counts[i.nivel] || 0) + 1; });
+    return Object.entries(counts).map(([name, value]) => ({ name, value }));
+  })();
 
-  // Datos para gráfica por año (hardcoded)
   const anioData = [
-    { name: '2025', indicadores: 21, color: '#235B4E', label: 'MIR' },
-    { name: '2026', indicadores: 6, color: '#BC955C', label: 'FiME' }
+    { name: '2025', indicadores: ind2025.length, color: '#235B4E', label: 'POA/MIR' },
+    { name: '2026', indicadores: ind2026.length, color: '#BC955C', label: 'POA/FiME' }
   ];
 
   return (
@@ -108,19 +105,19 @@ export default function HomePage() {
             {!loading && (
               <div className="grid grid-cols-2 gap-4">
                 <div className="bg-white/10 backdrop-blur rounded-xl p-6 text-center">
-                  <div className="text-4xl md:text-5xl font-bold">21</div>
+                  <div className="text-4xl md:text-5xl font-bold">{indicators.length}</div>
                   <div className="text-white/80 mt-1">Indicadores</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur rounded-xl p-6 text-center">
-                  <div className="text-4xl md:text-5xl font-bold">592</div>
+                  <div className="text-4xl md:text-5xl font-bold">{observations.length.toLocaleString()}</div>
                   <div className="text-white/80 mt-1">Registros</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur rounded-xl p-6 text-center">
-                  <div className="text-4xl md:text-5xl font-bold">2</div>
+                  <div className="text-4xl md:text-5xl font-bold">{new Set(indicators.map(i => i.programa)).size}</div>
                   <div className="text-white/80 mt-1">Programas</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur rounded-xl p-6 text-center">
-                  <div className="text-4xl md:text-5xl font-bold">4</div>
+                  <div className="text-4xl md:text-5xl font-bold">{metadata?.fuentes_procesadas?.length || 0}</div>
                   <div className="text-white/80 mt-1">Fuentes</div>
                 </div>
               </div>
@@ -335,8 +332,8 @@ export default function HomePage() {
               </div>
               <h3 className="font-bold text-xl mb-2">Indicadores 2025</h3>
               <p className="text-gray-600 mb-4">
-                Programa Operativo Anual y Matriz de Indicadores para Resultados 
-                del ejercicio fiscal 2025.
+                Programa Operativo Anual (datos mensuales por estado) y Matriz de Indicadores 
+                para Resultados del ejercicio fiscal 2025.
               </p>
               <div className="flex items-center justify-between">
                 <div className="flex items-center text-gob-green-500 font-medium">
@@ -352,15 +349,15 @@ export default function HomePage() {
             <Link href="/indicadores?anio=2026" className="card-hover group relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-gob-gold-500/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
               <div className="flex items-center justify-between mb-4">
-                <span className="badge-gob">FiME</span>
+                <span className="badge-gob">POA / FiME</span>
                 <span className="text-4xl font-bold text-gob-gold-600 group-hover:text-gob-gold-700">
                   2026
                 </span>
               </div>
               <h3 className="font-bold text-xl mb-2">Indicadores 2026</h3>
               <p className="text-gray-600 mb-4">
-                Ficha de Indicadores de Monitoreo y Evaluación del ejercicio 
-                fiscal 2026.
+                Programa Operativo Anual (corte febrero) y Ficha de Indicadores 
+                de Monitoreo y Evaluación del ejercicio fiscal 2026.
               </p>
               <div className="flex items-center justify-between">
                 <div className="flex items-center text-gob-gold-600 font-medium">
@@ -369,7 +366,7 @@ export default function HomePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </div>
-                <div className="text-sm text-gray-400">G014</div>
+                <div className="text-sm text-gray-400">G005 / G014</div>
               </div>
             </Link>
           </div>
@@ -384,15 +381,18 @@ export default function HomePage() {
             <p className="section-subtitle text-center">Algunos indicadores clave de la gestión ambiental</p>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {indicators.filter(ind => [
-                'Porcentaje de denuncias populares en materia ambiental concluidas.',
-                'Porcentaje de certificados y reconocimientos ambientales emitidos',
-                'Porcentaje de inspecciones realizadas en materia de recursos naturales',
-                'Porcentaje de operativos realizados en materia de recursos naturales',
-                'Porcentaje de comités de vigilancia ambiental participativa en operación',
-                'Porcentaje de recorridos de vigilancia realizados en materia de recursos naturales',
-                'Porcentaje de acciones de Inspección y verificación realizadas sobre la cuales la PROFEPA tiene competencia como autoridad, conforme a las prioridades de la estrategia establecida en materia de inspección industrial.'
-              ].includes(ind.nombre)).map((ind, i) => (
+              {indicators.filter(ind => {
+                const highlightNames = [
+                  'Porcentaje de denuncias populares en materia ambiental concluidas',
+                  'Porcentaje de certificados y reconocimientos ambientales emitidos',
+                  'Porcentaje de inspecciones realizadas en materia de recursos naturales',
+                  'Porcentaje de operativos realizados en materia de recursos naturales',
+                  'Porcentaje de comités de vigilancia ambiental participativa en operación',
+                  'Porcentaje de recorridos de vigilancia realizados en materia de recursos naturales',
+                  'Porcentaje de acciones de Inspección y verificación realizadas sobre la cuales',
+                ];
+                return highlightNames.some(h => ind.nombre.startsWith(h));
+              }).map((ind, i) => (
                 <Link key={ind.id} href={`/indicadores/${ind.id}`} className="card hover:shadow-lg transition-all group">
                   <div className="flex items-center gap-2 mb-3">
                     <span className="badge-gob">{ind.programa}</span>

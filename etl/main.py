@@ -17,7 +17,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from config import SOURCE_FILES, DATA_OUTPUT_DIR, EXTRACTION_CONFIG
 from models import Indicator, Observation, DataQualityReport, STANDARD_DATA_DICTIONARY
-from extractors.excel_extractor import MIRFiMEExtractor, POAExtractor
+from extractors.excel_extractor import MIRFiMEExtractor, POAExtractor, MIR25Extractor
 from extractors.docx_extractor import extract_from_docx
 
 
@@ -99,6 +99,8 @@ class ETLPipeline:
                 extractor_type = config.get("extractor", "auto")
                 if extractor_type == "poa":
                     extractor = POAExtractor(file_path, config)
+                elif extractor_type == "mir25":
+                    extractor = MIR25Extractor(file_path, config)
                 elif extractor_type == "mir":
                     extractor = MIRFiMEExtractor(file_path, config)
                 else:
@@ -127,24 +129,117 @@ class ETLPipeline:
             logger.error(f"  Error: {str(e)}")
     
     def _deduplicate_indicators(self):
-        """Elimina indicadores duplicados manteniendo el más completo."""
+        """Elimina indicadores duplicados manteniendo el más completo.
+        
+        Dos indicadores se consideran duplicados si tienen el mismo año
+        y un nombre normalizado similar (>85% del texto coincide).
+        Cuando se fusionan, se redirigen las observaciones del duplicado
+        al indicador maestro.
+        """
         logger.info("\nDeduplicando indicadores...")
-        
-        unique_indicators: Dict[str, Indicator] = {}
-        
-        for ind in self.all_indicators:
-            if ind.id not in unique_indicators:
-                unique_indicators[ind.id] = ind
-            else:
-                # Mantener el más completo
-                existing = unique_indicators[ind.id]
-                if self._indicator_completeness(ind) > self._indicator_completeness(existing):
-                    unique_indicators[ind.id] = ind
-        
         original_count = len(self.all_indicators)
+
+        # Paso 1: agrupar por (nombre_normalizado, año)
+        import re as _re
+        from slugify import slugify
+
+        def _norm_name(name: str) -> str:
+            """Normaliza agresivamente el nombre para matching."""
+            s = name.lower().strip()
+            # Colapsar espacios múltiples
+            s = _re.sub(r'\s+', ' ', s)
+            # Quitar puntuación final
+            s = s.rstrip('.,:;')
+            # Quitar palabras de relleno que varían entre fuentes
+            s = s.replace(' de ', ' ').replace(' del ', ' ').replace(' las ', ' ').replace(' los ', ' ').replace(' la ', ' ')
+            s = _re.sub(r'\s+', ' ', s).strip()
+            # Slug con max 50 chars para ignorar diferencias en cola
+            return slugify(s[:50], lowercase=True)
+
+        def _is_garbage(ind: Indicator) -> bool:
+            """Detecta indicadores basura extraídos de docx."""
+            n = ind.nombre.strip().lower()
+            # Fórmulas o fragmentos de texto que no son indicadores
+            if n.startswith(('i1 ', 'mide ', 'nombre del indicador')):
+                return True
+            # Muy corto y sin 'porcentaje'/'número'/'acciones'
+            if len(n) < 20 and not any(kw in n for kw in ('porcentaje', 'número', 'acciones')):
+                return True
+            return False
+
+        # Filtrar basura
+        clean_indicators = []
+        garbage_count = 0
+        for ind in self.all_indicators:
+            if _is_garbage(ind):
+                garbage_count += 1
+                logger.info(f"  Descartado (basura): {ind.nombre[:60]}")
+            else:
+                clean_indicators.append(ind)
+        self.all_indicators = clean_indicators
+
+        groups: Dict[str, List[Indicator]] = {}
+        # Equivalencias conocidas: indicadores que son iguales pero con nombre
+        # ligeramente distinto entre fuentes oficiales
+        _KNOWN_EQUIV = {
+            "porcentaje-personas-contactadas-en-jornadas-ambien": "porcentaje-personas-contactadas-en-jornadas-bienes",
+            "porcentaje-anp-con-acciones-inspeccion-operativos": "porcentaje-areas-naturales-protegidas-con-acciones",
+            "acciones-difusion-para-promocion-y-participacion-c": "porcentaje-acciones-difusion-para-promocion-y-part",
+            "porcentaje-municipios-y-alcaldias-cubiertos-con-ac": "porcentaje-municipios-y-alcaldias-con-acciones-ins",
+        }
+        for ind in self.all_indicators:
+            norm = _norm_name(ind.nombre)
+            norm = _KNOWN_EQUIV.get(norm, norm)
+            key = f"{norm}|{ind.anio}"
+            groups.setdefault(key, []).append(ind)
+
+        # Paso 2: elegir el maestro de cada grupo y redirigir observaciones
+        unique_indicators: Dict[str, Indicator] = {}
+        id_redirect: Dict[str, str] = {}  # old_id -> master_id
+
+        # Prioridad de fuente: MIR/FiME > docx > POA
+        def _source_priority(ind: Indicator) -> int:
+            f = ind.fuente.lower()
+            if "mir" in f or "fime" in f:
+                return 3
+            if ".docx" in f:
+                return 2
+            return 1
+
+        for key, group in groups.items():
+            # Ordenar: mayor prioridad de fuente, luego mayor completitud
+            group.sort(key=lambda i: (_source_priority(i), self._indicator_completeness(i)), reverse=True)
+            master = group[0]
+
+            # Enriquecer maestro con campos faltantes de los demás
+            for other in group[1:]:
+                if not master.definicion and other.definicion:
+                    master.definicion = other.definicion
+                if not master.metodo_calculo and other.metodo_calculo:
+                    master.metodo_calculo = other.metodo_calculo
+                if not master.unidad_medida and other.unidad_medida:
+                    master.unidad_medida = other.unidad_medida
+                if not master.nivel and other.nivel:
+                    master.nivel = other.nivel
+                # Registrar redirección
+                if other.id != master.id:
+                    id_redirect[other.id] = master.id
+
+            unique_indicators[master.id] = master
+
+        # Paso 3: redirigir observaciones
+        if id_redirect:
+            redirected = 0
+            for obs in self.all_observations:
+                if obs.indicator_id in id_redirect:
+                    obs.indicator_id = id_redirect[obs.indicator_id]
+                    redirected += 1
+            logger.info(f"  Observaciones redirigidas: {redirected}")
+
         self.all_indicators = list(unique_indicators.values())
         logger.info(f"  Indicadores originales: {original_count}")
         logger.info(f"  Indicadores únicos: {len(self.all_indicators)}")
+        logger.info(f"  Duplicados fusionados: {original_count - len(self.all_indicators)}")
     
     def _indicator_completeness(self, ind: Indicator) -> int:
         """Calcula un score de completitud del indicador."""

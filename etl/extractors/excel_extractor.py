@@ -240,9 +240,14 @@ class POAExtractor:
     def extract(self) -> Tuple[List[Indicator], List[Observation], DataQualityReport]:
         try:
             xl = pd.ExcelFile(self.file_path)
+            processed = False
             for sheet_name in xl.sheet_names:
-                if "Avance" in sheet_name:
+                if "Avance" in sheet_name or "POA" in sheet_name.upper():
                     self._process_poa_sheet(xl, sheet_name)
+                    processed = True
+                    break  # solo procesar la primera hoja POA/Avance
+            if not processed:
+                logger.warning(f"POA: No se encontró hoja Avance/POA en {self.file_path}")
         except Exception as e:
             logger.error(f"Error procesando POA {self.file_path}: {e}")
             self.quality_report.add_error(str(e))
@@ -259,6 +264,7 @@ class POAExtractor:
         unidad_col = self._find_col(df, ["Unidad de medida", "Unidad"])
         state_col = self._find_col(df, [
             "Oficina de Representación", "Oficina de Representacion",
+            "Oficina Responsable",
             "Entidad", "Estado",
         ])
 
@@ -277,18 +283,28 @@ class POAExtractor:
 
         indicadores_unicos = df[[id_col, denom_col]].drop_duplicates().dropna(subset=[id_col])
 
+        # Consolidar indicadores con mismo ID pero nombres ligeramente distintos
+        # (ej. CORPA.01 con typo "Procentaje" vs "Porcentaje")
+        id_to_name = {}
         for _, urow in indicadores_unicos.iterrows():
             ind_code = str(urow[id_col]).strip()
             ind_nombre = str(urow[denom_col]).strip()
-
             if not ind_code or ind_code == "nan":
                 continue
+            if ind_code not in id_to_name:
+                id_to_name[ind_code] = ind_nombre
+            else:
+                # Preferir el nombre más largo / sin typos
+                if len(ind_nombre) > len(id_to_name[ind_code]):
+                    id_to_name[ind_code] = ind_nombre
+
+        for ind_code, ind_nombre in id_to_name.items():
 
             full_id = self._generate_id(ind_code, ind_nombre)
 
             unidad = None
             if unidad_col:
-                unidad_vals = df.loc[df[id_col] == urow[id_col], unidad_col].dropna()
+                unidad_vals = df.loc[df[id_col] == ind_code, unidad_col].dropna()
                 if len(unidad_vals) > 0:
                     unidad = str(unidad_vals.iloc[0]).strip()
 
@@ -308,7 +324,7 @@ class POAExtractor:
             self.indicators.append(indicator)
             self.quality_report.filas_validas += 1
 
-            ind_data = df[df[id_col] == urow[id_col]]
+            ind_data = df[df[id_col] == ind_code]
             anio = self.config.get("anio", 2025)
 
             # ---- Observaciones Nacional (suma de todos los estados) ----
@@ -406,15 +422,181 @@ class POAExtractor:
         return None
 
     def _detect_month_columns(self, df: pd.DataFrame) -> List[Tuple[str, str]]:
-        """Detecta pares (Programada, Alcanzada) en orden de columnas."""
+        """Detecta pares (Programada, Alcanzada) en orden de columnas.
+        Solo devuelve los primeros 12 pares (meses); el par 13, si existe,
+        suele ser 'Avance del periodo' y se excluye."""
         prog_cols = [c for c in df.columns if str(c).lower().startswith("programada")]
         alc_cols = [c for c in df.columns if str(c).lower().startswith("alcanzada")]
-        return list(zip(prog_cols, alc_cols))
+        pairs = list(zip(prog_cols, alc_cols))
+        # Máximo 12 meses
+        return pairs[:12]
 
     def _generate_id(self, code: str, nombre: str) -> str:
         prog = self.config.get("programa", "").lower()
         anio = self.config.get("anio", 2025)
         base = slugify(f"{code}-{nombre[:40]}", lowercase=True, separator="-")
+        return f"{base}-{prog}-{anio}"
+
+
+# ---------------------------------------------------------------------------
+# MIR 2025 Extractor (formato tabla simple — hoja "MIR25")
+# ---------------------------------------------------------------------------
+class MIR25Extractor:
+    """
+    Extractor para el formato MIR simplificado (tabla resumen).
+    Columnas esperadas (header en fila 1):
+      [0] N°
+      [1] Nombre Indicador
+      [2] Oficina Responsable
+      [3] Nivel MIR
+      [4] META Porcentaje    [5] META Numerador    [6] META Denominador
+      [7] AVANCE Porcentaje  [8] AVANCE Numerador  [9] AVANCE Denominador
+      [10] Porcentaje de Cumplimiento
+    """
+
+    def __init__(self, file_path: Path, source_config: dict):
+        self.file_path = file_path
+        self.config = source_config
+        self.indicators: List[Indicator] = []
+        self.observations: List[Observation] = []
+        self.quality_report = DataQualityReport(
+            archivo_fuente=str(file_path),
+            fecha_extraccion=datetime.now().isoformat()
+        )
+
+    def extract(self) -> Tuple[List[Indicator], List[Observation], DataQualityReport]:
+        try:
+            xl = pd.ExcelFile(self.file_path)
+            for sheet_name in xl.sheet_names:
+                if "MIR" in sheet_name.upper() and "2014" not in sheet_name:
+                    self._process_sheet(xl, sheet_name)
+        except Exception as e:
+            logger.error(f"Error procesando MIR25 {self.file_path}: {e}")
+            self.quality_report.add_error(str(e))
+        return self.indicators, self.observations, self.quality_report
+
+    def _process_sheet(self, xl: pd.ExcelFile, sheet_name: str):
+        df = pd.read_excel(xl, sheet_name=sheet_name, header=None)
+        logger.info(f"Procesando MIR25 hoja '{sheet_name}' ({len(df)} filas, {df.shape[1]} cols)")
+
+        if df.shape[1] < 11:
+            logger.warning(f"  Hoja '{sheet_name}' tiene pocas columnas ({df.shape[1]}), se omite")
+            return
+
+        # Detectar fila de encabezado (buscar "N°" o "Nombre Indicador")
+        header_row = None
+        for r in range(min(5, len(df))):
+            val = str(df.iloc[r, 0]).strip()
+            if val in ("N°", "No.", "N"):
+                header_row = r
+                break
+            val1 = str(df.iloc[r, 1]).strip().lower()
+            if "nombre" in val1 and "indicador" in val1:
+                header_row = r
+                break
+        if header_row is None:
+            header_row = 1  # default
+
+        data_start = header_row + 1
+        anio = self.config.get("anio", 2025)
+        programa = self.config.get("programa", "G005")
+        seen_ids = set()
+
+        for idx in range(data_start, len(df)):
+            row = df.iloc[idx]
+
+            # Nombre del indicador (col 1)
+            nombre = self._cell_str(row, 1)
+            if not nombre or len(nombre) < 10:
+                continue
+
+            nivel = self._cell_str(row, 3)
+            oficina = self._cell_str(row, 2)
+
+            # Valores de meta y avance (pueden ser ratios 0-1 o porcentajes)
+            meta_pct = self._parse_numeric(row.iloc[4])
+            meta_num = self._parse_numeric(row.iloc[5])
+            meta_den = self._parse_numeric(row.iloc[6])
+            avance_pct = self._parse_numeric(row.iloc[7])
+            avance_num = self._parse_numeric(row.iloc[8])
+            avance_den = self._parse_numeric(row.iloc[9])
+            cumplimiento = self._parse_numeric(row.iloc[10])
+
+            # Convertir ratios a porcentajes si están en rango 0-2
+            if meta_pct is not None and meta_pct <= 2:
+                meta_pct = round(meta_pct * 100, 4)
+            if avance_pct is not None and avance_pct <= 2:
+                avance_pct = round(avance_pct * 100, 4)
+            if cumplimiento is not None and cumplimiento <= 5:
+                cumplimiento = round(cumplimiento * 100, 4)
+
+            indicator_id = self._generate_id(nombre)
+            if indicator_id in seen_ids:
+                continue
+            seen_ids.add(indicator_id)
+
+            # Construir método de cálculo a partir de numerador/denominador
+            metodo = None
+            if meta_num is not None and meta_den is not None:
+                metodo = f"(Numerador / Denominador) × 100. Meta: {meta_num} / {meta_den}"
+
+            indicator = Indicator(
+                id=indicator_id,
+                nombre=nombre[:200],
+                programa=programa,
+                anio=anio,
+                fuente=f"{self.file_path.name} - {sheet_name}",
+                definicion=None,
+                metodo_calculo=metodo,
+                unidad_medida="Porcentaje",
+                nivel=nivel if nivel in NIVELES_MIR else None,
+                notas=f"Oficina: {oficina}" if oficina else None,
+                ultima_actualizacion=datetime.now().strftime("%Y-%m-%d")
+            )
+            self.indicators.append(indicator)
+            self.quality_report.filas_validas += 1
+
+            logger.info(f"  [{nivel}] {nombre[:55]}... Meta={meta_pct}%, Avance={avance_pct}%")
+
+            # Observación anual
+            obs = Observation(
+                indicator_id=indicator_id,
+                periodo=str(anio),
+                valor=avance_pct,
+                meta=meta_pct,
+                avance_porcentual=cumplimiento,
+                entidad="Nacional",
+                categoria=nivel,
+                fuente_detalle=f"{self.file_path.name} - {sheet_name}"
+            )
+            self.observations.append(obs)
+
+    def _cell_str(self, row, col_idx: int) -> str:
+        try:
+            val = row.iloc[col_idx]
+        except IndexError:
+            return ""
+        if pd.isna(val):
+            return ""
+        return str(val).strip()
+
+    def _parse_numeric(self, val) -> Optional[float]:
+        if pd.isna(val):
+            return None
+        if isinstance(val, (int, float)):
+            return None if np.isnan(val) else float(val)
+        try:
+            cleaned = str(val).replace(",", "").replace("%", "").strip()
+            if cleaned.upper() in ("", "N/A", "N/D", "-"):
+                return None
+            return float(cleaned)
+        except (ValueError, TypeError):
+            return None
+
+    def _generate_id(self, nombre: str) -> str:
+        prog = self.config.get("programa", "").lower()
+        anio = self.config.get("anio", 2025)
+        base = slugify(nombre[:60], lowercase=True, separator="-")
         return f"{base}-{prog}-{anio}"
 
 
