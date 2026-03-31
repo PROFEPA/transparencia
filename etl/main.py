@@ -18,7 +18,6 @@ sys.path.insert(0, str(Path(__file__).parent))
 from config import SOURCE_FILES, DATA_OUTPUT_DIR, EXTRACTION_CONFIG
 from models import Indicator, Observation, DataQualityReport, STANDARD_DATA_DICTIONARY
 from extractors.excel_extractor import MIRFiMEExtractor, POAExtractor, MIR25Extractor
-from extractors.docx_extractor import extract_from_docx
 
 
 logging.basicConfig(
@@ -119,11 +118,7 @@ class ETLPipeline:
                 logger.info(f"  Observaciones extraídas: {len(observations)}")
                 
             elif file_type == "docx":
-                indicators, narrative, report = extract_from_docx(file_path, config)
-                self.all_indicators.extend(indicators)
-                self.narrative_content.update(narrative)
-                self.all_reports.append(report)
-                logger.info(f"  Indicadores extraídos: {len(indicators)}")
+                logger.info(f"  Tipo docx ignorado — solo se procesan Excels")
             
         except Exception as e:
             logger.error(f"  Error: {str(e)}")
@@ -156,28 +151,6 @@ class ETLPipeline:
             # Slug con max 50 chars para ignorar diferencias en cola
             return slugify(s[:50], lowercase=True)
 
-        def _is_garbage(ind: Indicator) -> bool:
-            """Detecta indicadores basura extraídos de docx."""
-            n = ind.nombre.strip().lower()
-            # Fórmulas o fragmentos de texto que no son indicadores
-            if n.startswith(('i1 ', 'mide ', 'nombre del indicador')):
-                return True
-            # Muy corto y sin 'porcentaje'/'número'/'acciones'
-            if len(n) < 20 and not any(kw in n for kw in ('porcentaje', 'número', 'acciones')):
-                return True
-            return False
-
-        # Filtrar basura
-        clean_indicators = []
-        garbage_count = 0
-        for ind in self.all_indicators:
-            if _is_garbage(ind):
-                garbage_count += 1
-                logger.info(f"  Descartado (basura): {ind.nombre[:60]}")
-            else:
-                clean_indicators.append(ind)
-        self.all_indicators = clean_indicators
-
         groups: Dict[str, List[Indicator]] = {}
         # Equivalencias conocidas: indicadores que son iguales pero con nombre
         # ligeramente distinto entre fuentes oficiales
@@ -197,13 +170,11 @@ class ETLPipeline:
         unique_indicators: Dict[str, Indicator] = {}
         id_redirect: Dict[str, str] = {}  # old_id -> master_id
 
-        # Prioridad de fuente: MIR/FiME > docx > POA
+        # Prioridad de fuente: MIR > POA
         def _source_priority(ind: Indicator) -> int:
             f = ind.fuente.lower()
-            if "mir" in f or "fime" in f:
+            if "mir" in f:
                 return 3
-            if ".docx" in f:
-                return 2
             return 1
 
         for key, group in groups.items():

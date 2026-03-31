@@ -1,10 +1,9 @@
 {
   "version": "1.0.0",
-  "fecha_extraccion": "2026-03-31T10:24:57.873638",
-  "total_indicadores": 51,
-  "total_observaciones": 12185,
+  "fecha_extraccion": "2026-03-31T10:39:00.511490",
+  "total_indicadores": 49,
+  "total_observaciones": 12175,
   "programas": [
-    "G014",
     "G005"
   ],
   "anios": [
@@ -35,22 +34,6 @@
       "programa": "G005",
       "anio": 2026,
       "descripcion": "POA 2026 — corte febrero (ene-feb con avance)"
-    },
-    {
-      "nombre": "FiME_2026",
-      "archivo": "FiME 2026 PFPA.xlsx",
-      "tipo": "excel",
-      "programa": "G014",
-      "anio": 2026,
-      "descripcion": "Ficha de Indicadores de Monitoreo y Evaluación 2026"
-    },
-    {
-      "nombre": "G014_Auditoria",
-      "archivo": "G014 para Auditoría.docx",
-      "tipo": "docx",
-      "programa": "G014",
-      "anio": 2026,
-      "descripcion": "Documentación narrativa del programa G014 para Auditoría"
     }
   ]
 }

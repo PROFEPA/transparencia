@@ -37,22 +37,6 @@ SOURCE_FILES = {
         "programa": "G005",
         "anio": 2026,
         "descripcion": "POA 2026 — corte febrero (ene-feb con avance)"
-    },
-    # ── Originales que siguen vigentes ──
-    "FiME_2026": {
-        "path": DATA_INPUT_DIR / "FiME 2026 PFPA.xlsx",
-        "type": "excel",
-        "extractor": "mir",
-        "programa": "G014",
-        "anio": 2026,
-        "descripcion": "Ficha de Indicadores de Monitoreo y Evaluación 2026"
-    },
-    "G014_Auditoria": {
-        "path": DATA_INPUT_DIR / "G014 para Auditoría.docx",
-        "type": "docx",
-        "programa": "G014",
-        "anio": 2026,
-        "descripcion": "Documentación narrativa del programa G014 para Auditoría"
     }
 }
 

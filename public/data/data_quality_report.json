@@ -1,24 +1,24 @@
 {
-  "fecha_generacion": "2026-03-31T10:24:58.235185",
+  "fecha_generacion": "2026-03-31T10:39:00.872019",
   "resumen": {
     "total_filas_leidas": 0,
-    "total_filas_validas": 90,
+    "total_filas_validas": 69,
     "total_filas_descartadas": 0,
-    "porcentaje_validas": 9000.0,
-    "total_indicadores": 51,
-    "total_observaciones": 12185
+    "porcentaje_validas": 6900.0,
+    "total_indicadores": 49,
+    "total_observaciones": 12175
   },
   "completitud_indicadores": {
-    "con_definicion": 23.53,
-    "con_metodo_calculo": 64.71,
-    "con_unidad_medida": 64.71,
+    "con_definicion": 0.0,
+    "con_metodo_calculo": 42.86,
+    "con_unidad_medida": 42.86,
     "con_nivel": 100.0,
-    "con_observaciones": 98.04
+    "con_observaciones": 100.0
   },
   "por_archivo": [
     {
       "archivo_fuente": "/home/profepa/transparencia/Documents/Nuevos/MIR_2025_FinalPúblico.xlsx",
-      "fecha_extraccion": "2026-03-31T10:24:49.541254",
+      "fecha_extraccion": "2026-03-31T10:38:52.383424",
       "filas_leidas": 0,
       "filas_validas": 21,
       "filas_descartadas": 0,
@@ -28,7 +28,7 @@
     },
     {
       "archivo_fuente": "/home/profepa/transparencia/Documents/Nuevos/POA_2025_FinalPúblico.xlsx",
-      "fecha_extraccion": "2026-03-31T10:24:49.741262",
+      "fecha_extraccion": "2026-03-31T10:38:52.583293",
       "filas_leidas": 0,
       "filas_validas": 24,
       "filas_descartadas": 0,
@@ -38,29 +38,9 @@
     },
     {
       "archivo_fuente": "/home/profepa/transparencia/Documents/Nuevos/POA_2026_feb.xlsx",
-      "fecha_extraccion": "2026-03-31T10:24:53.462046",
+      "fecha_extraccion": "2026-03-31T10:38:56.290132",
       "filas_leidas": 0,
       "filas_validas": 24,
-      "filas_descartadas": 0,
-      "campos_faltantes": {},
-      "errores": [],
-      "advertencias": []
-    },
-    {
-      "archivo_fuente": "/home/profepa/transparencia/Documents/FiME 2026 PFPA.xlsx",
-      "fecha_extraccion": "2026-03-31T10:24:57.068789",
-      "filas_leidas": 0,
-      "filas_validas": 10,
-      "filas_descartadas": 0,
-      "campos_faltantes": {},
-      "errores": [],
-      "advertencias": []
-    },
-    {
-      "archivo_fuente": "/home/profepa/transparencia/Documents/G014 para Auditoría.docx",
-      "fecha_extraccion": "2026-03-31T10:24:57.121309",
-      "filas_leidas": 0,
-      "filas_validas": 11,
       "filas_descartadas": 0,
       "campos_faltantes": {},
       "errores": [],
