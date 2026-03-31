@@ -362,8 +362,7 @@ export default function HomePage() {
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <FadeSection delay={0.1}>
-              <Link href="/indicadores?anio=2025" className="card-hover group relative overflow-hidden">
-                <img src="/picture/profepa_logo.jpg" alt="" className="absolute top-4 right-4 w-16 h-16 object-contain opacity-[0.06] group-hover:opacity-[0.12] transition-opacity pointer-events-none" />
+              <Link href="/indicadores?anio=2025" className="block bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-lg hover:border-gob-green-200 hover:-translate-y-1 transition-all duration-300 group">
                 <div className="flex items-center justify-between mb-4">
                   <span className="badge-gob">POA / MIR</span>
                   <span className="text-4xl font-bold text-gob-green-500 group-hover:text-gob-green-600 transition-colors">
@@ -388,8 +387,7 @@ export default function HomePage() {
             </FadeSection>
 
             <FadeSection delay={0.25}>
-              <Link href="/indicadores?anio=2026" className="card-hover group relative overflow-hidden">
-                <img src="/picture/profepa_logo.jpg" alt="" className="absolute top-4 right-4 w-16 h-16 object-contain opacity-[0.06] group-hover:opacity-[0.12] transition-opacity pointer-events-none" />
+              <Link href="/indicadores?anio=2026" className="block bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-lg hover:border-gob-gold-200 hover:-translate-y-1 transition-all duration-300 group">
                 <div className="flex items-center justify-between mb-4">
                   <span className="badge-gob">POA / FiME</span>
                   <span className="text-4xl font-bold text-gob-gold-600 group-hover:text-gob-gold-700 transition-colors">
