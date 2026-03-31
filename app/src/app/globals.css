@@ -2,210 +2,268 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Estilos base */
+/* ═══════════════════════════════════════════════════════════════
+   PROFEPA Transparency Dashboard — Modern Design System
+   ═══════════════════════════════════════════════════════════════ */
+
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  
+
   body {
-    @apply text-gray-900 bg-gray-50;
+    @apply text-gray-900 bg-[#fafbfc];
+    overflow-x: hidden;
   }
-  
-  /* Mejoras de accesibilidad */
+
   :focus-visible {
     @apply outline-2 outline-offset-2 outline-gob-green-500;
   }
-  
-  /* Estilos de selección */
+
   ::selection {
-    @apply bg-gob-green-500 text-white;
+    @apply bg-gob-green-500/20 text-gob-green-700;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
   }
 }
 
-/* Componentes reutilizables */
 @layer components {
-  /* Tarjetas */
   .card {
-    @apply bg-white rounded-lg shadow-md p-6 border border-gray-100;
+    @apply bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm p-6 border border-white/60;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  
+
   .card-hover {
-    @apply card transition-all duration-200 hover:shadow-lg hover:border-gob-green-200;
+    @apply card;
   }
-  
-  /* Botones */
+  .card-hover:hover {
+    @apply shadow-xl shadow-gob-green-500/5 border-gob-green-200/60;
+    transform: translateY(-4px);
+  }
+
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl;
+  }
+
+  .glass-dark {
+    @apply bg-black/10 backdrop-blur-md border border-white/10 rounded-2xl;
+  }
+
   .btn {
-    @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold text-sm tracking-wide transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2;
   }
-  
+
   .btn-primary {
-    @apply btn bg-gob-green-500 text-white hover:bg-gob-green-600 focus:ring-gob-green-500;
+    @apply btn bg-gob-green-500 text-white hover:bg-gob-green-600 focus:ring-gob-green-500 hover:shadow-lg hover:shadow-gob-green-500/25;
+    transform: translateY(0);
   }
-  
+  .btn-primary:hover {
+    transform: translateY(-2px);
+  }
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
   .btn-secondary {
-    @apply btn bg-white text-gob-green-500 border-2 border-gob-green-500 hover:bg-gob-green-50 focus:ring-gob-green-500;
+    @apply btn bg-white/10 text-white border-2 border-white/30 hover:bg-white/20 focus:ring-white/50 backdrop-blur-sm;
   }
-  
+
   .btn-outline {
-    @apply btn bg-transparent text-gray-700 border border-gray-300 hover:bg-gray-50 focus:ring-gray-400;
+    @apply btn bg-transparent text-gray-700 border border-gray-200 hover:bg-gray-50 hover:border-gray-300 focus:ring-gray-400;
   }
-  
-  /* Badges */
+
+  .btn-ghost {
+    @apply btn bg-transparent text-gob-green-600 hover:bg-gob-green-50 focus:ring-gob-green-500;
+  }
+
   .badge {
-    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold tracking-wide;
   }
-  
+
   .badge-green {
-    @apply badge bg-green-100 text-green-800;
+    @apply badge bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200;
   }
-  
+
   .badge-blue {
-    @apply badge bg-blue-100 text-blue-800;
+    @apply badge bg-blue-50 text-blue-700 ring-1 ring-blue-200;
   }
-  
+
   .badge-gray {
-    @apply badge bg-gray-100 text-gray-800;
+    @apply badge bg-gray-100 text-gray-600 ring-1 ring-gray-200;
   }
-  
+
   .badge-gob {
-    @apply badge bg-gob-green-100 text-gob-green-700;
+    @apply badge bg-gob-green-500/10 text-gob-green-700 ring-1 ring-gob-green-500/20;
   }
-  
-  /* Inputs */
+
+  .badge-gold {
+    @apply badge bg-amber-50 text-amber-700 ring-1 ring-amber-200;
+  }
+
   .input {
-    @apply block w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-gob-green-500 focus:ring-2 focus:ring-gob-green-500/20 focus:outline-none transition-colors;
+    @apply block w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm
+           focus:border-gob-green-500 focus:ring-4 focus:ring-gob-green-500/10 focus:outline-none
+           transition-all duration-300 placeholder:text-gray-400;
   }
-  
+
   .select {
-    @apply input appearance-none bg-white pr-10;
+    @apply input appearance-none bg-white pr-10 cursor-pointer;
   }
-  
-  /* Tablas */
+
   .table-container {
-    @apply overflow-x-auto rounded-lg border border-gray-200;
+    @apply overflow-x-auto rounded-2xl border border-gray-100 bg-white;
   }
-  
+
   .table {
-    @apply min-w-full divide-y divide-gray-200;
+    @apply min-w-full divide-y divide-gray-100;
   }
-  
+
   .table-header {
-    @apply bg-gray-50;
+    @apply bg-gray-50/80;
   }
-  
+
   .table-header th {
-    @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+    @apply px-6 py-4 text-left text-xs font-bold text-gray-500 uppercase tracking-wider;
   }
-  
+
   .table-body {
-    @apply bg-white divide-y divide-gray-200;
+    @apply bg-white divide-y divide-gray-50;
   }
-  
+
   .table-body td {
-    @apply px-6 py-4 whitespace-nowrap text-sm text-gray-900;
+    @apply px-6 py-4 text-sm text-gray-700;
   }
-  
-  .table-row-hover:hover {
-    @apply bg-gray-50;
+
+  .table-body tr {
+    @apply transition-colors duration-200;
   }
-  
-  /* KPI Cards */
+  .table-body tr:hover {
+    @apply bg-gob-green-50/30;
+  }
+
   .kpi-card {
-    @apply card text-center;
+    @apply relative overflow-hidden rounded-2xl p-6 text-center;
+    background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.6) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.6);
   }
-  
+
   .kpi-value {
-    @apply text-3xl font-bold text-gob-green-500;
+    @apply text-4xl font-extrabold bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #235B4E 0%, #4ade80 100%);
   }
-  
+
   .kpi-label {
-    @apply text-sm text-gray-600 mt-1;
+    @apply text-sm text-gray-500 mt-2 font-medium;
   }
-  
-  /* Navegación breadcrumb */
+
   .breadcrumb {
-    @apply flex items-center space-x-2 text-sm text-gray-600;
+    @apply flex items-center space-x-2 text-sm text-gray-500;
   }
-  
+
   .breadcrumb-separator {
-    @apply text-gray-400;
+    @apply text-gray-300;
   }
-  
+
   .breadcrumb a {
-    @apply hover:text-gob-green-500 focus:outline-none focus:underline;
+    @apply hover:text-gob-green-500 transition-colors duration-200;
   }
-  
-  /* Secciones */
+
   .section {
-    @apply py-8 md:py-12;
+    @apply py-16 md:py-24;
   }
-  
+
   .section-title {
-    @apply text-2xl md:text-3xl font-bold text-gray-900 mb-6;
+    @apply text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 tracking-tight;
   }
-  
+
   .section-subtitle {
-    @apply text-lg text-gray-600 mb-8;
+    @apply text-lg text-gray-500 mb-10 max-w-2xl mx-auto;
   }
-  
-  /* Grids responsivos */
+
   .grid-cards {
     @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6;
   }
-  
+
   .grid-kpis {
-    @apply grid grid-cols-2 md:grid-cols-4 gap-4;
+    @apply grid grid-cols-2 md:grid-cols-4 gap-6;
   }
 }
 
-/* Utilidades personalizadas */
 @layer utilities {
-  /* Truncar texto */
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  
+
   .line-clamp-3 {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  
-  /* Animaciones */
-  .animate-fade-in {
-    animation: fadeIn 0.3s ease-in-out;
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #235B4E 0%, #4ade80 100%);
   }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #BC955C 0%, #d4aa6a 100%);
   }
-  
-  /* Skip link para accesibilidad */
+
+  .bg-gradient-animated {
+    background: linear-gradient(-45deg, #061410, #235B4E, #13392f, #0d2720);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+
+  .bg-mesh {
+    background-color: #fafbfc;
+    background-image:
+      radial-gradient(at 40% 20%, rgba(35, 91, 78, 0.05) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, rgba(188, 149, 92, 0.04) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, rgba(35, 91, 78, 0.03) 0px, transparent 50%),
+      radial-gradient(at 80% 50%, rgba(105, 28, 50, 0.03) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(35, 91, 78, 0.05) 0px, transparent 50%);
+  }
+
   .sr-only {
     @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
     clip: rect(0, 0, 0, 0);
   }
-  
   .sr-only:focus,
   .focus\:not-sr-only:focus {
     @apply static w-auto h-auto p-0 m-0 overflow-visible whitespace-normal;
     clip: auto;
   }
+
+  .glow-green {
+    box-shadow: 0 0 60px rgba(35, 91, 78, 0.15);
+  }
+
+  .glow-gold {
+    box-shadow: 0 0 60px rgba(188, 149, 92, 0.15);
+  }
 }
 
-/* Estilos para gráficas Recharts */
 .recharts-wrapper {
   @apply font-sans;
 }
@@ -215,20 +273,18 @@
 }
 
 .recharts-default-tooltip {
-  @apply bg-white shadow-lg rounded-lg border border-gray-200 p-3 !important;
+  @apply bg-white/90 shadow-xl rounded-xl border-0 p-4 backdrop-blur-sm !important;
 }
 
-/* Print styles */
-@media print {
-  header, footer, nav {
-    display: none !important;
-  }
-  
-  .card {
-    @apply shadow-none border border-gray-300;
-  }
-  
-  main {
-    @apply p-0;
-  }
+.dot-pattern {
+  background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+.scroll-hide::-webkit-scrollbar {
+  display: none;
+}
+.scroll-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
