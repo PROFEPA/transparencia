@@ -31,74 +31,93 @@ export default function DescargasPage() {
   }, []);
 
   const downloads = [
-    { title: 'Indicadores completos', description: 'Catálogo de todos los indicadores con metadatos.', formats: [{ name: 'CSV', url: '/data/indicators.csv', icon: '📊' }, { name: 'JSON', url: '/data/indicators.json', icon: '📋' }], count: metadata?.total_indicadores || '-' },
-    { title: 'Observaciones / Series temporales', description: 'Datos históricos de valores y metas por periodo.', formats: [{ name: 'CSV', url: '/data/observations.csv', icon: '📊' }, { name: 'JSON', url: '/data/observations.json', icon: '📋' }], count: metadata?.total_observaciones || '-' },
-    { title: 'Indicadores 2025', description: 'POA y MIR 2025.', formats: [{ name: 'CSV', url: '/data/indicators_2025.csv', icon: '📊' }, { name: 'JSON', url: '/data/indicators_2025.json', icon: '📋' }], badge: '2025' },
-    { title: 'Indicadores 2026', description: 'POA y documentación 2026.', formats: [{ name: 'CSV', url: '/data/indicators_2026.csv', icon: '📊' }, { name: 'JSON', url: '/data/indicators_2026.json', icon: '📋' }], badge: '2026' },
-    { title: 'Diccionario de datos', description: 'Definición de cada campo.', formats: [{ name: 'JSON', url: '/data/data_dictionary.json', icon: '📋' }] },
-    { title: 'Reporte de calidad', description: 'Validez y completitud.', formats: [{ name: 'JSON', url: '/data/data_quality_report.json', icon: '📋' }] },
-    { title: 'Metadatos del dataset', description: 'Fuentes y fecha de extracción.', formats: [{ name: 'JSON', url: '/data/metadata.json', icon: '📋' }] },
+    { title: 'Indicadores completos', description: 'Catálogo completo de todos los indicadores institucionales con sus metadatos.', formats: [{ name: 'CSV', url: '/data/indicators.csv', icon: '📊' }, { name: 'JSON', url: '/data/indicators.json', icon: '📋' }], count: metadata?.total_indicadores || '-' },
+    { title: 'Observaciones / Series temporales', description: 'Datos históricos de valores y metas por periodo para cada indicador.', formats: [{ name: 'CSV', url: '/data/observations.csv', icon: '📊' }, { name: 'JSON', url: '/data/observations.json', icon: '📋' }], count: metadata?.total_observaciones || '-' },
+    { title: 'Indicadores 2025', description: 'Indicadores del Programa Operativo Anual y MIR 2025.', formats: [{ name: 'CSV', url: '/data/indicators_2025.csv', icon: '📊' }, { name: 'JSON', url: '/data/indicators_2025.json', icon: '📋' }], badge: '2025' },
+    { title: 'Indicadores 2026', description: 'Indicadores del FiME y documentación institucional 2026.', formats: [{ name: 'CSV', url: '/data/indicators_2026.csv', icon: '📊' }, { name: 'JSON', url: '/data/indicators_2026.json', icon: '📋' }], badge: '2026' },
+    { title: 'Diccionario de datos', description: 'Definición y descripción de cada campo del dataset.', formats: [{ name: 'JSON', url: '/data/data_dictionary.json', icon: '📋' }] },
+    { title: 'Reporte de calidad', description: 'Información sobre la validez y completitud de los datos.', formats: [{ name: 'JSON', url: '/data/data_quality_report.json', icon: '📋' }] },
+    { title: 'Metadatos del dataset', description: 'Información general sobre las fuentes y fecha de extracción.', formats: [{ name: 'JSON', url: '/data/metadata.json', icon: '📋' }] },
   ];
 
   const originalDocuments = [
-    { title: 'POA 2025', description: 'Programa Operativo Anual 2025.', formats: [{ name: 'Excel', url: '/documents/POA_2025.xlsx', icon: '📑' }], badge: '2025' },
-    { title: 'MIR G005 2025', description: 'Matriz de Indicadores para Resultados G005.', formats: [{ name: 'Excel', url: '/documents/MIR_G005_2025.xlsx', icon: '📑' }], badge: '2025' },
-    { title: 'FiME 2026', description: 'Ficha de Monitoreo y Evaluación 2026.', formats: [{ name: 'Excel', url: '/documents/FiME 2026 PFPA.xlsx', icon: '📑' }], badge: '2026' },
-    { title: 'G014 para Auditoría', description: 'Documento G014 para Auditoría.', formats: [{ name: 'Word', url: '/documents/G014 para Auditoría.docx', icon: '📄' }] },
+    { title: 'POA 2025', description: 'Programa Operativo Anual 2025 - Documento original.', formats: [{ name: 'Excel', url: '/documents/POA_2025.xlsx', icon: '📑' }], badge: '2025' },
+    { title: 'MIR G005 2025', description: 'Matriz de Indicadores para Resultados del programa G005 - 2025.', formats: [{ name: 'Excel', url: '/documents/MIR_G005_2025.xlsx', icon: '📑' }], badge: '2025' },
+    { title: 'FiME 2026', description: 'Ficha de Monitoreo y Evaluación 2026 PROFEPA.', formats: [{ name: 'Excel', url: '/documents/FiME 2026 PFPA.xlsx', icon: '📑' }], badge: '2026' },
+    { title: 'G014 para Auditoría', description: 'Documento del programa G014 para Auditoría.', formats: [{ name: 'Word', url: '/documents/G014 para Auditoría.docx', icon: '📄' }] },
   ];
 
   return (
     <div className="min-h-screen bg-mesh">
-      {/* Hero */}
-      <section className="relative bg-gradient-to-br from-gob-green-600 via-gob-green-500 to-gob-green-700 overflow-hidden">
-        <div className="absolute inset-0 dot-pattern opacity-20" />
-        <div className="absolute -top-20 -right-20 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-20">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <nav className="text-sm text-white/50 mb-6 flex items-center gap-2">
-              <Link href="/" className="hover:text-white/80 transition-colors">Inicio</Link><span>/</span>
-              <span className="text-white/80">Descargas</span>
-            </nav>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-4 tracking-tight">Descargas de datos</h1>
-            <p className="text-white/70 max-w-2xl text-lg">Datasets completos en formatos abiertos (CSV, JSON) para análisis independiente.</p>
-          </motion.div>
+      {/* Breadcrumb */}
+      <div className="bg-white border-b">
+        <div className="max-w-7xl mx-auto px-4 py-3">
+          <nav className="breadcrumb" aria-label="Breadcrumb">
+            <Link href="/">Inicio</Link>
+            <span className="breadcrumb-separator" aria-hidden="true">/</span>
+            <span aria-current="page">Descargas</span>
+          </nav>
         </div>
-      </section>
+      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
-        {/* KPIs */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold mb-2">Descargas de datos</h1>
+          <p className="text-gray-600">
+            Descarga los datasets completos en formatos abiertos para tu propio análisis. 
+            Todos los archivos están en formato UTF-8.
+          </p>
+        </div>
+
+        {/* Aviso de uso */}
+        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8">
+          <div className="flex">
+            <svg className="w-5 h-5 text-blue-500 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div>
+              <h3 className="font-medium text-blue-800">Aviso de uso de datos</h3>
+              <p className="text-sm text-blue-700 mt-1">
+                La información contenida en estos archivos proviene de documentos institucionales 
+                de PROFEPA y se publica con fines informativos y de transparencia. El uso 
+                de estos datos es responsabilidad del usuario. La interpretación oficial 
+                corresponde a PROFEPA.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Resumen de datos */}
         {(metadata || quality) && (
-          <FadeIn className="grid grid-cols-2 md:grid-cols-4 gap-4 -mt-14 relative z-10 mb-10">
-            <div className="card p-6 text-center"><div className="text-3xl font-extrabold text-gob-green-600">{metadata?.total_indicadores || '-'}</div><div className="text-sm text-gray-500 mt-1">Indicadores</div></div>
-            <div className="card p-6 text-center"><div className="text-3xl font-extrabold text-blue-600">{metadata?.total_observaciones?.toLocaleString() || '-'}</div><div className="text-sm text-gray-500 mt-1">Observaciones</div></div>
-            <div className="card p-6 text-center"><div className="text-3xl font-extrabold text-emerald-600">{quality?.resumen?.porcentaje_validas?.toFixed(0) || '-'}%</div><div className="text-sm text-gray-500 mt-1">Datos válidos</div></div>
-            <div className="card p-6 text-center"><div className="text-3xl font-extrabold text-violet-600">{metadata?.version || '1.0'}</div><div className="text-sm text-gray-500 mt-1">Versión</div></div>
+          <FadeIn className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div className="card p-5 text-center">
+              <div className="text-2xl font-bold text-gob-green-600">{metadata?.total_indicadores || '-'}</div>
+              <div className="text-sm text-gray-500 mt-1">Indicadores</div>
+            </div>
+            <div className="card p-5 text-center">
+              <div className="text-2xl font-bold text-blue-600">{metadata?.total_observaciones?.toLocaleString() || '-'}</div>
+              <div className="text-sm text-gray-500 mt-1">Observaciones</div>
+            </div>
+            <div className="card p-5 text-center">
+              <div className="text-2xl font-bold text-emerald-600">{quality?.resumen?.porcentaje_validas?.toFixed(0) || '-'}%</div>
+              <div className="text-sm text-gray-500 mt-1">Datos válidos</div>
+            </div>
+            <div className="card p-5 text-center">
+              <div className="text-2xl font-bold text-violet-600">{metadata?.version || '1.0'}</div>
+              <div className="text-sm text-gray-500 mt-1">Versión</div>
+            </div>
           </FadeIn>
         )}
 
-        {/* Notice */}
-        <FadeIn className="mb-10">
-          <div className="bg-blue-50 border border-blue-100 rounded-2xl p-6">
-            <div className="flex gap-4">
-              <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0">
-                <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-              </div>
-              <div>
-                <h3 className="font-bold text-blue-900 mb-1">Aviso de uso de datos</h3>
-                <p className="text-sm text-blue-700">La información proviene de documentos institucionales de PROFEPA y se publica con fines de transparencia. La interpretación oficial corresponde a PROFEPA.</p>
-              </div>
-            </div>
-          </div>
-        </FadeIn>
-
-        {/* Downloads */}
-        <div className="space-y-4 mb-16">
+        {/* Lista de descargas */}
+        <div className="space-y-4">
           {downloads.map((dl, i) => (
             <FadeIn key={i} delay={i * 0.05}>
               <div className="card-hover flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
-                    <h3 className="font-bold text-gray-900">{dl.title}</h3>
+                    <h3 className="font-bold text-lg text-gray-900">{dl.title}</h3>
                     {dl.badge && <span className="badge-gob">{dl.badge}</span>}
                     {dl.count && <span className="badge-gray">{dl.count} registros</span>}
                   </div>
@@ -116,17 +135,20 @@ export default function DescargasPage() {
           ))}
         </div>
 
-        {/* Original docs */}
-        <FadeIn>
-          <h2 className="section-title mb-8">Documentos originales</h2>
-        </FadeIn>
+        {/* Documentos originales */}
+        <div className="mt-12 mb-8">
+          <h2 className="text-2xl font-bold mb-2">Documentos originales</h2>
+          <p className="text-gray-600 mb-6">
+            Descarga los documentos institucionales originales en sus formatos nativos.
+          </p>
+        </div>
         <div className="space-y-4 mb-16">
           {originalDocuments.map((doc, i) => (
             <FadeIn key={i} delay={i * 0.05}>
               <div className="card-hover border-l-4 border-gob-green-500 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
-                    <h3 className="font-bold text-gray-900">{doc.title}</h3>
+                    <h3 className="font-bold text-lg text-gray-900">{doc.title}</h3>
                     {doc.badge && <span className="badge-gob">{doc.badge}</span>}
                   </div>
                   <p className="text-sm text-gray-500">{doc.description}</p>
@@ -143,11 +165,11 @@ export default function DescargasPage() {
           ))}
         </div>
 
-        {/* Sources table */}
+        {/* Fuentes procesadas */}
         {metadata?.fuentes_procesadas && (
           <FadeIn>
-            <div className="card p-8 mb-10">
-              <h2 className="text-xl font-bold text-gray-900 mb-6">Fuentes procesadas</h2>
+            <div className="card mt-8">
+              <h2 className="text-xl font-bold mb-4">Fuentes originales procesadas</h2>
               <div className="overflow-x-auto rounded-xl border border-gray-100">
                 <table className="w-full text-sm">
                   <thead className="bg-gray-50">
@@ -179,8 +201,11 @@ export default function DescargasPage() {
         {/* Completeness */}
         {quality?.completitud_indicadores && (
           <FadeIn>
-            <div className="card p-8 mb-10">
-              <h2 className="text-xl font-bold text-gray-900 mb-6">Completitud de datos</h2>
+            <div className="card mt-8">
+              <h2 className="text-xl font-bold mb-4">Completitud de datos</h2>
+              <p className="text-sm text-gray-600 mb-4">
+                Porcentaje de indicadores que cuentan con cada campo informacional:
+              </p>
               <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 {Object.entries(quality.completitud_indicadores).map(([campo, valor]) => (
                   <div key={campo} className="text-center p-4 bg-gray-50 rounded-xl">

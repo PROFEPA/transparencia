@@ -198,61 +198,63 @@ export default function IndicadorDetailPage() {
 
   return (
     <div className="min-h-screen bg-mesh">
-      {/* ═══ Hero Header ═══ */}
-      <section className="relative bg-gradient-to-br from-gob-green-600 via-gob-green-500 to-gob-green-700 overflow-hidden">
-        <div className="absolute inset-0 dot-pattern opacity-15" />
-        <div className="absolute -top-20 -right-20 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
-        <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-gob-gold-500/10 rounded-full blur-3xl" />
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <nav className="text-sm text-white/50 mb-6 flex items-center gap-2">
-              <Link href="/" className="hover:text-white/80 transition-colors">Inicio</Link>
-              <span>/</span>
-              <Link href="/indicadores" className="hover:text-white/80 transition-colors">Indicadores</Link>
-              <span>/</span>
-              <span className="text-white/70 truncate max-w-xs">{indicador.nombre.slice(0, 40)}...</span>
-            </nav>
-
-            <div className="flex flex-wrap items-center gap-2 mb-4">
-              <span className="px-3 py-1.5 bg-white/15 backdrop-blur-sm rounded-full text-sm font-semibold text-white">{indicador.programa}</span>
-              {indicador.anios?.map(a => (
-                <span key={a} className="px-3 py-1.5 bg-white/10 rounded-full text-sm text-white/80">{a}</span>
-              ))}
-              {indicador.nivel && (
-                <span className={`px-3 py-1.5 rounded-full text-sm font-medium ${colorNivel(indicador.nivel)}`}>{indicador.nivel}</span>
-              )}
-            </div>
-
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white mb-4 leading-tight tracking-tight max-w-4xl">
-              {indicador.nombre}
-            </h1>
-
-            {indicador.definicion && !textoMalFormateado(indicador.definicion) && (
-              <p className="text-white/70 text-lg max-w-3xl leading-relaxed">{limpiarTexto(indicador.definicion, 250)}</p>
-            )}
-          </motion.div>
+      {/* Breadcrumb */}
+      <div className="bg-white border-b">
+        <div className="max-w-7xl mx-auto px-4 py-3">
+          <nav className="breadcrumb" aria-label="Breadcrumb">
+            <Link href="/">Inicio</Link>
+            <span className="breadcrumb-separator" aria-hidden="true">/</span>
+            <Link href="/indicadores">Indicadores</Link>
+            <span className="breadcrumb-separator" aria-hidden="true">/</span>
+            <span aria-current="page" className="truncate max-w-xs">{indicador.nombre.slice(0, 40)}...</span>
+          </nav>
         </div>
-      </section>
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-        {/* ═══ KPIs ═══ */}
+        {/* Header del indicador */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="card mb-6 bg-gradient-to-r from-gob-green-500 to-gob-green-600 text-white"
+        >
+          <div className="flex flex-wrap items-center gap-2 mb-4">
+            <span className="px-3 py-1.5 bg-white/20 rounded-full text-sm font-semibold">{indicador.programa}</span>
+            {indicador.anios?.map(a => (
+              <span key={a} className="px-3 py-1.5 bg-white/20 rounded-full text-sm">{a}</span>
+            ))}
+            {indicador.nivel && (
+              <span className="px-3 py-1.5 bg-white/20 rounded-full text-sm">{indicador.nivel}</span>
+            )}
+          </div>
+          
+          <h1 className="text-2xl md:text-3xl font-bold mb-4">
+            {indicador.nombre}
+          </h1>
+
+          {indicador.definicion && !textoMalFormateado(indicador.definicion) && (
+            <p className="text-white/90 text-lg leading-relaxed">{limpiarTexto(indicador.definicion, 250)}</p>
+          )}
+        </motion.div>
+
+        {/* KPIs */}
         {tiene_serie && chartData.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 -mt-14 relative z-10 mb-8"
+            className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-8"
           >
             {datosAnuales.length > 0 && datosAnuales[0].valor && (
-              <div className="card p-5 text-center border-2 border-gob-green-200 bg-gradient-to-b from-gob-green-50 to-white">
-                <div className="text-2xl font-extrabold text-gob-green-700">{datosAnuales[0].valor.toLocaleString('es-MX', {maximumFractionDigits: 1})}</div>
+              <div className="card p-4 text-center border-2 border-gob-green-200">
+                <div className="text-2xl font-bold text-gob-green-700">{datosAnuales[0].valor.toLocaleString('es-MX', {maximumFractionDigits: 1})}</div>
                 <div className="text-xs text-gob-green-600 font-medium mt-1">Total {datosAnuales[0].periodo}</div>
               </div>
             )}
             {datosAnuales.length > 0 && datosAnuales[0].meta && (
-              <div className="card p-5 text-center border-2 border-gob-gold-200 bg-gradient-to-b from-amber-50 to-white">
-                <div className="text-2xl font-extrabold text-gob-gold-700">{datosAnuales[0].meta.toLocaleString('es-MX', {maximumFractionDigits: 1})}</div>
+              <div className="card p-4 text-center border-2 border-gob-gold-200">
+                <div className="text-2xl font-bold text-gob-gold-700">{datosAnuales[0].meta.toLocaleString('es-MX', {maximumFractionDigits: 1})}</div>
                 <div className="text-xs text-gob-gold-600 font-medium mt-1">Meta anual</div>
               </div>
             )}
@@ -269,7 +271,7 @@ export default function IndicadorDetailPage() {
               <div className="text-xs text-gray-500 mt-1">Mínimo mensual</div>
             </div>
             {datosAnuales.length > 0 && datosAnuales[0].avance_porcentual != null ? (
-              <div className="card p-5 text-center border-2 border-blue-200 bg-gradient-to-b from-blue-50 to-white">
+              <div className="card p-4 text-center border-2 border-blue-200">
                 <div className={`text-2xl font-extrabold ${datosAnuales[0].avance_porcentual >= 100 ? 'text-emerald-600' : datosAnuales[0].avance_porcentual >= 80 ? 'text-yellow-600' : 'text-red-600'}`}>
                   {datosAnuales[0].avance_porcentual.toFixed(1)}%
                 </div>
