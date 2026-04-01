@@ -32,14 +32,21 @@ function tieneInfoCompleta(ind: Indicator): boolean {
   return !!(ind.definicion && ind.metodo_calculo);
 }
 
+const YEAR_CONFIG: Record<number, { label: string; desc: string }> = {
+  2025: { label: 'Ejercicio fiscal 2025', desc: 'POA-MIR · Programa G005' },
+  2026: { label: 'Ejercicio fiscal 2026', desc: 'POA-FiME · Programa G014' },
+};
+
 function IndicadoresContent() {
   const searchParams = useSearchParams();
   const [indicators, setIndicators] = useState<Indicator[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
+
+  const initialAnio = searchParams.get('anio') ? Number(searchParams.get('anio')) as 2025 | 2026 : 2025;
+  const [selectedAnio, setSelectedAnio] = useState<2025 | 2026>(initialAnio);
   
-  const [filters, setFilters] = useState<FilterState>({
-    anio: searchParams.get('anio') ? Number(searchParams.get('anio')) as 2025 | 2026 : undefined,
+  const [filters, setFilters] = useState<Omit<FilterState, 'anio'>>({
     programa: searchParams.get('programa') as 'G005' | 'G014' | undefined,
     nivel: searchParams.get('nivel') as any,
     search: searchParams.get('q') || '',
@@ -47,8 +54,9 @@ function IndicadoresContent() {
 
   useEffect(() => {
     async function loadData() {
+      setLoading(true);
       try {
-        const res = await fetch('/data/indicators.json');
+        const res = await fetch(`/data/indicators_${selectedAnio}.json`);
         if (res.ok) setIndicators(await res.json());
       } catch (error) {
         console.error('Error cargando indicadores:', error);
@@ -57,11 +65,16 @@ function IndicadoresContent() {
       }
     }
     loadData();
-  }, []);
+  }, [selectedAnio]);
+
+  const handleAnioChange = (anio: 2025 | 2026) => {
+    setSelectedAnio(anio);
+    setCurrentPage(1);
+    window.history.replaceState(null, '', `/indicadores?anio=${anio}`);
+  };
 
   const filteredIndicators = useMemo(() => {
     return indicators.filter(ind => {
-      if (filters.anio && !ind.anios?.includes(filters.anio)) return false;
       if (filters.programa && ind.programa !== filters.programa) return false;
       if (filters.nivel && ind.nivel !== filters.nivel) return false;
       if (filters.search) {
@@ -82,7 +95,6 @@ function IndicadoresContent() {
 
   useEffect(() => { setCurrentPage(1); }, [filters]);
 
-  const uniqueAnios = Array.from(new Set(indicators.flatMap(i => i.anios || []))).sort();
   const uniqueProgramas = Array.from(new Set(indicators.map(i => i.programa))).filter(Boolean);
   const uniqueNiveles = Array.from(new Set(indicators.map(i => i.nivel).filter(Boolean)));
 
@@ -108,9 +120,51 @@ function IndicadoresContent() {
           className="mb-8"
         >
           <h1 className="text-3xl font-bold mb-2">Catálogo de Indicadores</h1>
-          <p className="text-lg text-gray-500 mb-4">
+          <p className="text-lg text-gray-500 mb-2">
             da seguimiento a las acciones para la protección y vigilancia del medio ambiente y los recursos naturales
           </p>
+
+          {/* Selector de año prominente */}
+          <div className="flex flex-col sm:flex-row gap-4 mb-6">
+            {([2025, 2026] as const).map(anio => (
+              <button
+                key={anio}
+                onClick={() => handleAnioChange(anio)}
+                className={`flex-1 rounded-2xl p-5 text-left transition-all border-2 ${
+                  selectedAnio === anio
+                    ? 'border-gob-green-500 bg-gob-green-50 shadow-lg shadow-gob-green-500/10'
+                    : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-md'
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-lg font-bold ${
+                    selectedAnio === anio
+                      ? 'bg-gob-green-500 text-white'
+                      : 'bg-gray-100 text-gray-500'
+                  }`}>
+                    {anio === 2025 ? '25' : '26'}
+                  </div>
+                  <div>
+                    <div className={`font-bold text-lg ${
+                      selectedAnio === anio ? 'text-gob-green-700' : 'text-gray-700'
+                    }`}>
+                      {YEAR_CONFIG[anio].label}
+                    </div>
+                    <div className={`text-sm ${
+                      selectedAnio === anio ? 'text-gob-green-600' : 'text-gray-400'
+                    }`}>
+                      {YEAR_CONFIG[anio].desc}
+                    </div>
+                  </div>
+                  {selectedAnio === anio && (
+                    <svg className="w-6 h-6 text-gob-green-500 ml-auto" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                  )}
+                </div>
+              </button>
+            ))}
+          </div>
           <p className="text-gray-600 mb-4">
             Aquí puedes consultar todos los indicadores con los que PROFEPA mide su trabajo 
             en protección del medio ambiente. Cada indicador muestra qué se mide, cómo se calcula 
@@ -147,7 +201,7 @@ function IndicadoresContent() {
           className="card p-6 md:p-8 mb-6"
         >
           <h2 className="font-semibold text-gray-800 mb-4">Buscar indicadores</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Búsqueda */}
             <div className="lg:col-span-2">
               <label htmlFor="search" className="block text-sm font-medium text-gray-700 mb-1">
@@ -168,20 +222,6 @@ function IndicadoresContent() {
               </div>
             </div>
 
-            {/* Filtro por año */}
-            <div>
-              <label htmlFor="anio" className="block text-sm font-medium text-gray-700 mb-1">Año fiscal</label>
-              <select
-                id="anio"
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-gob-green-500/30 focus:border-gob-green-500 transition-all outline-none appearance-none"
-                value={filters.anio || ''}
-                onChange={(e) => setFilters({ ...filters, anio: e.target.value ? Number(e.target.value) as 2025 | 2026 : undefined })}
-              >
-                <option value="">Todos</option>
-                {uniqueAnios.map(anio => <option key={anio} value={anio}>{anio}</option>)}
-              </select>
-            </div>
-
             {/* Filtro por programa */}
             <div>
               <label htmlFor="programa" className="block text-sm font-medium text-gray-700 mb-1">Programa presupuestario</label>
@@ -192,7 +232,7 @@ function IndicadoresContent() {
                 onChange={(e) => setFilters({ ...filters, programa: e.target.value as 'G005' | 'G014' | undefined })}
               >
                 <option value="">Todos</option>
-                {uniqueProgramas.map(prog => <option key={prog} value={prog}>{prog === 'G005' ? 'G005 (2025)' : 'G014 (2026)'}</option>)}
+                {uniqueProgramas.map(prog => <option key={prog} value={prog}>{prog}</option>)}
               </select>
             </div>
 
@@ -212,7 +252,7 @@ function IndicadoresContent() {
           </div>
 
           {/* Limpiar filtros */}
-          {(filters.anio || filters.programa || filters.nivel || filters.search) && (
+          {(filters.programa || filters.nivel || filters.search) && (
             <div className="mt-4 pt-4 border-t">
               <button
                 type="button"
@@ -232,7 +272,7 @@ function IndicadoresContent() {
         <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
           <p className="text-sm text-gray-600">
             <span className="text-2xl font-extrabold text-gray-900 mr-1">{filteredIndicators.length}</span>
-            indicadores encontrados
+            indicadores en {selectedAnio}
             {filters.search && <span className="text-gray-400"> para &ldquo;{filters.search}&rdquo;</span>}
           </p>
           {totalPages > 1 && (
@@ -267,13 +307,13 @@ function IndicadoresContent() {
                   transition={{ duration: 0.4, delay: i * 0.04 }}
                 >
                   <Link 
-                    href={`/indicadores/${indicator.id}`}
+                    href={`/indicadores/${indicator.id}?anio=${selectedAnio}`}
                     className="card-hover group h-full flex flex-col relative"
                   >
                     {/* Header con badges */}
                     <div className="flex flex-wrap items-center gap-2 mb-3">
                       <span className="badge-gob">{indicator.programa}</span>
-                      <span className="badge-gray">{indicator.anios?.join(', ')}</span>
+                      <span className="badge-gray">{selectedAnio}</span>
                       {indicator.nivel && (
                         <span className={`text-xs px-2.5 py-1 rounded-full font-semibold ${colorNivel(indicator.nivel)}`}>
                           {indicator.nivel}

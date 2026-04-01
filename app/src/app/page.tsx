@@ -119,7 +119,7 @@ export default function HomePage() {
                   transition={{ duration: 0.8, delay: 0.8 }}
                   className="flex flex-wrap gap-4"
                 >
-                  <Link href="/indicadores" className="group inline-flex items-center gap-2 bg-white text-gob-green-600 px-8 py-4 rounded-2xl font-bold text-sm hover:shadow-2xl hover:shadow-white/20 transition-all duration-300 hover:-translate-y-1">
+                  <Link href="/indicadores?anio=2025" className="group inline-flex items-center gap-2 bg-white text-gob-green-600 px-8 py-4 rounded-2xl font-bold text-sm hover:shadow-2xl hover:shadow-white/20 transition-all duration-300 hover:-translate-y-1">
                     Ver indicadores
                     <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -437,7 +437,7 @@ export default function HomePage() {
                 return highlightNames.some(h => ind.nombre.startsWith(h));
               }).map((ind, i) => (
                 <FadeSection key={ind.id} delay={i * 0.1}>
-                  <Link href={`/indicadores/${ind.id}`} className="card-hover group h-full flex flex-col">
+                  <Link href={`/indicadores/${ind.id}?anio=${ind.anios?.includes(2025) ? 2025 : 2026}`} className="card-hover group h-full flex flex-col">
                     <div className="flex items-center gap-2 mb-3">
                       <span className="badge-gob">{ind.programa}</span>
                       {ind.anios?.map(a => (
@@ -471,7 +471,7 @@ export default function HomePage() {
 
             <FadeSection>
               <div className="text-center mt-8">
-                <Link href="/indicadores" className="btn-primary px-10 py-4">
+                <Link href="/indicadores?anio=2025" className="btn-primary px-10 py-4">
                   Ver todos los indicadores
                 </Link>
               </div>

@@ -1,8 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { useEffect, useState, Suspense } from 'react';
+import { useParams, useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Indicator, Observation } from '@/types';
 import {
@@ -60,9 +60,11 @@ function textoMalFormateado(texto: string | null | undefined): boolean {
 
 const tooltipStyle = { borderRadius: '12px', border: 'none', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' };
 
-export default function IndicadorDetailPage() {
+function IndicadorDetailContent() {
   const params = useParams();
+  const searchParams = useSearchParams();
   const indicatorId = params.id as string;
+  const selectedAnio = searchParams.get('anio') ? Number(searchParams.get('anio')) as 2025 | 2026 : 2025;
 
   const [data, setData] = useState<IndicatorDetail | null>(null);
   const [loading, setLoading] = useState(true);
@@ -76,7 +78,7 @@ export default function IndicadorDetailPage() {
     async function loadData() {
       try {
         const [indRes, obsRes] = await Promise.all([
-          fetch('/data/indicators.json'),
+          fetch(`/data/indicators_${selectedAnio}.json`),
           fetch('/data/observations.json')
         ]);
         if (!indRes.ok || !obsRes.ok) throw new Error('Error cargando datos');
@@ -84,7 +86,10 @@ export default function IndicadorDetailPage() {
         const observations: Observation[] = await obsRes.json();
         const indicator = indicators.find(i => i.id === indicatorId);
         if (!indicator) { setError('Indicador no encontrado'); return; }
-        const indicatorObs = observations.filter(o => o.indicator_id === indicatorId);
+        const indicatorObs = observations.filter(o =>
+          o.indicator_id === indicatorId &&
+          o.periodo.startsWith(String(selectedAnio))
+        );
         setData({ indicador: indicator, observaciones: indicatorObs, tiene_serie: indicatorObs.length > 0 });
       } catch (err) {
         console.error('Error:', err);
@@ -94,7 +99,7 @@ export default function IndicadorDetailPage() {
       }
     }
     if (indicatorId) loadData();
-  }, [indicatorId]);
+  }, [indicatorId, selectedAnio]);
 
   const allEntities = Array.from(
     new Set(data?.observaciones.map(o => o.entidad || 'Nacional').filter(Boolean))
@@ -187,7 +192,7 @@ export default function IndicadorDetailPage() {
           </div>
           <h2 className="text-xl font-bold text-gray-900 mb-2">{error || 'Error'}</h2>
           <p className="text-gray-500 mb-6">No se pudo cargar el indicador solicitado.</p>
-          <Link href="/indicadores" className="btn-primary">Volver al catálogo</Link>
+          <Link href={`/indicadores?anio=${selectedAnio}`} className="btn-primary">Volver al catálogo</Link>
         </div>
       </div>
     );
@@ -204,7 +209,7 @@ export default function IndicadorDetailPage() {
           <nav className="breadcrumb" aria-label="Breadcrumb">
             <Link href="/">Inicio</Link>
             <span className="breadcrumb-separator" aria-hidden="true">/</span>
-            <Link href="/indicadores">Indicadores</Link>
+            <Link href={`/indicadores?anio=${selectedAnio}`}>Indicadores {selectedAnio}</Link>
             <span className="breadcrumb-separator" aria-hidden="true">/</span>
             <span aria-current="page" className="truncate max-w-xs">{indicador.nombre.slice(0, 40)}...</span>
           </nav>
@@ -221,9 +226,7 @@ export default function IndicadorDetailPage() {
         >
           <div className="flex flex-wrap items-center gap-2 mb-4">
             <span className="px-3 py-1.5 bg-white/20 rounded-full text-sm font-semibold">{indicador.programa}</span>
-            {indicador.anios?.map(a => (
-              <span key={a} className="px-3 py-1.5 bg-white/20 rounded-full text-sm">{a}</span>
-            ))}
+            <span className="px-3 py-1.5 bg-white/30 rounded-full text-sm font-bold">{selectedAnio}</span>
             {indicador.nivel && (
               <span className="px-3 py-1.5 bg-white/20 rounded-full text-sm">{indicador.nivel}</span>
             )}
@@ -645,14 +648,29 @@ export default function IndicadorDetailPage() {
         </div>
 
         <div className="mb-8">
-          <Link href="/indicadores" className="inline-flex items-center gap-2 text-gob-green-600 font-semibold hover:gap-3 transition-all">
+          <Link href={`/indicadores?anio=${selectedAnio}`} className="inline-flex items-center gap-2 text-gob-green-600 font-semibold hover:gap-3 transition-all">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 17l-5-5m0 0l5-5m-5 5h12" />
             </svg>
-            Volver al catálogo
+            Volver al catálogo ({selectedAnio})
           </Link>
         </div>
       </div>
     </div>
+  );
+}
+
+export default function IndicadorDetailPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-mesh">
+        <div className="text-center">
+          <div className="w-12 h-12 border-4 border-gob-green-500 border-t-transparent rounded-full animate-spin mx-auto" />
+          <p className="mt-4 text-gray-500">Cargando indicador...</p>
+        </div>
+      </div>
+    }>
+      <IndicadorDetailContent />
+    </Suspense>
   );
 }
