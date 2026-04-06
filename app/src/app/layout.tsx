@@ -72,6 +72,7 @@ export default function RootLayout({
                   { href: '/descargas', label: 'Descargas' },
                   { href: '/metodologia', label: 'Metodología' },
                   { href: '/glosario', label: 'Glosario' },
+                  { href: '/admin', label: 'Administración' },
                 ].map(link => (
                   <a 
                     key={link.href}
