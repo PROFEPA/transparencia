@@ -331,7 +331,7 @@ export default function OrpaDetailPage() {
                           title={`${ind.codigo} · ${MESES_FULL[mes]}\nEstado: ${STATUS_LABEL[status]}${pct !== null ? `\nCumplimiento: ${pct}%` : ''}${cell?.avance !== null ? `\nAvance: ${cell?.avance}` : ''}${cell?.programado !== null ? `\nProgramado: ${cell?.programado}` : ''}`}
                         >
                           <span className="text-[10px] font-bold leading-none">
-                            {pct !== null ? `${pct}%` : status === 'sin_captura' ? '—' : status.charAt(0).toUpperCase()}
+                            {pct !== null ? `${pct}%` : '—'}
                           </span>
                         </div>
                       </td>

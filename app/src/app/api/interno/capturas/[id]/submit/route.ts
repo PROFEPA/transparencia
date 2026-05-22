@@ -17,8 +17,11 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
     return NextResponse.json({ error: 'Solo se pueden enviar borradores o rechazados' }, { status: 400 });
   }
 
-  db.prepare(`UPDATE capturas SET status='enviado', submitted_at=CURRENT_TIMESTAMP,
-    motivo_rechazo=NULL, updated_at=CURRENT_TIMESTAMP WHERE id=?`).run(id);
+  // Auto-aprobado: la revisión ocurre al publicar, no por captura individual
+  const userId = req.headers.get('x-user-id');
+  db.prepare(`UPDATE capturas SET status='aprobado', submitted_at=CURRENT_TIMESTAMP,
+    reviewed_by=?, reviewed_at=CURRENT_TIMESTAMP,
+    motivo_rechazo=NULL, updated_at=CURRENT_TIMESTAMP WHERE id=?`).run(userId, id);
 
   return NextResponse.json({ ok: true });
 }

@@ -117,12 +117,12 @@ export default function CapturaPage() {
     setSubmitting(false);
   }
 
-  const allSubmitted = Object.values(capturas).every(c => c.status === 'enviado' || c.status === 'aprobado');
+  const allSubmitted = Object.values(capturas).every(c => c.status === 'aprobado');
   const anyBorrador = Object.values(capturas).some(c => c.id && ['borrador','rechazado'].includes(c.status));
 
   const capturaCount = {
     aprobado: Object.values(capturas).filter(c => c.status === 'aprobado').length,
-    enviado: Object.values(capturas).filter(c => c.status === 'enviado').length,
+    enviado: 0,
     borrador: Object.values(capturas).filter(c => c.status === 'borrador').length,
     rechazado: Object.values(capturas).filter(c => c.status === 'rechazado').length,
   };
@@ -183,15 +183,11 @@ export default function CapturaPage() {
               <div className="flex flex-wrap gap-4 text-sm">
                 <div className="flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 flex-shrink-0" />
-                  <span className="text-gray-600"><strong className="text-gray-800">{capturaCount.aprobado}</strong> aprobados</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-blue-500 flex-shrink-0" />
-                  <span className="text-gray-600"><strong className="text-gray-800">{capturaCount.enviado}</strong> enviados</span>
+                  <span className="text-gray-600"><strong className="text-gray-800">{capturaCount.aprobado}</strong> registrados</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-amber-400 flex-shrink-0" />
-                  <span className="text-gray-600"><strong className="text-gray-800">{capturaCount.borrador}</strong> borradores</span>
+                  <span className="text-gray-600"><strong className="text-gray-800">{capturaCount.borrador}</strong> sin confirmar</span>
                 </div>
                 {capturaCount.rechazado > 0 && (
                   <div className="flex items-center gap-1.5">
@@ -202,14 +198,14 @@ export default function CapturaPage() {
                 <span className="text-gray-400">de {indicadores.length} indicadores</span>
               </div>
               {allSubmitted && Object.keys(capturas).length > 0 && (
-                <p className="text-sm text-emerald-700 font-medium mt-2">✓ Todas las capturas han sido enviadas para revisión</p>
+                <p className="text-sm text-emerald-700 font-medium mt-2">✓ Todos los avances del mes han sido registrados</p>
               )}
             </div>
             {anyBorrador && (
               <button onClick={submitAll} disabled={submitting}
                 className="bg-[#235B4E] hover:bg-[#1a4439] text-white text-sm font-semibold px-6 py-2.5 rounded-xl transition-colors disabled:opacity-60 flex items-center gap-2 flex-shrink-0">
                 {submitting && <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />}
-                {submitting ? 'Enviando...' : `Enviar ${capturaCount.borrador} a revisión`}
+                {submitting ? 'Registrando...' : `Confirmar ${capturaCount.borrador} avances`}
               </button>
             )}
           </div>
@@ -246,9 +242,9 @@ export default function CapturaPage() {
                     cap.status === 'rechazado' ? 'bg-red-100 text-red-700' :
                     cap.id ? 'bg-amber-100 text-amber-700' : 'bg-gray-100 text-gray-500'
                   }`}>
-                    {cap.status === 'borrador' ? 'Borrador' :
-                     cap.status === 'enviado' ? 'En revisión' :
-                     cap.status === 'aprobado' ? 'Aprobado' :
+                    {cap.status === 'borrador' ? 'Sin confirmar' :
+                     cap.status === 'enviado' ? 'Registrado' :
+                     cap.status === 'aprobado' ? 'Registrado' :
                      cap.status === 'rechazado' ? 'Rechazado' : 'Sin captura'}
                   </span>
                 </div>
@@ -370,7 +366,7 @@ export default function CapturaPage() {
             {anyBorrador && (
               <button onClick={submitAll} disabled={submitting}
                 className="bg-[#235B4E] hover:bg-[#1a4439] text-white text-sm font-semibold px-6 py-2 rounded-xl transition-colors disabled:opacity-60">
-                {submitting ? 'Enviando...' : 'Enviar a revisión'}
+                {submitting ? 'Registrando...' : 'Confirmar avances'}
               </button>
             )}
             {mesSiguiente && (

@@ -290,7 +290,7 @@ export default function AdminDashboard() {
                                   color: status === 'sin_captura' ? '#9CA3AF' : '#fff' }}
                                 title={`${ofc.oficina} - ${MESES[mes]}: ${status}${pct !== null ? ` (${pct}%)` : ''}`}
                               >
-                                {pct !== null ? `${pct}%` : status === 'sin_captura' ? '—' : status[0].toUpperCase()}
+                                {pct !== null ? `${pct}%` : '—'}
                               </div>
                             </td>
                           );
