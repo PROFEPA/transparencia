@@ -9,6 +9,7 @@ const IS_VERCEL = process.env.VERCEL === '1';
 const DATA_DIR = IS_VERCEL ? '/tmp' : path.join(process.cwd(), 'data');
 const DB_PATH = path.join(DATA_DIR, 'interno.db');
 const SEED_PATH = path.join(process.cwd(), 'data', 'seed_poa2026.json');
+const SEED_CAPTURAS_PATH = path.join(process.cwd(), 'data', 'seed_capturas.json');
 
 let _db: Database.Database | null = null;
 
@@ -87,6 +88,7 @@ function initSchema(db: Database.Database) {
   const seeded = db.prepare("SELECT value FROM _meta WHERE key='seeded'").get() as { value: string } | undefined;
   if (!seeded) {
     seedData(db);
+    seedCapturas(db);
     db.prepare("INSERT INTO _meta(key, value) VALUES('seeded','1')").run();
   }
 }
@@ -139,6 +141,43 @@ function seedData(db: Database.Database) {
   });
   insertMany(seed);
   console.log(`[db] Seeded ${seed.length} indicadores_2026 rows`);
+}
+
+function seedCapturas(db: Database.Database) {
+  if (!fs.existsSync(SEED_CAPTURAS_PATH)) {
+    console.warn('[db] seed_capturas.json not found — skipping capturas seed');
+    return;
+  }
+
+  type SeedCaptura = { codigo: string; oficina: string; mes: number; programado: number | null; avance: number | null; anio: number };
+  const seed = JSON.parse(fs.readFileSync(SEED_CAPTURAS_PATH, 'utf8')) as SeedCaptura[];
+
+  const getAdminId = db.prepare("SELECT id FROM users WHERE role='admin' LIMIT 1");
+  const admin = getAdminId.get() as { id: number } | undefined;
+  const adminId = admin?.id ?? null;
+
+  const getIndId = db.prepare('SELECT id FROM indicadores_2026 WHERE codigo=? AND oficina=? LIMIT 1');
+  const insertCap = db.prepare(`
+    INSERT OR IGNORE INTO capturas
+      (indicador_id, oficina, anio, mes, programado, avance,
+       status, created_by, reviewed_by, reviewed_at, submitted_at, updated_at, notas)
+    VALUES (?,?,?,?,?,?, 'aprobado',?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,
+            'Datos POA 2026 Ene-Abr (importado del Excel oficial)')
+  `);
+
+  const insertMany = db.transaction((rows: SeedCaptura[]) => {
+    let count = 0;
+    for (const c of rows) {
+      const ind = getIndId.get(c.codigo, c.oficina) as { id: number } | undefined;
+      if (!ind) continue;
+      insertCap.run(ind.id, c.oficina, c.anio, c.mes, c.programado, c.avance, adminId, adminId);
+      count++;
+    }
+    return count;
+  });
+
+  const n = insertMany(seed);
+  console.log(`[db] Seeded ${n} capturas from seed_capturas.json`);
 }
 
 // Helpers

@@ -377,5 +377,317 @@
     "nivel": "Actividad",
     "notas": "ID interno: CORPA.03",
     "ultima_actualizacion": "2026-04-24"
+  },
+  {
+    "id": "porcentaje-de-certificados-y-reconocimientos-ambientales-emitidos-poa2026",
+    "nombre": "Porcentaje de certificados y reconocimientos ambientales emitidos",
+    "programa": "POA2026",
+    "fuente": "POA_2026 - Captura interna",
+    "anios": [
+      2026
+    ],
+    "unidad_medida": "Número",
+    "notas": "Serie: SPA",
+    "ultima_actualizacion": "2026-05-22"
+  },
+  {
+    "id": "acciones-de-difusion-para-la-promocion-y-participacion-ciudadana-en-el-cuidado-del-medio-ambiente-a-traves-de-jornadas-estudiantiles-poa2026",
+    "nombre": "Acciones de difusión para la promoción y participación ciudadana en el cuidado del medio ambiente a través de Jornadas Estudiantiles",
+    "programa": "POA2026",
+    "fuente": "POA_2026 - Captura interna",
+    "anios": [
+      2026
+    ],
+    "unidad_medida": "Número",
+    "notas": "Serie: SLEJA",
+    "ultima_actualizacion": "2026-05-22"
+  },
+  {
+    "id": "porcentaje-de-empresas-e-instituciones-que-participaron-en-eventos-de-capacitacion-en-materia-de-prevencion-ambiental-poa2026",
+    "nombre": "Porcentaje de empresas e instituciones que participaron en eventos de capacitación en materia de prevención ambiental",
+    "programa": "POA2026",
+    "fuente": "POA_2026 - Captura interna",
+    "anios": [
+      2026
+    ],
+    "unidad_medida": "Número",
+    "notas": "Serie: SPA",
+    "ultima_actualizacion": "2026-05-22"
+  },
+  {
+    "id": "acciones-de-promocion-jornadas-por-la-certificacion-salas-informativas-visitas-personalizadas-de-promocion-poa2026",
+    "nombre": "Acciones de promoción (Jornadas por la certificación, salas informativas, visitas personalizadas de promoción)",
+    "programa": "POA2026",
+    "fuente": "POA_2026 - Captura interna",
+    "anios": [
+      2026
+    ],
+    "unidad_medida": "Número",
+    "notas": "Serie: SPA",
+    "ultima_actualizacion": "2026-05-22"
+  },
+  {
+    "id": "porcentaje-de-visitas-de-verificacion-con-cumplimiento-de-las-medidas-dictadas-en-acuerdos-y-resoluciones-derivados-de-los-procedimientos-administrativos-iniciados-en-materia-industrial-poa2026",
+    "nombre": "Porcentaje de visitas de verificación con cumplimiento de las medidas dictadas en acuerdos y resoluciones derivados de los procedimientos administrativos iniciados en materia industrial",
+    "programa": "POA2026",
+    "fuente": "POA_2026 - Captura interna",
+    "anios": [
+      2026
+    ],
+    "unidad_medida": "Número",
+    "notas": "Serie: SIVI",
+    "ultima_actualizacion": "2026-05-22"
+  },
+  {
+    "id": "porcentaje-de-acciones-de-inspeccion-realizadas-al-universo-del-padron-de-instalaciones-de-jurisdiccion-federal-registradas-por-la-profepa-poa2026",
+    "nombre": "Porcentaje de acciones de inspección realizadas al universo del padrón de instalaciones de jurisdicción federal registradas por la PROFEPA",
+    "programa": "POA2026",
+    "fuente": "POA_2026 - Captura interna",
+    "anios": [
+      2026
+    ],
+    "unidad_medida": "Número",
+    "notas": "Serie: SIVI",
+    "ultima_actualizacion": "2026-05-22"
+  },
+  {
+    "id": "porcentaje-de-acciones-de-inspeccion-y-verificacion-realizadas-sobre-la-cuales-la-profepa-tiene-competencia-como-autoridad-conforme-a-las-prioridades-de-la-estrategia-establecida-en-materia-de-inspeccion-industrial-poa2026",
+    "nombre": "Porcentaje de acciones de inspección y verificación realizadas sobre la cuales la PROFEPA tiene competencia como autoridad, conforme a las prioridades de la estrategia establecida en materia de inspección industrial",
+    "programa": "POA2026",
+    "fuente": "POA_2026 - Captura interna",
+    "anios": [
+      2026
+    ],
+    "unidad_medida": "Número",
+    "notas": "Serie: SIVI",
+    "ultima_actualizacion": "2026-05-22"
+  },
+  {
+    "id": "porcentaje-de-revision-de-mercancias-cuya-importacion-exportacion-y-reexportacion-esta-sujeta-a-regulacion-por-parte-de-la-secretaria-de-medio-ambiente-y-recursos-naturales-poa2026",
+    "nombre": "Porcentaje de revisión de mercancías cuya importación, exportación y reexportación está sujeta a regulación por parte de la Secretaría de Medio Ambiente y Recursos Naturales",
+    "programa": "POA2026",
+    "fuente": "POA_2026 - Captura interna",
+    "anios": [
+      2026
+    ],
+    "unidad_medida": "Número",
+    "notas": "Serie: SIVI",
+    "ultima_actualizacion": "2026-05-22"
+  },
+  {
+    "id": "porcentaje-de-simulacros-para-evaluar-los-planes-de-respuesta-a-emergencias-quimicas-poa2026",
+    "nombre": "Porcentaje de simulacros para evaluar los Planes de Respuesta a emergencias químicas",
+    "programa": "POA2026",
+    "fuente": "POA_2026 - Captura interna",
+    "anios": [
+      2026
+    ],
+    "unidad_medida": "Número",
+    "notas": "Serie: SIVI",
+    "ultima_actualizacion": "2026-05-22"
+  },
+  {
+    "id": "porcentaje-de-solicitudes-de-aprobaciones-para-los-laboratorios-de-pruebas-yo-ensayo-unidades-de-verificacion-y-organismos-de-certificacion-poa2026",
+    "nombre": "Porcentaje de solicitudes de aprobaciones para los laboratorios de pruebas y/o ensayo, unidades de verificación y organismos de certificación",
+    "programa": "POA2026",
+    "fuente": "POA_2026 - Captura interna",
+    "anios": [
+      2026
+    ],
+    "unidad_medida": "Número",
+    "notas": "Serie: SIVI",
+    "ultima_actualizacion": "2026-05-22"
+  },
+  {
+    "id": "porcentaje-de-revisiones-evaluaciones-y-en-su-caso-certificacion-de-vehiculos-nuevos-en-planta-poa2026",
+    "nombre": "Porcentaje de revisiones, evaluaciones y, en su caso, certificación de vehículos nuevos en planta",
+    "programa": "POA2026",
+    "fuente": "POA_2026 - Captura interna",
+    "anios": [
+      2026
+    ],
+    "unidad_medida": "Número",
+    "notas": "Serie: SIVI",
+    "ultima_actualizacion": "2026-05-22"
+  },
+  {
+    "id": "porcentaje-de-denuncias-populares-en-materia-ambiental-concluidas-poa2026",
+    "nombre": "Porcentaje de denuncias populares en materia ambiental concluidas",
+    "programa": "POA2026",
+    "fuente": "POA_2026 - Captura interna",
+    "anios": [
+      2026
+    ],
+    "unidad_medida": "Número",
+    "notas": "Serie: SLEJA",
+    "ultima_actualizacion": "2026-05-22"
+  },
+  {
+    "id": "procentaje-de-resolucion-de-procedimientos-administrativos-poa2026",
+    "nombre": "Procentaje de resolución de procedimientos administrativos",
+    "programa": "POA2026",
+    "fuente": "POA_2026 - Captura interna",
+    "anios": [
+      2026
+    ],
+    "unidad_medida": "Número",
+    "notas": "Serie: CORPA",
+    "ultima_actualizacion": "2026-05-22"
+  },
+  {
+    "id": "porcentaje-de-resolucion-de-procedimientos-administrativos-poa2026",
+    "nombre": "Porcentaje de resolución de procedimientos administrativos",
+    "programa": "POA2026",
+    "fuente": "POA_2026 - Captura interna",
+    "anios": [
+      2026
+    ],
+    "unidad_medida": "Número",
+    "notas": "Serie: CORPA",
+    "ultima_actualizacion": "2026-05-22"
+  },
+  {
+    "id": "porcentaje-de-resolucion-de-procedimientos-administrativos-de-ejercicios-anteriores-al-corriente-poa2026",
+    "nombre": "Porcentaje de resolución de procedimientos administrativos de ejercicios anteriores al corriente",
+    "programa": "POA2026",
+    "fuente": "POA_2026 - Captura interna",
+    "anios": [
+      2026
+    ],
+    "unidad_medida": "Número",
+    "notas": "Serie: CORPA",
+    "ultima_actualizacion": "2026-05-22"
+  },
+  {
+    "id": "porcentaje-de-resoluciones-emitidas-a-los-recursos-de-revision-poa2026",
+    "nombre": "Porcentaje de resoluciones emitidas a los recursos de revisión",
+    "programa": "POA2026",
+    "fuente": "POA_2026 - Captura interna",
+    "anios": [
+      2026
+    ],
+    "unidad_medida": "Número",
+    "notas": "Serie: SLEJA",
+    "ultima_actualizacion": "2026-05-22"
+  },
+  {
+    "id": "porcentaje-de-resolucion-a-las-solicitudes-de-conmutacion-revocacion-o-modificacion-de-multas-poa2026",
+    "nombre": "Porcentaje de resolución a las solicitudes de conmutación, revocación  o modificación de multas",
+    "programa": "POA2026",
+    "fuente": "POA_2026 - Captura interna",
+    "anios": [
+      2026
+    ],
+    "unidad_medida": "Número",
+    "notas": "Serie: SLEJA",
+    "ultima_actualizacion": "2026-05-22"
+  },
+  {
+    "id": "porcentaje-de-denuncias-y-querellas-presentadas-por-la-procuraduria-poa2026",
+    "nombre": "Porcentaje de denuncias y querellas presentadas por la Procuraduría",
+    "programa": "POA2026",
+    "fuente": "POA_2026 - Captura interna",
+    "anios": [
+      2026
+    ],
+    "unidad_medida": "Número",
+    "notas": "Serie: SLEJA",
+    "ultima_actualizacion": "2026-05-22"
+  },
+  {
+    "id": "porcentaje-de-sentencias-favorables-notificadas-por-el-tribunal-federal-de-justicia-administrativa-poa2026",
+    "nombre": "Porcentaje de sentencias  favorables notificadas por el Tribunal Federal de Justicia Administrativa",
+    "programa": "POA2026",
+    "fuente": "POA_2026 - Captura interna",
+    "anios": [
+      2026
+    ],
+    "unidad_medida": "Número",
+    "notas": "Serie: SLEJA",
+    "ultima_actualizacion": "2026-05-22"
+  },
+  {
+    "id": "porcentaje-de-municipios-y-alcaldias-con-acciones-de-inspeccion-operativos-y-cvap-en-materia-de-recursos-naturales-poa2026",
+    "nombre": "Porcentaje de municipios y alcaldías con acciones de inspección, operativos y CVAP en materia de recursos naturales",
+    "programa": "POA2026",
+    "fuente": "POA_2026 - Captura interna",
+    "anios": [
+      2026
+    ],
+    "unidad_medida": "Número",
+    "notas": "Serie: SRN",
+    "ultima_actualizacion": "2026-05-22"
+  },
+  {
+    "id": "porcentaje-de-anp-con-acciones-de-inspeccion-operativos-yo-cvaps-en-materia-de-recursos-naturalesrecorridos-de-vigilancia-en-materia-de-recursos-naturales-poa2026",
+    "nombre": "Porcentaje de ANP con acciones de inspección, operativos y/o CVAPs en materia de recursos naturales.Recorridos de vigilancia en materia de recursos naturales",
+    "programa": "POA2026",
+    "fuente": "POA_2026 - Captura interna",
+    "anios": [
+      2026
+    ],
+    "unidad_medida": "Número",
+    "notas": "Serie: SRN",
+    "ultima_actualizacion": "2026-05-22"
+  },
+  {
+    "id": "porcentaje-de-inspecciones-realizadas-en-materia-de-recursos-naturales-poa2026",
+    "nombre": "Porcentaje de inspecciones realizadas en materia de recursos naturales",
+    "programa": "POA2026",
+    "fuente": "POA_2026 - Captura interna",
+    "anios": [
+      2026
+    ],
+    "unidad_medida": "Número",
+    "notas": "Serie: SRN",
+    "ultima_actualizacion": "2026-05-22"
+  },
+  {
+    "id": "porcentaje-de-recorridos-de-vigilancia-realizados-en-materia-de-recursos-naturales-poa2026",
+    "nombre": "Porcentaje de recorridos de vigilancia realizados en materia de recursos naturales",
+    "programa": "POA2026",
+    "fuente": "POA_2026 - Captura interna",
+    "anios": [
+      2026
+    ],
+    "unidad_medida": "Número",
+    "notas": "Serie: SRN",
+    "ultima_actualizacion": "2026-05-22"
+  },
+  {
+    "id": "porcentaje-de-operativos-realizados-en-materia-de-recursos-naturales-poa2026",
+    "nombre": "Porcentaje de operativos realizados en materia de recursos naturales",
+    "programa": "POA2026",
+    "fuente": "POA_2026 - Captura interna",
+    "anios": [
+      2026
+    ],
+    "unidad_medida": "Número",
+    "notas": "Serie: SRN",
+    "ultima_actualizacion": "2026-05-22"
+  },
+  {
+    "id": "porcentaje-de-comites-de-vigilancia-ambiental-participativa-en-operacion-poa2026",
+    "nombre": "Porcentaje de Comités de Vigilancia Ambiental Participativa en operación",
+    "programa": "POA2026",
+    "fuente": "POA_2026 - Captura interna",
+    "anios": [
+      2026
+    ],
+    "unidad_medida": "Número",
+    "notas": "Serie: CORPA",
+    "ultima_actualizacion": "2026-05-22"
+  },
+  {
+    "id": "porcentaje-de-resoluciones-con-reparacion-del-dano-como-medida-de-aplicacion-poa2026",
+    "nombre": "Porcentaje de resoluciones con reparación del daño como medida de aplicación",
+    "programa": "POA2026",
+    "fuente": "POA_2026 - Captura interna",
+    "anios": [
+      2026
+    ],
+    "unidad_medida": "Número",
+    "notas": "Serie: CORPA",
+    "ultima_actualizacion": "2026-05-22"
   }
 ]
