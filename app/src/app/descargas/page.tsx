@@ -33,8 +33,7 @@ export default function DescargasPage() {
   const downloads = [
     { title: 'Indicadores completos', description: 'Catálogo completo de todos los indicadores institucionales con sus metadatos.', formats: [{ name: 'CSV', url: '/data/indicators.csv', icon: '📊' }, { name: 'JSON', url: '/data/indicators.json', icon: '📋' }], count: metadata?.total_indicadores || '-' },
     { title: 'Observaciones / Series temporales', description: 'Datos históricos de valores y metas por periodo para cada indicador.', formats: [{ name: 'CSV', url: '/data/observations.csv', icon: '📊' }, { name: 'JSON', url: '/data/observations.json', icon: '📋' }], count: metadata?.total_observaciones || '-' },
-    { title: 'Indicadores 2025', description: 'Indicadores del Programa Operativo Anual y MIR 2025.', formats: [{ name: 'CSV', url: '/data/indicators_2025.csv', icon: '📊' }, { name: 'JSON', url: '/data/indicators_2025.json', icon: '📋' }], badge: '2025' },
-    { title: 'Indicadores 2026', description: 'Indicadores del FiME y documentación institucional 2026.', formats: [{ name: 'CSV', url: '/data/indicators_2026.csv', icon: '📊' }, { name: 'JSON', url: '/data/indicators_2026.json', icon: '📋' }], badge: '2026' },
+    { title: 'Indicadores 2025', description: 'Indicadores del Programa Operativo Anual 2025.', formats: [{ name: 'CSV', url: '/data/indicators_2025.csv', icon: '📊' }, { name: 'JSON', url: '/data/indicators_2025.json', icon: '📋' }], badge: '2025' },
     { title: 'Diccionario de datos', description: 'Definición y descripción de cada campo del dataset.', formats: [{ name: 'JSON', url: '/data/data_dictionary.json', icon: '📋' }] },
     { title: 'Reporte de calidad', description: 'Información sobre la validez y completitud de los datos.', formats: [{ name: 'JSON', url: '/data/data_quality_report.json', icon: '📋' }] },
     { title: 'Metadatos del dataset', description: 'Información general sobre las fuentes y fecha de extracción.', formats: [{ name: 'JSON', url: '/data/metadata.json', icon: '📋' }] },
@@ -42,9 +41,6 @@ export default function DescargasPage() {
 
   const originalDocuments = [
     { title: 'POA 2025', description: 'Programa Operativo Anual 2025 - Documento original.', formats: [{ name: 'Excel', url: '/documents/POA_2025.xlsx', icon: '📑' }], badge: '2025' },
-    { title: 'MIR G005 2025', description: 'Matriz de Indicadores para Resultados del programa G005 - 2025.', formats: [{ name: 'Excel', url: '/documents/MIR_G005_2025.xlsx', icon: '📑' }], badge: '2025' },
-    { title: 'FiME 2026', description: 'Ficha de Monitoreo y Evaluación 2026 PROFEPA.', formats: [{ name: 'Excel', url: '/documents/FiME 2026 PFPA.xlsx', icon: '📑' }], badge: '2026' },
-    { title: 'G014 para Auditoría', description: 'Documento del programa G014 para Auditoría.', formats: [{ name: 'Word', url: '/documents/G014 para Auditoría.docx', icon: '📄' }] },
   ];
 
   return (
@@ -166,7 +162,7 @@ export default function DescargasPage() {
         </div>
 
         {/* Fuentes procesadas */}
-        {metadata?.fuentes_procesadas && (
+        {metadata?.fuentes_procesadas && metadata.fuentes_procesadas.some(f => f.nombre?.toUpperCase().startsWith('POA')) && (
           <FadeIn>
             <div className="card mt-8">
               <h2 className="text-xl font-bold mb-4">Fuentes originales procesadas</h2>
@@ -177,17 +173,17 @@ export default function DescargasPage() {
                       <th className="text-left py-3 px-4 font-semibold text-gray-600 text-xs uppercase tracking-wider">Nombre</th>
                       <th className="text-left py-3 px-4 font-semibold text-gray-600 text-xs uppercase tracking-wider">Archivo</th>
                       <th className="text-left py-3 px-4 font-semibold text-gray-600 text-xs uppercase tracking-wider">Tipo</th>
-                      <th className="text-left py-3 px-4 font-semibold text-gray-600 text-xs uppercase tracking-wider">Programa</th>
                       <th className="text-left py-3 px-4 font-semibold text-gray-600 text-xs uppercase tracking-wider">Año</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-100">
-                    {metadata.fuentes_procesadas.map((f, i) => (
+                    {metadata.fuentes_procesadas
+                      .filter(f => f.nombre?.toUpperCase().startsWith('POA'))
+                      .map((f, i) => (
                       <tr key={i} className="hover:bg-gray-50/50 transition-colors">
                         <td className="py-3 px-4 font-medium text-gray-900">{f.nombre}</td>
                         <td className="py-3 px-4 text-gray-500 text-xs">{f.archivo}</td>
                         <td className="py-3 px-4"><span className="badge-gray">{f.tipo.toUpperCase()}</span></td>
-                        <td className="py-3 px-4">{f.programa}</td>
                         <td className="py-3 px-4">{f.anio}</td>
                       </tr>
                     ))}
@@ -207,7 +203,7 @@ export default function DescargasPage() {
                 Porcentaje de indicadores que cuentan con cada campo informacional:
               </p>
               <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                {Object.entries(quality.completitud_indicadores).map(([campo, valor]) => (
+                {Object.entries(quality.completitud_indicadores).filter(([campo]) => !/nivel|programa/i.test(campo)).map(([campo, valor]) => (
                   <div key={campo} className="text-center p-4 bg-gray-50 rounded-xl">
                     <div className={`text-2xl font-extrabold ${(valor as number) >= 80 ? 'text-emerald-600' : (valor as number) >= 50 ? 'text-yellow-600' : 'text-red-600'}`}>{(valor as number).toFixed(0)}%</div>
                     <div className="text-xs text-gray-500 mt-1 capitalize">{campo.replace(/_/g, ' ')}</div>

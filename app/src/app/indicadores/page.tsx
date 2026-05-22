@@ -5,6 +5,8 @@ import { useEffect, useState, useMemo, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Indicator, FilterState } from '@/types';
+import { isHiddenIndicator } from '@/lib/indicators-filter';
+import Sparkline from '@/components/Sparkline';
 
 const ITEMS_PER_PAGE = 12;
 
@@ -18,23 +20,12 @@ function explicarNivel(nivel: string | undefined): string {
   }
 }
 
-function colorNivel(nivel: string | undefined): string {
-  switch (nivel) {
-    case 'Fin': return 'bg-purple-50 text-purple-700 ring-1 ring-purple-200';
-    case 'Propósito': return 'bg-blue-50 text-blue-700 ring-1 ring-blue-200';
-    case 'Componente': return 'bg-green-50 text-green-700 ring-1 ring-green-200';
-    case 'Actividad': return 'bg-orange-50 text-orange-700 ring-1 ring-orange-200';
-    default: return 'bg-gray-50 text-gray-600 ring-1 ring-gray-200';
-  }
-}
-
 function tieneInfoCompleta(ind: Indicator): boolean {
   return !!(ind.definicion && ind.metodo_calculo);
 }
 
 const YEAR_CONFIG: Record<number, { label: string; desc: string }> = {
-  2025: { label: 'Ejercicio fiscal 2025', desc: 'POA-MIR · Programa G005' },
-  2026: { label: 'Ejercicio fiscal 2026', desc: 'POA-FiME · Programa G014' },
+  2025: { label: 'Ejercicio fiscal 2025', desc: 'Programa Operativo Anual' },
 };
 
 function IndicadoresContent() {
@@ -42,13 +33,12 @@ function IndicadoresContent() {
   const [indicators, setIndicators] = useState<Indicator[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [sparkByIndicator, setSparkByIndicator] = useState<Record<string, number[]>>({});
 
-  const initialAnio = searchParams.get('anio') ? Number(searchParams.get('anio')) as 2025 | 2026 : 2025;
+  const initialAnio = 2025;
   const [selectedAnio, setSelectedAnio] = useState<2025 | 2026>(initialAnio);
-  
-  const [filters, setFilters] = useState<Omit<FilterState, 'anio'>>({
-    programa: searchParams.get('programa') as 'G005' | 'G014' | undefined,
-    nivel: searchParams.get('nivel') as any,
+
+  const [filters, setFilters] = useState<Omit<FilterState, 'anio' | 'programa' | 'nivel'>>({
     search: searchParams.get('q') || '',
   });
 
@@ -67,6 +57,36 @@ function IndicadoresContent() {
     loadData();
   }, [selectedAnio]);
 
+  // Cargar observaciones una vez para sparklines (M4)
+  useEffect(() => {
+    let cancelled = false;
+    async function loadObs() {
+      try {
+        const res = await fetch('/data/observations.json');
+        if (!res.ok) return;
+        type Obs = { indicator_id: string; periodo: string; valor: number | null; entidad?: string };
+        const obs: Obs[] = await res.json();
+        const map: Record<string, { periodo: string; valor: number }[]> = {};
+        obs.forEach(o => {
+          if (!o.periodo.includes('-')) return;
+          if ((o.entidad || 'Nacional') !== 'Nacional') return;
+          if (typeof o.valor !== 'number' || Number.isNaN(o.valor)) return;
+          if (!map[o.indicator_id]) map[o.indicator_id] = [];
+          map[o.indicator_id].push({ periodo: o.periodo, valor: o.valor });
+        });
+        const byId: Record<string, number[]> = {};
+        Object.entries(map).forEach(([id, arr]) => {
+          byId[id] = arr.sort((a, b) => a.periodo.localeCompare(b.periodo)).map(d => d.valor);
+        });
+        if (!cancelled) setSparkByIndicator(byId);
+      } catch (e) {
+        console.error('Error cargando observaciones para sparklines:', e);
+      }
+    }
+    loadObs();
+    return () => { cancelled = true; };
+  }, []);
+
   const handleAnioChange = (anio: 2025 | 2026) => {
     setSelectedAnio(anio);
     setCurrentPage(1);
@@ -75,8 +95,7 @@ function IndicadoresContent() {
 
   const filteredIndicators = useMemo(() => {
     return indicators.filter(ind => {
-      if (filters.programa && ind.programa !== filters.programa) return false;
-      if (filters.nivel && ind.nivel !== filters.nivel) return false;
+      if (isHiddenIndicator(ind.id)) return false;
       if (filters.search) {
         const search = filters.search.toLowerCase();
         const matchNombre = ind.nombre.toLowerCase().includes(search);
@@ -94,9 +113,6 @@ function IndicadoresContent() {
   );
 
   useEffect(() => { setCurrentPage(1); }, [filters]);
-
-  const uniqueProgramas = Array.from(new Set(indicators.map(i => i.programa))).filter(Boolean);
-  const uniqueNiveles = Array.from(new Set(indicators.map(i => i.nivel).filter(Boolean)));
 
   return (
     <div className="min-h-screen bg-mesh">
@@ -126,7 +142,7 @@ function IndicadoresContent() {
 
           {/* Selector de año prominente */}
           <div className="flex flex-col sm:flex-row gap-4 mb-6">
-            {([2025, 2026] as const).map(anio => (
+            {([2025] as const).map(anio => (
               <button
                 key={anio}
                 onClick={() => handleAnioChange(anio)}
@@ -137,12 +153,12 @@ function IndicadoresContent() {
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-lg font-bold ${
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-base font-bold ${
                     selectedAnio === anio
                       ? 'bg-gob-green-500 text-white'
                       : 'bg-gray-100 text-gray-500'
                   }`}>
-                    {anio === 2025 ? '25' : '26'}
+                    {indicators.filter(i => !isHiddenIndicator(i.id) && i.anios?.includes(anio)).length}
                   </div>
                   <div>
                     <div className={`font-bold text-lg ${
@@ -179,14 +195,8 @@ function IndicadoresContent() {
               </svg>
               <div>
                 <p className="font-medium text-blue-900 mb-1">¿Qué es un indicador?</p>
-                <p className="text-sm text-blue-800 mb-2">
+                <p className="text-sm text-blue-800">
                   Es un instrumento para medir el logro de los objetivos de los programas y un referente para el seguimiento de los avances y para la evaluación de los resultados alcanzados.
-                </p>
-                <p className="text-xs text-blue-700">
-                  Gobierno de México. Secretaría de Hacienda y Crédito Público. (s/f). Guía para el diseño de la Matriz de Indicadores para Resultados.<br/>
-                  <a href="https://www.transparenciapresupuestaria.gob.mx/work/models/PTP/Capacitacion/GuiaMIR.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-900">
-                    https://www.transparenciapresupuestaria.gob.mx/work/models/PTP/Capacitacion/GuiaMIR.pdf
-                  </a>
                 </p>
               </div>
             </div>
@@ -201,9 +211,9 @@ function IndicadoresContent() {
           className="card p-6 md:p-8 mb-6"
         >
           <h2 className="font-semibold text-gray-800 mb-4">Buscar indicadores</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 gap-4">
             {/* Búsqueda */}
-            <div className="lg:col-span-2">
+            <div>
               <label htmlFor="search" className="block text-sm font-medium text-gray-700 mb-1">
                 Buscar por palabra clave
               </label>
@@ -221,38 +231,10 @@ function IndicadoresContent() {
                 </svg>
               </div>
             </div>
-
-            {/* Filtro por programa */}
-            <div>
-              <label htmlFor="programa" className="block text-sm font-medium text-gray-700 mb-1">Programa presupuestario</label>
-              <select
-                id="programa"
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-gob-green-500/30 focus:border-gob-green-500 transition-all outline-none appearance-none"
-                value={filters.programa || ''}
-                onChange={(e) => setFilters({ ...filters, programa: e.target.value as 'G005' | 'G014' | undefined })}
-              >
-                <option value="">Todos</option>
-                {uniqueProgramas.map(prog => <option key={prog} value={prog}>{prog}</option>)}
-              </select>
-            </div>
-
-            {/* Filtro por nivel */}
-            <div>
-              <label htmlFor="nivel" className="block text-sm font-medium text-gray-700 mb-1">Tipo de indicador</label>
-              <select
-                id="nivel"
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-gob-green-500/30 focus:border-gob-green-500 transition-all outline-none appearance-none"
-                value={filters.nivel || ''}
-                onChange={(e) => setFilters({ ...filters, nivel: e.target.value as any })}
-              >
-                <option value="">Todos</option>
-                {uniqueNiveles.map(nivel => <option key={nivel} value={nivel}>{nivel}</option>)}
-              </select>
-            </div>
           </div>
 
           {/* Limpiar filtros */}
-          {(filters.programa || filters.nivel || filters.search) && (
+          {filters.search && (
             <div className="mt-4 pt-4 border-t">
               <button
                 type="button"
@@ -312,13 +294,8 @@ function IndicadoresContent() {
                   >
                     {/* Header con badges */}
                     <div className="flex flex-wrap items-center gap-2 mb-3">
-                      <span className="badge-gob">{indicator.programa}</span>
+                      <span className="badge-gob">POA</span>
                       <span className="badge-gray">{selectedAnio}</span>
-                      {indicator.nivel && (
-                        <span className={`text-xs px-2.5 py-1 rounded-full font-semibold ${colorNivel(indicator.nivel)}`}>
-                          {indicator.nivel}
-                        </span>
-                      )}
                     </div>
                     
                     {/* Nombre */}
@@ -342,6 +319,12 @@ function IndicadoresContent() {
                     
                     {/* Footer */}
                     <div className="pt-3 border-t border-gray-100 mt-auto">
+                      {sparkByIndicator[indicator.id] && sparkByIndicator[indicator.id].length >= 2 && (
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-[10px] uppercase tracking-wider text-gray-400 font-semibold">Tendencia {selectedAnio}</span>
+                          <Sparkline data={sparkByIndicator[indicator.id]} width={110} height={28} ariaLabel={`Tendencia mensual de ${indicator.nombre}`} />
+                        </div>
+                      )}
                       <div className="flex items-center justify-between">
                         <div className="text-xs text-gray-500">
                           {indicator.unidad_medida && <span>Mide: {indicator.unidad_medida}</span>}

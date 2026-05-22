@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState, useMemo, useRef, Suspense } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Indicator, Observation } from '@/types';
@@ -10,8 +10,6 @@ import {
   PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid,
   Tooltip, Legend, ResponsiveContainer, ComposedChart, ReferenceLine
 } from 'recharts';
-import { ExportPNGButton, PrintButton } from '@/components/ExportButtons';
-import { buildTrendLine } from '@/lib/regression';
 
 const COLORS = {
   primary: '#235B4E', secondary: '#691C32', gold: '#BC955C',
@@ -62,10 +60,9 @@ function textoMalFormateado(texto: string | null | undefined): boolean {
 
 const tooltipStyle = { borderRadius: '12px', border: 'none', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' };
 
-function IndicadorDetailContent() {
+export default function IndicadorDetailPage() {
   const params = useParams();
   const indicatorId = params.id as string;
-  const selectedAnio: 2025 | 2026 = 2025;
 
   const [data, setData] = useState<IndicatorDetail | null>(null);
   const [loading, setLoading] = useState(true);
@@ -74,17 +71,12 @@ function IndicadorDetailContent() {
   const [selectedEntity, setSelectedEntity] = useState<string>('Nacional');
   const [stateTab, setStateTab] = useState<'ranking' | 'comparison'>('ranking');
   const [stateChartCount, setStateChartCount] = useState<number>(35);
-  const [vistaPeriodo, setVistaPeriodo] = useState<'porcentaje' | 'absoluto'>('porcentaje');
-  const [showTrend, setShowTrend] = useState<boolean>(false);
-  const evolucionRef = useRef<HTMLDivElement>(null);
-  const periodoRef = useRef<HTMLDivElement>(null);
-  const comparativoRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     async function loadData() {
       try {
         const [indRes, obsRes] = await Promise.all([
-          fetch(`/data/indicators_${selectedAnio}.json`),
+          fetch('/data/indicators.json'),
           fetch('/data/observations.json')
         ]);
         if (!indRes.ok || !obsRes.ok) throw new Error('Error cargando datos');
@@ -92,10 +84,7 @@ function IndicadorDetailContent() {
         const observations: Observation[] = await obsRes.json();
         const indicator = indicators.find(i => i.id === indicatorId);
         if (!indicator) { setError('Indicador no encontrado'); return; }
-        const indicatorObs = observations.filter(o =>
-          o.indicator_id === indicatorId &&
-          o.periodo.startsWith(String(selectedAnio))
-        );
+        const indicatorObs = observations.filter(o => o.indicator_id === indicatorId);
         setData({ indicador: indicator, observaciones: indicatorObs, tiene_serie: indicatorObs.length > 0 });
       } catch (err) {
         console.error('Error:', err);
@@ -105,7 +94,7 @@ function IndicadorDetailContent() {
       }
     }
     if (indicatorId) loadData();
-  }, [indicatorId, selectedAnio]);
+  }, [indicatorId]);
 
   const allEntities = Array.from(
     new Set(data?.observaciones.map(o => o.entidad || 'Nacional').filter(Boolean))
@@ -117,7 +106,7 @@ function IndicadorDetailContent() {
     obs => (obs.entidad || 'Nacional') === selectedEntity
   ) || [];
 
-  const chartDataRaw = entityObservations
+  const chartData = entityObservations
     .filter(obs => obs.periodo.includes('-'))
     .map(obs => ({
       periodo: obs.periodo,
@@ -126,18 +115,6 @@ function IndicadorDetailContent() {
       avance: obs.avance_porcentual,
       diferencia: obs.valor && obs.meta ? obs.valor - obs.meta : 0
     })).sort((a, b) => a.periodo.localeCompare(b.periodo)) || [];
-
-  // Enero–diciembre completos: meses sin datos quedan vacíos pero visibles en el eje X
-  const chartData = (() => {
-    const byPeriodo = new Map(chartDataRaw.map(d => [d.periodo, d]));
-    const filled: typeof chartDataRaw = [];
-    for (let m = 1; m <= 12; m++) {
-      const periodo = `${selectedAnio}-${String(m).padStart(2, '0')}`;
-      const existing = byPeriodo.get(periodo);
-      filled.push(existing ?? { periodo, valor: undefined, meta: undefined, avance: undefined, diferencia: 0 });
-    }
-    return filled;
-  })();
 
   const datosAnuales = entityObservations
     .filter(obs => !obs.periodo.includes('-'))
@@ -155,73 +132,6 @@ function IndicadorDetailContent() {
     cumplimiento: mesesConMeta.length > 0 ? mesesConMeta.filter(d => d.avance && d.avance >= 100).length / mesesConMeta.length * 100 : 0,
     avanceAnual: datosAnuales.length > 0 ? datosAnuales[0].avance_porcentual : null,
   };
-
-  // KPIs unificados (S2): total programado / alcanzado / % avance
-  const kpis = useMemo(() => {
-    const anual = datosAnuales[0];
-    if (anual && (anual.valor != null || anual.meta != null)) {
-      return {
-        alcanzado: anual.valor ?? null,
-        programado: anual.meta ?? null,
-        avance: anual.avance_porcentual ?? (anual.valor != null && anual.meta && anual.meta > 0 ? (anual.valor / anual.meta) * 100 : null),
-        fuente: 'anual' as const,
-      };
-    }
-    const sumValor = chartData.reduce((s, d) => s + (d.valor ?? 0), 0);
-    const sumMeta = chartData.reduce((s, d) => s + (d.meta ?? 0), 0);
-    return {
-      alcanzado: chartData.some(d => d.valor != null) ? sumValor : null,
-      programado: chartData.some(d => d.meta != null) ? sumMeta : null,
-      avance: sumMeta > 0 ? (sumValor / sumMeta) * 100 : null,
-      fuente: 'mensual' as const,
-    };
-  }, [datosAnuales, chartData]);
-
-  // Agregados: solo registros de entidad=Nacional (el ETL calcula Nacional = suma de
-  // todos los estados), evitando doble conteo Nacional + estados individuales.
-  const agregados = useMemo(() => {
-    const obs = data?.observaciones || [];
-    const mensuales = obs.filter(o =>
-      o.periodo.includes('-') && (o.entidad === 'Nacional' || !o.entidad)
-    );
-    let sumMeta = 0;
-    let sumValor = 0;
-    let nMeta = 0;
-    let nValor = 0;
-    mensuales.forEach(o => {
-      if (typeof o.meta === 'number' && Number.isFinite(o.meta)) { sumMeta += o.meta; nMeta++; }
-      if (typeof o.valor === 'number' && Number.isFinite(o.valor)) { sumValor += o.valor; nValor++; }
-    });
-    // Fallback: registro anual Nacional si no hay mensuales
-    if (nMeta === 0 && nValor === 0) {
-      obs.filter(o => !o.periodo.includes('-') && (o.entidad === 'Nacional' || !o.entidad)).forEach(o => {
-        if (typeof o.meta === 'number' && Number.isFinite(o.meta)) { sumMeta += o.meta; nMeta++; }
-        if (typeof o.valor === 'number' && Number.isFinite(o.valor)) { sumValor += o.valor; nValor++; }
-      });
-    }
-    return {
-      programado: nMeta > 0 ? sumMeta : null,
-      alcanzado: nValor > 0 ? sumValor : null,
-      pctAlcanzado: nMeta > 0 && sumMeta > 0 ? (sumValor / sumMeta) * 100 : null,
-    };
-  }, [data]);
-
-  // Línea de tendencia (M7)
-  const trendData = useMemo(() => buildTrendLine(chartData, 3), [chartData]);
-  const chartDataConTendencia = useMemo(() => {
-    if (!showTrend || trendData.length === 0) return chartData as Array<{ periodo: string; valor: number | null; meta: number | null; avance: number | null; tendencia?: number | null; isForecast?: boolean }>;
-    const map = new Map<string, { tendencia: number; isForecast: boolean }>();
-    trendData.forEach(t => map.set(t.periodo, { tendencia: t.tendencia, isForecast: t.isForecast }));
-    const merged: Array<{ periodo: string; valor: number | null; meta: number | null; avance: number | null; tendencia: number | null; isForecast: boolean }> = [];
-    chartData.forEach(d => {
-      const t = map.get(d.periodo);
-      merged.push({ periodo: d.periodo, valor: d.valor ?? null, meta: d.meta ?? null, avance: d.avance ?? null, tendencia: t?.tendencia ?? null, isForecast: false });
-    });
-    trendData.filter(t => t.isForecast).forEach(t => {
-      merged.push({ periodo: t.periodo, valor: null, meta: null, avance: null, tendencia: t.tendencia, isForecast: true });
-    });
-    return merged;
-  }, [chartData, trendData, showTrend]);
 
   const cumplimientoData = [
     { name: 'Cumplidas', value: mesesConMeta.filter(d => d.avance && d.avance >= 100).length, color: COLORS.success },
@@ -242,8 +152,8 @@ function IndicadorDetailContent() {
     const { indicador } = data;
     const allObs = data.observaciones;
     let csv = '# INFORMACIÓN DEL INDICADOR\n';
-    csv += `ID,${indicador.id}\nNombre,"${indicador.nombre}"\nAño,${indicador.anios?.join(', ')}\nFuente,"Programa Operativo Anual ${selectedAnio} - PROFEPA"\n`;
-    csv += `Definición,"${indicador.definicion || 'N/A'}"\nMétodo de cálculo,"${indicador.metodo_calculo || 'N/A'}"\nUnidad de medida,${indicador.unidad_medida || 'N/A'}\n\n`;
+    csv += `ID,${indicador.id}\nNombre,"${indicador.nombre}"\nPrograma,${indicador.programa}\nAño,${indicador.anios?.join(', ')}\nFuente,"${indicador.fuente}"\n`;
+    csv += `Definición,"${indicador.definicion || 'N/A'}"\nMétodo de cálculo,"${indicador.metodo_calculo || 'N/A'}"\nUnidad de medida,${indicador.unidad_medida || 'N/A'}\nNivel,${indicador.nivel || 'N/A'}\n\n`;
     if (allObs.length > 0) {
       csv += '# SERIE DE DATOS\nPeriodo,Valor,Meta,Avance Porcentual,Entidad,Fuente\n';
       allObs.forEach(obs => { csv += `${obs.periodo},${obs.valor || ''},${obs.meta || ''},${obs.avance_porcentual || ''},${obs.entidad || ''},"${obs.fuente_detalle || ''}"\n`; });
@@ -277,7 +187,7 @@ function IndicadorDetailContent() {
           </div>
           <h2 className="text-xl font-bold text-gray-900 mb-2">{error || 'Error'}</h2>
           <p className="text-gray-500 mb-6">No se pudo cargar el indicador solicitado.</p>
-          <Link href={`/indicadores?anio=${selectedAnio}`} className="btn-primary">Volver al catálogo</Link>
+          <Link href="/indicadores" className="btn-primary">Volver al catálogo</Link>
         </div>
       </div>
     );
@@ -288,123 +198,91 @@ function IndicadorDetailContent() {
 
   return (
     <div className="min-h-screen bg-mesh">
-      {/* Breadcrumb */}
-      <div className="bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 py-3">
-          <nav className="breadcrumb" aria-label="Breadcrumb">
-            <Link href="/">Inicio</Link>
-            <span className="breadcrumb-separator" aria-hidden="true">/</span>
-            <Link href={`/indicadores?anio=${selectedAnio}`}>Indicadores {selectedAnio}</Link>
-            <span className="breadcrumb-separator" aria-hidden="true">/</span>
-            <span aria-current="page" className="truncate max-w-xs">{indicador.nombre.slice(0, 40)}...</span>
-          </nav>
+      {/* ═══ Hero Header ═══ */}
+      <section className="relative bg-gradient-to-br from-gob-green-600 via-gob-green-500 to-gob-green-700 overflow-hidden">
+        <div className="absolute inset-0 dot-pattern opacity-15" />
+        <div className="absolute -top-20 -right-20 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
+        <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-gob-gold-500/10 rounded-full blur-3xl" />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <nav className="text-sm text-white/50 mb-6 flex items-center gap-2">
+              <Link href="/" className="hover:text-white/80 transition-colors">Inicio</Link>
+              <span>/</span>
+              <Link href="/indicadores" className="hover:text-white/80 transition-colors">Indicadores</Link>
+              <span>/</span>
+              <span className="text-white/70 truncate max-w-xs">{indicador.nombre.slice(0, 40)}...</span>
+            </nav>
+
+            <div className="flex flex-wrap items-center gap-2 mb-4">
+              <span className="px-3 py-1.5 bg-white/15 backdrop-blur-sm rounded-full text-sm font-semibold text-white">{indicador.programa}</span>
+              {indicador.anios?.map(a => (
+                <span key={a} className="px-3 py-1.5 bg-white/10 rounded-full text-sm text-white/80">{a}</span>
+              ))}
+              {indicador.nivel && (
+                <span className={`px-3 py-1.5 rounded-full text-sm font-medium ${colorNivel(indicador.nivel)}`}>{indicador.nivel}</span>
+              )}
+            </div>
+
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white mb-4 leading-tight tracking-tight max-w-4xl">
+              {indicador.nombre}
+            </h1>
+
+            {indicador.definicion && !textoMalFormateado(indicador.definicion) && (
+              <p className="text-white/70 text-lg max-w-3xl leading-relaxed">{limpiarTexto(indicador.definicion, 250)}</p>
+            )}
+          </motion.div>
         </div>
-      </div>
+      </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-        {/* Header del indicador */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="card mb-6 bg-gradient-to-r from-gob-green-500 to-gob-green-600 text-white"
-        >
-          <div className="flex flex-wrap items-center gap-2 mb-4">
-            <span className="px-3 py-1.5 bg-white/20 rounded-full text-sm font-semibold">POA</span>
-            <span className="px-3 py-1.5 bg-white/30 rounded-full text-sm font-bold">{selectedAnio}</span>
-          </div>
-          
-          <h1 className="text-2xl md:text-3xl font-bold mb-4">
-            {indicador.nombre}
-          </h1>
-
-          {indicador.definicion && !textoMalFormateado(indicador.definicion) && (
-            <p className="text-white/90 text-lg leading-relaxed">{limpiarTexto(indicador.definicion, 250)}</p>
-          )}
-        </motion.div>
-
-        {/* KPIs — 5 tarjetas: programado/alcanzado (abs), %programado/%alcanzado, %avance anual */}
-        {tiene_serie && chartData.length > 0 && (agregados.programado != null || agregados.alcanzado != null || kpis.avance != null) && (
+        {/* ═══ KPIs ═══ */}
+        {tiene_serie && chartData.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-8"
+            className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 -mt-14 relative z-10 mb-8"
           >
-            {/* 1. Total programado (absoluto) */}
-            <div className="card p-5 border-l-4 border-gob-gold-500">
-              <div className="flex items-center gap-2 text-gob-gold-700 text-xs font-semibold uppercase tracking-wide mb-2">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
-                Total programado
+            {datosAnuales.length > 0 && datosAnuales[0].valor && (
+              <div className="card p-5 text-center border-2 border-gob-green-200 bg-gradient-to-b from-gob-green-50 to-white">
+                <div className="text-2xl font-extrabold text-gob-green-700">{datosAnuales[0].valor.toLocaleString('es-MX', {maximumFractionDigits: 1})}</div>
+                <div className="text-xs text-gob-green-600 font-medium mt-1">Total {datosAnuales[0].periodo}</div>
               </div>
-              <div className="text-3xl font-extrabold text-gob-gold-700 leading-tight tabular-nums">
-                {agregados.programado != null ? agregados.programado.toLocaleString('es-MX', { maximumFractionDigits: 1 }) : '—'}
+            )}
+            {datosAnuales.length > 0 && datosAnuales[0].meta && (
+              <div className="card p-5 text-center border-2 border-gob-gold-200 bg-gradient-to-b from-amber-50 to-white">
+                <div className="text-2xl font-extrabold text-gob-gold-700">{datosAnuales[0].meta.toLocaleString('es-MX', {maximumFractionDigits: 1})}</div>
+                <div className="text-xs text-gob-gold-600 font-medium mt-1">Meta anual</div>
               </div>
-              <div className="text-[11px] text-gray-500 mt-1">Dato acumulado Nacional · 2025</div>
+            )}
+            <div className="card p-5 text-center">
+              <div className="text-2xl font-extrabold text-blue-600">{stats.promedio.toLocaleString('es-MX', {maximumFractionDigits: 1})}</div>
+              <div className="text-xs text-gray-500 mt-1">Promedio mensual</div>
             </div>
-
-            {/* 2. Total alcanzado (absoluto) */}
-            <div className="card p-5 border-l-4 border-gob-green-600">
-              <div className="flex items-center gap-2 text-gob-green-700 text-xs font-semibold uppercase tracking-wide mb-2">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                Total alcanzado
-              </div>
-              <div className="text-3xl font-extrabold text-gob-green-700 leading-tight tabular-nums">
-                {agregados.alcanzado != null ? agregados.alcanzado.toLocaleString('es-MX', { maximumFractionDigits: 1 }) : '—'}
-              </div>
-              <div className="text-[11px] text-gray-500 mt-1">Dato acumulado Nacional · 2025</div>
+            <div className="card p-5 text-center">
+              <div className="text-2xl font-extrabold text-emerald-600">{stats.maximo.toLocaleString('es-MX', {maximumFractionDigits: 1})}</div>
+              <div className="text-xs text-gray-500 mt-1">Máximo mensual</div>
             </div>
-
-            {/* 3. % Programado (siempre 100% por definición de meta) */}
-            <div className="card p-5 border-l-4 border-gob-gold-500/70">
-              <div className="flex items-center gap-2 text-gob-gold-700 text-xs font-semibold uppercase tracking-wide mb-2">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h11M9 21V3m12 4l-4 4m4 0l-4-4" /></svg>
-                % Programado
-              </div>
-              <div className="text-3xl font-extrabold text-gob-gold-700 leading-tight tabular-nums">
-                {agregados.programado != null ? '100.0%' : '—'}
-              </div>
-              <div className="mt-2 h-2 bg-gray-100 rounded-full overflow-hidden">
-                <div className="h-full rounded-full bg-gob-gold-500" style={{ width: '100%' }} />
-              </div>
-              <div className="text-[11px] text-gray-500 mt-1">Referencia de meta</div>
+            <div className="card p-5 text-center">
+              <div className="text-2xl font-extrabold text-red-500">{stats.minimo.toLocaleString('es-MX', {maximumFractionDigits: 1})}</div>
+              <div className="text-xs text-gray-500 mt-1">Mínimo mensual</div>
             </div>
-
-            {/* 4. % Alcanzado (sobre programado agregado) */}
-            <div className="card p-5 border-l-4 border-gob-green-600/70">
-              <div className="flex items-center gap-2 text-gob-green-700 text-xs font-semibold uppercase tracking-wide mb-2">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 17l-5-5m0 0l5-5m-5 5h12" /></svg>
-                % Alcanzado
+            {datosAnuales.length > 0 && datosAnuales[0].avance_porcentual != null ? (
+              <div className="card p-5 text-center border-2 border-blue-200 bg-gradient-to-b from-blue-50 to-white">
+                <div className={`text-2xl font-extrabold ${datosAnuales[0].avance_porcentual >= 100 ? 'text-emerald-600' : datosAnuales[0].avance_porcentual >= 80 ? 'text-yellow-600' : 'text-red-600'}`}>
+                  {datosAnuales[0].avance_porcentual.toFixed(1)}%
+                </div>
+                <div className="text-xs text-blue-600 font-medium mt-1">Avance anual</div>
               </div>
-              <div className={`text-3xl font-extrabold leading-tight tabular-nums ${agregados.pctAlcanzado == null ? 'text-gray-400' : agregados.pctAlcanzado >= 100 ? 'text-emerald-600' : agregados.pctAlcanzado >= 80 ? 'text-yellow-600' : 'text-red-600'}`}>
-                {agregados.pctAlcanzado != null ? `${agregados.pctAlcanzado.toFixed(1)}%` : '—'}
+            ) : (
+              <div className="card p-5 text-center">
+                <div className={`text-2xl font-extrabold ${stats.cumplimiento >= 80 ? 'text-emerald-600' : stats.cumplimiento >= 50 ? 'text-yellow-600' : 'text-red-600'}`}>
+                  {stats.cumplimiento.toFixed(0)}%
+                </div>
+                <div className="text-xs text-gray-500 mt-1">Meses cumplidos</div>
               </div>
-              <div className="mt-2 h-2 bg-gray-100 rounded-full overflow-hidden">
-                <div
-                  className={`h-full rounded-full transition-all duration-700 ${agregados.pctAlcanzado == null ? 'bg-gray-300' : agregados.pctAlcanzado >= 100 ? 'bg-emerald-500' : agregados.pctAlcanzado >= 80 ? 'bg-yellow-500' : 'bg-red-500'}`}
-                  style={{ width: `${Math.min(agregados.pctAlcanzado ?? 0, 100)}%` }}
-                />
-              </div>
-              <div className="text-[11px] text-gray-500 mt-1">Alcanzado / Programado</div>
-            </div>
-
-            {/* 5. % Avance anual (oficial Nacional) */}
-            <div className="card p-5 border-l-4 border-blue-500">
-              <div className="flex items-center gap-2 text-blue-700 text-xs font-semibold uppercase tracking-wide mb-2">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
-                % Avance anual
-              </div>
-              <div className={`text-3xl font-extrabold leading-tight tabular-nums ${kpis.avance == null ? 'text-gray-400' : kpis.avance >= 100 ? 'text-emerald-600' : kpis.avance >= 80 ? 'text-yellow-600' : 'text-red-600'}`}>
-                {kpis.avance != null ? `${kpis.avance.toFixed(1)}%` : '—'}
-              </div>
-              <div className="mt-2 h-2 bg-gray-100 rounded-full overflow-hidden">
-                <div
-                  className={`h-full rounded-full transition-all duration-700 ${kpis.avance == null ? 'bg-gray-300' : kpis.avance >= 100 ? 'bg-emerald-500' : kpis.avance >= 80 ? 'bg-yellow-500' : 'bg-red-500'}`}
-                  style={{ width: `${Math.min(kpis.avance ?? 0, 100)}%` }}
-                />
-              </div>
-              <div className="text-[11px] text-gray-500 mt-1">Reportado a nivel Nacional</div>
-            </div>
+            )}
           </motion.div>
         )}
 
@@ -438,34 +316,23 @@ function IndicadorDetailContent() {
 
         {/* ═══ Charts ═══ */}
         {tiene_serie && chartData.length > 0 ? (
-          <div className="grid grid-cols-1 gap-6 mb-8">
-            <div ref={evolucionRef} className="card p-8">
-              <div className="flex items-center justify-between mb-6 flex-wrap gap-2">
+          <div className="grid lg:grid-cols-3 gap-6 mb-8">
+            <div className="lg:col-span-2 card p-8">
+              <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-bold text-gray-900">Evolución temporal</h2>
-                <div className="flex items-center gap-2 flex-wrap">
-                  <button
-                    onClick={() => setShowTrend(v => !v)}
-                    data-export-ignore="true"
-                    className={`text-xs font-medium px-3 py-1.5 rounded-lg border transition-all ${showTrend ? 'bg-blue-50 border-blue-300 text-blue-700' : 'bg-white border-gray-200 text-gray-600 hover:border-blue-300'}`}
-                    title="Mostrar línea de tendencia y proyección a 3 meses"
-                  >
-                    {showTrend ? '✓ Tendencia' : '+ Tendencia'}
-                  </button>
-                  <ExportPNGButton targetRef={evolucionRef} filename={`evolucion-${indicatorId}-${selectedAnio}`} />
-                  <div data-export-ignore="true" className="flex gap-1 bg-gray-100 rounded-xl p-1">
-                    {(['line', 'bar', 'area'] as const).map(type => (
-                      <button key={type} onClick={() => setChartType(type)}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${chartType === type ? 'bg-white text-gob-green-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}>
-                        {type === 'line' ? 'Línea' : type === 'bar' ? 'Barras' : 'Área'}
-                      </button>
-                    ))}
-                  </div>
+                <div className="flex gap-1 bg-gray-100 rounded-xl p-1">
+                  {(['line', 'bar', 'area'] as const).map(type => (
+                    <button key={type} onClick={() => setChartType(type)}
+                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${chartType === type ? 'bg-white text-gob-green-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}>
+                      {type === 'line' ? 'Línea' : type === 'bar' ? 'Barras' : 'Área'}
+                    </button>
+                  ))}
                 </div>
               </div>
               <div className="h-80">
                 <ResponsiveContainer width="100%" height="100%">
                   {chartType === 'line' ? (
-                    <ComposedChart data={chartDataConTendencia} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+                    <ComposedChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
                       <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
                       <XAxis dataKey="periodo" tick={{ fill: '#9ca3af', fontSize: 11 }} />
                       <YAxis tick={{ fill: '#9ca3af', fontSize: 11 }} />
@@ -474,9 +341,6 @@ function IndicadorDetailContent() {
                       <ReferenceLine y={stats.promedio} stroke="#d1d5db" strokeDasharray="4 4" label={{ value: 'Prom.', fill: '#9ca3af', fontSize: 10 }} />
                       <Line type="monotone" dataKey="valor" stroke={COLORS.primary} strokeWidth={3} dot={{ fill: COLORS.primary, strokeWidth: 2, r: 5 }} name="Valor" />
                       <Line type="monotone" dataKey="meta" stroke={COLORS.gold} strokeWidth={2} strokeDasharray="5 5" dot={{ fill: COLORS.gold, strokeWidth: 2, r: 4 }} name="Meta" />
-                      {showTrend && (
-                        <Line type="monotone" dataKey="tendencia" stroke="#3b82f6" strokeWidth={2} strokeDasharray="3 6" dot={false} name="Tendencia (proyección)" connectNulls />
-                      )}
                     </ComposedChart>
                   ) : chartType === 'bar' ? (
                     <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
@@ -503,6 +367,37 @@ function IndicadorDetailContent() {
               </div>
             </div>
 
+            <div className="card p-8">
+              <h2 className="text-xl font-bold text-gray-900 mb-6">Estado de metas</h2>
+              {cumplimientoData.length > 0 ? (
+                <div className="h-56">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie data={cumplimientoData} cx="50%" cy="50%" innerRadius={50} outerRadius={80} paddingAngle={4} dataKey="value" stroke="none"
+                        label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`} labelLine={false}>
+                        {cumplimientoData.map((entry, index) => (<Cell key={`cell-${index}`} fill={entry.color} />))}
+                      </Pie>
+                      <Tooltip contentStyle={tooltipStyle} />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+              ) : (
+                <div className="h-56 flex items-center justify-center text-gray-400">Sin datos de cumplimiento</div>
+              )}
+              <div className="flex flex-wrap justify-center gap-3 mt-4">
+                {[
+                  { label: 'Cumplidas', color: 'bg-emerald-500' },
+                  { label: 'En progreso', color: 'bg-yellow-500' },
+                  { label: 'Rezagadas', color: 'bg-red-500' },
+                  ...(mesesSinMeta.some(d => d.valor && d.valor > 0) ? [{ label: 'Sin meta', color: 'bg-gray-400' }] : [])
+                ].map(item => (
+                  <span key={item.label} className="flex items-center gap-1.5 text-xs text-gray-500 font-medium">
+                    <span className={`w-2.5 h-2.5 rounded-full ${item.color}`} />
+                    {item.label}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
         ) : (
           <div className="card p-10 mb-8">
@@ -527,48 +422,27 @@ function IndicadorDetailContent() {
 
         {/* ═══ Avance % ══ */}
         {tiene_serie && chartData.some(d => d.avance) && (
-          <div ref={periodoRef} className="card p-8 mb-8">
-            <div className="flex items-center justify-between mb-6 flex-wrap gap-2">
-              <h2 className="text-xl font-bold text-gray-900">
-                {vistaPeriodo === 'porcentaje' ? 'Avance porcentual por periodo' : 'Valores y meta por periodo'}
-              </h2>
-              <div className="flex items-center gap-2 flex-wrap">
-                {mesesSinMeta.some(d => d.valor && d.valor > 0) && vistaPeriodo === 'porcentaje' && (
-                  <span className="text-xs text-gray-400 bg-gray-50 px-3 py-1.5 rounded-lg">Meses sin meta en gris</span>
-                )}
-                <ExportPNGButton targetRef={periodoRef} filename={`periodo-${indicatorId}-${selectedAnio}`} />
-                <div data-export-ignore="true" className="flex gap-1 bg-gray-100 rounded-xl p-1">
-                  <button onClick={() => setVistaPeriodo('porcentaje')} className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${vistaPeriodo === 'porcentaje' ? 'bg-white text-gob-green-600 shadow-sm' : 'text-gray-500'}`}>%</button>
-                  <button onClick={() => setVistaPeriodo('absoluto')} className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${vistaPeriodo === 'absoluto' ? 'bg-white text-gob-green-600 shadow-sm' : 'text-gray-500'}`}>Absoluto</button>
-                </div>
-              </div>
+          <div className="card p-8 mb-8">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-bold text-gray-900">Avance porcentual por periodo</h2>
+              {mesesSinMeta.some(d => d.valor && d.valor > 0) && (
+                <span className="text-xs text-gray-400 bg-gray-50 px-3 py-1.5 rounded-lg">Meses sin meta en gris</span>
+              )}
             </div>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
-                {vistaPeriodo === 'porcentaje' ? (
-                  <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                    <XAxis dataKey="periodo" tick={{ fill: '#9ca3af', fontSize: 11 }} />
-                    <YAxis domain={[0, 'auto']} tick={{ fill: '#9ca3af', fontSize: 11 }} />
-                    <Tooltip contentStyle={tooltipStyle} formatter={(value: number) => value == null ? ['Sin meta', 'Avance'] : [`${value.toFixed(1)}%`, 'Avance']} />
-                    <ReferenceLine y={100} stroke={COLORS.success} strokeWidth={2} label={{ value: '100%', fill: COLORS.success, fontSize: 11 }} />
-                    <Bar dataKey="avance" name="Avance %" radius={[8, 8, 0, 0]}>
-                      {chartData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.avance == null ? '#d1d5db' : entry.avance >= 100 ? COLORS.success : entry.avance >= 80 ? COLORS.warning : COLORS.danger} />
-                      ))}
-                    </Bar>
-                  </BarChart>
-                ) : (
-                  <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                    <XAxis dataKey="periodo" tick={{ fill: '#9ca3af', fontSize: 11 }} />
-                    <YAxis tick={{ fill: '#9ca3af', fontSize: 11 }} />
-                    <Tooltip contentStyle={tooltipStyle} formatter={(value: number, name: string) => [value?.toLocaleString('es-MX', { maximumFractionDigits: 2 }), name === 'valor' ? 'Alcanzado' : 'Meta']} />
-                    <Legend />
-                    <Bar dataKey="meta" name="Meta" fill={COLORS.gold} radius={[8, 8, 0, 0]} />
-                    <Bar dataKey="valor" name="Alcanzado" fill={COLORS.primary} radius={[8, 8, 0, 0]} />
-                  </BarChart>
-                )}
+                <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                  <XAxis dataKey="periodo" tick={{ fill: '#9ca3af', fontSize: 11 }} />
+                  <YAxis domain={[0, 'auto']} tick={{ fill: '#9ca3af', fontSize: 11 }} />
+                  <Tooltip contentStyle={tooltipStyle} formatter={(value: number) => value == null ? ['Sin meta', 'Avance'] : [`${value.toFixed(1)}%`, 'Avance']} />
+                  <ReferenceLine y={100} stroke={COLORS.success} strokeWidth={2} label={{ value: '100%', fill: COLORS.success, fontSize: 11 }} />
+                  <Bar dataKey="avance" name="Avance %" radius={[8, 8, 0, 0]}>
+                    {chartData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.avance == null ? '#d1d5db' : entry.avance >= 100 ? COLORS.success : entry.avance >= 80 ? COLORS.warning : COLORS.danger} />
+                    ))}
+                  </Bar>
+                </BarChart>
               </ResponsiveContainer>
             </div>
           </div>
@@ -576,8 +450,8 @@ function IndicadorDetailContent() {
 
         {/* ═══ State comparison ═══ */}
         {hasStateData && stateComparisonData.length > 0 && (
-          <div ref={comparativoRef} className="card p-8 mb-8">
-            <div className="flex items-center justify-between mb-6 flex-wrap gap-2">
+          <div className="card p-8 mb-8">
+            <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold text-gray-900 flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-gob-green-50 flex items-center justify-center">
                   <svg className="w-5 h-5 text-gob-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -586,12 +460,9 @@ function IndicadorDetailContent() {
                 </div>
                 Comparativo por entidad
               </h2>
-              <div className="flex items-center gap-2 flex-wrap">
-                <ExportPNGButton targetRef={comparativoRef} filename={`comparativo-${indicatorId}-${selectedAnio}`} />
-                <div data-export-ignore="true" className="flex gap-1 bg-gray-100 rounded-xl p-1">
-                  <button onClick={() => setStateTab('ranking')} className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${stateTab === 'ranking' ? 'bg-white text-gob-green-600 shadow-sm' : 'text-gray-500'}`}>Ranking</button>
-                  <button onClick={() => setStateTab('comparison')} className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${stateTab === 'comparison' ? 'bg-white text-gob-green-600 shadow-sm' : 'text-gray-500'}`}>Valores</button>
-                </div>
+              <div className="flex gap-1 bg-gray-100 rounded-xl p-1">
+                <button onClick={() => setStateTab('ranking')} className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${stateTab === 'ranking' ? 'bg-white text-gob-green-600 shadow-sm' : 'text-gray-500'}`}>Ranking</button>
+                <button onClick={() => setStateTab('comparison')} className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${stateTab === 'comparison' ? 'bg-white text-gob-green-600 shadow-sm' : 'text-gray-500'}`}>Valores</button>
               </div>
             </div>
 
@@ -650,6 +521,12 @@ function IndicadorDetailContent() {
               Ficha técnica
             </h2>
             <dl className="space-y-5">
+              {indicador.nivel && (
+                <div className="bg-blue-50 rounded-xl p-4">
+                  <dt className="text-sm font-medium text-blue-800 mb-1">¿Qué tipo de indicador es?</dt>
+                  <dd className="text-blue-700 text-sm"><strong>{indicador.nivel}</strong>: {getNivelExplicacion(indicador.nivel)}</dd>
+                </div>
+              )}
               {indicador.definicion && !textoMalFormateado(indicador.definicion) && (
                 <div>
                   <dt className="text-sm font-medium text-gray-500 mb-1">¿Qué mide este indicador?</dt>
@@ -696,13 +573,10 @@ function IndicadorDetailContent() {
             <div className="card p-8">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-bold text-gray-900">Datos de la serie</h2>
-                <div className="flex items-center gap-2 flex-wrap">
-                  <PrintButton />
-                  <button onClick={downloadCSV} className="inline-flex items-center gap-2 text-sm font-semibold text-gob-green-600 hover:text-gob-green-700 transition-colors">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                    CSV
-                  </button>
-                </div>
+                <button onClick={downloadCSV} className="inline-flex items-center gap-2 text-sm font-semibold text-gob-green-600 hover:text-gob-green-700 transition-colors">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                  CSV
+                </button>
               </div>
               <div className="overflow-auto max-h-80 rounded-xl border border-gray-100">
                 <table className="w-full text-sm">
@@ -751,7 +625,7 @@ function IndicadorDetailContent() {
           <div className="grid md:grid-cols-2 gap-4 bg-gray-50 rounded-xl p-6">
             <div>
               <span className="text-sm font-medium text-gray-500">Fuente del dato</span>
-              <p className="text-gray-800 mt-1 font-medium">Programa Operativo Anual {selectedAnio} — PROFEPA</p>
+              <p className="text-gray-800 mt-1 font-medium">{indicador.fuente}</p>
             </div>
             <div>
               <span className="text-sm font-medium text-gray-500">Identificador único</span>
@@ -769,29 +643,14 @@ function IndicadorDetailContent() {
         </div>
 
         <div className="mb-8">
-          <Link href={`/indicadores?anio=${selectedAnio}`} className="inline-flex items-center gap-2 text-gob-green-600 font-semibold hover:gap-3 transition-all">
+          <Link href="/indicadores" className="inline-flex items-center gap-2 text-gob-green-600 font-semibold hover:gap-3 transition-all">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 17l-5-5m0 0l5-5m-5 5h12" />
             </svg>
-            Volver al catálogo ({selectedAnio})
+            Volver al catálogo
           </Link>
         </div>
       </div>
     </div>
-  );
-}
-
-export default function IndicadorDetailPage() {
-  return (
-    <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-mesh">
-        <div className="text-center">
-          <div className="w-12 h-12 border-4 border-gob-green-500 border-t-transparent rounded-full animate-spin mx-auto" />
-          <p className="mt-4 text-gray-500">Cargando indicador...</p>
-        </div>
-      </div>
-    }>
-      <IndicadorDetailContent />
-    </Suspense>
   );
 }

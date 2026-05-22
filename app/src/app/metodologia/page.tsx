@@ -87,60 +87,13 @@ export default function MetodologiaPage() {
               <div className="card bg-gray-50">
                 <h3 className="font-bold text-lg mb-2">POA - Programa Operativo Anual</h3>
                 <p className="text-gray-600 text-sm mb-2">
-                  Documento que establece las metas y actividades programadas por 
-                  PROFEPA para cada ejercicio fiscal. Contiene indicadores de gestión 
-                  y desempeño a nivel operativo.
+                  Documento que establece las metas y actividades programadas por
+                  PROFEPA para cada ejercicio fiscal. Contiene indicadores de gestión
+                  y desempeño a nivel operativo, con datos mensuales por entidad federativa.
                 </p>
                 <div className="flex gap-4 text-sm text-gray-500">
                   <span>Archivo: POA_2025.xlsx</span>
                   <span>Año: 2025</span>
-                </div>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.1}>
-              <div className="card bg-gray-50">
-                <h3 className="font-bold text-lg mb-2">MIR - Matriz de Indicadores para Resultados</h3>
-                <p className="text-gray-600 text-sm mb-2">
-                  Herramienta de planeación estratégica que permite vincular los 
-                  distintos instrumentos para el diseño, organización, ejecución, 
-                  seguimiento, evaluación y mejora de los programas presupuestarios.
-                </p>
-                <div className="flex gap-4 text-sm text-gray-500">
-                  <span>Archivo: MIR_G005_2025.xlsx</span>
-                  <span>Programa: G005</span>
-                  <span>Año: 2025</span>
-                </div>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.2}>
-              <div className="card bg-gray-50">
-                <h3 className="font-bold text-lg mb-2">FiME - Ficha de Indicadores de Monitoreo y Evaluación</h3>
-                <p className="text-gray-600 text-sm mb-2">
-                  Documento que contiene la descripción detallada de cada indicador, 
-                  incluyendo definición, método de cálculo, unidad de medida, 
-                  frecuencia de medición y metas.
-                </p>
-                <div className="flex gap-4 text-sm text-gray-500">
-                  <span>Archivo: FiME 2026 PFPA.xlsx</span>
-                  <span>Año: 2026</span>
-                </div>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.3}>
-              <div className="card bg-gray-50">
-                <h3 className="font-bold text-lg mb-2">Documentación para Auditoría</h3>
-                <p className="text-gray-600 text-sm mb-2">
-                  Documento narrativo que describe los programas, objetivos, 
-                  propósitos e indicadores del programa G014 para efectos de 
-                  auditoría y rendición de cuentas.
-                </p>
-                <div className="flex gap-4 text-sm text-gray-500">
-                  <span>Archivo: G014 para Auditoría.docx</span>
-                  <span>Programa: G014</span>
-                  <span>Año: 2026</span>
                 </div>
               </div>
             </FadeIn>
@@ -209,7 +162,7 @@ export default function MetodologiaPage() {
 
           {dictionary?.columnas ? (
             <div className="space-y-4">
-              {dictionary.columnas.map((col, index) => (
+              {dictionary.columnas.filter(c => !/^(programa|nivel)$/i.test(c.columna)).map((col, index) => (
                 <FadeIn key={index} delay={index * 0.03}>
                   <div className="card border-l-4 border-gob-green-500">
                     <div className="flex flex-wrap items-center gap-2 mb-2">
@@ -314,8 +267,7 @@ export default function MetodologiaPage() {
                         : 'Fecha no disponible'}
                     </td>
                     <td className="py-3 text-sm">
-                      Versión inicial del tablero con datos POA 2025, MIR G005 2025, 
-                      FiME 2026 y documentación G014.
+                      Versión inicial del tablero con datos del Programa Operativo Anual 2025.
                     </td>
                   </tr>
                 </tbody>

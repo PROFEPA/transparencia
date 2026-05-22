@@ -65,10 +65,11 @@ export default function RootLayout({
                 </div>
               </a>
               
-              <div className="hidden md:flex items-center gap-1">
+              <div className="hidden lg:flex items-center gap-1">
                 {[
                   { href: '/', label: 'Inicio' },
                   { href: '/indicadores', label: 'Indicadores' },
+                  { href: '/comparar', label: 'Comparar' },
                   { href: '/descargas', label: 'Descargas' },
                   { href: '/metodologia', label: 'Metodología' },
                   { href: '/glosario', label: 'Glosario' },
@@ -83,7 +84,7 @@ export default function RootLayout({
                 ))}
               </div>
 
-              <div className="md:hidden">
+              <div className="lg:hidden">
                 <button 
                   type="button"
                   className="p-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors"

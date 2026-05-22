@@ -4,12 +4,8 @@ import Link from 'next/link';
 import { useEffect, useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Indicator, Metadata, Observation } from '@/types';
-import {
-  PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid,
-  Tooltip, ResponsiveContainer
-} from 'recharts';
-
-const COLORS = ['#235B4E', '#BC955C', '#691C32', '#10B981', '#3B82F6', '#8B5CF6'];
+import MapaPorEstado from '@/components/MapaPorEstado';
+import { isHiddenIndicator } from '@/lib/indicators-filter';
 
 /* ── Section wrapper with scroll animation ── */
 function FadeSection({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
@@ -52,31 +48,41 @@ export default function HomePage() {
     loadData();
   }, []);
 
-  const ind2025 = useMemo(() => indicators.filter(i => i.anios?.includes(2025)), [indicators]);
-  const ind2026 = useMemo(() => indicators.filter(i => i.anios?.includes(2026)), [indicators]);
+  const ind2025 = useMemo(
+    () => indicators.filter(i => !isHiddenIndicator(i.id) && i.anios?.includes(2025)),
+    [indicators]
+  );
 
-  const programaData = useMemo(() => {
-    const counts: Record<string, number> = {};
-    indicators.forEach(i => { counts[i.programa] = (counts[i.programa] || 0) + 1; });
-    return Object.entries(counts).map(([name, value]) => ({ name, value }));
-  }, [indicators]);
-
-  const nivelData = useMemo(() => {
-    const counts: Record<string, number> = {};
-    ind2025.forEach(i => { if (i.nivel) counts[i.nivel] = (counts[i.nivel] || 0) + 1; });
-    return Object.entries(counts).map(([name, value]) => ({ name, value }));
-  }, [ind2025]);
-
-  const nivelFimeData = useMemo(() => {
-    const counts: Record<string, number> = {};
-    ind2026.forEach(i => { if (i.nivel) counts[i.nivel] = (counts[i.nivel] || 0) + 1; });
-    return Object.entries(counts).map(([name, value]) => ({ name, value }));
-  }, [ind2026]);
-
-  const anioData = [
-    { name: '2025', indicadores: ind2025.length, color: '#235B4E', label: 'POA/MIR' },
-    { name: '2026', indicadores: ind2026.length, color: '#BC955C', label: 'POA/FiME' }
-  ];
+  // KPIs globales: Total programado / Total alcanzado (suma ene-dic de todos los indicadores visibles)
+  const totalesGlobales = useMemo(() => {
+    let totalProgramado = 0;
+    let totalAlcanzado = 0;
+    let hayProgramado = false;
+    let hayAlcanzado = false;
+    ind2025.forEach(ind => {
+      const obs = observations.filter(o =>
+        o.indicator_id === ind.id &&
+        (o.entidad === 'Nacional' || !o.entidad) &&
+        o.periodo.startsWith('2025')
+      );
+      const anual = obs.find(o => !o.periodo.includes('-'));
+      if (anual && (anual.valor != null || anual.meta != null)) {
+        if (typeof anual.meta === 'number') { totalProgramado += anual.meta; hayProgramado = true; }
+        if (typeof anual.valor === 'number') { totalAlcanzado += anual.valor; hayAlcanzado = true; }
+      } else {
+        const meses = obs.filter(o => o.periodo.includes('-'));
+        meses.forEach(m => {
+          if (typeof m.meta === 'number') { totalProgramado += m.meta; hayProgramado = true; }
+          if (typeof m.valor === 'number') { totalAlcanzado += m.valor; hayAlcanzado = true; }
+        });
+      }
+    });
+    return {
+      programado: hayProgramado ? totalProgramado : null,
+      alcanzado: hayAlcanzado ? totalAlcanzado : null,
+      avance: hayProgramado && totalProgramado > 0 ? (totalAlcanzado / totalProgramado) * 100 : null,
+    };
+  }, [ind2025, observations]);
 
   return (
     <div className="bg-mesh">
@@ -101,8 +107,7 @@ export default function HomePage() {
                   transition={{ duration: 0.8, delay: 0.4 }}
                   className="text-sm md:text-base opacity-80 font-semibold mb-6"
                 >
-                  Programa presupuestario G005 Inspección y vigilancia<br />
-                  del medio ambiente y los recursos naturales
+                  Programa Operativo Anual 2025 de la PROFEPA
                 </motion.p>
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
@@ -137,20 +142,16 @@ export default function HomePage() {
               <FadeSection delay={0.3}>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="glass p-6 rounded-2xl text-center hover:bg-white/15 transition-all duration-300">
-                    <div className="text-4xl md:text-5xl font-bold">{indicators.length}</div>
+                    <div className="text-4xl md:text-5xl font-bold">24</div>
                     <div className="text-white/80 mt-1 text-sm font-medium">Indicadores</div>
                   </div>
                   <div className="glass p-6 rounded-2xl text-center hover:bg-white/15 transition-all duration-300">
-                    <div className="text-4xl md:text-5xl font-bold">{observations.length.toLocaleString()}</div>
+                    <div className="text-4xl md:text-5xl font-bold">14,206</div>
                     <div className="text-white/80 mt-1 text-sm font-medium">Registros</div>
                   </div>
-                  <div className="glass p-6 rounded-2xl text-center hover:bg-white/15 transition-all duration-300">
-                    <div className="text-4xl md:text-5xl font-bold">{new Set(indicators.map(i => i.programa)).size}</div>
-                    <div className="text-white/80 mt-1 text-sm font-medium">Programas</div>
-                  </div>
-                  <div className="glass p-6 rounded-2xl text-center hover:bg-white/15 transition-all duration-300">
-                    <div className="text-4xl md:text-5xl font-bold">{metadata?.fuentes_procesadas?.length || 0}</div>
-                    <div className="text-white/80 mt-1 text-sm font-medium">Fuentes</div>
+                  <div className="glass p-6 rounded-2xl text-center col-span-2 hover:bg-white/15 transition-all duration-300">
+                    <div className="text-4xl md:text-5xl font-bold">1</div>
+                    <div className="text-white/80 mt-1 text-sm font-medium">Programa Operativo Anual</div>
                   </div>
                 </div>
               </FadeSection>
@@ -159,126 +160,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══════ 2. CHARTS (4 original charts) ═══════ */}
+      {/* ═══════ 2. CHARTS ═══════ */}
       {!loading && indicators.length > 0 && (
-        <section className="relative -mt-8 z-10 pb-8">
+        <section className="relative pb-8 pt-4">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {/* Gráfica por Año */}
-              <FadeSection delay={0.1}>
-                <div className="card p-6">
-                  <h3 className="font-bold text-lg mb-4 text-center text-gray-800">Indicadores por Año</h3>
-                  <div className="h-48">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <BarChart data={anioData} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                        <XAxis dataKey="name" tick={{ fontSize: 12 }} />
-                        <YAxis tick={{ fontSize: 12 }} />
-                        <Tooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }} />
-                        <Bar dataKey="indicadores" radius={[8, 8, 0, 0]} label={({ x, y, width, index }: { x: number; y: number; width: number; index: number }) => {
-                          const entry = anioData[index];
-                          return (
-                            <g>
-                              <text x={x + width / 2} y={y - 8} textAnchor="middle" fontSize={10} fill={entry.color} fontWeight="bold">{entry.label}</text>
-                              <text x={x + width / 2} y={y + 20} textAnchor="middle" fontSize={16} fill="#fff" fontWeight="bold">{entry.indicadores}</text>
-                            </g>
-                          );
-                        }}>
-                          {anioData.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={entry.color} />
-                          ))}
-                        </Bar>
-                      </BarChart>
-                    </ResponsiveContainer>
-                  </div>
-                </div>
-              </FadeSection>
-
-              {/* Gráfica por Programa */}
-              <FadeSection delay={0.2}>
-                <div className="card p-6">
-                  <h3 className="font-bold text-lg mb-0 text-center text-gray-800">Distribución por Programa</h3>
-                  <p className="text-center text-sm font-semibold" style={{ color: '#BC955C' }}>Presupuestario</p>
-                  <div className="h-48">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <PieChart>
-                        <Pie
-                          data={programaData}
-                          cx="50%"
-                          cy="50%"
-                          innerRadius={40}
-                          outerRadius={70}
-                          paddingAngle={5}
-                          dataKey="value"
-                          label={({ name, percent, cx: cxl, cy: cyl, midAngle, outerRadius: oR }) => {
-                            const RADIAN = Math.PI / 180;
-                            const radius = oR + 18;
-                            const x = cxl + radius * Math.cos(-midAngle * RADIAN);
-                            const y = cyl + radius * Math.sin(-midAngle * RADIAN);
-                            return (
-                              <text x={x} y={y} textAnchor={x > cxl ? 'start' : 'end'} dominantBaseline="central" fontSize={12} fontWeight="bold">
-                                {name} {(percent * 100).toFixed(0)}%
-                              </text>
-                            );
-                          }}
-                        >
-                          {programaData.map((_, index) => (
-                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                          ))}
-                        </Pie>
-                        <text x="50%" y="42%" textAnchor="middle" dominantBaseline="central" fontSize={18} fontWeight="bold" fill="#235B4E">{programaData[0]?.value}</text>
-                        <text x="50%" y="58%" textAnchor="middle" dominantBaseline="central" fontSize={18} fontWeight="bold" fill="#BC955C">{programaData[1]?.value}</text>
-                        <Tooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }} />
-                      </PieChart>
-                    </ResponsiveContainer>
-                  </div>
-                </div>
-              </FadeSection>
-
-              {/* Gráfica por Nivel MIR 2025 */}
-              <FadeSection delay={0.3}>
-                <div className="card p-6">
-                  <h3 className="font-bold text-lg mb-0 text-center text-gray-800">Indicadores por Nivel</h3>
-                  <p className="text-center text-sm font-semibold" style={{ color: '#BC955C' }}>MIR 2025</p>
-                  <div className="h-48">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <BarChart data={nivelData} layout="vertical" margin={{ top: 5, right: 40, left: 5, bottom: 5 }}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                        <XAxis type="number" tick={{ fontSize: 11 }} />
-                        <YAxis dataKey="name" type="category" tick={{ fontSize: 10 }} width={80} />
-                        <Tooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }} />
-                        <Bar dataKey="value" fill="#235B4E" radius={[0, 4, 4, 0]}
-                          label={({ x, y, width, height, value }: { x: number; y: number; width: number; height: number; value: number }) => (
-                            <text x={x + width + 5} y={y + height / 2} dominantBaseline="central" fontSize={12} fontWeight="bold" fill="#235B4E">{value}</text>
-                          )}
-                        />
-                      </BarChart>
-                    </ResponsiveContainer>
-                  </div>
-                </div>
-              </FadeSection>
-
-              {/* Gráfica por Nivel FiME 2026 */}
-              <FadeSection delay={0.4}>
-                <div className="card p-6">
-                  <h3 className="font-bold text-lg mb-0 text-center text-gray-800">Indicadores por Nivel</h3>
-                  <p className="text-center text-sm font-semibold" style={{ color: '#BC955C' }}>FiME 2026</p>
-                  <div className="h-48">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <BarChart data={nivelFimeData} layout="vertical" margin={{ top: 5, right: 40, left: 5, bottom: 5 }}>
-                        <XAxis type="number" hide />
-                        <YAxis dataKey="name" type="category" tick={{ fontSize: 10 }} width={80} />
-                        <Tooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }} />
-                        <Bar dataKey="value" fill="#235B4E" radius={[0, 4, 4, 0]}
-                          label={({ x, y, width, height, value }: { x: number; y: number; width: number; height: number; value: number }) => (
-                            <text x={x + width + 5} y={y + height / 2} dominantBaseline="central" fontSize={12} fontWeight="bold" fill="#235B4E">{value}</text>
-                          )}
-                        />
-                      </BarChart>
-                    </ResponsiveContainer>
-                  </div>
-                </div>
-              </FadeSection>
+            <div className="grid md:grid-cols-2 gap-6">
+              <MapaPorEstado observations={observations} indicators={indicators} />
             </div>
           </div>
         </section>
@@ -296,10 +183,10 @@ export default function HomePage() {
                 Para cumplir con las tareas que le han sido encomendadas, la PROFEPA realiza, entre otras, las siguientes acciones: programar, ordenar y realizar actos de inspección, vigilancia y evaluación del cumplimiento de disposiciones jurídicas en materia de protección, restauración y aprovechamiento sustentable de los recursos naturales, vida silvestre, ecosistemas y áreas naturales protegidas; vigilar el cumplimiento de la regulación en materia de bioseguridad, especies exóticas y zonas costeras, prevención y control de la contaminación atmosférica, de suelos y aguas nacionales, manejo de residuos peligrosos e impacto ambiental, además de fomentar la auditoría ambiental y la emisión de lineamientos administrativos para garantizar la protección ambiental.
               </p>
               <p className="text-gray-700 text-justify leading-relaxed mt-4">
-                Durante 2025 la PROFEPA contaba con el Programa Presupuestario G005 &ldquo;Inspección y Vigilancia del Medio Ambiente y Recursos Naturales&rdquo;, cuyo fin era contribuir al bienestar social e igualdad mediante la ejecución de acciones de inspección y vigilancia en materia de recursos naturales e industria, la promoción y atención de la denuncia ambiental ciudadana, así como el impulso de los mecanismos voluntarios de mejora del desempeño ambiental en los sectores productivos, garantizando el acceso a la justicia ambiental mediante la aplicación de la normatividad correspondiente.
+                Durante 2025 la PROFEPA opera el Programa Operativo Anual de Inspección y Vigilancia del Medio Ambiente y los Recursos Naturales, cuyo fin es contribuir al bienestar social e igualdad mediante la ejecución de acciones de inspección y vigilancia en materia de recursos naturales e industria, la promoción y atención de la denuncia ambiental ciudadana, así como el impulso de los mecanismos voluntarios de mejora del desempeño ambiental en los sectores productivos, garantizando el acceso a la justicia ambiental mediante la aplicación de la normatividad correspondiente.
               </p>
               <p className="text-gray-700 text-justify leading-relaxed mt-4">
-                En el año 2026, la PROFEPA operará el Programa Presupuestario G014 &ldquo;Inspección, Vigilancia y Regulación del Medio Ambiente y Recursos Naturales&rdquo;, resultado de la Estrategia de Simplificación de la Estructura Programática 2026 para el ramo 16 &ldquo;Medio Ambiente y Recursos Naturales&rdquo;, llevada a cabo por la Unidad de Política y Estrategia para Resultados (UPER) de la Secretaría de Hacienda y Crédito Público. En dicha estrategia se contempló la fusión de algunos programas presupuestarios para la reorganización administrativa y la optimización de procesos internos. El propósito del Programa Presupuestario G014 &ldquo;Inspección, Vigilancia y Regulación del Medio Ambiente y Recursos Naturales&rdquo; es fortalecer las acciones de prevención, inspección y vigilancia que permitan supervisar y hacer cumplir la regulación en materia de biodiversidad, protección, conservación, restauración y aprovechamiento sustentable de los recursos naturales en beneficio de la población y los ecosistemas de México.
+                A través del Programa Operativo Anual, la PROFEPA fortalece las acciones de prevención, inspección y vigilancia que permiten supervisar y hacer cumplir la regulación en materia de biodiversidad, protección, conservación, restauración y aprovechamiento sustentable de los recursos naturales en beneficio de la población y los ecosistemas de México.
               </p>
             </div>
           </FadeSection>
@@ -323,7 +210,7 @@ export default function HomePage() {
               {
                 icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />,
                 title: 'Consulta indicadores',
-                desc: 'Explora los indicadores del POA, MIR y FiME con sus definiciones, metas y avances.',
+                desc: 'Explora los indicadores del Programa Operativo Anual con sus definiciones, metas y avances.',
               },
               {
                 icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />,
@@ -360,19 +247,18 @@ export default function HomePage() {
             </p>
           </FadeSection>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid gap-8 max-w-xl mx-auto">
             <FadeSection delay={0.1}>
               <Link href="/indicadores?anio=2025" className="block bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-lg hover:border-gob-green-200 hover:-translate-y-1 transition-all duration-300 group">
                 <div className="flex items-center justify-between mb-4">
-                  <span className="badge-gob">POA / MIR</span>
+                  <span className="badge-gob">POA</span>
                   <span className="text-4xl font-bold text-gob-green-500 group-hover:text-gob-green-600 transition-colors">
                     2025
                   </span>
                 </div>
                 <h3 className="font-bold text-xl mb-2">Indicadores 2025</h3>
                 <p className="text-gray-600 mb-4">
-                  Programa Operativo Anual (datos mensuales por estado) y Matriz de Indicadores
-                  para Resultados del ejercicio fiscal 2025.
+                  Programa Operativo Anual (datos mensuales por estado) del ejercicio fiscal 2025.
                 </p>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center text-gob-green-500 font-medium">
@@ -381,35 +267,10 @@ export default function HomePage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </div>
-                  <div className="text-sm text-gray-400">G005</div>
                 </div>
               </Link>
             </FadeSection>
 
-            <FadeSection delay={0.25}>
-              <Link href="/indicadores?anio=2026" className="block bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-lg hover:border-gob-gold-200 hover:-translate-y-1 transition-all duration-300 group">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="badge-gob">POA / FiME</span>
-                  <span className="text-4xl font-bold text-gob-gold-600 group-hover:text-gob-gold-700 transition-colors">
-                    2026
-                  </span>
-                </div>
-                <h3 className="font-bold text-xl mb-2">Indicadores 2026</h3>
-                <p className="text-gray-600 mb-4">
-                  Programa Operativo Anual (corte febrero) y Ficha de Indicadores
-                  de Monitoreo y Evaluación del ejercicio fiscal 2026.
-                </p>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center text-gob-gold-600 font-medium">
-                    <span>Ver {ind2026.length} indicadores</span>
-                    <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                  <div className="text-sm text-gray-400">G005 / G014</div>
-                </div>
-              </Link>
-            </FadeSection>
           </div>
         </div>
       </section>
@@ -437,20 +298,10 @@ export default function HomePage() {
                 return highlightNames.some(h => ind.nombre.startsWith(h));
               }).map((ind, i) => (
                 <FadeSection key={ind.id} delay={i * 0.1}>
-                  <Link href={`/indicadores/${ind.id}?anio=${ind.anios?.includes(2025) ? 2025 : 2026}`} className="card-hover group h-full flex flex-col">
+                  <Link href={`/indicadores/${ind.id}?anio=2025`} className="card-hover group h-full flex flex-col">
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="badge-gob">{ind.programa}</span>
-                      {ind.anios?.map(a => (
-                        <span key={a} className="badge-gray">{a}</span>
-                      ))}
-                      {ind.nivel && (
-                        <span className={`text-xs px-2.5 py-1 rounded-full font-semibold ${
-                          ind.nivel === 'Actividad' ? 'bg-orange-50 text-orange-600' :
-                          ind.nivel === 'Componente' ? 'bg-green-50 text-green-600' :
-                          ind.nivel === 'Propósito' ? 'bg-blue-50 text-blue-600' :
-                          'bg-purple-50 text-purple-600'
-                        }`}>{ind.nivel}</span>
-                      )}
+                      <span className="badge-gob">POA</span>
+                      <span className="badge-gray">2025</span>
                     </div>
                     <h3 className="font-semibold line-clamp-2 group-hover:text-gob-green-600 transition-colors mb-2">
                       {ind.nombre}
@@ -491,7 +342,7 @@ export default function HomePage() {
                 </svg>
                 <h2 className="text-xl font-bold mb-4 text-gray-900">Aviso de Transparencia</h2>
                 <p className="text-gray-600 leading-relaxed">
-                  La información presentada en este tablero proviene de documentos institucionales oficiales (POA, MIR, FiME) y se publica con fines informativos e integrar información uniforme y específica para elaborar y registrar los avances de avances de las metas de los Programas Operativos Anuales de las 32 ORPAyGTs de la PROFEPA, permitiendo alimentar las fórmulas establecidas para los indicadores de la MIR Programa presupuestario G005 y de transparencia. La interpretación oficial de los datos corresponde a PROFEPA.
+                  La información presentada en este tablero proviene del Programa Operativo Anual (POA) de la PROFEPA y se publica con fines informativos. Integra los avances de las metas reportadas por las 32 Oficinas de Representación de Protección Ambiental y Gestión Territorial (ORPAyGTs), permitiendo dar seguimiento al cumplimiento de los indicadores institucionales y fortalecer la transparencia. La interpretación oficial de los datos corresponde a PROFEPA.
                 </p>
                 <div className="mt-6 flex flex-wrap justify-center gap-4">
                   <Link href="/metodologia" className="text-blue-600 hover:underline font-medium">
@@ -509,14 +360,14 @@ export default function HomePage() {
       </section>
 
       {/* ═══════ 8. DATA SOURCES ═══════ */}
-      {metadata && metadata.fuentes_procesadas && (
+      {metadata && metadata.fuentes_procesadas && metadata.fuentes_procesadas.some(f => f.nombre?.toUpperCase().startsWith('POA')) && (
         <section className="section">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <FadeSection>
               <h2 className="section-title text-center">Fuentes de datos</h2>
             </FadeSection>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {metadata.fuentes_procesadas.map((fuente, index) => (
+              {metadata.fuentes_procesadas.filter(f => f.nombre?.toUpperCase().startsWith('POA')).map((fuente, index) => (
                 <FadeSection key={index} delay={index * 0.1}>
                   <div className="card-hover">
                     <div className="flex items-center gap-3 mb-3">
@@ -538,7 +389,6 @@ export default function HomePage() {
                     <h3 className="font-bold mb-1 text-gray-900">{fuente.nombre}</h3>
                     <p className="text-sm text-gray-600 mb-3">{fuente.descripcion}</p>
                     <div className="flex gap-2 text-xs text-gray-500">
-                      <span className="bg-gray-100 px-2.5 py-1 rounded-full">{fuente.programa}</span>
                       <span className="bg-gray-100 px-2.5 py-1 rounded-full">{fuente.anio}</span>
                     </div>
                   </div>

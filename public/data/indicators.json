@@ -12,7 +12,7 @@
     "unidad_medida": "Porcentaje",
     "nivel": "Fin",
     "notas": "Oficina: PROFEPA",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "porcentaje-de-denuncias-populares-en-materia-ambiental-concl-g005-2025",
@@ -28,7 +28,7 @@
     "unidad_medida": "Porcentaje",
     "nivel": "Propósito",
     "notas": "Oficina: Subprocuraduría Jurídica",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "porcentaje-de-resolucion-de-procedimientos-administrativos-d-g005-2025",
@@ -44,7 +44,7 @@
     "unidad_medida": "Porcentaje",
     "nivel": "Propósito",
     "notas": "Oficina: Subprocuraduría Jurídica",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "porcentaje-de-municipios-y-alcaldias-con-acciones-de-inspec-g005-2025",
@@ -60,7 +60,7 @@
     "unidad_medida": "Porcentaje",
     "nivel": "Propósito",
     "notas": "Oficina: Subprocuraduría de Recursos Naturales",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "porcentaje-de-certificados-y-reconocimientos-ambientales-emi-g005-2025",
@@ -76,7 +76,7 @@
     "unidad_medida": "Porcentaje",
     "nivel": "Propósito",
     "notas": "Oficina: Subprocuraduría de Auditoría Ambiental",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "porcentaje-de-visitas-de-verificacion-con-cumplimiento-de-la-g005-2025",
@@ -92,7 +92,7 @@
     "unidad_medida": "Porcentaje",
     "nivel": "Propósito",
     "notas": "Oficina: Subprocuraduría de Inspección Industrial",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "porcentaje-de-resoluciones-emitidas-a-los-recursos-de-revisi-g005-2025",
@@ -108,7 +108,7 @@
     "unidad_medida": "Porcentaje",
     "nivel": "Componente",
     "notas": "Oficina: Subprocuraduría Jurídica",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "porcentaje-de-areas-naturales-protegidas-con-acciones-de-ins-g005-2025",
@@ -124,7 +124,7 @@
     "unidad_medida": "Porcentaje",
     "nivel": "Componente",
     "notas": "Oficina: Subprocuraduría de Recursos Naturales",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "porcentaje-de-acciones-de-inspeccion-realizadas-al-universo-g005-2025",
@@ -140,7 +140,7 @@
     "unidad_medida": "Porcentaje",
     "nivel": "Componente",
     "notas": "Oficina: Subprocuraduría de Inspección Industrial",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "porcentaje-de-solicitudes-de-certificado-y-reconocimiento-am-g005-2025",
@@ -155,7 +155,7 @@
     "unidad_medida": "Porcentaje",
     "nivel": "Componente",
     "notas": "Oficina: Subprocuraduría de Auditoría Ambiental",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "porcentaje-de-personas-contactadas-en-las-jornadas-de-biene-g005-2025",
@@ -170,7 +170,7 @@
     "unidad_medida": "Porcentaje",
     "nivel": "Actividad",
     "notas": "Oficina: Subprocuraduría Jurídica",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "porcentaje-de-resolucion-a-las-solicitudes-de-conmutacion-de-g005-2025",
@@ -186,7 +186,7 @@
     "unidad_medida": "Porcentaje",
     "nivel": "Actividad",
     "notas": "Oficina: Subprocuraduría Jurídica",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "porcentaje-de-acciones-de-promocion-para-la-certificacion-am-g005-2025",
@@ -202,7 +202,7 @@
     "unidad_medida": "Porcentaje",
     "nivel": "Actividad",
     "notas": "Oficina: Subprocuraduría de Auditoría Ambiental",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "porcentaje-de-acciones-de-supervision-a-procesos-de-certific-g005-2025",
@@ -217,7 +217,7 @@
     "unidad_medida": "Porcentaje",
     "nivel": "Actividad",
     "notas": "Oficina: Subprocuraduría de Auditoría Ambiental",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "porcentaje-de-auditores-ambientales-supervisados-g005-2025",
@@ -232,7 +232,7 @@
     "unidad_medida": "Porcentaje",
     "nivel": "Actividad",
     "notas": "Oficina: Subprocuraduría de Auditoría Ambiental",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "porcentaje-de-inspecciones-realizadas-en-materia-de-recursos-g005-2025",
@@ -248,7 +248,7 @@
     "unidad_medida": "Porcentaje",
     "nivel": "Actividad",
     "notas": "Oficina: Subprocuraduría de Recursos Naturales",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "porcentaje-de-operativos-realizados-en-materia-de-recursos-n-g005-2025",
@@ -264,7 +264,7 @@
     "unidad_medida": "Porcentaje",
     "nivel": "Actividad",
     "notas": "Oficina: Subprocuraduría de Recursos Naturales",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "porcentaje-de-comites-de-vigilancia-ambiental-participativa-g005-2025",
@@ -280,7 +280,7 @@
     "unidad_medida": "Porcentaje",
     "nivel": "Actividad",
     "notas": "Oficina: Subprocuraduría de Recursos Naturales",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "porcentaje-de-recorridos-de-vigilancia-realizados-en-materia-g005-2025",
@@ -296,7 +296,7 @@
     "unidad_medida": "Porcentaje",
     "nivel": "Actividad",
     "notas": "Oficina: Subprocuraduría de Recursos Naturales",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "porcentaje-de-acciones-de-inspeccion-y-verificacion-realizad-g005-2025",
@@ -312,7 +312,7 @@
     "unidad_medida": "Porcentaje",
     "nivel": "Actividad",
     "notas": "Oficina: Subprocuraduría de Inspección Industrial",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "porcentaje-de-revision-de-mercancias-cuya-importacion-expor-g005-2025",
@@ -328,7 +328,7 @@
     "unidad_medida": "Porcentaje",
     "nivel": "Actividad",
     "notas": "Oficina: Subprocuraduría de Inspección Industrial",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "sii-05-emplazamientos-realizados-a-procedimient-g005-2025",
@@ -343,7 +343,7 @@
     "unidad_medida": null,
     "nivel": "Actividad",
     "notas": "ID interno: SII.05",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "sii-06-simulacros-para-evaluar-los-planes-de-re-g005-2025",
@@ -359,7 +359,7 @@
     "unidad_medida": null,
     "nivel": "Actividad",
     "notas": "ID interno: SII.06",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "sj-06-numero-de-denuncias-y-querellas-presenta-g005-2025",
@@ -375,7 +375,7 @@
     "unidad_medida": null,
     "nivel": "Actividad",
     "notas": "ID interno: SJ.06",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "sj-07-porcentaje-de-sentencias-favorables-not-g005-2025",
@@ -391,7 +391,7 @@
     "unidad_medida": null,
     "nivel": "Actividad",
     "notas": "ID interno: SJ.07",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "spa-06-porcentaje-de-empresas-e-instituciones-q-g005-2026",
@@ -406,7 +406,7 @@
     "unidad_medida": null,
     "nivel": "Actividad",
     "notas": "ID interno: SPA.06",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "sivi-07-porcentaje-de-solicitudes-de-aprobacione-g005-2026",
@@ -421,7 +421,7 @@
     "unidad_medida": null,
     "nivel": "Actividad",
     "notas": "ID interno: SIVI.07",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "sivi-08-porcentaje-de-revisiones-evaluaciones-y-g005-2026",
@@ -436,7 +436,7 @@
     "unidad_medida": null,
     "nivel": "Actividad",
     "notas": "ID interno: SIVI.08",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "sleja-04-acciones-de-difusion-para-la-promocion-y-g005-2026",
@@ -451,7 +451,7 @@
     "unidad_medida": null,
     "nivel": "Actividad",
     "notas": "ID interno: SLEJA.04",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   },
   {
     "id": "corpa-03-porcentaje-de-resoluciones-con-reparacio-g005-2026",
@@ -466,6 +466,6 @@
     "unidad_medida": null,
     "nivel": "Actividad",
     "notas": "ID interno: CORPA.03",
-    "ultima_actualizacion": "2026-03-31"
+    "ultima_actualizacion": "2026-04-24"
   }
 ]

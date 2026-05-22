@@ -288,3 +288,60 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   M6: Print / PDF — estilos optimizados para impresión
+   Activa con window.print() o Ctrl/Cmd+P
+   ═══════════════════════════════════════════════════════════════ */
+@media print {
+  @page {
+    size: A4;
+    margin: 1.2cm;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    color: #000 !important;
+    font-size: 11pt;
+  }
+
+  /* Ocultar elementos no imprimibles */
+  nav, header[role="banner"], footer,
+  [data-export-ignore="true"],
+  .no-print,
+  button,
+  .breadcrumb,
+  input[type="range"],
+  select {
+    display: none !important;
+  }
+
+  /* Asegurar gráficas y tarjetas visibles con bordes en color */
+  .card {
+    box-shadow: none !important;
+    border: 1px solid #e5e7eb !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Forzar fondo blanco */
+  .bg-mesh, .bg-gray-50, [class*="bg-gob-"] {
+    background: #ffffff !important;
+  }
+
+  /* Saltos de página entre secciones grandes */
+  h2 {
+    break-before: auto;
+    page-break-after: avoid;
+  }
+
+  a[href]::after {
+    content: '';
+  }
+
+  /* Recharts: garantizar render con colores */
+  svg {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}

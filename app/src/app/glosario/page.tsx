@@ -33,27 +33,6 @@ const glosarioTerms: GlosarioTerm[] = [
     ejemplos: ["Porcentaje", "Número", "Índice", "Pesos", "Hectáreas"]
   },
   { termino: "POA - Programa Operativo Anual", definicion: "Instrumento de planeación que establece las metas y actividades a realizar por una dependencia o entidad durante un ejercicio fiscal. Vincula la programación con la asignación de recursos." },
-  { termino: "MIR - Matriz de Indicadores para Resultados", definicion: "Herramienta de planeación estratégica organizada en una matriz de cuatro filas (Fin, Propósito, Componentes, Actividades) y cuatro columnas (Resumen Narrativo, Indicadores, Medios de Verificación, Supuestos). Permite vincular los objetivos de un programa con sus indicadores de medición." },
-  { termino: "FiME - Ficha de Indicadores de Monitoreo y Evaluación", definicion: "Documento que contiene la información detallada de cada indicador, incluyendo: nombre, definición, método de cálculo, unidad de medida, frecuencia de medición, sentido del indicador y metas." },
-  { termino: "Nivel - Fin", definicion: "Primer nivel de la MIR. Describe el impacto de largo plazo o el objetivo de desarrollo al que contribuye el programa. Generalmente está vinculado a los objetivos del Plan Nacional de Desarrollo." },
-  { termino: "Nivel - Propósito", definicion: "Segundo nivel de la MIR. Describe el resultado directo que se espera alcanzar en la población o área de enfoque como consecuencia de utilizar los componentes del programa." },
-  {
-    termino: "Nivel - Componente",
-    definicion: "Tercer nivel de la MIR. Son los bienes o servicios que produce el programa y que recibe la población o área de enfoque para cumplir con el propósito.",
-    ejemplos: ["Inspecciones realizadas", "Resoluciones emitidas", "Operativos ejecutados"]
-  },
-  {
-    termino: "Nivel - Actividad",
-    definicion: "Cuarto nivel de la MIR. Son las principales acciones o tareas que deben realizarse para producir cada uno de los componentes del programa.",
-    ejemplos: ["Programación de inspecciones", "Capacitación de personal", "Elaboración de informes"]
-  },
-  {
-    termino: "Programa presupuestario",
-    definicion: "Categoría programática que permite organizar las acciones de las dependencias y entidades para el cumplimiento de sus objetivos. Se identifica con una clave alfanumérica.",
-    ejemplos: ["G005", "G014"]
-  },
-  { termino: "G005", definicion: "Clave del programa presupuestario 'Regulación y vigilancia ambiental' de PROFEPA, enfocado en la inspección y vigilancia del cumplimiento de la normatividad ambiental." },
-  { termino: "G014", definicion: "Clave del programa presupuestario relacionado con las actividades de procuración de justicia ambiental de PROFEPA." },
   {
     termino: "Periodo",
     definicion: "Intervalo de tiempo al que corresponde una medición del indicador. Puede ser anual, semestral, trimestral o mensual.",
