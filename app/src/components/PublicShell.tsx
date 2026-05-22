@@ -1,0 +1,114 @@
+'use client';
+import { usePathname } from 'next/navigation';
+
+export default function PublicShell({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  if (pathname.startsWith('/interno')) return <>{children}</>;
+
+  return (
+    <>
+      {/* Top institutional bar */}
+      <div className="bg-gob-red-500 text-white relative z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex items-center justify-between text-xs font-medium">
+          <span className="tracking-wide">Gobierno de México</span>
+          <a href="https://www.gob.mx/profepa" target="_blank" rel="noopener noreferrer"
+            className="hover:text-white/80 transition-colors">
+            gob.mx/profepa →
+          </a>
+        </div>
+      </div>
+
+      {/* Main Navigation */}
+      <nav className="sticky top-0 z-40 bg-gob-green-500/95 backdrop-blur-lg border-b border-white/10 shadow-lg shadow-gob-green-900/20"
+        role="navigation" aria-label="Navegación principal">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-between h-16">
+            <a href="/" className="flex items-center gap-3 group">
+              <img src="/picture/Profepa_-02.png" alt="PROFEPA" className="h-9 w-auto group-hover:opacity-90 transition-opacity" />
+              <div className="flex flex-col">
+                <span className="text-white font-bold text-base leading-tight tracking-tight">PROFEPA</span>
+                <span className="text-white/60 text-[10px] leading-tight hidden sm:block">Tablero de Indicadores</span>
+              </div>
+            </a>
+            <div className="hidden lg:flex items-center gap-1">
+              {[
+                { href: '/', label: 'Inicio' },
+                { href: '/indicadores', label: 'Indicadores' },
+                { href: '/comparar', label: 'Comparar' },
+                { href: '/descargas', label: 'Descargas' },
+                { href: '/metodologia', label: 'Metodología' },
+                { href: '/glosario', label: 'Glosario' },
+              ].map(link => (
+                <a key={link.href} href={link.href}
+                  className="text-white/80 hover:text-white hover:bg-white/10 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">
+                  {link.label}
+                </a>
+              ))}
+            </div>
+            <div className="lg:hidden">
+              <button type="button" className="p-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors" aria-label="Abrir menú">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <main id="main-content" className="min-h-screen" role="main">
+        {children}
+      </main>
+
+      {/* Footer */}
+      <footer className="relative bg-gray-900 text-white overflow-hidden" role="contentinfo">
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-gob-green-500 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gob-gold-500 rounded-full blur-3xl" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-16 pb-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+            <div className="md:col-span-2">
+              <div className="flex items-center gap-3 mb-4">
+                <img src="/picture/Profepa_-02.png" alt="PROFEPA" className="h-10 w-auto" />
+                <div>
+                  <div className="font-bold text-lg">PROFEPA</div>
+                  <div className="text-gray-400 text-xs">Procuraduría Federal de Protección al Ambiente</div>
+                </div>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed max-w-md">
+                Órgano administrativo desconcentrado de la SEMARNAT, responsable de la procuración de la justicia ambiental en México.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-bold text-sm uppercase tracking-wider text-gray-300 mb-4">Navegación</h4>
+              <ul className="space-y-3">
+                {['Indicadores', 'Metodología', 'Descargas', 'Glosario'].map(item => (
+                  <li key={item}>
+                    <a href={`/${item.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')}`}
+                      className="text-gray-400 hover:text-white transition-colors text-sm">{item}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold text-sm uppercase tracking-wider text-gray-300 mb-4">Legal</h4>
+              <p className="text-gray-500 text-xs leading-relaxed">
+                La información proviene de documentos institucionales y se publica con fines informativos.
+              </p>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 pt-8">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+              <div className="text-center md:text-left">
+                <p className="text-gray-400 text-sm font-medium">Desarrollado por la Coordinación de Estudios Prospectivos y Valoración de Riesgos</p>
+                <p className="text-gray-500 text-xs mt-1">Alan Jesús Guerrero Sandoval · <a href="mailto:alan.guerrero@profepa.gob.mx" className="text-gob-gold-400 hover:text-gob-gold-500 transition-colors">alan.guerrero@profepa.gob.mx</a></p>
+              </div>
+              <p className="text-gray-600 text-xs">© {new Date().getFullYear()} PROFEPA — Gobierno de México</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </>
+  );
+}
