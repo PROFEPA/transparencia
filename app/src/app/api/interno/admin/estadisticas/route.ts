@@ -115,24 +115,30 @@ export async function GET() {
       SUM(CASE WHEN c.status='aprobado' THEN 1 ELSE 0 END) AS aprobadas,
       COUNT(DISTINCT c.oficina) AS oficinas,
       SUM(CASE WHEN c.status='aprobado' AND c.programado>0 THEN c.avance   ELSE 0 END) AS avan_sum,
-      SUM(CASE WHEN c.status='aprobado' AND c.programado>0 THEN c.programado ELSE 0 END) AS prog_sum
+      SUM(CASE WHEN c.status='aprobado' AND c.programado>0 THEN c.programado ELSE 0 END) AS prog_sum,
+      SUM(i.meta_anual) AS meta_sum
     FROM indicadores_2026 i
     LEFT JOIN capturas c ON c.indicador_id = i.id
     GROUP BY i.codigo, i.nombre, i.serie
     ORDER BY i.codigo
   `).all() as Record<string, number | string>[];
 
-  const indicadores = porIndicador.map(r => ({
-    codigo: r.codigo,
-    nombre: r.nombre,
-    serie: r.serie,
-    capturas: r.capturas_total,
-    aprobadas: r.aprobadas,
-    oficinas: r.oficinas,
-    pct: (r.prog_sum as number) > 0
-      ? Math.round(((r.avan_sum as number) / (r.prog_sum as number)) * 100)
-      : null,
-  }));
+  const indicadores = porIndicador.map(r => {
+    const prog = r.prog_sum as number;
+    const avan = r.avan_sum as number;
+    const meta = r.meta_sum as number;
+    return {
+      codigo: r.codigo,
+      nombre: r.nombre,
+      serie: r.serie,
+      capturas: r.capturas_total,
+      aprobadas: r.aprobadas,
+      oficinas: r.oficinas,
+      pct: prog > 0 ? Math.round((avan / prog) * 100) : null,
+      prog_pct: meta > 0 ? Math.round((prog / meta) * 100) : null,
+      avan_pct: meta > 0 ? Math.round((avan / meta) * 100) : null,
+    };
+  });
 
   // Pie data for status distribution
   const totalRaw = db.prepare(`

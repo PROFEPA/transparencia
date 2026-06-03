@@ -176,6 +176,21 @@ export default function CapturaPage() {
 
       <main className="max-w-5xl mx-auto px-4 py-6 space-y-5">
 
+        {/* Locked notice — all data already registered (imported) */}
+        {allSubmitted && Object.keys(capturas).length > 0 && capturaCount.aprobado === indicadores.length && (
+          <div className="bg-blue-50 border border-blue-200 rounded-2xl px-5 py-4 flex items-start gap-3">
+            <svg className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+            <div>
+              <p className="text-sm font-semibold text-blue-800">Datos de {MES_NOMBRE[mes]} ya registrados</p>
+              <p className="text-xs text-blue-600 mt-0.5">
+                Los avances de este mes fueron importados del Excel oficial y están confirmados. Para hacer correcciones, contacta al administrador.
+              </p>
+            </div>
+          </div>
+        )}
+
         {/* Status bar + submit */}
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">

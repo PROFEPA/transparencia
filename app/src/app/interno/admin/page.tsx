@@ -5,7 +5,10 @@ import { useRouter } from 'next/navigation';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
   ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line,
+  ReferenceLine, LabelList,
 } from 'recharts';
+import MapaInternoPOA from '@/components/MapaInternoPOA';
+import type { OficinaPct } from '@/components/MapaInternoPOA';
 
 const MESES = ['','Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
 const STATUS_COLOR: Record<string, string> = {
@@ -31,7 +34,7 @@ function StatusDot({ status }: { status: string }) {
 interface MesData { mes: number; label: string; aprobadas: number; enviadas: number; borradores: number; rechazadas: number; prog: number; avan: number; pct: number | null; }
 interface MesCell { status: string; pct: number | null; avance: number | null; programado: number | null; }
 interface OficinaRow { oficina: string; total: number; aprobadas: number; enviadas: number; pct_overall: number | null; meses: Record<number, MesCell>; }
-interface IndicadorRow { codigo: string; nombre: string; serie: string; capturas: number; aprobadas: number; oficinas: number; pct: number | null; }
+interface IndicadorRow { codigo: string; nombre: string; serie: string; capturas: number; aprobadas: number; oficinas: number; pct: number | null; prog_pct: number | null; avan_pct: number | null; }
 interface PieEntry { name: string; value: number; color: string; }
 
 const NavLink = ({ href, label, active }: { href: string; label: string; active?: boolean }) => (
@@ -70,6 +73,11 @@ export default function AdminDashboard() {
   const g = resumen?.global ?? {};
   const pctGlobal = (g.aprobadas && resumen?.totalIndicadores)
     ? Math.round((g.aprobadas / (resumen.totalIndicadores * 37)) * 100) : 0;
+
+  const mapaData: OficinaPct[] = (stats?.matriz ?? []).map(ofc => ({
+    oficina: ofc.oficina,
+    pct: ofc.pct_overall,
+  }));
 
   if (loading) return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -155,10 +163,88 @@ export default function AdminDashboard() {
         {/* ── TAB: RESUMEN ── */}
         {tab === 'resumen' && stats && (
           <div className="space-y-6">
-            <div className="grid lg:grid-cols-3 gap-6">
+
+            {/* ── GRÁFICA TIPO EXCEL: Cumplimiento por Indicador ── */}
+            {stats.indicadores.some(i => i.pct !== null) && (
+              <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                <div className="mb-4">
+                  <h2 className="font-semibold text-gray-800">Porcentaje de Cumplimiento — Indicadores Institucionales</h2>
+                  <p className="text-xs text-gray-500 mt-0.5">
+                    Avance acumulado vs programado (Ene–Abr 2026). Promedio nacional por indicador.
+                  </p>
+                </div>
+                <div className="flex flex-wrap items-center gap-4 mb-3 text-xs text-gray-500">
+                  <span className="flex items-center gap-1.5 text-gray-400">— Línea 100%</span>
+                  <div className="flex items-center gap-3 ml-auto">
+                    {[
+                      { color: '#059669', label: '≥ 90% En meta' },
+                      { color: '#D97706', label: '70–89% En riesgo' },
+                      { color: '#DC2626', label: '< 70% Rezagado' },
+                      { color: '#CBD5E1', label: 'Sin datos' },
+                    ].map(({ color, label }) => (
+                      <span key={label} className="flex items-center gap-1.5">
+                        <span className="w-3.5 h-3 rounded-sm flex-shrink-0" style={{ background: color }} />{label}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="overflow-x-auto">
+                  <div style={{ minWidth: Math.max(600, stats.indicadores.length * 42) }}>
+                    <ResponsiveContainer width="100%" height={320}>
+                      <BarChart
+                        data={stats.indicadores}
+                        barSize={20}
+                        margin={{ top: 28, right: 16, left: 8, bottom: 55 }}
+                      >
+                        <CartesianGrid strokeDasharray="3 3" stroke="#F3F4F6" vertical={false} />
+                        <XAxis
+                          dataKey="codigo"
+                          tick={{ fontSize: 10, fill: '#6B7280' }}
+                          angle={-40}
+                          textAnchor="end"
+                          interval={0}
+                          height={60}
+                        />
+                        <YAxis
+                          tickFormatter={v => `${v}%`}
+                          tick={{ fontSize: 10, fill: '#6B7280' }}
+                          domain={[0, (dataMax: number) => Math.max(120, Math.min(dataMax + 20, 400))]}
+                          width={46}
+                        />
+                        <ReferenceLine y={100} stroke="#64748B" strokeDasharray="5 3" strokeWidth={1.5}
+                          label={{ value: '100%', position: 'right', fontSize: 10, fill: '#64748B' }} />
+                        <Tooltip
+                          contentStyle={{ borderRadius: 10, border: 'none', boxShadow: '0 8px 24px rgba(0,0,0,0.12)', fontSize: 12 }}
+                          formatter={(val: number) => [`${val ?? '—'}%`, 'Cumplimiento']}
+                          labelFormatter={(code: string) => {
+                            const ind = stats.indicadores.find(i => i.codigo === code);
+                            return ind ? `${code} — ${ind.nombre}` : code;
+                          }}
+                        />
+                        <Bar dataKey="pct" radius={[4, 4, 0, 0]}>
+                          {stats.indicadores.map((ind, i) => (
+                            <Cell
+                              key={i}
+                              fill={ind.pct === null ? '#CBD5E1' : ind.pct >= 90 ? '#059669' : ind.pct >= 70 ? '#D97706' : '#DC2626'}
+                            />
+                          ))}
+                          <LabelList dataKey="pct" position="top" style={{ fontSize: 9, fontWeight: 600 }}
+                            formatter={(v: number | null) => v != null ? `${v}%` : ''} />
+                        </Bar>
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <div className="grid lg:grid-cols-2 gap-6">
+
+              {/* Mexico map */}
+              <MapaInternoPOA data={mapaData} />
 
               {/* Monthly chart */}
-              <div className="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+              <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <h2 className="font-semibold text-gray-800">Capturas por mes — 2026</h2>
@@ -195,47 +281,16 @@ export default function AdminDashboard() {
                     </BarChart>
                   )}
                 </ResponsiveContainer>
-              </div>
 
-              {/* Pie + quick actions */}
-              <div className="flex flex-col gap-4">
-                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-                  <h2 className="font-semibold text-gray-800 mb-4">Estado actual</h2>
-                  {stats.pie.length === 0 ? (
-                    <div className="text-center py-8 text-gray-400">
-                      <p className="text-3xl mb-2">📭</p>
-                      <p className="text-sm">Sin capturas todavía</p>
+                {/* Quick stats below chart */}
+                <div className="mt-4 flex flex-wrap gap-3">
+                  {stats.pie.map(d => (
+                    <div key={d.name} className="flex items-center gap-1.5 text-xs text-gray-600">
+                      <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: d.color }} />
+                      {d.name}: <strong className="text-gray-800">{d.value}</strong>
                     </div>
-                  ) : (
-                    <>
-                      <ResponsiveContainer width="100%" height={160}>
-                        <PieChart>
-                          <Pie data={stats.pie} cx="50%" cy="50%" innerRadius={45} outerRadius={72} dataKey="value" paddingAngle={3}>
-                            {stats.pie.map((entry, i) => <Cell key={i} fill={entry.color} />)}
-                          </Pie>
-                          <Tooltip contentStyle={{ borderRadius: 8, border: 'none', fontSize: 12 }} />
-                        </PieChart>
-                      </ResponsiveContainer>
-                      <div className="space-y-2 mt-2">
-                        {stats.pie.map(d => (
-                          <div key={d.name} className="flex items-center justify-between text-sm">
-                            <div className="flex items-center gap-2">
-                              <div className="w-3 h-3 rounded-full" style={{ background: d.color }} />
-                              <span className="text-gray-600">{d.name}</span>
-                            </div>
-                            <span className="font-semibold text-gray-800">{d.value}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </>
-                  )}
+                  ))}
                 </div>
-                <Link href="/interno/admin/capturas?status=enviado"
-                  className="bg-blue-50 hover:bg-blue-100 border-2 border-blue-200 rounded-2xl p-5 transition-all group">
-                  <div className="text-3xl font-bold text-blue-700">{g.pendientes ?? 0}</div>
-                  <div className="text-sm text-blue-600 font-medium">Pendientes de revisión</div>
-                  <div className="text-xs text-blue-500 mt-2 group-hover:underline">Revisar ahora →</div>
-                </Link>
               </div>
             </div>
 
@@ -290,7 +345,7 @@ export default function AdminDashboard() {
                                   color: status === 'sin_captura' ? '#9CA3AF' : '#fff' }}
                                 title={`${ofc.oficina} - ${MESES[mes]}: ${status}${pct !== null ? ` (${pct}%)` : ''}`}
                               >
-                                {pct !== null ? `${pct}%` : '—'}
+                                {pct != null ? `${pct}%` : '—'}
                               </div>
                             </td>
                           );
