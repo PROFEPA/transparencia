@@ -51,12 +51,15 @@ interface OrpaDetail {
   };
 }
 
-function KpiCard({ label, value, sub, color }: { label: string; value: string | number; sub?: string; color?: string }) {
+function KpiCard({ label, value, sub, color, icon }: { label: string; value: string | number; sub?: string; color?: string; icon?: string }) {
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-      <div className={`text-2xl font-bold ${color ?? 'text-gray-800'}`}>{value}</div>
-      <div className="text-sm font-medium text-gray-600 mt-0.5">{label}</div>
-      {sub && <div className="text-xs text-gray-400 mt-0.5">{sub}</div>}
+    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 flex items-center gap-3">
+      {icon && <span className="text-2xl flex-shrink-0">{icon}</span>}
+      <div>
+        <div className={`text-2xl font-bold ${color ?? 'text-gray-800'}`}>{value}</div>
+        <div className="text-sm font-medium text-gray-600 mt-0.5">{label}</div>
+        {sub && <div className="text-xs text-gray-400 mt-0.5">{sub}</div>}
+      </div>
     </div>
   );
 }
@@ -168,19 +171,58 @@ export default function OrpaDetailPage() {
 
         {/* KPI Cards */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-          <KpiCard label="Indicadores" value={stats.total_indicadores} sub="POA 2026" color="text-[#235B4E]" />
-          <KpiCard label="Capturas totales" value={stats.total_capturas} color="text-gray-800" />
-          <KpiCard label="Aprobadas" value={stats.aprobadas} color="text-emerald-600"
+          <KpiCard label="Indicadores" value={stats.total_indicadores} sub="POA 2026" color="text-[#235B4E]" icon="📋" />
+          <KpiCard label="Capturas totales" value={stats.total_capturas} color="text-gray-800" icon="📊" />
+          <KpiCard label="Aprobadas" value={stats.aprobadas} color="text-emerald-600" icon="✅"
             sub={stats.total_capturas > 0 ? `${Math.round((stats.aprobadas / stats.total_capturas) * 100)}% del total` : undefined} />
-          <KpiCard label="Enviadas" value={stats.enviadas} color="text-blue-600" sub="pendiente revisión" />
-          <KpiCard label="Borradores" value={stats.borradores} color="text-amber-600" />
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 flex flex-col justify-between">
-            <div className={`text-2xl font-bold ${pctColor(stats.pct_overall).replace('bg-', 'text-').replace('-100', '-700').replace(' font-bold', '')}`}>
-              {stats.pct_overall !== null ? `${stats.pct_overall}%` : '—'}
+          <KpiCard label="Enviadas" value={stats.enviadas} color="text-blue-600" sub="pendiente revisión" icon="⏳" />
+          <KpiCard label="Borradores" value={stats.borradores} color="text-amber-600" icon="✏️" />
+          <KpiCard
+            label="Cumplimiento global"
+            value={stats.pct_overall !== null ? `${stats.pct_overall}%` : '—'}
+            color={pctColor(stats.pct_overall).replace('bg-', 'text-').replace('-100', '-700').replace(' font-bold', '')}
+            sub={lastDate ? `Última actividad: ${lastDate}` : undefined}
+            icon="🎯"
+          />
+        </div>
+
+        {/* Indicator compliance bars */}
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+          <h2 className="font-semibold text-gray-800 mb-5">Cumplimiento por indicador (capturas aprobadas)</h2>
+          {indicadores.every(ind => !Object.values(matrix[ind.codigo] ?? {}).some(c => c.status === 'aprobado')) ? (
+            <div className="text-center py-8 text-gray-400 text-sm">Sin capturas aprobadas todavía</div>
+          ) : (
+            <div className="grid md:grid-cols-2 gap-x-8 gap-y-4">
+              {indicadores.map(ind => {
+                const cells = Object.values(matrix[ind.codigo] ?? {});
+                const approved = cells.filter(c => c.status === 'aprobado');
+                const prog = approved.reduce((s, c) => s + (c.programado ?? 0), 0);
+                const avan = approved.reduce((s, c) => s + (c.avance ?? 0), 0);
+                const pct = prog > 0 ? Math.round((avan / prog) * 100) : null;
+                return (
+                  <div key={ind.codigo} className="flex items-center gap-3">
+                    <span className="text-xs font-bold bg-[#235B4E]/10 text-[#235B4E] px-2 py-0.5 rounded flex-shrink-0 w-20 text-center">
+                      {ind.codigo}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs text-gray-500 truncate mb-1" title={ind.nombre}>{ind.nombre}</p>
+                      <div className="flex items-center gap-2">
+                        <div className="flex-1 h-2.5 bg-gray-100 rounded-full overflow-hidden">
+                          <div
+                            className="h-full rounded-full transition-all"
+                            style={{ width: `${Math.min(pct ?? 0, 100)}%`, background: pctBg(pct) }}
+                          />
+                        </div>
+                        <span className={`text-xs font-bold w-10 text-right flex-shrink-0 ${pctColor(pct).replace('bg-', 'text-').replace('-100', '-700')}`}>
+                          {pct !== null ? `${pct}%` : '—'}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-            <div className="text-sm font-medium text-gray-600 mt-0.5">Cumplimiento global</div>
-            {lastDate && <div className="text-xs text-gray-400 mt-1">Última actividad: {lastDate}</div>}
-          </div>
+          )}
         </div>
 
         {/* Charts row */}
@@ -344,45 +386,6 @@ export default function OrpaDetailPage() {
               ))}
             </tbody>
           </table>
-        </div>
-
-        {/* Indicator compliance bars */}
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-          <h2 className="font-semibold text-gray-800 mb-5">Cumplimiento por indicador (capturas aprobadas)</h2>
-          {indicadores.every(ind => !Object.values(matrix[ind.codigo] ?? {}).some(c => c.status === 'aprobado')) ? (
-            <div className="text-center py-8 text-gray-400 text-sm">Sin capturas aprobadas todavía</div>
-          ) : (
-            <div className="grid md:grid-cols-2 gap-x-8 gap-y-4">
-              {indicadores.map(ind => {
-                const cells = Object.values(matrix[ind.codigo] ?? {});
-                const approved = cells.filter(c => c.status === 'aprobado');
-                const prog = approved.reduce((s, c) => s + (c.programado ?? 0), 0);
-                const avan = approved.reduce((s, c) => s + (c.avance ?? 0), 0);
-                const pct = prog > 0 ? Math.round((avan / prog) * 100) : null;
-                return (
-                  <div key={ind.codigo} className="flex items-center gap-3">
-                    <span className="text-xs font-bold bg-[#235B4E]/10 text-[#235B4E] px-2 py-0.5 rounded flex-shrink-0 w-20 text-center">
-                      {ind.codigo}
-                    </span>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs text-gray-500 truncate mb-1" title={ind.nombre}>{ind.nombre}</p>
-                      <div className="flex items-center gap-2">
-                        <div className="flex-1 h-2.5 bg-gray-100 rounded-full overflow-hidden">
-                          <div
-                            className="h-full rounded-full transition-all"
-                            style={{ width: `${Math.min(pct ?? 0, 100)}%`, background: pctBg(pct) }}
-                          />
-                        </div>
-                        <span className={`text-xs font-bold w-10 text-right flex-shrink-0 ${pctColor(pct).replace('bg-', 'text-').replace('-100', '-700')}`}>
-                          {pct !== null ? `${pct}%` : '—'}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          )}
         </div>
 
         {/* Status summary for this ORPA */}

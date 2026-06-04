@@ -107,10 +107,12 @@ export async function GET() {
 
   const matriz = Object.values(oficinasMap).sort((a, b) => a.oficina.localeCompare(b.oficina));
 
-  // Per indicator compliance
+  // Per indicator compliance — GROUP BY codigo+serie only to avoid duplicates from name typos
   const porIndicador = db.prepare(`
     SELECT
-      i.codigo, i.nombre, i.serie,
+      i.codigo,
+      MAX(i.nombre) AS nombre,
+      i.serie,
       COUNT(c.id) AS capturas_total,
       SUM(CASE WHEN c.status='aprobado' THEN 1 ELSE 0 END) AS aprobadas,
       COUNT(DISTINCT c.oficina) AS oficinas,
@@ -119,7 +121,7 @@ export async function GET() {
       SUM(i.meta_anual) AS meta_sum
     FROM indicadores_2026 i
     LEFT JOIN capturas c ON c.indicador_id = i.id
-    GROUP BY i.codigo, i.nombre, i.serie
+    GROUP BY i.codigo, i.serie
     ORDER BY i.codigo
   `).all() as Record<string, number | string>[];
 

@@ -45,6 +45,31 @@ export async function GET() {
 
   const totalIndicadores = db.prepare('SELECT COUNT(*) AS n FROM indicadores_2026').get() as { n: number };
   const totalOficinas = db.prepare('SELECT COUNT(DISTINCT oficina) AS n FROM indicadores_2026').get() as { n: number };
+  const totalIndicadoresDistinct = db.prepare('SELECT COUNT(DISTINCT codigo) AS n FROM indicadores_2026').get() as { n: number };
 
-  return NextResponse.json({ global, byOficina, byMes, totalIndicadores: totalIndicadores.n, totalOficinas: totalOficinas.n });
+  // Count non-null monthly programming entries = "Metas Registradas"
+  const metasReg = db.prepare(`
+    SELECT (
+      (SELECT COUNT(*) FROM indicadores_2026 WHERE prog_ene IS NOT NULL) +
+      (SELECT COUNT(*) FROM indicadores_2026 WHERE prog_feb IS NOT NULL) +
+      (SELECT COUNT(*) FROM indicadores_2026 WHERE prog_mzo IS NOT NULL) +
+      (SELECT COUNT(*) FROM indicadores_2026 WHERE prog_abr IS NOT NULL) +
+      (SELECT COUNT(*) FROM indicadores_2026 WHERE prog_may IS NOT NULL) +
+      (SELECT COUNT(*) FROM indicadores_2026 WHERE prog_jun IS NOT NULL) +
+      (SELECT COUNT(*) FROM indicadores_2026 WHERE prog_jul IS NOT NULL) +
+      (SELECT COUNT(*) FROM indicadores_2026 WHERE prog_ago IS NOT NULL) +
+      (SELECT COUNT(*) FROM indicadores_2026 WHERE prog_sep IS NOT NULL) +
+      (SELECT COUNT(*) FROM indicadores_2026 WHERE prog_oct IS NOT NULL) +
+      (SELECT COUNT(*) FROM indicadores_2026 WHERE prog_nov IS NOT NULL) +
+      (SELECT COUNT(*) FROM indicadores_2026 WHERE prog_dic IS NOT NULL)
+    ) AS n
+  `).get() as { n: number };
+
+  return NextResponse.json({
+    global, byOficina, byMes,
+    totalIndicadores: totalIndicadores.n,
+    totalOficinas: totalOficinas.n,
+    totalIndicadoresDistinct: totalIndicadoresDistinct.n,
+    metasRegistradas: metasReg.n,
+  });
 }

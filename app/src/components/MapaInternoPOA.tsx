@@ -55,21 +55,6 @@ export default function MapaInternoPOA({ data }: { data: OficinaPct[] }) {
       <h2 className="font-semibold text-gray-800 mb-0.5">Cumplimiento por Estado</h2>
       <p className="text-xs text-gray-500 mb-4">Avance vs programado acumulado — POA 2026. Clic en un estado para ver detalle.</p>
 
-      {/* Semaphore legend */}
-      <div className="flex flex-wrap gap-4 mb-4 text-xs text-gray-600">
-        {[
-          { color: '#059669', label: '≥ 90% — En meta' },
-          { color: '#D97706', label: '70–89% — En riesgo' },
-          { color: '#DC2626', label: '< 70% — Rezagado' },
-          { color: '#E5E7EB', label: 'Sin datos' },
-        ].map(({ color, label }) => (
-          <span key={label} className="flex items-center gap-1.5">
-            <span className="w-3.5 h-3.5 rounded-sm flex-shrink-0 border border-gray-200/50" style={{ background: color }} />
-            {label}
-          </span>
-        ))}
-      </div>
-
       <div className="relative">
         <svg viewBox={viewBox} className="w-full" style={{ maxHeight: 280 }} role="img" aria-label="Mapa de México — cumplimiento POA 2026">
           {locations.map(loc => {
@@ -109,19 +94,6 @@ export default function MapaInternoPOA({ data }: { data: OficinaPct[] }) {
         )}
       </div>
 
-      {/* Bottom summary */}
-      <div className="mt-4 grid grid-cols-3 gap-2 text-center text-xs">
-        {[
-          { label: 'En meta ≥90%', color: 'text-emerald-700 bg-emerald-50', count: data.filter(d => d.pct !== null && d.pct >= 90).length },
-          { label: 'En riesgo 70–89%', color: 'text-amber-700 bg-amber-50', count: data.filter(d => d.pct !== null && d.pct >= 70 && d.pct < 90).length },
-          { label: 'Rezagado <70%', color: 'text-red-700 bg-red-50', count: data.filter(d => d.pct !== null && d.pct < 70).length },
-        ].map(({ label, color, count }) => (
-          <div key={label} className={`rounded-lg px-2 py-2 ${color}`}>
-            <div className="text-xl font-black">{count}</div>
-            <div className="leading-tight mt-0.5 opacity-80">{label}</div>
-          </div>
-        ))}
-      </div>
     </div>
   );
 }

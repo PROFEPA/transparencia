@@ -1,155 +1,109 @@
-# Tablero de Indicadores PROFEPA
+# Tablero de Indicadores PROFEPA — POA 2026
 
-Plataforma pública de consulta de indicadores institucionales de la Procuraduría Federal de Protección al Ambiente (PROFEPA) para los ejercicios fiscales 2025-2026.
+Plataforma institucional de seguimiento del Programa Operativo Anual 2026 de la Procuraduría Federal de Protección al Ambiente (PROFEPA). Incluye un módulo interno de captura para las Unidades Responsables (ORPA) y un panel de administración central.
 
 ## 🎯 Objetivo
 
-Proporcionar a la ciudadanía una herramienta accesible para consultar, entender y descargar información institucional (bases de datos e indicadores) de forma clara, trazable y verificable.
+Permitir a las 37 Unidades Responsables capturar mensualmente sus avances de indicadores POA 2026, y al administrador PROFEPA revisarlos, aprobarlos y publicarlos en el dashboard institucional.
 
 ## 📁 Estructura del Proyecto
 
 ```
-Dashboard OIC/
-├── etl/                          # Pipeline de extracción y transformación
-│   ├── config.py                 # Configuración del ETL
-│   ├── models.py                 # Modelos de datos
-│   ├── main.py                   # Orquestador principal
-│   ├── extractors/
-│   │   ├── excel_extractor.py    # Extractor para archivos Excel
-│   │   └── docx_extractor.py     # Extractor para documentos Word
-│   └── tests/
-│       └── test_etl.py           # Pruebas unitarias
-├── backend/                      # API REST (FastAPI)
-│   ├── main.py                   # Servidor API
-│   └── requirements.txt          # Dependencias Python
-├── app/                          # Frontend (Next.js)
+transparencia/
+├── app/                          # Aplicación Next.js (frontend + API)
 │   ├── src/
-│   │   ├── app/                  # Páginas de la aplicación
-│   │   │   ├── page.tsx          # Página de inicio
-│   │   │   ├── indicadores/      # Catálogo y detalle de indicadores
-│   │   │   ├── descargas/        # Página de descargas
-│   │   │   ├── metodologia/      # Documentación metodológica
-│   │   │   └── glosario/         # Glosario de términos
-│   │   └── types/                # Tipos TypeScript
-│   ├── package.json
-│   └── tailwind.config.js
-├── public/data/                  # Datos procesados (JSON y CSV)
-│   ├── indicators.json
-│   ├── observations.json
-│   ├── metadata.json
-│   ├── data_dictionary.json
-│   ├── data_quality_report.json
-│   ├── indicators.csv
-│   └── observations.csv
-└── mnt/Datos/                    # Archivos fuente (Excel y Word)
+│   │   ├── app/
+│   │   │   ├── page.tsx                  # Dashboard público
+│   │   │   ├── indicadores/              # Catálogo de indicadores
+│   │   │   ├── descargas/                # Descarga de datos
+│   │   │   ├── metodologia/              # Documentación metodológica
+│   │   │   ├── glosario/                 # Glosario de términos
+│   │   │   └── interno/                  # Módulo interno (autenticado)
+│   │   │       ├── login/                # Autenticación JWT
+│   │   │       ├── admin/                # Panel administrador
+│   │   │       │   ├── page.tsx          # Dashboard admin (KPIs, gráficas, mapa)
+│   │   │       │   ├── capturas/         # Gestión de capturas
+│   │   │       │   ├── publicar/         # Publicar avances al dashboard
+│   │   │       │   ├── usuarios/         # Gestión de usuarios
+│   │   │       │   └── orpa/[oficina]/   # Detalle por Unidad Responsable
+│   │   │       └── orpa/                 # Panel capturista ORPA
+│   │   │           └── captura/[mes]/    # Formulario de captura mensual
+│   │   ├── components/
+│   │   │   ├── MapaInternoPOA.tsx        # Mapa de México por cumplimiento
+│   │   │   └── ...
+│   │   └── lib/
+│   │       └── db.ts                     # Conexión SQLite (better-sqlite3)
+│   └── data/
+│       └── interno.db                    # Base de datos SQLite
+├── etl/
+│   └── scripts/
+│       └── import_avances_poa2026.py     # Importación de Excel → SQLite
+└── README.md
 ```
 
 ## 🚀 Instalación y Ejecución
 
-### Requisitos Previos
+### Requisitos
 
-- Python 3.11+
 - Node.js 18+
-- npm o yarn
+- npm
 
-### 1. Configurar el ETL
-
-```bash
-cd etl
-pip install -r requirements.txt
-
-# Ejecutar ETL para procesar archivos fuente
-python main.py
-```
-
-### 2. Iniciar el Backend (opcional para desarrollo)
-
-```bash
-cd backend
-pip install -r requirements.txt
-
-# Iniciar servidor en desarrollo
-uvicorn main:app --reload --port 8000
-```
-
-La API estará disponible en `http://localhost:8000`
-
-### 3. Iniciar el Frontend
+### Desarrollo
 
 ```bash
 cd app
 npm install
-
-# Desarrollo
 npm run dev
-
-# Producción
-npm run build
-npm run start
 ```
 
 La aplicación estará disponible en `http://localhost:3000`
 
-## 📊 Fuentes de Datos
+### Producción
 
-| Archivo | Tipo | Programa | Año |
-|---------|------|----------|-----|
-| POA_2025.xlsx | Excel | G005 | 2025 |
-| MIR_G005_2025.xlsx | Excel | G005 | 2025 |
-| FiME 2026 PFPA.xlsx | Excel | G014 | 2026 |
-| G014 para Auditoría.docx | Word | G014 | 2026 |
+```bash
+cd app
+npm run build
+npm run start -- -H 0.0.0.0 -p 3001
+```
 
-## 🔌 API Endpoints
+## 🔌 API Interna (autenticada con JWT)
 
 | Método | Ruta | Descripción |
 |--------|------|-------------|
-| GET | `/api/indicators` | Lista de indicadores con filtros |
-| GET | `/api/indicators/{id}` | Detalle de un indicador |
-| GET | `/api/observations` | Datos temporales de observaciones |
-| GET | `/api/metadata` | Metadatos del dataset |
-| GET | `/api/data-dictionary` | Diccionario de datos |
-| GET | `/api/quality-report` | Reporte de calidad |
-| GET | `/api/download/{format}` | Descarga en CSV o JSON |
-| GET | `/health` | Estado del servicio |
+| POST | `/api/interno/auth/login` | Autenticación |
+| GET | `/api/interno/admin/resumen` | KPIs globales (totales, metas registradas) |
+| GET | `/api/interno/admin/estadisticas` | Matriz ORPA×mes, cumplimiento por indicador |
+| GET | `/api/interno/admin/orpa/[oficina]` | Detalle de una Unidad Responsable |
+| GET/POST | `/api/interno/capturas` | Gestión de capturas mensuales |
+| POST | `/api/interno/capturas/[id]/approve` | Aprobar captura |
 
-### Parámetros de Consulta
+## 📊 Modelo de Datos
 
-- `programa`: Filtrar por programa (G005, G014)
-- `anio`: Filtrar por año (2025, 2026)
-- `nivel`: Filtrar por nivel (Fin, Propósito, Componente, Actividad)
-- `q`: Búsqueda por texto
-- `page`: Número de página
-- `page_size`: Elementos por página
+- **`indicadores_2026`** — 532 registros (24 códigos únicos × 37 URs), con metas mensuales programadas.
+- **`capturas`** — Avances capturados por ORPA/mes/indicador (status: borrador → enviado → aprobado).
+- **`users`** — Usuarios con roles `admin` / `orpa`.
 
-## 🎨 Diseño
+## 🎨 Panel Admin — Funcionalidades
 
-El diseño sigue los lineamientos de identidad gráfica del Gobierno de México:
+- **Dashboard**: KPIs nacionales, gráfica de cumplimiento por indicador, mapa de México por UR, ranking de cumplimiento por Unidad Responsable.
+- **Por ORPA**: Detalle de cumplimiento por indicador, gráficas mensuales, matriz indicador × mes.
+- **Capturas**: Revisión, aprobación y rechazo de avances enviados por las ORPAs.
+- **Publicar**: Sincronización de datos aprobados al dashboard público.
 
-- **Verde institucional**: #235B4E
-- **Rojo institucional**: #691C32
-- **Dorado institucional**: #BC955C
+## 🔑 Credenciales por defecto
 
-## ♿ Accesibilidad
+| Rol | Email | Contraseña |
+|-----|-------|------------|
+| Admin | admin@profepa.gob.mx | Admin2026! |
+| ORPA Jalisco | orpa.jal@profepa.gob.mx | Jal2026! |
 
-- Compatible con WCAG 2.1 nivel AA
-- Navegación completa por teclado
-- Textos alternativos en imágenes
-- Contraste de colores adecuado
-- Estructura semántica HTML5
+> Las contraseñas se inicializan en `app/src/lib/db.ts` en el primer arranque.
 
-## 🔒 Seguridad
+## 🎨 Identidad Gráfica
 
-- Headers de seguridad HTTP configurados
-- CORS restrictivo en producción
-- Validación de entradas
-- Sin almacenamiento de datos sensibles
+- **Verde institucional**: `#235B4E`
+- **Rojo institucional**: `#691C32`
 
 ## 📝 Licencia
 
-Datos públicos del Gobierno de México. Uso libre con atribución a PROFEPA.
-
-## 📞 Contacto
-
-Procuraduría Federal de Protección al Ambiente (PROFEPA)
-- Sitio web: [www.gob.mx/profepa](https://www.gob.mx/profepa)
-- Órgano Interno de Control
+Uso institucional PROFEPA. Datos públicos del Gobierno de México.

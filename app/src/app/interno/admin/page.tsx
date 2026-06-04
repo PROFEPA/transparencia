@@ -47,10 +47,9 @@ export default function AdminDashboard() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<{ nombre: string } | null>(null);
-  const [resumen, setResumen] = useState<{ global: Record<string, number>; totalIndicadores: number; totalOficinas: number } | null>(null);
+  const [resumen, setResumen] = useState<{ global: Record<string, number>; totalIndicadores: number; totalOficinas: number; totalIndicadoresDistinct: number; metasRegistradas: number } | null>(null);
   const [stats, setStats] = useState<{ porMesChart: MesData[]; matriz: OficinaRow[]; indicadores: IndicadorRow[]; pie: PieEntry[]; total: number } | null>(null);
   const [tab, setTab] = useState<'resumen' | 'orpas' | 'indicadores'>('resumen');
-  const [mesTab, setMesTab] = useState<'capturas' | 'avance'>('capturas');
 
   useEffect(() => {
     Promise.all([
@@ -122,9 +121,9 @@ export default function AdminDashboard() {
       <div className="bg-white border-b border-gray-200 shadow-sm">
         <div className="max-w-screen-2xl mx-auto px-6 py-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {[
-            { label: 'Indicadores POA', value: resumen?.totalIndicadores ?? 0, icon: '📋', color: 'text-[#235B4E]' },
-            { label: 'Oficinas ORPA', value: resumen?.totalOficinas ?? 0, icon: '🏢', color: 'text-[#235B4E]' },
-            { label: 'Capturas totales', value: stats?.total ?? 0, icon: '📊', color: 'text-gray-700' },
+            { label: 'Registros en el POA', value: resumen?.totalIndicadores ?? 0, icon: '📋', color: 'text-[#235B4E]' },
+            { label: 'Unidades Responsables', value: resumen?.totalOficinas ?? 0, icon: '🏢', color: 'text-[#235B4E]' },
+            { label: 'Indicadores POA', value: resumen?.totalIndicadoresDistinct ?? 0, icon: '📊', color: 'text-gray-700' },
             { label: 'Aprobadas', value: g.aprobadas ?? 0, icon: '✅', color: 'text-emerald-700' },
             { label: 'Pendientes revisión', value: g.pendientes ?? 0, icon: '⏳', color: 'text-blue-700' },
             { label: 'Borradores abiertos', value: g.borradores ?? 0, icon: '✏️', color: 'text-amber-700' },
@@ -137,6 +136,29 @@ export default function AdminDashboard() {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Comparativo Metas vs Avances */}
+      <div className="bg-[#235B4E]/5 border-b border-[#235B4E]/10">
+        <div className="max-w-screen-2xl mx-auto px-6 py-3 flex items-center gap-6 flex-wrap">
+          <span className="text-xs font-semibold text-[#235B4E] uppercase tracking-wide">Avance nacional 2026</span>
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-gray-500">Metas Registradas</span>
+            <span className="text-sm font-bold text-[#235B4E]">{(resumen?.metasRegistradas ?? 0).toLocaleString('es-MX')}</span>
+          </div>
+          <div className="w-px h-4 bg-gray-300" />
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-gray-500">Avances Capturados</span>
+            <span className="text-sm font-bold text-emerald-600">{(g.aprobadas ?? 0).toLocaleString('es-MX')}</span>
+          </div>
+          <div className="w-px h-4 bg-gray-300" />
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-gray-500">Cobertura</span>
+            <span className="text-sm font-bold text-gray-700">
+              {resumen?.metasRegistradas ? `${Math.round(((g.aprobadas ?? 0) / resumen.metasRegistradas) * 100)}%` : '—'}
+            </span>
+          </div>
         </div>
       </div>
 
@@ -173,20 +195,8 @@ export default function AdminDashboard() {
                     Avance acumulado vs programado (Ene–Abr 2026). Promedio nacional por indicador.
                   </p>
                 </div>
-                <div className="flex flex-wrap items-center gap-4 mb-3 text-xs text-gray-500">
-                  <span className="flex items-center gap-1.5 text-gray-400">— Línea 100%</span>
-                  <div className="flex items-center gap-3 ml-auto">
-                    {[
-                      { color: '#059669', label: '≥ 90% En meta' },
-                      { color: '#D97706', label: '70–89% En riesgo' },
-                      { color: '#DC2626', label: '< 70% Rezagado' },
-                      { color: '#CBD5E1', label: 'Sin datos' },
-                    ].map(({ color, label }) => (
-                      <span key={label} className="flex items-center gap-1.5">
-                        <span className="w-3.5 h-3 rounded-sm flex-shrink-0" style={{ background: color }} />{label}
-                      </span>
-                    ))}
-                  </div>
+                <div className="flex items-center gap-4 mb-3 text-xs text-gray-400">
+                  <span>— Línea 100%</span>
                 </div>
                 <div className="overflow-x-auto">
                   <div style={{ minWidth: Math.max(600, stats.indicadores.length * 42) }}>
@@ -221,13 +231,7 @@ export default function AdminDashboard() {
                             return ind ? `${code} — ${ind.nombre}` : code;
                           }}
                         />
-                        <Bar dataKey="pct" radius={[4, 4, 0, 0]}>
-                          {stats.indicadores.map((ind, i) => (
-                            <Cell
-                              key={i}
-                              fill={ind.pct === null ? '#CBD5E1' : ind.pct >= 90 ? '#059669' : ind.pct >= 70 ? '#D97706' : '#DC2626'}
-                            />
-                          ))}
+                        <Bar dataKey="pct" radius={[4, 4, 0, 0]} fill="#059669">
                           <LabelList dataKey="pct" position="top" style={{ fontSize: 9, fontWeight: 600 }}
                             formatter={(v: number | null) => v != null ? `${v}%` : ''} />
                         </Bar>
@@ -243,52 +247,52 @@ export default function AdminDashboard() {
               {/* Mexico map */}
               <MapaInternoPOA data={mapaData} />
 
-              {/* Monthly chart */}
+              {/* % Cumplimiento por UR */}
               <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <h2 className="font-semibold text-gray-800">Capturas por mes — 2026</h2>
-                    <p className="text-xs text-gray-500 mt-0.5">Distribución de estados por mes</p>
-                  </div>
-                  <div className="flex gap-1 bg-gray-100 rounded-lg p-1">
-                    <button onClick={() => setMesTab('capturas')} className={`text-xs px-3 py-1.5 rounded-md transition-colors ${mesTab === 'capturas' ? 'bg-white shadow-sm font-medium' : 'text-gray-500 hover:text-gray-700'}`}>Capturas</button>
-                    <button onClick={() => setMesTab('avance')} className={`text-xs px-3 py-1.5 rounded-md transition-colors ${mesTab === 'avance' ? 'bg-white shadow-sm font-medium' : 'text-gray-500 hover:text-gray-700'}`}>Prog vs Avan</button>
-                  </div>
+                <div className="mb-4">
+                  <h2 className="font-semibold text-gray-800">% Cumplimiento por Unidad Responsable</h2>
+                  <p className="text-xs text-gray-500 mt-0.5">Avance acumulado vs programado — Ene–Abr 2026</p>
                 </div>
-                <ResponsiveContainer width="100%" height={260}>
-                  {mesTab === 'capturas' ? (
-                    <BarChart data={stats.porMesChart} barSize={22} barGap={2}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="#F3F4F6" />
-                      <XAxis dataKey="label" tick={{ fontSize: 11, fill: '#6B7280' }} />
-                      <YAxis tick={{ fontSize: 11, fill: '#6B7280' }} />
-                      <Tooltip contentStyle={{ borderRadius: 8, border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)', fontSize: 12 }} />
-                      <Legend wrapperStyle={{ fontSize: 12 }} />
-                      <Bar dataKey="aprobadas" name="Aprobadas" stackId="a" fill="#10B981" radius={[0,0,0,0]} />
-                      <Bar dataKey="enviadas" name="Enviadas" stackId="a" fill="#3B82F6" />
-                      <Bar dataKey="borradores" name="Borradores" stackId="a" fill="#F59E0B" />
-                      <Bar dataKey="rechazadas" name="Rechazadas" stackId="a" fill="#EF4444" radius={[4,4,0,0]} />
-                    </BarChart>
-                  ) : (
-                    <BarChart data={stats.porMesChart.filter(m => m.prog > 0)} barSize={22} barGap={4}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="#F3F4F6" />
-                      <XAxis dataKey="label" tick={{ fontSize: 11, fill: '#6B7280' }} />
-                      <YAxis tick={{ fontSize: 11, fill: '#6B7280' }} />
-                      <Tooltip contentStyle={{ borderRadius: 8, border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)', fontSize: 12 }}
-                        formatter={(val: number, name: string) => [val, name === 'prog' ? 'Programado' : 'Avance']} />
-                      <Legend wrapperStyle={{ fontSize: 12 }} formatter={(v: string) => v === 'prog' ? 'Programado' : 'Avance'} />
-                      <Bar dataKey="prog" name="prog" fill="#CBD5E1" radius={[4,4,0,0]} />
-                      <Bar dataKey="avan" name="avan" fill="#10B981" radius={[4,4,0,0]} />
-                    </BarChart>
-                  )}
-                </ResponsiveContainer>
-
-                {/* Quick stats below chart */}
-                <div className="mt-4 flex flex-wrap gap-3">
-                  {stats.pie.map(d => (
-                    <div key={d.name} className="flex items-center gap-1.5 text-xs text-gray-600">
-                      <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: d.color }} />
-                      {d.name}: <strong className="text-gray-800">{d.value}</strong>
-                    </div>
+                {mapaData.filter(d => d.pct !== null).length === 0 ? (
+                  <div className="h-[260px] flex items-center justify-center text-gray-400 text-sm">Sin datos disponibles</div>
+                ) : (
+                  <div className="overflow-y-auto" style={{ maxHeight: 300 }}>
+                    <ResponsiveContainer width="100%" height={Math.max(260, mapaData.filter(d => d.pct !== null).length * 26)}>
+                      <BarChart
+                        data={[...mapaData].filter(d => d.pct !== null).sort((a, b) => (b.pct ?? 0) - (a.pct ?? 0))}
+                        layout="vertical"
+                        barSize={14}
+                        margin={{ left: 8, right: 48, top: 4, bottom: 4 }}
+                      >
+                        <CartesianGrid strokeDasharray="3 3" stroke="#F3F4F6" horizontal={false} />
+                        <XAxis type="number" domain={[0, (max: number) => Math.max(100, max + 10)]}
+                          tickFormatter={v => `${v}%`} tick={{ fontSize: 10, fill: '#6B7280' }} />
+                        <YAxis type="category" dataKey="oficina" width={90}
+                          tick={{ fontSize: 10, fill: '#6B7280' }} />
+                        <Tooltip
+                          contentStyle={{ borderRadius: 8, border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)', fontSize: 12 }}
+                          formatter={(val: number) => [`${val}%`, 'Cumplimiento']}
+                        />
+                        <Bar dataKey="pct" name="Cumplimiento" radius={[0, 4, 4, 0]}>
+                          {[...mapaData].filter(d => d.pct !== null).sort((a, b) => (b.pct ?? 0) - (a.pct ?? 0)).map((d, i) => (
+                            <Cell key={i} fill={(d.pct ?? 0) >= 90 ? '#059669' : (d.pct ?? 0) >= 70 ? '#D97706' : '#DC2626'} />
+                          ))}
+                          <LabelList dataKey="pct" position="right" style={{ fontSize: 10, fontWeight: 600, fill: '#374151' }}
+                            formatter={(v: number) => `${v}%`} />
+                        </Bar>
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                )}
+                <div className="mt-3 flex items-center gap-4 text-xs text-gray-500 flex-wrap">
+                  {[
+                    { color: '#059669', label: '≥ 90% En meta' },
+                    { color: '#D97706', label: '70–89% En riesgo' },
+                    { color: '#DC2626', label: '< 70% Rezagado' },
+                  ].map(({ color, label }) => (
+                    <span key={label} className="flex items-center gap-1.5">
+                      <span className="w-3 h-3 rounded-sm flex-shrink-0" style={{ background: color }} />{label}
+                    </span>
                   ))}
                 </div>
               </div>
