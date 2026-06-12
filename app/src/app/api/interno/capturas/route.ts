@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getDb, MES_KEY } from '@/lib/db';
+import { getUnidadResponsableAliases } from '@/lib/unidades-responsables';
 import type { Indicador2026 } from '@/lib/db';
 
 export async function GET(req: NextRequest) {
@@ -20,8 +21,9 @@ export async function GET(req: NextRequest) {
     sql += ' AND c.oficina = ?';
     params.push(oficina);
   } else if (searchParams.get('oficina')) {
-    sql += ' AND c.oficina = ?';
-    params.push(searchParams.get('oficina')!);
+    const aliases = getUnidadResponsableAliases(searchParams.get('oficina')!);
+    sql += ` AND c.oficina IN (${aliases.map(() => '?').join(',')})`;
+    params.push(...aliases);
   }
 
   if (searchParams.get('mes')) {

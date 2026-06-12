@@ -1,13 +1,18 @@
 import { NextResponse } from 'next/server';
 import { getDb } from '@/lib/db';
+import { unidadResponsableSql } from '@/lib/unidades-responsables';
+
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
   const db = getDb();
+  const oficinaExpr = unidadResponsableSql('c.oficina');
+  const indicadorOficinaExpr = unidadResponsableSql('oficina');
 
   // Totals by state
   const byOficina = db.prepare(`
     SELECT
-      c.oficina,
+      ${oficinaExpr} AS oficina,
       COUNT(*) AS total,
       SUM(CASE WHEN c.status='aprobado' THEN 1 ELSE 0 END) AS aprobadas,
       SUM(CASE WHEN c.status='enviado'  THEN 1 ELSE 0 END) AS pendientes,
@@ -15,8 +20,8 @@ export async function GET() {
       SUM(CASE WHEN c.status='rechazado' THEN 1 ELSE 0 END) AS rechazadas,
       COUNT(DISTINCT c.mes) AS meses_con_captura
     FROM capturas c
-    GROUP BY c.oficina
-    ORDER BY c.oficina
+    GROUP BY ${oficinaExpr}
+    ORDER BY oficina
   `).all();
 
   // Totals by month
@@ -26,7 +31,7 @@ export async function GET() {
       COUNT(*) AS total,
       SUM(CASE WHEN c.status='aprobado' THEN 1 ELSE 0 END) AS aprobadas,
       SUM(CASE WHEN c.status='enviado'  THEN 1 ELSE 0 END) AS pendientes,
-      COUNT(DISTINCT c.oficina) AS oficinas_con_captura
+      COUNT(DISTINCT ${oficinaExpr}) AS oficinas_con_captura
     FROM capturas c
     GROUP BY c.mes
     ORDER BY c.mes
@@ -44,7 +49,7 @@ export async function GET() {
   `).get();
 
   const totalIndicadores = db.prepare('SELECT COUNT(*) AS n FROM indicadores_2026').get() as { n: number };
-  const totalOficinas = db.prepare('SELECT COUNT(DISTINCT oficina) AS n FROM indicadores_2026').get() as { n: number };
+  const totalOficinas = db.prepare('SELECT COUNT(DISTINCT ' + indicadorOficinaExpr + ') AS n FROM indicadores_2026').get() as { n: number };
   const totalIndicadoresDistinct = db.prepare('SELECT COUNT(DISTINCT codigo) AS n FROM indicadores_2026').get() as { n: number };
 
   // Count non-null monthly programming entries = "Metas Registradas"

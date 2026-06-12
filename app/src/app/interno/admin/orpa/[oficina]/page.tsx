@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter, useParams } from 'next/navigation';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
-  ResponsiveContainer, LineChart, Line, ReferenceLine,
+  ResponsiveContainer, LineChart, Line,
 } from 'recharts';
 
 const MESES = ['','Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
@@ -22,17 +22,14 @@ const STATUS_LABEL: Record<string, string> = {
   rechazado: 'Rechazado', sin_captura: 'Sin captura',
 };
 
+const COMPLIANCE_COLOR = '#059669';
+
 function pctColor(pct: number | null): string {
   if (pct === null) return 'bg-gray-100 text-gray-400';
-  if (pct >= 90) return 'bg-emerald-100 text-emerald-700 font-bold';
-  if (pct >= 70) return 'bg-amber-100 text-amber-700 font-bold';
-  return 'bg-red-100 text-red-700 font-bold';
+  return 'bg-[#235B4E]/10 text-[#235B4E] font-bold';
 }
 function pctBg(pct: number | null): string {
-  if (pct === null) return '#E5E7EB';
-  if (pct >= 90) return '#10B981';
-  if (pct >= 70) return '#F59E0B';
-  return '#EF4444';
+  return pct === null ? '#E5E7EB' : COMPLIANCE_COLOR;
 }
 
 interface MesChart { mes: number; label: string; prog: number; avan: number; pct: number | null; capturas: number; }
@@ -130,6 +127,7 @@ export default function OrpaDetailPage() {
   );
 
   const { stats, indicadores, matrix, chartMeses } = data!;
+  const displayOficina = data!.oficina;
   const chartData = chartMeses.filter(m => m.prog > 0 || m.avan > 0);
   const lastDate = stats.last_activity
     ? new Date(stats.last_activity).toLocaleDateString('es-MX', { day: '2-digit', month: 'short', year: 'numeric' })
@@ -151,14 +149,14 @@ export default function OrpaDetailPage() {
               <div className="flex items-center gap-2">
                 <span className="text-white/60 text-sm">Panel Admin</span>
                 <span className="text-white/40 text-sm">/</span>
-                <span className="text-white/60 text-sm">ORPAs</span>
+                <span className="text-white/60 text-sm">Unidades Responsables</span>
                 <span className="text-white/40 text-sm">/</span>
-                <span className="font-semibold truncate">{oficina}</span>
+                <span className="font-semibold truncate">{displayOficina}</span>
               </div>
-              <p className="text-green-300 text-xs">POA 2026 · Detalle de oficina</p>
+              <p className="text-green-300 text-xs">POA 2026 · Detalle de Unidad Responsable</p>
             </div>
             <div className="flex items-center gap-2 flex-shrink-0">
-              <Link href={`/interno/admin/capturas?oficina=${encodeURIComponent(oficina)}`}
+              <Link href={`/interno/admin/capturas?oficina=${encodeURIComponent(displayOficina)}`}
                 className="text-sm border border-white/30 hover:bg-white/10 px-3 py-1.5 rounded-lg transition-colors">
                 Ver capturas
               </Link>
@@ -180,7 +178,7 @@ export default function OrpaDetailPage() {
           <KpiCard
             label="Cumplimiento global"
             value={stats.pct_overall !== null ? `${stats.pct_overall}%` : '—'}
-            color={pctColor(stats.pct_overall).replace('bg-', 'text-').replace('-100', '-700').replace(' font-bold', '')}
+            color={stats.pct_overall !== null ? 'text-[#235B4E]' : 'text-gray-400'}
             sub={lastDate ? `Última actividad: ${lastDate}` : undefined}
             icon="🎯"
           />
@@ -213,7 +211,7 @@ export default function OrpaDetailPage() {
                             style={{ width: `${Math.min(pct ?? 0, 100)}%`, background: pctBg(pct) }}
                           />
                         </div>
-                        <span className={`text-xs font-bold w-10 text-right flex-shrink-0 ${pctColor(pct).replace('bg-', 'text-').replace('-100', '-700')}`}>
+                        <span className={`text-xs font-bold w-10 text-right flex-shrink-0 ${pct === null ? 'text-gray-300' : 'text-[#235B4E]'}`}>
                           {pct !== null ? `${pct}%` : '—'}
                         </span>
                       </div>
@@ -295,7 +293,7 @@ export default function OrpaDetailPage() {
                   </div>
                   <span className={`text-xs font-bold w-10 text-right flex-shrink-0 ${
                     m.pct === null ? 'text-gray-300' :
-                    m.pct >= 90 ? 'text-emerald-600' : m.pct >= 70 ? 'text-amber-600' : 'text-red-600'
+                    'text-[#235B4E]'
                   }`}>
                     {m.pct !== null ? `${m.pct}%` : '—'}
                   </span>
@@ -397,7 +395,7 @@ export default function OrpaDetailPage() {
             { status: 'rechazado', label: 'Rechazadas', count: stats.rechazadas, bg: 'bg-red-50', border: 'border-red-200', text: 'text-red-700', icon: '✗' },
           ]).map(s => (
             <Link key={s.status}
-              href={`/interno/admin/capturas?oficina=${encodeURIComponent(oficina)}&status=${s.status}`}
+              href={`/interno/admin/capturas?oficina=${encodeURIComponent(displayOficina)}&status=${s.status}`}
               className={`${s.bg} border-2 ${s.border} rounded-2xl p-5 hover:shadow-md transition-all group`}>
               <div className={`text-3xl font-bold ${s.text}`}>{s.count}</div>
               <div className={`text-sm font-medium ${s.text} mt-1`}>{s.label}</div>

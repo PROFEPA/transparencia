@@ -3,9 +3,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
-  ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line,
-  ReferenceLine, LabelList,
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
+  ResponsiveContainer, Cell, ReferenceLine, LabelList,
 } from 'recharts';
 import MapaInternoPOA from '@/components/MapaInternoPOA';
 import type { OficinaPct } from '@/components/MapaInternoPOA';
@@ -18,9 +17,7 @@ const STATUS_COLOR: Record<string, string> = {
 
 function pctColor(pct: number | null): string {
   if (pct === null) return 'bg-gray-100 text-gray-400';
-  if (pct >= 90) return 'bg-emerald-100 text-emerald-700 font-bold';
-  if (pct >= 70) return 'bg-amber-100 text-amber-700 font-bold';
-  return 'bg-red-100 text-red-700 font-bold';
+  return 'bg-[#235B4E]/10 text-[#235B4E] font-bold';
 }
 
 function StatusDot({ status }: { status: string }) {
@@ -37,6 +34,8 @@ interface OficinaRow { oficina: string; total: number; aprobadas: number; enviad
 interface IndicadorRow { codigo: string; nombre: string; serie: string; capturas: number; aprobadas: number; oficinas: number; pct: number | null; prog_pct: number | null; avan_pct: number | null; }
 interface PieEntry { name: string; value: number; color: string; }
 
+const COMPLIANCE_COLOR = '#059669';
+
 const NavLink = ({ href, label, active }: { href: string; label: string; active?: boolean }) => (
   <Link href={href} className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${active ? 'bg-white/20 text-white' : 'text-white/70 hover:text-white hover:bg-white/10'}`}>
     {label}
@@ -48,7 +47,7 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<{ nombre: string } | null>(null);
   const [resumen, setResumen] = useState<{ global: Record<string, number>; totalIndicadores: number; totalOficinas: number; totalIndicadoresDistinct: number; metasRegistradas: number } | null>(null);
-  const [stats, setStats] = useState<{ porMesChart: MesData[]; matriz: OficinaRow[]; indicadores: IndicadorRow[]; pie: PieEntry[]; total: number } | null>(null);
+  const [stats, setStats] = useState<{ porMesChart: MesData[]; matriz: OficinaRow[]; indicadores: IndicadorRow[]; pie: PieEntry[]; total: number; corteMes: number | null } | null>(null);
   const [tab, setTab] = useState<'resumen' | 'orpas' | 'indicadores'>('resumen');
 
   useEffect(() => {
@@ -70,13 +69,12 @@ export default function AdminDashboard() {
   }
 
   const g = resumen?.global ?? {};
-  const pctGlobal = (g.aprobadas && resumen?.totalIndicadores)
-    ? Math.round((g.aprobadas / (resumen.totalIndicadores * 37)) * 100) : 0;
 
   const mapaData: OficinaPct[] = (stats?.matriz ?? []).map(ofc => ({
     oficina: ofc.oficina,
     pct: ofc.pct_overall,
   }));
+  const corteLabel = stats?.corteMes ? MESES[stats.corteMes] : 'Abr';
 
   if (loading) return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -167,7 +165,7 @@ export default function AdminDashboard() {
         <div className="max-w-screen-2xl mx-auto px-6 flex gap-1">
           {([
             { id: 'resumen', label: 'Resumen general' },
-            { id: 'orpas', label: `Por ORPA (${stats?.matriz.length ?? 0})` },
+            { id: 'orpas', label: `Por UR (${stats?.matriz.length ?? 0})` },
             { id: 'indicadores', label: `Por Indicador (${stats?.indicadores.length ?? 0})` },
           ] as const).map(t => (
             <button key={t.id} onClick={() => setTab(t.id)}
@@ -192,7 +190,7 @@ export default function AdminDashboard() {
                 <div className="mb-4">
                   <h2 className="font-semibold text-gray-800">Porcentaje de Cumplimiento — Indicadores Institucionales</h2>
                   <p className="text-xs text-gray-500 mt-0.5">
-                    Avance acumulado vs programado (Ene–Abr 2026). Promedio nacional por indicador.
+                    Avance acumulado vs programado (Ene–{corteLabel} 2026). Promedio nacional por indicador.
                   </p>
                 </div>
                 <div className="flex items-center gap-4 mb-3 text-xs text-gray-400">
@@ -275,7 +273,7 @@ export default function AdminDashboard() {
                         />
                         <Bar dataKey="pct" name="Cumplimiento" radius={[0, 4, 4, 0]}>
                           {[...mapaData].filter(d => d.pct !== null).sort((a, b) => (b.pct ?? 0) - (a.pct ?? 0)).map((d, i) => (
-                            <Cell key={i} fill={(d.pct ?? 0) >= 90 ? '#059669' : (d.pct ?? 0) >= 70 ? '#D97706' : '#DC2626'} />
+                            <Cell key={i} fill={COMPLIANCE_COLOR} />
                           ))}
                           <LabelList dataKey="pct" position="right" style={{ fontSize: 10, fontWeight: 600, fill: '#374151' }}
                             formatter={(v: number) => `${v}%`} />
@@ -284,16 +282,9 @@ export default function AdminDashboard() {
                     </ResponsiveContainer>
                   </div>
                 )}
-                <div className="mt-3 flex items-center gap-4 text-xs text-gray-500 flex-wrap">
-                  {[
-                    { color: '#059669', label: '≥ 90% En meta' },
-                    { color: '#D97706', label: '70–89% En riesgo' },
-                    { color: '#DC2626', label: '< 70% Rezagado' },
-                  ].map(({ color, label }) => (
-                    <span key={label} className="flex items-center gap-1.5">
-                      <span className="w-3 h-3 rounded-sm flex-shrink-0" style={{ background: color }} />{label}
-                    </span>
-                  ))}
+                <div className="mt-3 flex items-center gap-2 text-xs text-gray-500">
+                  <span className="w-3 h-3 rounded-sm flex-shrink-0" style={{ background: COMPLIANCE_COLOR }} />
+                  Porcentaje acumulado por Unidad Responsable
                 </div>
               </div>
             </div>
@@ -302,8 +293,8 @@ export default function AdminDashboard() {
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 overflow-x-auto">
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h2 className="font-semibold text-gray-800">Matriz de capturas — Oficina × Mes</h2>
-                  <p className="text-xs text-gray-500 mt-0.5">Haz clic en una oficina para ver su detalle completo</p>
+                  <h2 className="font-semibold text-gray-800">Matriz de capturas — Unidad Responsable × Mes</h2>
+                  <p className="text-xs text-gray-500 mt-0.5">Haz clic en una unidad responsable para ver su detalle completo</p>
                 </div>
                 <div className="hidden sm:flex items-center gap-3 text-xs text-gray-500">
                   {Object.entries({ aprobado: 'Aprobado', enviado: 'Enviado', borrador: 'Borrador', rechazado: 'Rechazado', sin_captura: 'Sin captura' }).map(([k, v]) => (
@@ -320,7 +311,7 @@ export default function AdminDashboard() {
                 <table className="w-full text-xs">
                   <thead>
                     <tr>
-                      <th className="text-left py-2 pr-4 text-gray-500 font-medium min-w-[140px]">Oficina</th>
+                      <th className="text-left py-2 pr-4 text-gray-500 font-medium min-w-[140px]">Unidad Responsable</th>
                       {MESES.slice(1).map((m, i) => (
                         <th key={i} className="text-center py-2 px-1 text-gray-400 font-medium w-9">{m}</th>
                       ))}
@@ -371,16 +362,16 @@ export default function AdminDashboard() {
           </div>
         )}
 
-        {/* ── TAB: POR ORPA ── */}
+        {/* ── TAB: POR UR ── */}
         {tab === 'orpas' && stats && (
           <div>
             <p className="text-sm text-gray-500 mb-4">
-              Haz clic en cualquier tarjeta para ver el detalle completo de esa oficina.
+              Haz clic en cualquier tarjeta para ver el detalle completo de esa unidad responsable.
             </p>
             {stats.matriz.length === 0 ? (
               <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-12 text-center text-gray-400">
                 <p className="text-4xl mb-3">🏢</p>
-                <p className="font-medium">Sin capturas de ninguna ORPA todavía</p>
+                <p className="font-medium">Sin capturas de ninguna unidad responsable todavía</p>
               </div>
             ) : (
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -453,7 +444,7 @@ export default function AdminDashboard() {
                             <div className="h-full rounded-full transition-all"
                               style={{
                                 width: `${Math.min(ind.pct ?? 0, 100)}%`,
-                                background: (ind.pct ?? 0) >= 90 ? '#10B981' : (ind.pct ?? 0) >= 70 ? '#F59E0B' : '#EF4444',
+                                background: COMPLIANCE_COLOR,
                               }} />
                           </div>
                           <span className={`text-xs font-bold w-12 text-right ${pctColor(ind.pct)}`}>
@@ -463,7 +454,7 @@ export default function AdminDashboard() {
                       </div>
                       <div className="flex-shrink-0 text-right text-xs text-gray-400">
                         <div>{ind.aprobadas}/{ind.capturas}</div>
-                        <div>{ind.oficinas} ofic.</div>
+                        <div>{ind.oficinas} UR</div>
                       </div>
                     </div>
                   ))}
@@ -489,7 +480,7 @@ export default function AdminDashboard() {
                     />
                     <Bar dataKey="pct" name="Cumplimiento" radius={[0, 4, 4, 0]}>
                       {stats.indicadores.filter(i => i.pct !== null).map((ind, idx) => (
-                        <Cell key={idx} fill={(ind.pct ?? 0) >= 90 ? '#10B981' : (ind.pct ?? 0) >= 70 ? '#F59E0B' : '#EF4444'} />
+                        <Cell key={idx} fill={COMPLIANCE_COLOR} />
                       ))}
                     </Bar>
                   </BarChart>

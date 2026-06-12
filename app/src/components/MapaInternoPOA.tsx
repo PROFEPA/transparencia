@@ -6,7 +6,7 @@ import mexicoMap from '@svg-maps/mexico';
 
 type Location = { id: string; name: string; path: string };
 
-// Maps internal ORPA oficina names → SVG location name
+// Maps internal Unidad Responsable names to SVG location names
 const ORPA_TO_SVG: Record<string, string> = {
   'CDMX-ZMVM': 'Mexico City',
   'ZMVM': 'Mexico City',
@@ -17,18 +17,14 @@ export interface OficinaPct {
   pct: number | null;
 }
 
-function semaforoFill(pct: number | null): string {
-  if (pct === null) return '#E5E7EB';
-  if (pct >= 90) return '#059669';
-  if (pct >= 70) return '#D97706';
-  return '#DC2626';
+const MAP_FILL = '#059669';
+
+function mapFill(pct: number | null): string {
+  return pct === null ? '#E5E7EB' : MAP_FILL;
 }
 
-function semaforoText(pct: number | null): string {
-  if (pct === null) return 'text-gray-400';
-  if (pct >= 90) return 'text-emerald-700';
-  if (pct >= 70) return 'text-amber-700';
-  return 'text-red-700';
+function pctText(pct: number | null): string {
+  return pct === null ? 'text-gray-400' : 'text-[#235B4E]';
 }
 
 export default function MapaInternoPOA({ data }: { data: OficinaPct[] }) {
@@ -38,7 +34,7 @@ export default function MapaInternoPOA({ data }: { data: OficinaPct[] }) {
   const locations: Location[] = (mexicoMap as { locations: Location[] }).locations;
   const viewBox: string = (mexicoMap as { viewBox: string }).viewBox;
 
-  // Build lookup: SVG name → entry (last write wins for CDMX-ZMVM / ZMVM conflict)
+  // Build lookup: SVG name to entry.
   const byName = new Map<string, OficinaPct>();
   data.forEach(d => {
     const svgName = ORPA_TO_SVG[d.oficina] ?? d.oficina;
@@ -52,7 +48,7 @@ export default function MapaInternoPOA({ data }: { data: OficinaPct[] }) {
 
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-      <h2 className="font-semibold text-gray-800 mb-0.5">Cumplimiento por Estado</h2>
+      <h2 className="font-semibold text-gray-800 mb-0.5">Referencia geográfica por Estado</h2>
       <p className="text-xs text-gray-500 mb-4">Avance vs programado acumulado — POA 2026. Clic en un estado para ver detalle.</p>
 
       <div className="relative">
@@ -64,7 +60,7 @@ export default function MapaInternoPOA({ data }: { data: OficinaPct[] }) {
               <path
                 key={loc.id}
                 d={loc.path}
-                fill={semaforoFill(entry?.pct ?? null)}
+                fill={mapFill(entry?.pct ?? null)}
                 stroke={isHover ? '#235B4E' : '#fff'}
                 strokeWidth={isHover ? 1.8 : 0.5}
                 style={{ cursor: entry ? 'pointer' : 'default', transition: 'stroke 0.1s, fill 0.1s' }}
@@ -84,7 +80,7 @@ export default function MapaInternoPOA({ data }: { data: OficinaPct[] }) {
         {hovered && hEntry && (
           <div className="absolute top-2 right-2 bg-white/95 backdrop-blur-sm px-3 py-2.5 rounded-xl shadow-lg text-xs pointer-events-none border border-gray-100 min-w-[120px]">
             <div className="font-semibold text-gray-800 mb-1">{hEntry.oficina}</div>
-            <div className={`text-lg font-black ${semaforoText(hEntry.pct)}`}>
+            <div className={`text-lg font-black ${pctText(hEntry.pct)}`}>
               {hEntry.pct !== null ? `${hEntry.pct}%` : '—'}
             </div>
             {hEntry.pct !== null && (

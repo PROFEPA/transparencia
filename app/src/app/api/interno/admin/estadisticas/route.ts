@@ -1,10 +1,35 @@
 import { NextResponse } from 'next/server';
 import { getDb } from '@/lib/db';
+import { unidadResponsableSql } from '@/lib/unidades-responsables';
+
+export const dynamic = 'force-dynamic';
 
 const MESES_LABEL = ['','Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
 
+type NumericRow = Record<string, number | string | null>;
+
+function n(value: number | string | null | undefined): number {
+  return typeof value === 'number' ? value : Number(value ?? 0);
+}
+
+function aggregateStatus(row: NumericRow): string {
+  if (n(row.enviadas) > 0) return 'enviado';
+  if (n(row.rechazadas) > 0) return 'rechazado';
+  if (n(row.borradores) > 0) return 'borrador';
+  if (n(row.aprobadas) > 0) return 'aprobado';
+  return 'sin_captura';
+}
+
 export async function GET() {
   const db = getDb();
+  const oficinaExpr = unidadResponsableSql('c.oficina');
+
+  const corteRow = db.prepare(`
+    SELECT MAX(mes) AS mes
+    FROM capturas
+    WHERE status='aprobado'
+  `).get() as { mes: number | null } | undefined;
+  const corteMes = corteRow?.mes ?? null;
 
   // Monthly aggregates: programado vs avance totals
   const porMes = db.prepare(`
@@ -20,42 +45,43 @@ export async function GET() {
     FROM capturas
     GROUP BY mes
     ORDER BY mes
-  `).all() as Record<string, number>[];
+  `).all() as NumericRow[];
 
   const porMesChart = MESES_LABEL.slice(1).map((label, i) => {
     const mes = i + 1;
     const row = porMes.find(r => r.mes === mes);
+    const prog = n(row?.prog_total);
+    const avan = n(row?.avan_total);
     return {
       mes,
       label,
-      aprobadas: row?.aprobadas ?? 0,
-      enviadas: row?.enviadas ?? 0,
-      borradores: row?.borradores ?? 0,
-      rechazadas: row?.rechazadas ?? 0,
-      prog: row?.prog_total ?? 0,
-      avan: row?.avan_total ?? 0,
-      pct: (row?.prog_total && row.prog_total > 0)
-        ? Math.round((row.avan_total / row.prog_total) * 100)
-        : null,
+      aprobadas: n(row?.aprobadas),
+      enviadas: n(row?.enviadas),
+      borradores: n(row?.borradores),
+      rechazadas: n(row?.rechazadas),
+      prog,
+      avan,
+      pct: prog > 0 ? Math.round((avan / prog) * 100) : null,
     };
   });
 
-  // Per ORPA × month status matrix
+  // Per Unidad Responsable x month status matrix, aliases normalized.
   const matrizRaw = db.prepare(`
     SELECT
-      c.oficina,
+      ${oficinaExpr} AS oficina,
       c.mes,
-      c.status,
-      c.programado,
-      c.avance,
-      COUNT(*) OVER (PARTITION BY c.oficina) AS total_office,
-      SUM(CASE WHEN c.status='aprobado' THEN 1 ELSE 0 END)
-        OVER (PARTITION BY c.oficina) AS aprobadas_office
+      COUNT(*) AS total,
+      SUM(CASE WHEN c.status='aprobado'  THEN 1 ELSE 0 END) AS aprobadas,
+      SUM(CASE WHEN c.status='enviado'   THEN 1 ELSE 0 END) AS enviadas,
+      SUM(CASE WHEN c.status='borrador'  THEN 1 ELSE 0 END) AS borradores,
+      SUM(CASE WHEN c.status='rechazado' THEN 1 ELSE 0 END) AS rechazadas,
+      SUM(CASE WHEN c.status='aprobado' AND c.programado>0 THEN c.programado ELSE 0 END) AS prog_sum,
+      SUM(CASE WHEN c.status='aprobado' AND c.programado>0 THEN c.avance ELSE 0 END) AS avan_sum
     FROM capturas c
-    ORDER BY c.oficina, c.mes
-  `).all() as Record<string, number | string>[];
+    GROUP BY ${oficinaExpr}, c.mes
+    ORDER BY oficina, c.mes
+  `).all() as NumericRow[];
 
-  // Group by oficina
   const oficinasMap: Record<string, {
     oficina: string;
     meses: Record<number, { status: string; pct: number | null; avance: number | null; programado: number | null }>;
@@ -66,48 +92,47 @@ export async function GET() {
   }> = {};
 
   for (const row of matrizRaw) {
-    const ofc = row.oficina as string;
+    const ofc = String(row.oficina);
     if (!oficinasMap[ofc]) {
       oficinasMap[ofc] = { oficina: ofc, meses: {}, total: 0, aprobadas: 0, enviadas: 0, pct_overall: null };
     }
-    const mes = row.mes as number;
-    const prog = row.programado as number | null;
-    const avan = row.avance as number | null;
-    oficinasMap[ofc].meses[mes] = {
-      status: row.status as string,
-      pct: (prog && prog > 0 && avan !== null) ? Math.round((avan / prog) * 100) : null,
-      avance: avan,
-      programado: prog,
+    const prog = n(row.prog_sum);
+    const avan = n(row.avan_sum);
+    oficinasMap[ofc].meses[n(row.mes)] = {
+      status: aggregateStatus(row),
+      pct: prog > 0 ? Math.round((avan / prog) * 100) : null,
+      avance: avan || null,
+      programado: prog || null,
     };
   }
 
-  // Compute totals per oficina
   const countRaw = db.prepare(`
-    SELECT oficina,
+    SELECT
+      ${oficinaExpr} AS oficina,
       COUNT(*) AS total,
-      SUM(CASE WHEN status='aprobado'  THEN 1 ELSE 0 END) AS aprobadas,
-      SUM(CASE WHEN status='enviado'   THEN 1 ELSE 0 END) AS enviadas,
-      SUM(CASE WHEN status='aprobado' AND programado>0 THEN avance   ELSE 0 END) AS avan_sum,
-      SUM(CASE WHEN status='aprobado' AND programado>0 THEN programado ELSE 0 END) AS prog_sum
-    FROM capturas
-    GROUP BY oficina
-  `).all() as Record<string, number | string>[];
+      SUM(CASE WHEN c.status='aprobado'  THEN 1 ELSE 0 END) AS aprobadas,
+      SUM(CASE WHEN c.status='enviado'   THEN 1 ELSE 0 END) AS enviadas,
+      SUM(CASE WHEN c.status='aprobado' AND c.programado>0 THEN c.avance ELSE 0 END) AS avan_sum,
+      SUM(CASE WHEN c.status='aprobado' AND c.programado>0 THEN c.programado ELSE 0 END) AS prog_sum
+    FROM capturas c
+    GROUP BY ${oficinaExpr}
+  `).all() as NumericRow[];
 
   for (const row of countRaw) {
-    const ofc = row.oficina as string;
+    const ofc = String(row.oficina);
     if (oficinasMap[ofc]) {
-      oficinasMap[ofc].total = row.total as number;
-      oficinasMap[ofc].aprobadas = row.aprobadas as number;
-      oficinasMap[ofc].enviadas = row.enviadas as number;
-      const ps = row.prog_sum as number;
-      const as_ = row.avan_sum as number;
-      oficinasMap[ofc].pct_overall = ps > 0 ? Math.round((as_ / ps) * 100) : null;
+      const prog = n(row.prog_sum);
+      const avan = n(row.avan_sum);
+      oficinasMap[ofc].total = n(row.total);
+      oficinasMap[ofc].aprobadas = n(row.aprobadas);
+      oficinasMap[ofc].enviadas = n(row.enviadas);
+      oficinasMap[ofc].pct_overall = prog > 0 ? Math.round((avan / prog) * 100) : null;
     }
   }
 
   const matriz = Object.values(oficinasMap).sort((a, b) => a.oficina.localeCompare(b.oficina));
 
-  // Per indicator compliance — GROUP BY codigo+serie only to avoid duplicates from name typos
+  // Per indicator compliance. Group by codigo+serie to avoid duplicates from office/name variants.
   const porIndicador = db.prepare(`
     SELECT
       i.codigo,
@@ -115,34 +140,39 @@ export async function GET() {
       i.serie,
       COUNT(c.id) AS capturas_total,
       SUM(CASE WHEN c.status='aprobado' THEN 1 ELSE 0 END) AS aprobadas,
-      COUNT(DISTINCT c.oficina) AS oficinas,
-      SUM(CASE WHEN c.status='aprobado' AND c.programado>0 THEN c.avance   ELSE 0 END) AS avan_sum,
-      SUM(CASE WHEN c.status='aprobado' AND c.programado>0 THEN c.programado ELSE 0 END) AS prog_sum,
-      SUM(i.meta_anual) AS meta_sum
+      COUNT(DISTINCT CASE WHEN c.id IS NOT NULL THEN ${oficinaExpr} END) AS oficinas,
+      SUM(CASE WHEN c.status='aprobado' AND c.programado>0 THEN c.avance ELSE 0 END) AS avan_sum,
+      SUM(CASE WHEN c.status='aprobado' AND c.programado>0 THEN c.programado ELSE 0 END) AS prog_sum
     FROM indicadores_2026 i
     LEFT JOIN capturas c ON c.indicador_id = i.id
     GROUP BY i.codigo, i.serie
     ORDER BY i.codigo
-  `).all() as Record<string, number | string>[];
+  `).all() as NumericRow[];
+
+  const metasRows = db.prepare(`
+    SELECT codigo, SUM(COALESCE(meta_anual, 0)) AS meta_sum
+    FROM indicadores_2026
+    GROUP BY codigo
+  `).all() as NumericRow[];
+  const metasByCode = new Map(metasRows.map(row => [String(row.codigo), n(row.meta_sum)]));
 
   const indicadores = porIndicador.map(r => {
-    const prog = r.prog_sum as number;
-    const avan = r.avan_sum as number;
-    const meta = r.meta_sum as number;
+    const prog = n(r.prog_sum);
+    const avan = n(r.avan_sum);
+    const meta = metasByCode.get(String(r.codigo)) ?? 0;
     return {
       codigo: r.codigo,
       nombre: r.nombre,
       serie: r.serie,
-      capturas: r.capturas_total,
-      aprobadas: r.aprobadas,
-      oficinas: r.oficinas,
+      capturas: n(r.capturas_total),
+      aprobadas: n(r.aprobadas),
+      oficinas: n(r.oficinas),
       pct: prog > 0 ? Math.round((avan / prog) * 100) : null,
       prog_pct: meta > 0 ? Math.round((prog / meta) * 100) : null,
       avan_pct: meta > 0 ? Math.round((avan / meta) * 100) : null,
     };
   });
 
-  // Pie data for status distribution
   const totalRaw = db.prepare(`
     SELECT
       SUM(CASE WHEN status='aprobado'  THEN 1 ELSE 0 END) AS aprobadas,
@@ -160,5 +190,5 @@ export async function GET() {
     { name: 'Rechazadas',value: totalRaw.rechazadas?? 0, color: '#EF4444' },
   ].filter(d => d.value > 0);
 
-  return NextResponse.json({ porMesChart, matriz, indicadores, pie, total: totalRaw.total ?? 0 });
+  return NextResponse.json({ porMesChart, matriz, indicadores, pie, total: totalRaw.total ?? 0, corteMes });
 }
